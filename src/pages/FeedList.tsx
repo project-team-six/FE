@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Home = () => {
+const FeedList = () => {
   return (
     <div>
-      Home
+      FeedList
     </div>
   )
 }
 
-export default Home;
+export default FeedList;
