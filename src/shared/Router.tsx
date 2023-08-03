@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
       { path: "/feed/:id", element: <FeedDetail /> },
       { path: "/feed/:id/edit", element: <FeedEdit /> },
       { path: "/feed/add", element: <FeedAdd /> },
-      { path: "/mypage/:id", element: <MyPage /> },
+      { path: "/mypage", element: <MyPage /> },
       { path: "/mypage/edit", element: <MyPageEdit /> },
       { path: "/guidepage", element: <GuidePage /> },
     ],
