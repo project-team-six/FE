@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
+import { useDispatch } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router";
 import styled from "styled-components";
 import { signIn } from "../api/userApi";
 import mainlogo from "../asstes/mainlogo.png";
+import { setDecodeToken } from "../redux/modules/user";
 import { User } from "../types/signIn";
 
 const SignIn = () => {
@@ -27,6 +29,8 @@ const SignIn = () => {
 		});
 	};
 
+	//로그인 성공하면 토큰 쿠키에 저장하고 리덕스로 토큰값 보내주는 곳
+	const dispatch = useDispatch();
 	const loginMutation = useMutation(signIn, {
 		onSuccess: (res) => {
 			const token = res.headers.authorization; // token 값 가져오기
@@ -34,6 +38,8 @@ const SignIn = () => {
 			else {
 				// token 값이 있는 경우
 				document.cookie = `accessToken=${token}; path=/;`; // cookie에 token 저장
+				dispatch(setDecodeToken(token));
+				console.log("뀨??");
 				alert("로그인 성공!");
 			}
 			navigate("/");
