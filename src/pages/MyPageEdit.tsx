@@ -1,9 +1,11 @@
 import React, { useState, useRef, ChangeEvent } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { putMyPageEdit } from "../api/user";
+import { useQuery } from "react-query";
+import MyPage from "./MyPage";
 
-function MyPageEdit() {
-    const [imgUrl, setImgUrl] = useState<string>("");
+const MyPageEdit = ({ userId }) => {
     const imgRef = useRef(null);
     const navigate = useNavigate();
 
@@ -16,7 +18,19 @@ function MyPageEdit() {
         }
     };
 
-    const submitHandler = () => {};
+    const onimgUpdateHandler = (e: any) => {
+        e.preventDefault();
+        imgRef.current.click();
+    };
+
+    // Put 닉네임, 비빌번호, 폰번호 수정
+    // const { data: mypageEdit } = useQuery({
+    //     querykey: ["mypageEdit", userId],
+    //     queryFn: () => putMyPageEdit(userId),
+    // });
+    // if (mypageEdit) {
+    //     putMyPageEdit(userId, mypageEdit.data.nickname);
+    // }
 
     return (
         <form>
@@ -25,9 +39,11 @@ function MyPageEdit() {
                 <h4>닉네임</h4>
                 <input type="email" />
             </div>
+            {/* 비밀번호 수정 */}
             <div>
                 <h4>비밀번호</h4>
                 <input type="text" />
+
                 {/* /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/; */}
             </div>
             <div>
@@ -48,7 +64,7 @@ function MyPageEdit() {
                 ) : (
                     <span>{imgUrl}</span>
                 )}
-                <button>업로드</button>
+                <button onClick={onimgUpdateHandler}>업로드</button>
                 {/* <button
           onChange={() => {
             imgUrl("");
@@ -57,10 +73,10 @@ function MyPageEdit() {
           초기화
         </button> */}
             </div>
-            <button onSubmit={submitHandler}>수정 완료</button>
+            {/* <button onSubmit={submitHandler}>수정 완료</button> */}
         </form>
     );
-}
+};
 
 export default MyPageEdit;
 
