@@ -12,15 +12,7 @@ export const signUp = async (newUserInfo: FormData) => {
 	return response;
 };
 
-export const kakaoSignIn = async () => {
-	try {
-		const response = await instance.get(`/auth/kakao`);
-		console.log(response);
-		return response;
-	} catch (error) {
-		console.log(error);
-	}
-};
+
 
 export const signIn = async (user: User) => {
 	const response = await instance.post(`/auth/login`, user, {

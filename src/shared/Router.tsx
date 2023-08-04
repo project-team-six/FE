@@ -12,25 +12,27 @@ import FeedEdit from "../pages/FeedEdit";
 import FeedList from "../pages/FeedList";
 import FeedAdd from "../pages/FeedAdd";
 import GuidePage from "../pages/GuidePage";
+import Redirection from "../pages/Redirection";
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: "/signin", element: <SignIn /> },
-      { path: "/signup", element: <SignUp /> },
-      { path: "/locationsetting", element: <LocationSetting /> },
-      { path: "/feedlist", element: <FeedList /> },
-      { path: "/feed/:id", element: <FeedDetail /> },
-      { path: "/feed/:id/edit", element: <FeedEdit /> },
-      { path: "/feed/add", element: <FeedAdd /> },
-      { path: "/mypage", element: <MyPage /> },
-      { path: "/mypage/edit", element: <MyPageEdit /> },
-      { path: "/guidepage", element: <GuidePage /> },
-    ],
-  },
+	{
+		path: "/",
+		element: <Root />,
+		children: [
+			{ index: true, element: <Home /> },
+			{ path: "/signin", element: <SignIn /> },
+			{ path: "/signup", element: <SignUp /> },
+			{ path: "/locationsetting", element: <LocationSetting /> },
+			{ path: "/feedlist", element: <FeedList /> },
+			{ path: "/feed/:id", element: <FeedDetail /> },
+			{ path: "/feed/:id/edit", element: <FeedEdit /> },
+			{ path: "/feed/add", element: <FeedAdd /> },
+			{ path: "/mypage", element: <MyPage /> },
+			{ path: "/mypage/edit", element: <MyPageEdit /> },
+			{ path: "/guidepage", element: <GuidePage /> },
+			{ path: "/auth/kakao/login", element: <Redirection /> },
+		],
+	},
 ]);
 
 function Router() {}

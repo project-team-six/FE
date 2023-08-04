@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { NavigateFunction, useNavigate } from "react-router";
 import styled from "styled-components";
-import { kakaoSignIn, signIn } from "../api/userApi";
+import { signIn } from "../api/userApi";
 import mainlogo from "../asstes/mainlogo.png";
 import { User } from "../types/signIn";
 
@@ -52,10 +52,8 @@ const SignIn = () => {
 	};
 
 	const kakaoLoginHandler = () => {
-		kakaoSignIn();
+		window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_REST_API_KEY}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=code`;
 	};
-
-	console.log("안녕하세욜");
 
 	return (
 		<LoginLayout>
