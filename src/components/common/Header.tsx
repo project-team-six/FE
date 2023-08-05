@@ -17,7 +17,6 @@ const Header = () => {
 	const exp: number = useSelector((state: RootState) => {
 		return state.tokenSlice.decodeToken.iat;
 	});
-	console.log("exp", exp);
 
 	// 토근이 만료되면 자동 로그아웃
 	// const currentTime = Date.now() / 1000; // 현재 시간
@@ -36,7 +35,7 @@ const Header = () => {
 					<button>지역을 설정해주세요</button>
 				</St.LocationSetSection>
 				<St.NavBtnSection>
-					<button>글쓰기</button>
+					<button onClick={handleNavigate("/feedadd")}>글쓰기</button>
 					<button onClick={handleNavigate("/signin")}>로그인</button>
 					<button onClick={handleNavigate("/signup")}>회원가입</button>
 				</St.NavBtnSection>
