@@ -41,7 +41,7 @@ const FeedAdd = () => {
         const newFeed: feedType = {
             title,
             content,
-            category,
+            // category,
             transactionStartDate: dealableStartDate.toISOString(),
             transactionEndDate: dealableEndDate.toISOString(),
             consumerPeriod: expirationDate.toISOString(),

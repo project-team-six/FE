@@ -39,7 +39,6 @@ const SignIn = () => {
 				// token 값이 있는 경우
 				document.cookie = `accessToken=${token}; path=/;`; // cookie에 token 저장
 				dispatch(setDecodeToken(token));
-				console.log("뀨??");
 				alert("로그인 성공!");
 			}
 			navigate("/");
@@ -85,7 +84,7 @@ const SignIn = () => {
 				/>
 			</InputSection>
 			<ButtonSection>
-				<button>ID/비밀번호찾기</button>
+				<button onClick={handleNavigate("/finduserinfo")}>ID/비밀번호찾기</button>
 				<button onClick={onClickLoginBtnHandler}>로그인</button>
 				<button onClick={handleNavigate("/signup")}>회원가입하기</button>
 				<button onClick={() => kakaoLoginHandler()}>카카오톡으로 로그인하기</button>
