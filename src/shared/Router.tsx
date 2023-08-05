@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Root from "../pages/Root";
 import SignIn from "../pages/SignIn";
+import FindUserInfo from "../pages/FindUserInfo";
 import SignUp from "../pages/SignUp";
 import MyPage from "../pages/MyPage";
 import MyPageEdit from "../pages/MyPageEdit";
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
 		children: [
 			{ index: true, element: <Home /> },
 			{ path: "/signin", element: <SignIn /> },
+			{ path: "/finduserinfo", element: <FindUserInfo /> },
 			{ path: "/signup", element: <SignUp /> },
 			{ path: "/locationsetting", element: <LocationSetting /> },
 			{ path: "/feedlist", element: <FeedList /> },
