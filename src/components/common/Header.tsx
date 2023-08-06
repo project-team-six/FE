@@ -4,7 +4,6 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import mainlogo from "../../asstes/mainlogo.png";
 import { LayoutBox } from "./GlobalStyle";
 import { useSelector } from "react-redux";
-import TokenSliceState from "../../redux/modules/user";
 import { RootState } from "../../redux/config/configStore";
 
 const Header = () => {
@@ -28,6 +27,7 @@ const Header = () => {
 	const userLocationInfo = useSelector((state: RootState) => {
 		return state.locationSlice.userLocation;
 	});
+
 
 	return (
 		<St.HeaderLayout>
