@@ -18,12 +18,16 @@ const Header = () => {
 		return state.tokenSlice.decodeToken.iat;
 	});
 
-	// 토근이 만료되면 자동 로그아웃
-	// const currentTime = Date.now() / 1000; // 현재 시간
-	// if(currentTime > ) {
-	// 	alert("로그인이 만료되었습니다. 다시 로그인 해주시기 바랍니다.");
-	// 	document.cookie = `accessToken=0; max-age=0`; // 쿠키에서 삭제
-	// }
+	//토근이 만료되면 자동 로그아웃
+	const currentTime = Date.now() / 1000; // 현재 시간
+	if (currentTime > exp) {
+		alert("로그인이 만료되었습니다. 다시 로그인 해주시기 바랍니다.");
+		document.cookie = `accessToken=0; max-age=0`; // 쿠키에서 삭제
+	}
+
+	const userLocationInfo = useSelector((state: RootState) => {
+		return state.locationSlice.userLocation;
+	});
 
 	return (
 		<St.HeaderLayout>
@@ -32,7 +36,13 @@ const Header = () => {
 					<img src={mainlogo} alt='header_logo' />
 				</St.LogoSection>
 				<St.LocationSetSection>
-					<button>지역을 설정해주세요</button>
+					{userLocationInfo.sido == "" ? (
+						<button onClick={handleNavigate("/locationsetting")}>지역을 설정해주세요</button>
+					) : (
+						<button onClick={handleNavigate("/locationsetting")}>
+							{userLocationInfo.sido} {userLocationInfo.sigungu} {userLocationInfo.dong}
+						</button>
+					)}
 				</St.LocationSetSection>
 				<St.NavBtnSection>
 					<button onClick={handleNavigate("/feedadd")}>글쓰기</button>
