@@ -12,10 +12,8 @@ const Redirection = () => {
 		axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/kakao/login?code=${code}`).then((r) => {
 			const token = r.headers.authorization;
 			document.cookie = `accessToken=${token}; path=/;`;
-			console.log("token?", token);
 			dispatch(setDecodeToken(token));
-			// navigate("/");
-			window.location.reload();
+			navigate("/");
 		});
 	});
 
