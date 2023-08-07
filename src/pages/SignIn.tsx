@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router";
 import styled from "styled-components";
@@ -76,7 +76,7 @@ const SignIn = () => {
 				/>
 				<p>비밀번호</p>
 				<input
-					type='text'
+					type='password'
 					placeholder='비밀번호를 입력해주세요'
 					name='password'
 					value={password}

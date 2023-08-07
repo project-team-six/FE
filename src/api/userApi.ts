@@ -1,4 +1,4 @@
-import axios, { Axios, AxiosError } from "axios";
+import axios, { Axios } from "axios";
 import { User } from "../types/signIn";
 import { findIdType, findPwType } from "../types/findUser";
 
