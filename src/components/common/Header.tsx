@@ -32,6 +32,7 @@ const Header = () => {
 		Logout();
 	}
 
+
 	const userLocationInfo = useSelector((state: RootState) => {
 		return state.locationSlice.userLocation;
 	});

@@ -14,6 +14,12 @@ export const postFeed = async (newFeed: FormData) => {
 	const response = await instance.post("/post", newFeed, {
         headers: { "Context-Type": "multipart/form-data" },
     });
-    console.log(response)
     return response;
 };
+
+export const editFeed = async (newFeed: FormData) => {
+	// const response = await instance.post(`/post/${postId}`, newFeed, {
+    //     headers: { "Context-Type": "multipart/form-data" },
+    // });
+    // return response;
+}
