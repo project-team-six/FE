@@ -18,11 +18,11 @@ const Header = () => {
 	});
 
 	//토근이 만료되면 자동 로그아웃
-	const currentTime = Date.now() / 1000; // 현재 시간
-	if (currentTime > exp) {
-		alert("로그인이 만료되었습니다. 다시 로그인 해주시기 바랍니다.");
-		document.cookie = `accessToken=0; max-age=0`; // 쿠키에서 삭제
-	}
+	// const currentTime = Date.now() / 1000; // 현재 시간
+	// if (currentTime > exp) {
+	// 	alert("로그인이 만료되었습니다. 다시 로그인 해주시기 바랍니다.");
+	// 	document.cookie = `accessToken=0; max-age=0`; // 쿠키에서 삭제
+	// }
 
 	const userLocationInfo = useSelector((state: RootState) => {
 		return state.locationSlice.userLocation;

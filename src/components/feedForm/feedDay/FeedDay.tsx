@@ -1,6 +1,7 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
+import 'react-datepicker/dist/react-datepicker.css';
 
 export const FeedDay = ({label, range, startDate, setStartDate, endDate, setEndDate}: 
     {label:string, range:boolean, startDate: Date, setStartDate: (startDate: Date) => void, endDate?: Date, setEndDate?: (endDate: Date) => void}) => 
