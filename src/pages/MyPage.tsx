@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
-import { getMyPage } from "../api/user";
+import { getMyPage } from "../api/userApi";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/config/configStore";
 
 const MyPage = () => {
-  const [id, setId] = useState(1);
+  // const [userId, setuserId] = useState(3);
   const navigate = useNavigate();
+  const userId: Number = useSelector((state: RootState) => {
+    return state.tokenSlice.decodeToken.userId;
+  });
 
+  console.log("userId", userId);
   // useQuery로 유저 정보 불러오기
   const {
     data: mypage,
     isLoading,
     error,
-  } = useQuery({
-    queryKey: ["mypage", id],
-    queryFn: () => getMyPage(id),
-  });
+  } = useQuery(["mypage", userId], () => getMyPage(userId));
 
   if (error) {
     console.log(error);
@@ -24,7 +27,7 @@ const MyPage = () => {
   // navigate 겸 유저 정보 props 해주기
   const onClickuserEditnavigate = () => {
     navigate(`/mypage/edit`, {
-      state: id,
+      state: userId,
     });
   };
 
@@ -50,11 +53,19 @@ const MyPage = () => {
           </div>
           <div>
             <h2>작성글 {mypage.data.userPosts.length}</h2>
-            <div>postList</div>
+            {mypage.data.userPosts.length === 0 ? (
+              <p>아직 작성된 글이 없습니다.</p>
+            ) : (
+              <div>{mypage.data.postList}</div>
+            )}
           </div>
           <div>
             <h2>관심글 {mypage.data.pinedPosts.length} </h2>
-            <div>postList</div>
+            {mypage.data.pinedPosts.length === 0 ? (
+              <p>아직 관심글이 없습니다.</p>
+            ) : (
+              <div>{mypage.data.postList}</div>
+            )}
           </div>
         </div>
       )}
