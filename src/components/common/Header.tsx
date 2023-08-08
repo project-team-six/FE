@@ -10,11 +10,12 @@ import { useDispatch } from "react-redux";
 import { resetLocation } from "../../redux/modules/locationSet";
 
 const Header = () => {
-	const navigate: NavigateFunction = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
-	const handleNavigate = (path: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		navigate(path);
-	};
+  const handleNavigate =
+    (path: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      navigate(path);
+    };
 
 	const info = useSelector((state: RootState) => {
 		return state;
