@@ -3,6 +3,7 @@ import Postcode from "@actbase/react-daum-postcode";
 import { NavigateFunction, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setLocation } from "../redux/modules/locationSet";
+import { pushNotification } from "../utils/notification";
 
 const LocationSetting = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -10,7 +11,7 @@ const LocationSetting = () => {
 
 	const getAddressData = (data: any) => {
 		navigate("/feedlist");
-		alert(`지역이 ${data.sido} ${data.sigungu} ${data.bname}으로 설정되었습니다!`);
+		pushNotification(`지역이 ${data.sido} ${data.sigungu} ${data.bname}으로 설정되었습니다!`, "success");
 
 		const address = {
 			sido: data.sido,
