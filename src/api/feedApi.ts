@@ -1,4 +1,5 @@
 import axios, {Axios} from 'axios';
+import { locationType } from "../types/feedType";
 
 const instance: Axios = axios.create({
 	baseURL: process.env.REACT_APP_SERVER_URL,
@@ -10,6 +11,11 @@ instance.interceptors.request.use((config) => {
 	return config;
 });
 
+export const setUserLocation = async (userLocation: locationType) => {
+    const response = await instance.put("/auth/location", userLocation);
+    return response;   
+};
+
 export const postFeed = async (newFeed: FormData) => {
 	const response = await instance.post("/post", newFeed, {
         headers: { "Context-Type": "multipart/form-data" },
@@ -17,9 +23,9 @@ export const postFeed = async (newFeed: FormData) => {
     return response;
 };
 
-export const editFeed = async (newFeed: FormData) => {
-	// const response = await instance.post(`/post/${postId}`, newFeed, {
-    //     headers: { "Context-Type": "multipart/form-data" },
-    // });
-    // return response;
-}
+export const editFeed = async (postId: number, newFeed: FormData) => {
+	const response = await instance.post(`/post/${postId}`, newFeed, {
+        headers: { "Context-Type": "multipart/form-data" },
+    });
+    return response;
+};
