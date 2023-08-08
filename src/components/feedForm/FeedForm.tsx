@@ -7,8 +7,11 @@ import { FeedCategory } from "./feedCategory/FeedCategory";
 import { FeedDay } from "./feedDay/FeedDay";
 import { FeedInput } from "./feedInput/FeedInput";
 import { datetimeUtils } from "../../utils/datetimeUtils";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/config/configStore";
+import { editFeed } from "../../api/feedApi";
 
-const FeedForm = ({initialValue, mutation, btnName}: {initialValue: feedInitialValue, mutation: UseMutateFunction<any, unknown, any, unknown>, btnName: string}) => {
+const FeedForm = ({initialValue, mutation, btnName}: {initialValue: feedInitialValue, mutation?: UseMutateFunction<any, unknown, any, unknown>, btnName: string}) => {
     // 이미지
     const [images, setImages] = useState<File[]>(initialValue.images);
 
@@ -20,6 +23,11 @@ const FeedForm = ({initialValue, mutation, btnName}: {initialValue: feedInitialV
 
     // 가격
     const [price, setPrice] = useState<string>(initialValue.price);
+
+    // 지역
+    const location = useSelector((state: RootState) => {
+		return state.locationSlice.userLocation;
+	});
 
     // 거래 가능 날짜
     const [dealableStartDate, setDealableStartDate] = useState<Date>(new Date(initialValue.transactionStartDate)); // 시작일
@@ -49,14 +57,16 @@ const FeedForm = ({initialValue, mutation, btnName}: {initialValue: feedInitialV
         }
         formData.append("data", new Blob([JSON.stringify(newFeed)], { type: 'application/json' }));
         images.map((img) => { formData.append("file", img); }); // 이미지
-        mutation(formData);
+        if (mutation) mutation(formData); // 등록
+        // else editFeed(1, formData) // 수정 (상세 페이지 완료 후 진행 예정)
     };
 
     return (
         <div>
             <FeedImages images={images} setImages={setImages} />
             <section>
-                <span>서울특별시 강남구 청담동</span>
+                <label>위치: </label>
+                <span>{location.sido} {location.sigungu} {location.dong}</span>
             </section>
             <section>
                 <form>
