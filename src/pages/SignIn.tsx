@@ -7,6 +7,7 @@ import { signIn } from "../api/userApi";
 import mainlogo from "../asstes/mainlogo.png";
 import { setDecodeToken } from "../redux/modules/user";
 import { User } from "../types/signIn";
+import { pushNotification } from "../utils/notification";
 
 const SignIn = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -34,17 +35,19 @@ const SignIn = () => {
 	const loginMutation = useMutation(signIn, {
 		onSuccess: (res) => {
 			const token = res.headers.authorization; // token 값 가져오기
-			if (!token) alert("로그인 실패!"); // token 값이 없는 경우
+			if (!token) {
+				pushNotification("로그인 실패!", "warning");
+			} // token 값이 없는 경우
 			else {
 				// token 값이 있는 경우
 				document.cookie = `accessToken=${token}; path=/;`; // cookie에 token 저장
 				dispatch(setDecodeToken(token));
-				alert("로그인 성공!");
+				pushNotification("로그인 성공!", "success");
 			}
 			navigate("/");
 		},
 		onError: () => {
-			alert(`로그인 실패!`);
+			pushNotification("로그인 실패!", "error");
 		},
 	});
 
@@ -87,7 +90,7 @@ const SignIn = () => {
 				<button onClick={handleNavigate("/finduserinfo")}>ID/비밀번호찾기</button>
 				<button onClick={onClickLoginBtnHandler}>로그인</button>
 				<button onClick={handleNavigate("/signup")}>회원가입하기</button>
-				<button onClick={() => kakaoLoginHandler()}>카카오톡으로 로그인하기</button>
+				<button onClick={kakaoLoginHandler}>카카오톡으로 로그인하기</button>
 			</ButtonSection>
 		</LoginLayout>
 	);
