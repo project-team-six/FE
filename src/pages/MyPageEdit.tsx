@@ -12,7 +12,6 @@ const MyPageEdit: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | undefined>();
   const imgRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
-  const token = document.cookie;
 
   // 토큰값으로 유저 아이디 불러오기
   const userId: number = useSelector((state: RootState) => {
@@ -38,24 +37,34 @@ const MyPageEdit: React.FC = () => {
   // Put 닉네임, 비밀번호, 폰번호 수정
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    putMyPageEdit(userId, nickName, password, phoneNumber)
+      .then(() => {
+        alert("수정되었습니다");
+        // navigate(-1);
+      })
+      .catch((error) => {
+        alert("수정 실패");
+      });
+
     // 타입 가져오기
     try {
       // API 호출로 닉네임, 비밀번호, 폰번호 수정
-      await putMyPageEdit(userId, nickName, password, phoneNumber, token);
+      putMyPageEdit(userId, nickName, password, phoneNumber);
 
       // 수정된 이미지가 있다면 이미지 업로드 API 호출
       if (selectedFile) {
         let formData = new FormData();
         formData.append("file", selectedFile);
         try {
-          await putMyPageEditImage(userId, formData, token);
+          await putMyPageEditImage(userId, formData);
           alert("이미지업로드 성공");
         } catch (error) {
           console.log("이미지업로드 실패", error);
         }
       }
       alert("수정되었습니다");
-      navigate(-1);
+      // navigate(-1);
     } catch (error) {
       console.log("수정 실패", error);
     }
@@ -134,8 +143,7 @@ const MyPageEdit: React.FC = () => {
         <button
           type="submit"
           onClick={() => {
-            console.log("수정되었습니다");
-            navigate("/mypage");
+            // navigate("/mypage");
           }}
         >
           수정 완료
@@ -144,7 +152,7 @@ const MyPageEdit: React.FC = () => {
           type="button"
           onClick={() => {
             console.log("수정 취소");
-            navigate(-1);
+            // navigate(-1);
           }}
         >
           취소

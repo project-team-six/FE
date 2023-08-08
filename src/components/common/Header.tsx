@@ -17,44 +17,48 @@ const Header = () => {
       navigate(path);
     };
 
-	const info = useSelector((state: RootState) => {
-		return state;
-	});
+  const info = useSelector((state: RootState) => {
+    return state;
+  });
 
-	const userInfo = info.tokenSlice.decodeToken;
-	const userLocationInfo = info.locationSlice.userLocation;
+  const userInfo = info.tokenSlice.decodeToken;
+  const userLocationInfo = info.locationSlice.userLocation;
 
-	const dispatch = useDispatch();
-	const Logout = () => {
-		document.cookie = `accessToken=0; max-age=0`;
-		dispatch(setLogOut()); // 로그인된 정보 초기화
-		dispatch(resetLocation()); // 위치 초기화
-	};
+  const dispatch = useDispatch();
+  const Logout = () => {
+    document.cookie = `accessToken=0; max-age=0`;
+    dispatch(setLogOut()); // 로그인된 정보 초기화
+    dispatch(resetLocation()); // 위치 초기화
+  };
 
-	return (
-		<St.HeaderLayout>
-			<LayoutBox style={{ justifyContent: "space-between" }}>
-				<St.LogoSection>
-					<img src={mainlogo} alt='header_logo' />
-				</St.LogoSection>
-				<St.LocationSetSection>
-					{userLocationInfo.sido == "" ? (
-						<button onClick={handleNavigate("/locationsetting")}>지역을 설정해주세요</button>
-					) : (
-						<button onClick={handleNavigate("/locationsetting")}>
-							{userLocationInfo.sido} {userLocationInfo.sigungu} {userLocationInfo.dong}
-						</button>
-					)}
-				</St.LocationSetSection>
-				<St.NavBtnSection>
-					<button onClick={Logout}>로그아웃</button>
-					<button onClick={handleNavigate("/feedadd")}>글쓰기</button>
-					<button onClick={handleNavigate("/signin")}>로그인</button>
-					<button onClick={handleNavigate("/signup")}>회원가입</button>
-				</St.NavBtnSection>
-			</LayoutBox>
-		</St.HeaderLayout>
-	);
+  return (
+    <St.HeaderLayout>
+      <LayoutBox style={{ justifyContent: "space-between" }}>
+        <St.LogoSection>
+          <img src={mainlogo} alt="header_logo" />
+        </St.LogoSection>
+        <St.LocationSetSection>
+          {userLocationInfo.sido == "" ? (
+            <button onClick={handleNavigate("/locationsetting")}>
+              지역을 설정해주세요
+            </button>
+          ) : (
+            <button onClick={handleNavigate("/locationsetting")}>
+              {userLocationInfo.sido} {userLocationInfo.sigungu}{" "}
+              {userLocationInfo.dong}
+            </button>
+          )}
+        </St.LocationSetSection>
+        <St.NavBtnSection>
+          <button onClick={Logout}>로그아웃</button>
+          <button onClick={handleNavigate("/feedadd")}>글쓰기</button>
+          <button onClick={handleNavigate("/signin")}>로그인</button>
+          <button onClick={handleNavigate("/signup")}>회원가입</button>
+          <button onClick={handleNavigate("/mypage")}>마이페이지</button>
+        </St.NavBtnSection>
+      </LayoutBox>
+    </St.HeaderLayout>
+  );
 };
 
 export default Header;

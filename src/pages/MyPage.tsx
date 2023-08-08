@@ -20,24 +20,26 @@ const MyPage = () => {
     error,
   } = useQuery(["mypage", userId], () => getMyPage(userId));
 
-  if (error) {
-    console.log(error);
-  }
+  // console.log("mypage", mypage);
 
-  // navigate 겸 유저 정보 props 해주기
+  // if (error) {
+  //   console.log(error);
+  // }
+  // console.log(mypage);
+  // // navigate 겸 유저 정보 props 해주기
   const onClickuserEditnavigate = () => {
     navigate(`/mypage/edit`, {
       state: userId,
     });
   };
-
+  // console.log(mypage.data.profileImageUrl);
   return (
     <div>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <div>
-          {mypage.data.profileImageUrl ? (
+          {mypage?.data.profileImageUrl ? (
             <img src={`${mypage.data.profileImageUrl}`} alt="업로드된 이미지" />
           ) : (
             <img
