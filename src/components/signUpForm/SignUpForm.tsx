@@ -38,7 +38,7 @@ const SignUpForm: React.FC = () => {
 		const val = e.target.value;
 		setMatchPin(val);
 
-		if (password != val) setMatchPinMsg("비밀번호가 일치하지 않습니다.");
+		if (password !== val) setMatchPinMsg("비밀번호가 일치하지 않습니다.");
 		else {
 			setMatchPinMsg("");
 			setIsMatchPin(true);
