@@ -10,18 +10,17 @@ import { useDispatch } from "react-redux";
 import { resetLocation } from "../../redux/modules/locationSet";
 
 const Header = () => {
-  const navigate: NavigateFunction = useNavigate();
+	const navigate: NavigateFunction = useNavigate();
 
-  const handleNavigate =
-    (path: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      navigate(path);
-    };
+	const handleNavigate = (path: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		navigate(path);
+	};
 
 	const info = useSelector((state: RootState) => {
 		return state;
 	});
 
-	const userInfo = info.tokenSlice.decodeToken;
+	// const userInfo = info.tokenSlice.decodeToken;
 	const userLocationInfo = info.locationSlice.userLocation;
 
 	const dispatch = useDispatch();
@@ -38,7 +37,7 @@ const Header = () => {
 					<img src={mainlogo} alt='header_logo' />
 				</St.LogoSection>
 				<St.LocationSetSection>
-					{userLocationInfo.sido == "" ? (
+					{userLocationInfo.sido === "" ? (
 						<button onClick={handleNavigate("/locationsetting")}>지역을 설정해주세요</button>
 					) : (
 						<button onClick={handleNavigate("/locationsetting")}>
