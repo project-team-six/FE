@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import { findID, findPassword } from "../api/userApi";
 import { findIdType, findPwType } from "../types/findUser";
 import { pushNotification } from "../utils/notification";
@@ -24,7 +24,7 @@ const FindUserInfo = () => {
 		setEmail(e.target.value);
 	};
 
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const findIdMutation = useMutation(findID, {
 		onSuccess: (res) => {
 			pushNotification(`${res.data.data.email}`, "success");
