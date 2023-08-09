@@ -1,4 +1,5 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react';
+import * as S from "./style";
 
 type InputFormProps = {
     label: string;
@@ -27,11 +28,13 @@ const InputForm: React.FC<InputFormProps> = ({label, type, inputVal, setInputVal
     };
 
     return (
-        <form>
+        <S.Form>
             <label>{label}</label>
-            <input type={type} required value={inputVal} onChange={handleChange} />
-            <span>{msg}</span>
-        </form>
+            <br />
+            <S.Input type={type} required value={inputVal} onChange={handleChange} />
+            <br />
+            <S.Span>{msg}</S.Span>
+        </S.Form>
     )
 }
 
