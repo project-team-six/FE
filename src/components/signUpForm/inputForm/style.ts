@@ -7,7 +7,7 @@ export const Form = styled.form`
 export const Input = styled.input`
     width: 330px;
     height: 40px;
-    background-color: #F8F8F8;
+    background-color: #F3F3F3;
 
     /* 숫자 버튼 숨김 */
     -moz-appearance: textfield;
