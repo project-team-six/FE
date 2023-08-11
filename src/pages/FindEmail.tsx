@@ -1,8 +1,6 @@
 import FindEmailForm from "../components/findEmailForm/FindEmailForm";
 const FindEmail = () => {
-  return (
-    <FindEmailForm />
-  )
+    return <FindEmailForm />;
 }
 
 export default FindEmail;

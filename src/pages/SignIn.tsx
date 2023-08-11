@@ -89,6 +89,7 @@ const SignIn = () => {
 			</InputSection>
 			<ButtonSection>
 				<button onClick={handleNavigate("/findemail")}>이메일 찾기</button>
+				<button onClick={handleNavigate("/findpassword")}>비밀번호 찾기</button>
 				<button onClick={onClickLoginBtnHandler}>로그인</button>
 				<button onClick={handleNavigate("/signup")}>회원가입하기</button>
 				<button onClick={kakaoLoginHandler}>카카오톡으로 로그인하기</button>
