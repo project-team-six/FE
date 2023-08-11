@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Root from "../pages/Root";
 import SignIn from "../pages/SignIn";
-import FindUserInfo from "../pages/FindUserInfo";
 import SignUp from "../pages/SignUp";
 import MyPage from "../pages/MyPage";
 import MyPageEdit from "../pages/MyPageEdit";
@@ -14,6 +13,8 @@ import FeedList from "../pages/FeedList";
 import FeedAdd from "../pages/FeedAdd";
 import GuidePage from "../pages/GuidePage";
 import Redirection from "../pages/Redirection";
+import FindEmail from "../pages/FindEmail";
+import FindPassword from "../pages/FindPassword";
 
 export const router = createBrowserRouter([
 	{
@@ -22,7 +23,8 @@ export const router = createBrowserRouter([
 		children: [
 			{ index: true, element: <Home /> },
 			{ path: "/signin", element: <SignIn /> },
-			{ path: "/finduserinfo", element: <FindUserInfo /> },
+			{ path: "/findemail", element: <FindEmail /> },
+			{ path: "/findpassword", element: <FindPassword /> },
 			{ path: "/signup", element: <SignUp /> },
 			{ path: "/locationsetting", element: <LocationSetting /> },
 			{ path: "/feedlist", element: <FeedList /> },
