@@ -67,7 +67,7 @@ export const putMyPageEditImage = async (
   return request;
 };
 
-export const findID = async (user: findIdType) => {
+export const findUserEmail = async (user: findIdType) => {
 	const response = await instance.post("/auth/findemail", user);
 	return response;
 };

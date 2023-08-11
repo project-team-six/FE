@@ -34,7 +34,6 @@ export const Img = styled.img`
     border-radius: 50%;
 `;
 
-
 export const ImgInput = styled.input`
     display: none;
 `;
