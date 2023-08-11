@@ -67,7 +67,7 @@ const FindUserInfo = () => {
 	return (
 		<div>
 			<section>
-				<label>아이디</label>
+				<label>아이디를 찾고싶으신가요!?</label>
 				<input
 					type='text'
 					required
@@ -85,7 +85,7 @@ const FindUserInfo = () => {
 				<button onClick={clickFindIdBtn}>아이디 찾기</button>
 			</section>
 			<section>
-				<label>비밀번호</label>
+				<label>비밀번호를 찾고싶으신가요!?</label>
 				<input
 					type='text'
 					required

@@ -5,6 +5,7 @@ import { NavigateFunction, useNavigate } from "react-router";
 import styled from "styled-components";
 import { signIn } from "../api/userApi";
 import mainlogo from "../asstes/mainlogo.png";
+import { LayoutBox } from "../components/common/GlobalStyle";
 import { setDecodeToken } from "../redux/modules/user";
 import { User } from "../types/signIn";
 import { pushNotification } from "../utils/notification";
@@ -64,7 +65,7 @@ const SignIn = () => {
 	};
 
 	return (
-		<LoginLayout>
+		<LayoutBox style={{ flexDirection: "column" }}>
 			<LogoSection>
 				<img src={mainlogo} alt='로고' />
 			</LogoSection>
@@ -92,13 +93,13 @@ const SignIn = () => {
 				<button onClick={handleNavigate("/signup")}>회원가입하기</button>
 				<button onClick={kakaoLoginHandler}>카카오톡으로 로그인하기</button>
 			</ButtonSection>
-		</LoginLayout>
+		</LayoutBox>
 	);
 };
 export default SignIn;
-const LoginLayout = styled.div`
-	width: 320px;
+const LogoSection = styled.section`
+	width: 310px;
+	height: 100px;
 `;
-const LogoSection = styled.section``;
 const InputSection = styled.section``;
 const ButtonSection = styled.section``;
