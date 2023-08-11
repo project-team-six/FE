@@ -1,23 +1,25 @@
-import { useNavigate } from "react-router";
-import * as S from "./style";
 import { ChangeEvent, useState } from "react";
-import { findIdType } from "../../../types/findUser";
+import { useNavigate } from "react-router";
 import { useMutation } from "react-query";
+import { findIdType } from "../../../types/findUser";
 import { findUserEmail } from "../../../api/userApi";
 import { pushNotification } from "../../../utils/notification";
+import * as Sf from "../../common/commonFormStyles";
 
 const SearchEmailForm = ({setResult}: {setResult: (value: string) => void}) => {
-    // 이름
-	const [username, setUsername] = useState<string>("");
-	const changeUsername = (e: ChangeEvent<HTMLInputElement>) => {
-		setUsername(e.target.value);
-	};
+    const [inputValue, setInputValue] = useState<findIdType>({
+        username: "", // 이름
+        phoneNumber: "", // 전화번호
+    });
 
-	// 전화번호
-	const [phoneNumber, setPhoneNumber] = useState<string>("");
-	const changePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
-		setPhoneNumber(e.target.value);
-	};
+    const { username, phoneNumber } = inputValue;
+    const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setInputValue({
+            ...inputValue,
+            [name]: value,
+        });
+    };
 
     const findEmailMutation = useMutation(findUserEmail, {
 		onSuccess: (res) => {
@@ -40,24 +42,24 @@ const SearchEmailForm = ({setResult}: {setResult: (value: string) => void}) => {
     const navigate = useNavigate();
     return (
         <form >
-            <S.InputDiv>
+            <Sf.InputDiv>
                 <label>이름</label>
                 <br />
-                <S.Input type="text" required value={username} onChange={changeUsername}/>
-            </S.InputDiv>
-            <S.InputDiv>
+                <Sf.Input name="username" onChange={handleInput}/>
+            </Sf.InputDiv>
+            <Sf.InputDiv>
                 <label>전화번호</label>
                 <br/>
-                <S.Input type="number" required value={phoneNumber} onChange={changePhoneNumber}/>
-            </S.InputDiv>
-            <S.FindPwDiv>
-                <button onClick={() => navigate("/findpassword")}>비밀번호 찾기</button>
-            </S.FindPwDiv>
-            <S.FindEmailDiv>
-                <S.FindEmailBtn type="button" onClick={()=>clickFindEmailBtn()}>찾기</S.FindEmailBtn>
-            </S.FindEmailDiv>
+                <Sf.Input name="phoneNumber" onChange={handleInput}/>
+            </Sf.InputDiv>
+            <Sf.MovePageDiv>
+                <button type="button" onClick={() => navigate("/findpassword")}>비밀번호 찾기</button>
+            </Sf.MovePageDiv>
+            <Sf.FindDiv>
+                <Sf.FindBtn type="button" onClick={()=>clickFindEmailBtn()}>찾기</Sf.FindBtn>
+            </Sf.FindDiv>
         </form>
     )
 }
 
-export default SearchEmailForm
+export default SearchEmailForm;
