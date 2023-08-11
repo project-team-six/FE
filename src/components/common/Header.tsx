@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/config/configStore";
 import { setLogOut, TokenSliceState } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
-import { resetLocation } from "../../redux/modules/locationSet";
 import ProfileModal from "./ProfileModal";
 
 const Header = () => {
