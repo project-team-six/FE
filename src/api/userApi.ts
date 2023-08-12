@@ -13,7 +13,7 @@ instance.interceptors.request.use((config) => {
       .split(";")
       .filter((cookies) => cookies.includes("accessToken"))[0]
       ?.split("=")[1];
-  if (accessToken) config.headers.authorization = accessToken;
+  if (accessToken) config.headers.Authorization = accessToken;
   return config;
 });
 
@@ -25,14 +25,14 @@ export const signUp = async (newUserInfo: FormData) => {
 };
 
 export const signIn = async (user: User) => {
-  const response = await instance.post(`/auth/login`, user, {
+  const response = await instance.post("/auth/login", user, {
     headers: { "Content-Type": "application/json" },
   });
   return response;
 };
 
 export const getMyPage = async (userId: Number) => {
-  const res = await instance.get(`auth/mypage/${userId}`);
+  const res = await instance.get(`/auth/mypage/${userId}`);
   return res.data;
 };
 
@@ -40,29 +40,19 @@ export const putMyPageEdit = async (
   userId: Number,
   nickname: string,
   password: string,
-  phoneNumber: string,
-  token: string
+  phoneNumber: string
 ) => {
   const data = { nickname, password, phoneNumber };
-  const request = await instance.put(`auth/mypage/${userId}`, data, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: token,
-    },
-  });
+  const request = await instance.put(`/auth/mypage/${userId}`, data);
   return request.data;
 };
 
 export const putMyPageEditImage = async (
   userId: Number,
-  formData: FormData,
-  token: string
+  formData: FormData
 ) => {
-  const request = await instance.put(`auth/mypage/${userId}/image`, formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-      Authorization: token,
-    },
+  const request = await instance.put(`/auth/mypage/${userId}/image`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
   });
   return request;
 };
@@ -73,6 +63,6 @@ export const findUserEmail = async (user: findIdType) => {
 };
 
 export const findPassword = async (user: findPwType) => {
-	const response = await instance.post("/auth/findpassword", user);
-	return response;
+  const response = await instance.post("/auth/findpassword", user);
+  return response;
 };
