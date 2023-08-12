@@ -13,6 +13,7 @@ export type Detailtype = {
 
 export type commentList = {
     id: number;
-    contnent: string;
+    content: string;
     nickname: string;
+    createdAt : string;
 };

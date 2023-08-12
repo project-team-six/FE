@@ -8,7 +8,12 @@ import { LayoutBox } from "../common/GlobalStyle";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/config/configStore";
 
-const FeedDetailList: React.FC = () => {
+interface FeedDetailProps{
+    closed:boolean;
+    onClose:()=>void;
+}
+
+const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
     const [SelectImage, setSelectImage] = useState("");
     const [selectedImageIndex, setSelectedImageIndex] = useState(0)
     const { id } = useParams();
@@ -63,7 +68,7 @@ const FeedDetailList: React.FC = () => {
                         {userId === authId ? (
                         <FDSt.Auth>
                             <button>수정</button>
-                            <button>마감</button>
+                            <button onClick={onClose}>마감</button>
                         </FDSt.Auth>
                         ) : (
                         <FDSt.NotAuth>
