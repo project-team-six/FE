@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router";
 import { RootState } from "../../redux/config/configStore";
 import * as St from "../common/commonStyle";
+import { pushNotification } from "../../utils/notification";
 
 type ProfileModalProps = {
 	modalState: boolean;
@@ -22,6 +23,18 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 	const userInfo = useSelector((state: RootState) => {
 		return state.tokenSlice.decodeToken;
 	});
+
+	const location = useSelector((state: RootState) => {
+		return state.locationSlice.userLocation;
+	});
+
+	const clickFeedAddBtn = () => {
+		if (location && location.sido === "") {
+			pushNotification("지역을 먼저 등록해주세요", "error");
+			navigate("/locationsetting");	
+		}
+		navigate("/feedadd");
+	};
 
 	return (
 		<div>
@@ -51,7 +64,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 							<img src={require(`../../asstes/peopleIcon.png`)} alt='사람' />
 							<p>마이페이지</p>
 						</St.ModalButton>
-						<St.ModalButton onClick={handleNavigate("/feedadd")}>
+						<St.ModalButton onClick={clickFeedAddBtn}>
 							<img src={require(`../../asstes/addFeedIcon.png`)} alt='게시물추가' />
 							<p>게시물작성</p>
 						</St.ModalButton>

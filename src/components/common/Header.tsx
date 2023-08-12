@@ -7,6 +7,7 @@ import { RootState } from "../../redux/config/configStore";
 import { setLogOut, TokenSliceState } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
 import ProfileModal from "./ProfileModal";
+import { resetLocation } from "../../redux/modules/locationSet";
 
 const Header = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -28,6 +29,7 @@ const Header = () => {
 	const Logout = () => {
 		document.cookie = `accessToken=0; max-age=0`;
 		dispatch(setLogOut()); // 로그인된 정보 초기화
+		dispatch(resetLocation()); // 위치 정보 초기화
 	};
 
 	//토근이 만료되면 자동 로그아웃

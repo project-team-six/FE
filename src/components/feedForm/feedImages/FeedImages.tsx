@@ -51,28 +51,28 @@ export const FeedImages = ({ images, setImages }: { images: File[]; setImages: (
 
 	return (
 		<section>
+			<S.TitleSpan>상품 이미지</S.TitleSpan>
 			<S.InputDiv>
-				<S.InputSpan fontSize={18} fontWeight='700'>
-					사진을 추가해주세요.
-				</S.InputSpan>
-				<S.InputSpan fontSize={14} fontWeight='500'>
-					최대 5장까지 올릴 수 있어요.
-				</S.InputSpan>
-				<S.Label htmlFor='File'>PC에서 불러오기</S.Label>
+				<S.InputSpan fontSize={13} fontWeight='500'>최대 5장까지 업로드 가능합니다.</S.InputSpan>
+				<S.LabelDiv>
+					<S.Label htmlFor='File'>PC에서 불러오기</S.Label>
+				</S.LabelDiv>
 				<S.Input type='file' id='File' name='files' multiple onChange={changeImages} />
 			</S.InputDiv>
-			{imagePreviews.map((img, index) => {
-				return (
-					<div key={index}>
-						{imagePreviews[index] && (
-							<div>
-								<S.PreviewImg src={imagePreviews[index]} alt={`Preview ${index}`} />
-								<button onClick={() => clickDeleteImgBtn(index)}>x</button>
-							</div>
-						)}
-					</div>
-				);
-			})}
+			<S.PreviewContentWrapper>
+				{imagePreviews.map((img, index) => {
+					return (
+							<div key={index}>
+								{imagePreviews[index] && (
+									<S.PreviewMiddleDiv>
+										<S.PreviewImg src={imagePreviews[index]} alt={`Preview ${index}`} />
+										<button onClick={() => clickDeleteImgBtn(index)}>x</button>
+									</S.PreviewMiddleDiv>
+								)}
+							</div>		
+							);
+						})}
+			</S.PreviewContentWrapper>
 		</section>
 	);
 };
