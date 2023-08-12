@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+export const MainContentWrapper = styled.div`
+    display: grid;
+    place-items: center;
+    margin: 0 auto;
+    max-width: 1280px;
+    margin-top: 100px;
+`;
+
+export const LogoImg = styled.img`
+    width: 200px;
+    height: 100px;
+    margin-bottom: 30px;
+`;
+
 export const InputDiv = styled.div`
     margin-top: 40px;
 `;
@@ -18,21 +32,31 @@ export const Input = styled.input`
     }
 `;
 
-export const FindPwDiv = styled.div`
+export const MovePageDiv = styled.div`
     margin-top: 10px;
     text-align: right;
 `;
 
-export const FindEmailDiv = styled.div`
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-`;
-
-export const FindEmailBtn = styled.button`
+export const MovePageBtn = styled.button`
     width: 110px;
     height: 40px;
     color: #FFFFFF;
     background-color: #F1C548;
     border-radius: 20px;
+    cursor: pointer;
+`;
+
+export const FindDiv = styled.div`
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+`;
+
+export const FindBtn = styled.button`
+    width: 110px;
+    height: 40px;
+    color: #FFFFFF;
+    background-color: #F1C548;
+    border-radius: 20px;
+    cursor: pointer;
 `;

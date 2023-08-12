@@ -1,11 +1,7 @@
-import React from 'react'
+import FindPwForm from "../components/findPwForm/FindPwForm";
 
 const FindPassword = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <FindPwForm />;
 }
 
 export default FindPassword;

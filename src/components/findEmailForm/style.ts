@@ -1,19 +1,5 @@
 import styled from "styled-components";
 
-export const MainContentWrapper = styled.div`
-    display: grid;
-    place-items: center;
-    margin: 0 auto;
-    max-width: 1280px;
-    margin-top: 100px;
-`;
-
-export const LogoImg = styled.img`
-    width: 180px;
-    height: 100px;
-    margin-bottom: 30px;
-`;
-
 export const ResultDiv = styled.div`
     display: grid;
     place-items: center;

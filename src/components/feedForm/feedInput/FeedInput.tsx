@@ -1,11 +1,12 @@
-import { ChangeEvent } from 'react'
+import { ChangeEvent } from "react";
+import * as S from "./style";
 
 export const FeedInput = ({label, value, setValue}: {label: string, value: string, setValue: (value: string) => void }) => {
     const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
     return (
         <div>
-            <label>{label}</label>
-            <input type="text" required value={value} onChange={handleChangeValue}/>
+            <S.Label>{label}</S.Label>
+            <S.Input type="text" required value={value} onChange={handleChangeValue}/>
         </div>
     )
 }
