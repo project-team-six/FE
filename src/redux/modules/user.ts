@@ -6,7 +6,7 @@ import storage from "redux-persist/es/storage/session";
 // 토큰을 디코딩한 후의 데이터 타입 정의
 export type InitialType = {
 	userId: number;
-	email: string;
+	sub: string;
 	nickname: string;
 	username: string;
 	exp: number;
@@ -22,7 +22,7 @@ export type TokenSliceState = {
 const initialState: TokenSliceState = {
 	decodeToken: {
 		userId: 0,
-		email: "",
+		sub: "",
 		nickname: "",
 		username: "",
 		exp: 0,

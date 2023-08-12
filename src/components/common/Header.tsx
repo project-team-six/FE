@@ -42,7 +42,7 @@ const Header = () => {
 	return (
 		<LayoutBox>
 			<St.HeaderBox>
-				<St.LogoSection>
+				<St.LogoSection onClick={handleNavigate("/")}>
 					<img src={require(`../../asstes/mainlogo.png`)} alt='header_logo' />
 				</St.LogoSection>
 				<St.NavBtnSection>

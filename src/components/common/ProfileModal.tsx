@@ -29,12 +29,14 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 	});
 
 	const clickFeedAddBtn = () => {
-		if (location && location.sido === "") {
+		if (location.sido === "") {
 			pushNotification("지역을 먼저 등록해주세요", "error");
-			navigate("/locationsetting");	
+			return navigate("/locationsetting");
 		}
 		navigate("/feedadd");
 	};
+
+	console.log(userInfo);
 
 	return (
 		<div>
@@ -46,7 +48,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 						</St.ProfileImgBox>
 						<St.NicknameBox>
 							<p>{userInfo.nickname}</p>
-							<p>{userInfo.email}</p>
+							<p>{userInfo.sub}</p>
 						</St.NicknameBox>
 					</St.UserInfoSection>
 					<St.ModalNavSection onClick={modalHandle}>
