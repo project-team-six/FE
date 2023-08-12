@@ -5,7 +5,7 @@ import { NavigateFunction, useNavigate } from "react-router";
 import styled from "styled-components";
 import { signIn } from "../api/userApi";
 import mainlogo from "../asstes/mainlogo.png";
-import { LayoutBox } from "../components/common/GlobalStyle";
+import { Flex } from "../components/common/GlobalStyle";
 import { setDecodeToken } from "../redux/modules/user";
 import { User } from "../types/signIn";
 import { pushNotification } from "../utils/notification";
@@ -65,41 +65,99 @@ const SignIn = () => {
 	};
 
 	return (
-		<LayoutBox style={{ flexDirection: "column" }}>
+		<LoginLayout>
 			<LogoSection>
 				<img src={mainlogo} alt='로고' />
 			</LogoSection>
 			<InputSection>
-				<p>ID 또는 이메일주소</p>
+				<p>이메일주소</p>
 				<input
 					type='text'
-					placeholder='ID또는 이메일주소를 입력해주세요'
 					name='email'
 					value={email}
 					onChange={onChangeLoginHandler}
+					style={{ marginBottom: "30px" }}
 				/>
 				<p>비밀번호</p>
-				<input
-					type='password'
-					placeholder='비밀번호를 입력해주세요'
-					name='password'
-					value={password}
-					onChange={onChangeLoginHandler}
-				/>
+				<input type='password' name='password' value={password} onChange={onChangeLoginHandler} />
 			</InputSection>
-			<ButtonSection>
+			<FindSection>
+				<button onClick={handleNavigate("/signup")}>회원가입</button>
+				<span>ㅣ</span>
 				<button onClick={handleNavigate("/findemail")}>이메일 찾기</button>
-				<button onClick={onClickLoginBtnHandler}>로그인</button>
-				<button onClick={handleNavigate("/signup")}>회원가입하기</button>
-				<button onClick={kakaoLoginHandler}>카카오톡으로 로그인하기</button>
-			</ButtonSection>
-		</LayoutBox>
+				<span>ㅣ</span>
+				<button onClick={handleNavigate("/findemail")}>비밀번호 찾기</button>
+			</FindSection>
+			<FormSection>
+				<FormButton onClick={onClickLoginBtnHandler} backgroundColor='#6F8A6B' color='white'>
+					로그인
+				</FormButton>
+				<p>또는</p>
+				<FormButton onClick={kakaoLoginHandler} backgroundColor='#FFEB3B' color='black' style={{ gap: "10px" }}>
+					<img src={require(`../asstes/kakaologin.png`)} alt='카카오로고' />
+					<span>카카오톡</span>
+				</FormButton>
+			</FormSection>
+		</LoginLayout>
 	);
 };
 export default SignIn;
-const LogoSection = styled.section`
-	width: 310px;
-	height: 100px;
+const LoginLayout = styled.div`
+	display: grid;
+	place-items: center;
+	margin: 0 auto;
+	max-width: 1280px;
+	margin-top: 100px;
 `;
-const InputSection = styled.section``;
-const ButtonSection = styled.section``;
+const LogoSection = styled.section`
+	img {
+		width: 180px;
+		height: 100px;
+		margin-bottom: 30px;
+	}
+	padding-bottom: 30px;
+`;
+const InputSection = styled.form`
+	p {
+		padding-bottom: 5px;
+	}
+	input {
+		width: 330px;
+		height: 40px;
+		background-color: #f3f3f3;
+		border-radius: 5px;
+		margin-bottom: 5px;
+	}
+`;
+const FindSection = styled.section`
+	margin-left: 100px;
+	button {
+		cursor: pointer;
+	}
+`;
+const FormSection = styled.section`
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	padding: 70px 0 100px 0;
+`;
+
+type ButtonProps = {
+	color: string;
+	backgroundColor?: string;
+};
+
+const FormButton = styled.button<ButtonProps>`
+	${Flex}
+	width: 139px;
+	height: 33px;
+	cursor: pointer;
+	border-radius: 21px;
+	background-color: ${(props) => props.backgroundColor};
+	color: ${(props) => props.color};
+	font-size: 15px;
+	img {
+		width: 19px;
+		height: 36px;
+	}
+`;
