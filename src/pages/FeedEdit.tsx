@@ -1,9 +1,9 @@
 import { feedInitialValue } from "../types/feedType";
 import FeedForm from "../components/feedForm/FeedForm";
-import { useMutation } from "react-query";
-import { editFeed } from "../api/feedApi";
-import { useNavigate } from "react-router";
-import { pushNotification } from "../utils/notification";
+// import { useMutation } from "react-query";
+// import { editFeed } from "../api/feedApi";
+// import { useNavigate } from "react-router";
+// import { pushNotification } from "../utils/notification";
 
 const FeedEdit = () => {
 	const initialValue: feedInitialValue = {
@@ -18,18 +18,7 @@ const FeedEdit = () => {
 		images: [],
 	};
 
-	const navigate = useNavigate();
-	const feedEditMutation = useMutation(editFeed, {
-		onSuccess: (data) => {
-			pushNotification("게시물 등록에 성공했습니다", "success");
-			// navigate(-1);
-		},
-		onError: (error) => {
-			pushNotification("게시물 등록에 실패했습니다", "error");
-		},
-	});
-
-	return <FeedForm initialValue={initialValue} mutation={feedEditMutation.mutate} btnName='수정하기' />;
+	return <FeedForm initialValue={initialValue} btnName='수정하기' />;
 };
 
 export default FeedEdit;

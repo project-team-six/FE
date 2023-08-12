@@ -57,9 +57,9 @@ export const putMyPageEditImage = async (
   return request;
 };
 
-export const findID = async (user: findIdType) => {
-  const response = await instance.post("/auth/findemail", user);
-  return response;
+export const findUserEmail = async (user: findIdType) => {
+	const response = await instance.post("/auth/findemail", user);
+	return response;
 };
 
 export const findPassword = async (user: findPwType) => {

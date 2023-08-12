@@ -7,75 +7,166 @@ import { FeedCategory } from "./feedCategory/FeedCategory";
 import { FeedDay } from "./feedDay/FeedDay";
 import { FeedInput } from "./feedInput/FeedInput";
 import { datetimeUtils } from "../../utils/datetimeUtils";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/config/configStore";
+// import { editFeed } from "../../api/feedApi";
+import * as S from "./style";
+import { pushNotification } from "../../utils/notification";
 
-const FeedForm = ({initialValue, mutation, btnName}: {initialValue: feedInitialValue, mutation: UseMutateFunction<any, unknown, any, unknown>, btnName: string}) => {
-    // 이미지
-    const [images, setImages] = useState<File[]>(initialValue.images);
+const FeedForm = ({ initialValue, mutation, btnName }: {
+	initialValue: feedInitialValue;
+	mutation?: UseMutateFunction<any, unknown, any, unknown>;
+	btnName: string;
+}) => {
+	// 지역
+	const location = useSelector((state: RootState) => {
+		return state.locationSlice.userLocation;
+	});
 
-    // 제목
-    const [title, setTitle] = useState<string>(initialValue.title);
+	const navigate = useNavigate();
 
-    // 카테고리
-    const [category, setCategory] = useState<string>(initialValue.category);
+	// 이미지
+	const [images, setImages] = useState<File[]>(initialValue.images);
 
-    // 가격
-    const [price, setPrice] = useState<string>(initialValue.price);
+	// 제목
+	const [title, setTitle] = useState<string>(initialValue.title);
 
-    // 거래 가능 날짜
-    const [dealableStartDate, setDealableStartDate] = useState<Date>(new Date(initialValue.transactionStartDate)); // 시작일
-  	const [dealableEndDate, setDealableEndDate] = useState<Date>(new Date(initialValue.transactionEndDate));  // 종료일 
+	// 카테고리
+	const [category, setCategory] = useState<string>(initialValue.category);
 
-    // 소비기한
-    const [expirationDate, setExpirationDate] = useState(new Date(initialValue.consumerPeriod));
+	// 가격
+	const [price, setPrice] = useState<string>(initialValue.price);
 
-    // 구매 날짜 (필수)
-    const [purchaseDate, setPurchaseDate] = useState(new Date(initialValue.purchaseDate));
+	// 거래 가능 날짜
+	const [dealableStartDate, setDealableStartDate] = useState<Date>(new Date(initialValue.transactionStartDate)); // 시작일
+	const [dealableEndDate, setDealableEndDate] = useState<Date>(new Date(initialValue.transactionEndDate)); // 종료일
 
-    // 제목
-    const [content, setContent] = useState<string>(initialValue.content);
+	// 소비기한
+	const [expirationDate, setExpirationDate] = useState(new Date(initialValue.consumerPeriod));
 
-    const navigate = useNavigate();
-    const handleClick = () => {
-        let formData = new FormData();
-        const newFeed: feedType = {
-            title,
-            content,
-            category,
-            price,
-            transactionStartDate: datetimeUtils(dealableStartDate),
-            transactionEndDate: datetimeUtils(dealableEndDate),
-            consumerPeriod: datetimeUtils(expirationDate),
-            purchaseDate: datetimeUtils(purchaseDate)
-        }
-        formData.append("data", new Blob([JSON.stringify(newFeed)], { type: 'application/json' }));
-        images.map((img) => { formData.append("file", img); }); // 이미지
-        mutation(formData);
-    };
+	// 구매 날짜 (필수)
+	const [purchaseDate, setPurchaseDate] = useState(new Date(initialValue.purchaseDate));
 
-    return (
-        <div>
-            <FeedImages images={images} setImages={setImages} />
-            <section>
-                <span>서울특별시 강남구 청담동</span>
-            </section>
-            <section>
-                <form>
-                    <FeedInput label="제목" value={title} setValue={setTitle}/>
-                    <FeedInput label="가격" value={price} setValue={setPrice}/>
-                    <div>
-                        <label>카테고리</label>
-                        <FeedCategory setCategory={setCategory}/>
-                    </div>
-                    <FeedDay label="거래 가능 날짜" range={true} startDate={dealableStartDate} setStartDate={setDealableStartDate} endDate={dealableEndDate} setEndDate={setDealableEndDate}/>
-                    <FeedDay label="소비기한" range={false} startDate={expirationDate} setStartDate={setExpirationDate}/>
-                    <FeedDay label="제품 구매 날짜" range={false} startDate={purchaseDate} setStartDate={setPurchaseDate}/>    
-                    <FeedInput label="내용" value={content} setValue={setContent}/>
-                    <button type="button" onClick={handleClick}>{btnName}</button>
-                    <button type="button" onClick={() => navigate(-1)}>취소</button>
-                </form>
-            </section>
-        </div>
-    )
-}
+	// 제목
+	const [content, setContent] = useState<string>(initialValue.content);
+
+	// 주의사항 동의
+	const [isChecked, setIsChecked] = useState<boolean>(false);
+	const handleCheckboxChange = () => { setIsChecked(!isChecked); };
+
+	const handleClick = () => {
+		if (isChecked && images && title && category && price && content) { 
+			let formData = new FormData();
+			const newFeed: feedType = {
+				title,
+				content,
+				category,
+				price,
+				transactionStartDate: datetimeUtils(dealableStartDate),
+				transactionEndDate: datetimeUtils(dealableEndDate),
+				consumerPeriod: datetimeUtils(expirationDate),
+				purchaseDate: datetimeUtils(purchaseDate),
+			};
+			formData.append("data", new Blob([JSON.stringify(newFeed)], { type: "application/json" }));
+			images.map((img) => {
+				formData.append("file", img);
+				return true;
+			}); // 이미지
+			if (mutation) mutation(formData); // 등록
+			// else editFeed(1, formData) // 수정 (상세 페이지 완료 후 진행 예정)
+		} else {
+			pushNotification("필수 항목을 모두 입력해주세요.", "warning");
+		}
+	};
+
+	return (
+		<S.MainContentWrapper>
+			<S.TitleDiv>
+				<S.Span fontSize={20} fontWeight="400">게시물 작성</S.Span>
+				<S.Line />
+			</S.TitleDiv>
+			<FeedImages images={images} setImages={setImages} />
+			<S.Line />
+			<S.FormSection>
+				<form>
+					<section>
+						<FeedInput label='제목' value={title} setValue={setTitle} />
+						<S.Line />
+					</section>
+					<section>
+						<FeedInput label='가격' value={price} setValue={setPrice} />
+						<S.Line />
+					</section>		
+					<section>
+						<S.CategoryDiv>
+							<S.CategoryLabel>카테고리</S.CategoryLabel>
+							<FeedCategory setCategory={setCategory} />
+						</S.CategoryDiv>
+						<S.Line />
+					</section>
+						<FeedDay
+							label='거래 가능 날짜'
+							range={true}
+							startDate={dealableStartDate}
+							setStartDate={setDealableStartDate}
+							endDate={dealableEndDate}
+							setEndDate={setDealableEndDate}
+						/>
+						<S.Line />	
+					<section>
+						<FeedDay
+							label='소비기한'
+							range={false}
+							startDate={expirationDate}
+							setStartDate={setExpirationDate}
+						/>
+						<S.Line />
+					</section>
+						<FeedDay
+							label='제품 구매 날짜'
+							range={false}
+							startDate={purchaseDate}
+							setStartDate={setPurchaseDate}
+						/>
+						<S.Line />
+					<section>
+						<S.ContentWrapper>
+							<S.LocationLabel>지역</S.LocationLabel>
+							<S.LocationDiv>
+								<S.LocationSpan>{location.sido} {location.sigungu} {location.dong}</S.LocationSpan>
+							</S.LocationDiv>
+						</S.ContentWrapper>
+						<S.Line />
+					</section>
+					<section>
+						<FeedInput label='내용' value={content} setValue={setContent} />
+						<S.Line />
+					</section>
+					<section>
+						<S.ContentWrapper>
+							<S.PrecautionsLabel>주의사항</S.PrecautionsLabel>
+							<S.PrecautionsDiv>
+								<span>
+								1.상품 정보와 사진이 일치하는지 확인 부탁드립니다. <br/>
+								2. 안전한 결제 방법을 사용해 주세요. <br/>
+								3. 개인 정보 보호에 신경 써주시기 바랍니다. <br/>
+								4. 상품 올리기 전에 꼭 이용가이드를 읽어주세요. <br/>
+								</span>
+							</S.PrecautionsDiv>
+						</S.ContentWrapper>
+						<S.CheckboxDiv>
+							<S.CheckboxLabel>동의</S.CheckboxLabel>
+							<input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}/>
+						</S.CheckboxDiv>
+					</section>
+					<S.ButtonSection>
+						<S.Button type='button' onClick={handleClick}>{btnName}</S.Button>
+						<S.Button type='button' onClick={() => navigate(-1)}>취소</S.Button>
+					</S.ButtonSection>
+				</form>
+			</S.FormSection>
+		</S.MainContentWrapper>
+	);
+};
 
 export default FeedForm;
