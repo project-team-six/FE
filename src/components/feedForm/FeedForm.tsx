@@ -10,16 +10,21 @@ import { datetimeUtils } from "../../utils/datetimeUtils";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/config/configStore";
 // import { editFeed } from "../../api/feedApi";
+import * as S from "./style";
+import { pushNotification } from "../../utils/notification";
 
-const FeedForm = ({
-	initialValue,
-	mutation,
-	btnName,
-}: {
+const FeedForm = ({ initialValue, mutation, btnName }: {
 	initialValue: feedInitialValue;
 	mutation?: UseMutateFunction<any, unknown, any, unknown>;
 	btnName: string;
 }) => {
+	// 지역
+	const location = useSelector((state: RootState) => {
+		return state.locationSlice.userLocation;
+	});
+
+	const navigate = useNavigate();
+
 	// 이미지
 	const [images, setImages] = useState<File[]>(initialValue.images);
 
@@ -31,11 +36,6 @@ const FeedForm = ({
 
 	// 가격
 	const [price, setPrice] = useState<string>(initialValue.price);
-
-	// 지역
-	const location = useSelector((state: RootState) => {
-		return state.locationSlice.userLocation;
-	});
 
 	// 거래 가능 날짜
 	const [dealableStartDate, setDealableStartDate] = useState<Date>(new Date(initialValue.transactionStartDate)); // 시작일
@@ -50,75 +50,122 @@ const FeedForm = ({
 	// 제목
 	const [content, setContent] = useState<string>(initialValue.content);
 
-	const navigate = useNavigate();
+	// 주의사항 동의
+	const [isChecked, setIsChecked] = useState<boolean>(false);
+	const handleCheckboxChange = () => { setIsChecked(!isChecked); };
+
 	const handleClick = () => {
-		let formData = new FormData();
-		const newFeed: feedType = {
-			title,
-			content,
-			category,
-			price,
-			transactionStartDate: datetimeUtils(dealableStartDate),
-			transactionEndDate: datetimeUtils(dealableEndDate),
-			consumerPeriod: datetimeUtils(expirationDate),
-			purchaseDate: datetimeUtils(purchaseDate),
-		};
-		formData.append("data", new Blob([JSON.stringify(newFeed)], { type: "application/json" }));
-		images.map((img) => {
-			formData.append("file", img);
-			return true;
-		}); // 이미지
-		if (mutation) mutation(formData); // 등록
-		// else editFeed(1, formData) // 수정 (상세 페이지 완료 후 진행 예정)
+		if (isChecked && images && title && category && price && content) { 
+			let formData = new FormData();
+			const newFeed: feedType = {
+				title,
+				content,
+				category,
+				price,
+				transactionStartDate: datetimeUtils(dealableStartDate),
+				transactionEndDate: datetimeUtils(dealableEndDate),
+				consumerPeriod: datetimeUtils(expirationDate),
+				purchaseDate: datetimeUtils(purchaseDate),
+			};
+			formData.append("data", new Blob([JSON.stringify(newFeed)], { type: "application/json" }));
+			images.map((img) => {
+				formData.append("file", img);
+				return true;
+			}); // 이미지
+			if (mutation) mutation(formData); // 등록
+			// else editFeed(1, formData) // 수정 (상세 페이지 완료 후 진행 예정)
+		} else {
+			pushNotification("필수 항목을 모두 입력해주세요.", "warning");
+		}
 	};
 
 	return (
-		<div>
+		<S.MainContentWrapper>
+			<S.TitleDiv>
+				<S.Span fontSize={20} fontWeight="400">게시물 작성</S.Span>
+				<S.Line />
+			</S.TitleDiv>
 			<FeedImages images={images} setImages={setImages} />
-			<section>
-				<label>위치: </label>
-				<span>
-					{location.sido} {location.sigungu} {location.dong}
-				</span>
-			</section>
-			<section>
+			<S.Line />
+			<S.FormSection>
 				<form>
-					<FeedInput label='제목' value={title} setValue={setTitle} />
-					<FeedInput label='가격' value={price} setValue={setPrice} />
-					<div>
-						<label>카테고리</label>
-						<FeedCategory setCategory={setCategory} />
-					</div>
-					<FeedDay
-						label='거래 가능 날짜'
-						range={true}
-						startDate={dealableStartDate}
-						setStartDate={setDealableStartDate}
-						endDate={dealableEndDate}
-						setEndDate={setDealableEndDate}
-					/>
-					<FeedDay
-						label='소비기한'
-						range={false}
-						startDate={expirationDate}
-						setStartDate={setExpirationDate}
-					/>
-					<FeedDay
-						label='제품 구매 날짜'
-						range={false}
-						startDate={purchaseDate}
-						setStartDate={setPurchaseDate}
-					/>
-					<FeedInput label='내용' value={content} setValue={setContent} />
-					<button type='button' onClick={handleClick}>
-						{btnName}
-					</button>
-					<button type='button' onClick={() => navigate(-1)}>
-						취소
-					</button>
+					<section>
+						<FeedInput label='제목' value={title} setValue={setTitle} />
+						<S.Line />
+					</section>
+					<section>
+						<FeedInput label='가격' value={price} setValue={setPrice} />
+						<S.Line />
+					</section>		
+					<section>
+						<S.CategoryDiv>
+							<S.CategoryLabel>카테고리</S.CategoryLabel>
+							<FeedCategory setCategory={setCategory} />
+						</S.CategoryDiv>
+						<S.Line />
+					</section>
+						<FeedDay
+							label='거래 가능 날짜'
+							range={true}
+							startDate={dealableStartDate}
+							setStartDate={setDealableStartDate}
+							endDate={dealableEndDate}
+							setEndDate={setDealableEndDate}
+						/>
+						<S.Line />	
+					<section>
+						<FeedDay
+							label='소비기한'
+							range={false}
+							startDate={expirationDate}
+							setStartDate={setExpirationDate}
+						/>
+						<S.Line />
+					</section>
+						<FeedDay
+							label='제품 구매 날짜'
+							range={false}
+							startDate={purchaseDate}
+							setStartDate={setPurchaseDate}
+						/>
+						<S.Line />
+					<section>
+						<S.ContentWrapper>
+							<S.LocationLabel>지역</S.LocationLabel>
+							<S.LocationDiv>
+								<S.LocationSpan>{location.sido} {location.sigungu} {location.dong}</S.LocationSpan>
+							</S.LocationDiv>
+						</S.ContentWrapper>
+						<S.Line />
+					</section>
+					<section>
+						<FeedInput label='내용' value={content} setValue={setContent} />
+						<S.Line />
+					</section>
+					<section>
+						<S.ContentWrapper>
+							<S.PrecautionsLabel>주의사항</S.PrecautionsLabel>
+							<S.PrecautionsDiv>
+								<span>
+								1.상품 정보와 사진이 일치하는지 확인 부탁드립니다. <br/>
+								2. 안전한 결제 방법을 사용해 주세요. <br/>
+								3. 개인 정보 보호에 신경 써주시기 바랍니다. <br/>
+								4. 상품 올리기 전에 꼭 이용가이드를 읽어주세요. <br/>
+								</span>
+							</S.PrecautionsDiv>
+						</S.ContentWrapper>
+						<S.CheckboxDiv>
+							<S.CheckboxLabel>동의</S.CheckboxLabel>
+							<input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}/>
+						</S.CheckboxDiv>
+					</section>
+					<S.ButtonSection>
+						<S.Button type='button' onClick={handleClick}>{btnName}</S.Button>
+						<S.Button type='button' onClick={() => navigate(-1)}>취소</S.Button>
+					</S.ButtonSection>
 				</form>
-			</section>
-		</div>
+			</S.FormSection>
+		</S.MainContentWrapper>
 	);
 };
 

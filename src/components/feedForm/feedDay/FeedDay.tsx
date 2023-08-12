@@ -1,6 +1,7 @@
 // import { useMemo } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
+import * as S from "./style";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const FeedDay = ({
@@ -28,7 +29,7 @@ export const FeedDay = ({
 	};
 
 	const datePicker = (
-		<DatePicker
+		<S.StyledDatePicker
 			selectsRange={range}
 			startDate={startDate}
 			endDate={endDate}
@@ -43,9 +44,11 @@ export const FeedDay = ({
 	);
 
 	return (
-		<div>
-			<label>{label}</label>
-			{datePicker}
-		</div>
+		<S.MainContentWrapper>
+			<S.Label>{label}</S.Label>
+			<div>
+				{datePicker}
+			</div>
+		</S.MainContentWrapper>
 	);
 };

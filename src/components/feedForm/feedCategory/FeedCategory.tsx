@@ -1,5 +1,6 @@
 import { selectOptionType } from "../../../types/feedType";
 import Select from 'react-select';
+import * as S from "./style";
 
 export const FeedCategory = ({setCategory}: {setCategory: (category: string) => void }) => {
     const options: selectOptionType[] = [
@@ -13,11 +14,22 @@ export const FeedCategory = ({setCategory}: {setCategory: (category: string) => 
         if (selectedOption) setCategory(selectedOption.value);
     };
 
+    const customStyles = {
+        control: (base: any) => ({
+          ...base,
+          width: "101.1%",
+          height: "40px", // 높이 조절
+        }),
+    };
+      
     return (
-        <Select
+        <S.MainDiv>
+            <Select
+            styles={customStyles}
             options={options}
             onChange={handleChange}
-            placeholder="카테고리를 선택해주세요."
-        />
+            placeholder=""
+            />
+        </S.MainDiv>
     )
 }
