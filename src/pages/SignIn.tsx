@@ -111,7 +111,7 @@ const LoginLayout = styled.div`
 `;
 const LogoSection = styled.section`
 	img {
-		width: 180px;
+		width: 200px;
 		height: 100px;
 		margin-bottom: 30px;
 	}

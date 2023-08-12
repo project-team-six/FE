@@ -12,7 +12,9 @@ export const HeaderBox = styled.div`
 
 export const LogoSection = styled.section`
 	display: flex;
+	cursor: pointer;
 	img {
+		margin-left: 20px;
 		width: 130px;
 		height: 50px;
 	}
@@ -101,6 +103,7 @@ export const ProfileLayout = styled.div`
 	height: 340px;
 	background-color: white;
 	border-radius: 14px;
+	z-index: 99;
 `;
 
 export const UserInfoSection = styled.section`
