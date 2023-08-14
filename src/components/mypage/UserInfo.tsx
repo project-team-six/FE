@@ -13,7 +13,7 @@ const UserInfo = () => {
     const { data: mypage } = useQuery(["mypage", userId], () =>
         getMyPage(userId)
     );
-
+    console.log(mypage.data)
     // const dealt = Math.floor ((num/maxNum)*100)
     return (
         <article>
@@ -22,7 +22,7 @@ const UserInfo = () => {
                 {mypage?.data?.profileImageUrl ? (
                     <img src={`${mypage.data.profileImageUrl}`} alt="업로드된 이미지" />
                 ) : ( 
-                    <img src={require("../../asstes/sobooni.png")} alt="기본 프로필이미지" />
+                    <img src={require("../../asstes/profileImageDefault.png")} alt="기본 프로필이미지" />
                 )}
                 </div>
             </section>

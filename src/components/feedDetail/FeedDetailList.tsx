@@ -4,7 +4,6 @@ import { getListFeed } from "../../api/detailAPI";
 import { useNavigate, useParams } from "react-router";
 import UserInfo from "../mypage/UserInfo";
 import * as FDSt from "./FeedDetailStyle";
-import { LayoutBox } from "../common/GlobalStyle";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/config/configStore";
 
@@ -19,15 +18,15 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
     const { id } = useParams();
     const postId = Number(id);
     const userId: Number = useSelector((state: RootState) => {
-        return state.tokenSlice.decodeToken.userId;
+        return Number(state.tokenSlice.decodeToken.userId);
     });
     const { data: detailFeed, isLoading } = useQuery(
         ["detailFeed", postId],
         () => getListFeed(postId),
         { staleTime: 1000 * 60 * 3 }
     );
-    console.log(detailFeed);
-    const authId = detailFeed?.userId;
+    console.log("detailFeed", detailFeed);
+    const authId: Number = detailFeed?.userId;
     useEffect(() => {
         if (detailFeed && detailFeed.imageUrlList.length > 0) {
             setSelectImage(detailFeed.imageUrlList[0]);
@@ -55,7 +54,7 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
 
     const navigate = useNavigate();
     return (
-        <LayoutBox>
+        <FDSt.LayoutBox>
             {isLoading ? (
                 <div>Loading...</div>
             ) : (
@@ -104,7 +103,7 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
                                 </FDSt.ImageList>
                             </div>
                             <div>
-                                <h2>{parseInt(detailFeed.price).toLocaleString()} 원</h2>
+                                <h2>{detailFeed.price} 원</h2>
                                 <p>
                                     거래가능날짜 : 
                                     {detailFeed.transactionStartDate} -
@@ -125,7 +124,7 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
                         </FDSt.DetailContent>
                 </FDSt.DetailMain>
             )}
-        </LayoutBox>
+        </FDSt.LayoutBox>
     );
 };
 
