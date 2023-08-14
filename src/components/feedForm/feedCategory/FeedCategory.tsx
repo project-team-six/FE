@@ -2,7 +2,7 @@ import { selectOptionType } from "../../../types/feedType";
 import Select from 'react-select';
 import * as S from "./style";
 
-export const FeedCategory = ({setCategory}: {setCategory: (category: string) => void }) => {
+export const FeedCategory = ({category, setCategory}: {category:string, setCategory: (category: string) => void }) => {
     const options: selectOptionType[] = [
         {value: "FRESH_FOOD", label: "신선식품"},
         {value: "BEAUTY", label: "뷰티"},
@@ -21,14 +21,14 @@ export const FeedCategory = ({setCategory}: {setCategory: (category: string) => 
           height: "40px", // 높이 조절
         }),
     };
-      
+
     return (
         <S.MainDiv>
             <Select
             styles={customStyles}
             options={options}
             onChange={handleChange}
-            placeholder=""
+            value={category ? options.find(option => option.value === category) : null} 
             />
         </S.MainDiv>
     )

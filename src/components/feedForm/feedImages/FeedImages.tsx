@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import * as S from "./style";
 import { pushNotification } from "../../../utils/notification";
 
-export const FeedImages = ({ images, setImages }: { images: File[]; setImages: (images: File[]) => void }) => {
+export const FeedImages = ({ images, setImages, isEdit }: { images: File[]; setImages: (images: File[]) => void, isEdit: boolean }) => {
 	const [imagePreviews, setImagePreviews] = useState<string[]>([]); // 이미지 미리보기
 	const changeImages = (e: ChangeEvent<HTMLInputElement>) => {
 		const files = e.target.files;
@@ -55,6 +55,7 @@ export const FeedImages = ({ images, setImages }: { images: File[]; setImages: (
 			<S.InputSection>
 				<S.InputDiv>
 					<S.InputSpan fontSize={13} fontWeight='500'>최대 5장까지 업로드 가능합니다.</S.InputSpan>
+					{isEdit ? <S.EditSpan>새로운 사진을 추가하면 기존 사진이 삭제됩니다.</S.EditSpan> : <></>}
 					<S.LabelDiv>
 						<S.Label htmlFor='File'>PC에서 불러오기</S.Label>
 					</S.LabelDiv>

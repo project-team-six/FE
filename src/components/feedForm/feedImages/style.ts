@@ -31,7 +31,7 @@ export const InputDiv = styled.div`
 interface InputSpanProps {
     fontSize: number;
     fontWeight: string;
-  }
+}
 
 export const InputSpan = styled.span<InputSpanProps>`
 	display: block;
@@ -39,6 +39,11 @@ export const InputSpan = styled.span<InputSpanProps>`
 	font-weight: ${(props) => props.fontWeight};
 	width: 170px;
 	height: 30px;
+`;
+
+export const EditSpan = styled.span`
+	font-size: 11px;
+	margin-bottom: 15px;
 `;
 
 export const LabelDiv = styled.div`

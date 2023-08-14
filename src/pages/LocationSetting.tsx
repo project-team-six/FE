@@ -31,7 +31,6 @@ const LocationSetting = () => {
 			});
 
 		dispatch(setLocation(address)); // 리덕스에 저장
-
 		navigate("/feedlist");
 	};
 

@@ -48,7 +48,7 @@ const Header = () => {
 				<St.NavBtnSection>
 					{tokenInfo.isLogin ? (
 						<div style={{ display: "flex", gap: "35px" }}>
-							<St.NavButton>
+							<St.NavButton onClick={() => {navigate("/chatlist")}}>
 								<img src={require(`../../asstes/chatIcon.png`)} alt='채팅' />
 							</St.NavButton>
 							<St.NavButton>

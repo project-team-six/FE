@@ -7,22 +7,16 @@ import { FeedCategory } from "./feedCategory/FeedCategory";
 import { FeedDay } from "./feedDay/FeedDay";
 import { FeedInput } from "./feedInput/FeedInput";
 import { datetimeUtils } from "../../utils/datetimeUtils";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/config/configStore";
-// import { editFeed } from "../../api/feedApi";
+import { editFeed } from "../../api/feedApi";
 import * as S from "./style";
 import { pushNotification } from "../../utils/notification";
 
-const FeedForm = ({ initialValue, mutation, btnName }: {
+const FeedForm = ({ initialValue, mutation, btnName, feedId}: {
 	initialValue: feedInitialValue;
 	mutation?: UseMutateFunction<any, unknown, any, unknown>;
 	btnName: string;
+	feedId: string;
 }) => {
-	// 지역
-	const location = useSelector((state: RootState) => {
-		return state.locationSlice.userLocation;
-	});
-
 	const navigate = useNavigate();
 
 	// 이미지
@@ -54,6 +48,7 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 	const [isChecked, setIsChecked] = useState<boolean>(false);
 	const handleCheckboxChange = () => { setIsChecked(!isChecked); };
 
+	const isEdit = feedId.trim() !== ""; // 수정 페이지 여부
 	const handleClick = () => {
 		if (isChecked && images && title && category && price && content) { 
 			let formData = new FormData();
@@ -72,8 +67,14 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 				formData.append("file", img);
 				return true;
 			}); // 이미지
+			
 			if (mutation) mutation(formData); // 등록
-			// else editFeed(1, formData) // 수정 (상세 페이지 완료 후 진행 예정)
+			else {
+				editFeed(feedId, formData).then(() => {
+					pushNotification("게시물 수정에 성공했습니다!", "success");
+					navigate(`/feed/${feedId}`);
+				});
+			} // 수정
 		} else {
 			pushNotification("필수 항목을 모두 입력해주세요.", "warning");
 		}
@@ -85,7 +86,7 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 				<S.Span fontSize={20} fontWeight="400">게시물 작성</S.Span>
 				<S.Line />
 			</S.TitleDiv>
-			<FeedImages images={images} setImages={setImages} />
+			<FeedImages images={images} setImages={setImages} isEdit={isEdit}/>
 			<S.Line />
 			<S.FormSection>
 				<form>
@@ -100,7 +101,7 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 					<section>
 						<S.CategoryDiv>
 							<S.CategoryLabel>카테고리</S.CategoryLabel>
-							<FeedCategory setCategory={setCategory} />
+							<FeedCategory category={category} setCategory={setCategory} />
 						</S.CategoryDiv>
 						<S.Line />
 					</section>
@@ -133,7 +134,7 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 						<S.ContentWrapper>
 							<S.LocationLabel>지역</S.LocationLabel>
 							<S.LocationDiv>
-								<S.LocationSpan>{location.sido} {location.sigungu} {location.dong}</S.LocationSpan>
+								<S.LocationSpan>{initialValue.location}</S.LocationSpan>
 							</S.LocationDiv>
 						</S.ContentWrapper>
 						<S.Line />

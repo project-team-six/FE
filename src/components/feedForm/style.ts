@@ -113,4 +113,5 @@ export const Button = styled.button`
     border-radius: 20px;
     color: #FFFFFF;
     background-color: #6F8A6B;
+    cursor: pointer;
 `;

@@ -1,5 +1,3 @@
-// import { useMemo } from "react";
-import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
 import * as S from "./style";
 import "react-datepicker/dist/react-datepicker.css";

@@ -9,4 +9,5 @@ export const Input = styled.input`
     height: 40px;
     border-radius: 4px;
     border: 1px solid hsl(0, 0%, 80%);
+    padding-left: 10px; 
 `;

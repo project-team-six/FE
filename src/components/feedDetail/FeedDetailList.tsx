@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getListFeed } from "../../api/detailAPI";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import UserInfo from "../mypage/UserInfo";
 import * as FDSt from "./FeedDetailStyle";
 import { LayoutBox } from "../common/GlobalStyle";
@@ -53,7 +53,7 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
         }
     };
 
-
+    const navigate = useNavigate();
     return (
         <LayoutBox>
             {isLoading ? (
@@ -67,7 +67,7 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
                         </div>
                         {userId === authId ? (
                         <FDSt.Auth>
-                            <button>수정</button>
+                            <button onClick={() => navigate(`/feed/${detailFeed.id}/edit`)}>수정</button>
                             <button onClick={onClose}>마감</button>
                         </FDSt.Auth>
                         ) : (
