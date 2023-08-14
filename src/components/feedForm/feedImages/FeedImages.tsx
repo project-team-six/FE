@@ -50,29 +50,31 @@ export const FeedImages = ({ images, setImages }: { images: File[]; setImages: (
 	};
 
 	return (
-		<section>
+		<S.Article>
 			<S.TitleSpan>상품 이미지</S.TitleSpan>
-			<S.InputDiv>
-				<S.InputSpan fontSize={13} fontWeight='500'>최대 5장까지 업로드 가능합니다.</S.InputSpan>
-				<S.LabelDiv>
-					<S.Label htmlFor='File'>PC에서 불러오기</S.Label>
-				</S.LabelDiv>
-				<S.Input type='file' id='File' name='files' multiple onChange={changeImages} />
-			</S.InputDiv>
-			<S.PreviewContentWrapper>
-				{imagePreviews.map((img, index) => {
-					return (
-							<div key={index}>
-								{imagePreviews[index] && (
-									<S.PreviewMiddleDiv>
-										<S.PreviewImg src={imagePreviews[index]} alt={`Preview ${index}`} />
-										<button onClick={() => clickDeleteImgBtn(index)}>x</button>
-									</S.PreviewMiddleDiv>
-								)}
-							</div>		
-							);
-						})}
-			</S.PreviewContentWrapper>
-		</section>
+			<S.InputSection>
+				<S.InputDiv>
+					<S.InputSpan fontSize={13} fontWeight='500'>최대 5장까지 업로드 가능합니다.</S.InputSpan>
+					<S.LabelDiv>
+						<S.Label htmlFor='File'>PC에서 불러오기</S.Label>
+					</S.LabelDiv>
+					<S.Input type='file' id='File' name='files' multiple onChange={changeImages} />
+				</S.InputDiv>
+				<S.PreviewContentWrapper>
+					{imagePreviews.map((img, index) => {
+						return (
+								<div key={index}>
+									{imagePreviews[index] && (
+										<S.PreviewMiddleDiv>
+											<S.PreviewImg src={imagePreviews[index]} alt={`Preview ${index}`} />
+											<S.PreviewButton onClick={() => clickDeleteImgBtn(index)}>x</S.PreviewButton>
+										</S.PreviewMiddleDiv>
+									)}
+								</div>		
+								);
+							})}
+				</S.PreviewContentWrapper>
+			</S.InputSection>
+		</S.Article>
 	);
 };

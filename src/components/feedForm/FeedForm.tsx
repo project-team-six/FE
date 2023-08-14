@@ -143,17 +143,19 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 						<S.Line />
 					</section>
 					<section>
-						<S.ContentWrapper>
+						<S.PrecautionContentWrapper>
 							<S.PrecautionsLabel>주의사항</S.PrecautionsLabel>
-							<S.PrecautionsDiv>
-								<span>
-								1.상품 정보와 사진이 일치하는지 확인 부탁드립니다. <br/>
-								2. 안전한 결제 방법을 사용해 주세요. <br/>
-								3. 개인 정보 보호에 신경 써주시기 바랍니다. <br/>
-								4. 상품 올리기 전에 꼭 이용가이드를 읽어주세요. <br/>
-								</span>
-							</S.PrecautionsDiv>
-						</S.ContentWrapper>
+							<S.ContentWrapper>
+								<S.PrecautionsDiv>
+									<span>
+									1. 상품 정보와 사진이 일치하는지 확인 부탁드립니다. <br/>
+									2. 안전한 결제 방법을 사용해 주세요. <br/>
+									3. 개인 정보 보호에 신경 써주시기 바랍니다. <br/>
+									4. 상품 올리기 전에 꼭 이용가이드를 읽어주세요. <br/>
+									</span>
+								</S.PrecautionsDiv>
+							</S.ContentWrapper>
+						</S.PrecautionContentWrapper>
 						<S.CheckboxDiv>
 							<S.CheckboxLabel>동의</S.CheckboxLabel>
 							<input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}/>

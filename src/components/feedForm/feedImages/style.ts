@@ -1,10 +1,19 @@
 import styled from "styled-components";
 import { Flex } from "../../common/GlobalStyle";
 
+export const Article = styled.article`
+	width: 100%;
+`;
+
 export const TitleSpan = styled.span`
-	position: relative;
-	top: 17px;
-	right: 215px;
+	margin-right: 200px;
+	width: 100%;
+`;
+
+export const InputSection = styled.section`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `;
 
 export const InputDiv = styled.div`
@@ -65,5 +74,23 @@ export const PreviewMiddleDiv = styled.div`
 export const PreviewImg = styled.img`
 	width: 50px;
 	height: 50px;
+`;
+
+export const PreviewButton = styled.button`
+	font-weight: 800;
 	cursor: pointer;
+	position: relative;
+	width: 20px;
+	top: -50px;
+	right: -29px;
+
+	&:hover {
+		background-color: #D5D7D8;
+		border-radius: 20px;
+	}
+`;
+
+export const PreviewBtnSpan = styled.span`
+	display: inline-block;
+	text-align: center;
 `;
