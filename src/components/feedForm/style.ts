@@ -48,15 +48,17 @@ export const CategoryLabel = styled.label`
 
 export const ContentWrapper = styled.div`
     display: flex;
-    align-items: center; 
+    align-items: center;
+    width: 100%;
 `;
 
 export const LocationLabel = styled.label`
+    white-space: nowrap; 
     margin-right: 16%;
 `;
 
 export const LocationDiv = styled.div`
-    width: 78%;
+    width: 79%;
     height: 40px;
     background-color: #6F8A6B;
     display: grid;
@@ -68,16 +70,19 @@ export const LocationSpan = styled.span`
     color: #FFFFFF;
 `;
 
+export const PrecautionContentWrapper = styled.section`
+    display: flex;
+    width: 100%;
+`;
+
 export const PrecautionsLabel = styled.label`
     white-space: nowrap; 
     margin-right: 13%;
-    position: relative;
-    top: -45px;
 `;
 
 export const PrecautionsDiv = styled.div`
     font-size: 15px;
-    width: 570px;
+    width: 98%;
     height: 125px;
     border-radius: 4px;
     border: 1px solid hsl(0, 0%, 80%);
