@@ -1,8 +1,14 @@
 import styled from "styled-components/";
 import { Flex, cursor } from "../common/GlobalStyle";
 
+const LayoutBox = styled.main`
+max-width : 1280px;
+margin : 0 auto;
+`
+
 const DetailMain = styled.article`
     width: 57%;
+    margin : 0 auto;
 `;
 
 const DetailTitle = styled.section`
@@ -118,8 +124,9 @@ const DetailContent = styled.section`
     width: 100%;
     height: 100%;
     margin: 10px auto;
+    text-align : justify;
     p {margin: 40px 0;}
     span {margin-right: 15px;}
 `;
 
-export { DetailMain, NotAuth, Auth, DetailTitle, DetailUser, DetailList, ImageList, DetailContent };
+export { LayoutBox, DetailMain, NotAuth, Auth, DetailTitle, DetailUser, DetailList, ImageList, DetailContent };
