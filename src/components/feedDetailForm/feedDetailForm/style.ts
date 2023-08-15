@@ -1,5 +1,5 @@
 import styled from "styled-components/";
-import { Flex, cursor } from "../common/GlobalStyle";
+import { Flex, cursor } from "../../common/GlobalStyle";
 
 const LayoutBox = styled.main`
 max-width : 1280px;

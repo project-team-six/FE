@@ -31,3 +31,23 @@ export type selectOptionType = {
     value: string;
     label: string;
 }
+
+export type commentPostType = {
+    postId: number;
+    commentContent: {
+        content: string;
+    };
+}
+
+export type commentEditType = commentPostType & {
+    commentId: string;
+};
+
+export type commentDeleteType = Omit<commentEditType, "commentContent">;
+
+export type commentType = {
+    id: number;
+    content: string;
+    nickname: string;
+    createdAt: string;
+}

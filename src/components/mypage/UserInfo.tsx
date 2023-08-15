@@ -13,8 +13,7 @@ const UserInfo = () => {
     const { data: mypage } = useQuery(["mypage", userId], () =>
         getMyPage(userId)
     );
-    console.log(mypage.data)
-    // const dealt = Math.floor ((num/maxNum)*100)
+    
     return (
         <article>
             <section>
