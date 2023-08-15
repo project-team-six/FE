@@ -2,13 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getListFeed } from "../../api/detailAPI";
 import { useParams } from "react-router";
-import UserInfo from "../mypageForm/UserInfo";
 import * as FDSt from "./FeedDetailStyle";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/config/configStore";
-import UserProfile from "../mypageForm/UserProfile";
-import UserMannerTem from "../mypageForm/UserMannerTem";
-
 interface FeedDetailProps{
     closed:boolean;
     onClose:()=>void;
@@ -82,13 +78,41 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
                         )}
                     </FDSt.DetailTitle>
                     <FDSt.DetailUser>
-                        <div>
+                        <FDSt.UserProfile>
+                        <div className="profile-img">
                             <img src={profileImageUrl} alt="profile"/>
-                            <p>{detailFeed.nickname}</p>
                         </div>
+                        <div>
+                            <h1>{detailFeed.nickname}</h1>
+                            <FDSt.Temperature>
+                                <p>매너온도</p>
+                                <div>
+                                    <span
+                                        style={{
+                                            marginLeft: `${detailFeed.mannerTemperature-2}%`,
+                                        }}
+                                    >
+                                        ▼{detailFeed.mannerTemperature}°C
+                                    </span>
+                                </div>
+                                <FDSt.ProgressBar>
+                                    <FDSt.Inner
+                                        style={{
+                                            width: `${detailFeed.mannerTemperature}%`,
+                                        }}
+                                    ></FDSt.Inner>
+                                </FDSt.ProgressBar>
+                            </FDSt.Temperature>
+                        </div>
+                        </FDSt.UserProfile>
+                        <FDSt.Dates>
                         <div> 작성일 :
                             <span>{detailFeed?.createdAt.slice(0, 10)}</span>
                         </div>
+                        <div> 수정일 :
+                            <span>{detailFeed?.modifiedAt.slice(0, 10)}</span>
+                        </div>
+                        </FDSt.Dates>
                     </FDSt.DetailUser>
                         <FDSt.DetailList>
                             <div>
