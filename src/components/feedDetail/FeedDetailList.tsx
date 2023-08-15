@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getListFeed } from "../../api/detailAPI";
 import { useParams } from "react-router";
-import UserInfo from "../mypage/UserInfo";
+import UserInfo from "../mypageForm/UserInfo";
 import * as FDSt from "./FeedDetailStyle";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/config/configStore";
+import UserProfile from "../mypageForm/UserProfile";
+import UserMannerTem from "../mypageForm/UserMannerTem";
 
 interface FeedDetailProps{
     closed:boolean;
@@ -19,6 +21,9 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
     const postId = Number(id);
     const userId: Number = useSelector((state: RootState) => {
         return Number(state.tokenSlice.decodeToken.userId);
+    });
+    const profileImageUrl: string = useSelector((state: RootState) => {
+        return (state.tokenSlice.decodeToken.profileImageUrl);
     });
     const { data: detailFeed, isLoading } = useQuery(
         ["detailFeed", postId],
@@ -78,7 +83,8 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
                     </FDSt.DetailTitle>
                     <FDSt.DetailUser>
                         <div>
-                            <UserInfo />
+                            <img src={profileImageUrl} alt="profile"/>
+                            <p>{detailFeed.nickname}</p>
                         </div>
                         <div> 작성일 :
                             <span>{detailFeed?.createdAt.slice(0, 10)}</span>
