@@ -2,13 +2,13 @@ import styled from "styled-components/";
 import { Flex, cursor } from "../common/GlobalStyle";
 
 const LayoutBox = styled.main`
-max-width : 1280px;
-margin : 0 auto;
-`
+    max-width: 1280px;
+    margin: 0 auto;
+`;
 
 const DetailMain = styled.article`
     width: 57%;
-    margin : 0 auto;
+    margin: 0 auto;
 `;
 
 const DetailTitle = styled.section`
@@ -21,6 +21,7 @@ const DetailTitle = styled.section`
     img {width: 35px;}
     p {color: #8c8c8c;}
 `;
+
 const NotAuth = styled.div`
     ${Flex}
     margin-top:30px;
@@ -35,6 +36,7 @@ const NotAuth = styled.div`
         padding: 0;
     }
 `;
+
 const Auth = styled.div`
     height: 30px;
     margin-top: 40px;
@@ -58,27 +60,61 @@ const DetailUser = styled.section`
     margin: 2% 0;
     padding-bottom: 2%;
     border-bottom: 1px solid #d9d9d9;
+`;
 
-    article {
-        width: 100%;
-        ${Flex};
-        justify-content: flex-start;
-        gap: 20px;
+export const UserProfile = styled.div`
+    width: 300px;
+    ${Flex}
+    div {width: 100%; 
+        /* margin: 0 10px; */
     }
-    span {text-align: right;}
+    h1 {
+        font-size: 18px;
+        margin-left : 15px;
+    }
     .profile-img {
         border: 1px solid #000;
         border-radius: 100%;
-        width: 80px;
+        width: 110px;
         height: 80px;
-        ${Flex}
+        margin: 5px;
     }
     img {
         width: 100%;
         height: 100%;
         object-fit: contain;
+        border-radius: 100%;
     }
-    strong {font-size: 18px;}
+`;
+
+
+export const Temperature = styled.div`
+    p{font-weight:500; padding-top:5px;}
+    font-weight: 500;
+    width: 100px;
+    margin-left : 15px;
+    span {
+        display: inline-block;
+        font-size: 12px;
+    }
+`;
+
+export const ProgressBar = styled.div`
+    width: 100px;
+    height : 10px;
+    border: 1px solid #333;
+    border-radius: 25px;
+`;
+
+export const Inner = styled.div`
+    width: 100%;
+    height: 9px;
+    background-color: #6f8a6b;
+    border-radius: 25px 0 0 25px;
+`;
+
+export const Dates = styled.div`
+
 `;
 
 const DetailList = styled.section`
@@ -103,7 +139,9 @@ const DetailList = styled.section`
         object-fit: contain;
         border: 1px solid #333;
     }
-    span {padding-left: 24px;}
+    span {
+        padding-left: 24px;
+    }
 `;
 
 const ImageList = styled.div`
@@ -117,16 +155,32 @@ const ImageList = styled.div`
         height: 40px;
         object-fit: contain;
     }
-    .selectedImage {border: 1px solid #333;}
+    .selectedImage {
+        border: 1px solid #333;
+    }
 `;
 
 const DetailContent = styled.section`
     width: 100%;
     height: 100%;
     margin: 10px auto;
-    text-align : justify;
-    p {margin: 40px 0;}
-    span {margin-right: 15px;}
+    text-align: justify;
+    p {
+        margin: 40px 0;
+    }
+    span {
+        margin-right: 15px;
+    }
 `;
 
-export { LayoutBox, DetailMain, NotAuth, Auth, DetailTitle, DetailUser, DetailList, ImageList, DetailContent };
+export {
+    LayoutBox,
+    DetailMain,
+    NotAuth,
+    Auth,
+    DetailTitle,
+    DetailUser,
+    DetailList,
+    ImageList,
+    DetailContent,
+};
