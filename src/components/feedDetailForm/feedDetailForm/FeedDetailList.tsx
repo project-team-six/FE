@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { deadlineFeed, fetchListFeed } from "../../../api/feedApi";
 import { useParams } from "react-router";
-import UserInfo from "../../mypage/UserInfo";
 import * as S from "./style";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/config/configStore";
@@ -103,9 +102,6 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
                         </div>}
                     </S.DetailTitle>
                     <S.DetailUser>
-                        <div>
-                            <UserInfo />
-                        </div>
                         <div> 작성일 :
                             <span>{detailFeed?.createdAt.slice(0, 10)}</span>
                         </div>
