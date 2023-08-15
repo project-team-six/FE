@@ -1,14 +1,14 @@
 import styled from "styled-components/";
-import { Flex, cursor } from "../common/GlobalStyle";
+import { Flex, cursor } from "../../common/GlobalStyle";
 
 const LayoutBox = styled.main`
-    max-width: 1280px;
-    margin: 0 auto;
-`;
+max-width : 1280px;
+margin : 0 auto;
+`
 
 const DetailMain = styled.article`
     width: 57%;
-    margin: 0 auto;
+    margin : 0 auto;
 `;
 
 const DetailTitle = styled.section`
@@ -21,7 +21,6 @@ const DetailTitle = styled.section`
     img {width: 35px;}
     p {color: #8c8c8c;}
 `;
-
 const NotAuth = styled.div`
     ${Flex}
     margin-top:30px;
@@ -36,7 +35,6 @@ const NotAuth = styled.div`
         padding: 0;
     }
 `;
-
 const Auth = styled.div`
     height: 30px;
     margin-top: 40px;
@@ -60,9 +58,78 @@ const DetailUser = styled.section`
     margin: 2% 0;
     padding-bottom: 2%;
     border-bottom: 1px solid #d9d9d9;
+
+    article {
+        width: 100%;
+        ${Flex};
+        justify-content: flex-start;
+        gap: 20px;
+    }
+    span {text-align: right;}
+    .profile-img {
+        border: 1px solid #000;
+        border-radius: 100%;
+        width: 80px;
+        height: 80px;
+        ${Flex}
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    strong {font-size: 18px;}
 `;
 
-export const UserProfile = styled.div`
+const DetailList = styled.section`
+    width: 100%;
+    ${Flex}
+    justify-content : space-between;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 90px;
+    h2 {
+        margin: 20px 0;
+        font-size: 20px;
+    }
+    p {
+        margin: 15% 0;
+        font-size: 14px;
+        width: 260px;
+    }
+    img {
+        width: 370px;
+        height: 310px;
+        object-fit: contain;
+        border: 1px solid #333;
+    }
+    span {padding-left: 24px;}
+`;
+
+const ImageList = styled.div`
+    ${Flex};
+    gap: 10px;
+    width: 100%;
+    margin: 15px 0 40px;
+    img {
+        border: none;
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+    }
+    .selectedImage {border: 1px solid #333;}
+`;
+
+const DetailContent = styled.section`
+    width: 100%;
+    height: 100%;
+    margin: 10px auto;
+    text-align : justify;
+    p {margin: 40px 0;}
+    span {margin-right: 15px;}
+`;
+
+const UserProfile = styled.div`
     width: 300px;
     ${Flex}
     div {width: 100%; 
@@ -88,7 +155,7 @@ export const UserProfile = styled.div`
 `;
 
 
-export const Temperature = styled.div`
+const Temperature = styled.div`
     p{font-weight:500; padding-top:5px;}
     font-weight: 500;
     width: 100px;
@@ -99,88 +166,20 @@ export const Temperature = styled.div`
     }
 `;
 
-export const ProgressBar = styled.div`
+const ProgressBar = styled.div`
     width: 100px;
     height : 10px;
     border: 1px solid #333;
     border-radius: 25px;
 `;
 
-export const Inner = styled.div`
+const Inner = styled.div`
     width: 100%;
     height: 9px;
     background-color: #6f8a6b;
     border-radius: 25px 0 0 25px;
 `;
 
-export const Dates = styled.div`
+const Dates = styled.div``;
 
-`;
-
-const DetailList = styled.section`
-    width: 100%;
-    ${Flex}
-    justify-content : space-between;
-    align-items: flex-start;
-    gap: 30px;
-    margin-top: 90px;
-    h2 {
-        margin: 20px 0;
-        font-size: 20px;
-    }
-    p {
-        margin: 15% 0;
-        font-size: 14px;
-        width: 260px;
-    }
-    img {
-        width: 370px;
-        height: 310px;
-        object-fit: contain;
-        border: 1px solid #333;
-    }
-    span {
-        padding-left: 24px;
-    }
-`;
-
-const ImageList = styled.div`
-    ${Flex};
-    gap: 10px;
-    width: 100%;
-    margin: 15px 0 40px;
-    img {
-        border: none;
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-    }
-    .selectedImage {
-        border: 1px solid #333;
-    }
-`;
-
-const DetailContent = styled.section`
-    width: 100%;
-    height: 100%;
-    margin: 10px auto;
-    text-align: justify;
-    p {
-        margin: 40px 0;
-    }
-    span {
-        margin-right: 15px;
-    }
-`;
-
-export {
-    LayoutBox,
-    DetailMain,
-    NotAuth,
-    Auth,
-    DetailTitle,
-    DetailUser,
-    DetailList,
-    ImageList,
-    DetailContent,
-};
+export { LayoutBox, DetailMain, NotAuth, Auth, DetailTitle, DetailUser, DetailList, ImageList, DetailContent,UserProfile,Temperature,ProgressBar,Inner,Dates };
