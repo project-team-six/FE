@@ -12,6 +12,7 @@ const FeedCards = ({
 	titleOrContent,
 	page,
 	fetchPageable,
+	pageSize,
 }: {
 	location: string;
 	category: string;
@@ -19,6 +20,7 @@ const FeedCards = ({
 	titleOrContent: string;
 	page: number;
 	fetchPageable: (page: number) => void;
+	pageSize: number;
 }) => {
 	const {
 		data: feedList,
@@ -58,7 +60,7 @@ const FeedCards = ({
 
 	return (
 		<FeedListSection>
-			{feedList.content.map((item: any) => (
+			{feedList.content.slice(0, pageSize).map((item: any) => (
 				<div key={item.id}>
 					<FeedCard onClick={handleNavigate(`/feed/${item.id}`)}>
 						<FeedImageBox>
@@ -70,7 +72,17 @@ const FeedCards = ({
 								<p>{formatTimeDifference(item.createdAt)}</p>
 							</UserLocationTimeBox>
 							<ContentBox>
-								<p>{item.title}</p>
+								<p style={{ fontWeight: "700" }}>{item.title}</p>
+								<p
+									className='ellipsis'
+									style={{
+										width: "255px",
+										whiteSpace: "nowrap",
+										overflow: "hidden",
+										textOverflow: "ellipsis",
+									}}>
+									{item.content}
+								</p>
 							</ContentBox>
 							<div className='priceBox'>
 								<p>{item.price}</p>
@@ -97,7 +109,7 @@ const FeedCard = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 255px;
-	height: 375px;
+	height: 390px;
 	border-radius: 16px;
 	margin-bottom: 55px;
 	&:hover {
@@ -131,5 +143,5 @@ const UserLocationTimeBox = styled.div`
 
 const ContentBox = styled.div`
 	width: 100%;
-	height: 35px;
+	height: 55px;
 `;
