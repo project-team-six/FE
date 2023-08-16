@@ -32,7 +32,6 @@ const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: b
             setSelectImage(detailFeed.imageUrlList[0]);
         }
     }, [detailFeed]);
-
     // 마감
     const closedClient = useQueryClient();
     const closedMutation = useMutation(deadlineFeed, {
@@ -44,7 +43,6 @@ const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: b
 			pushNotification("게시물 마감을 실패했습니다.", "error");
 		},
 	});
-
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error...</div>;
 
@@ -104,7 +102,6 @@ const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: b
                         </div>}
                     </S.DetailTitle>
                     <S.DetailUser>
-                    <S.DetailUser>
                         <S.UserProfile>
                         <div className="profile-img">
                             <img src={profileImageUrl ? profileImageUrl : profileDefault} alt="profile"/>
@@ -140,7 +137,6 @@ const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: b
                             <span>{detailFeed?.modifiedAt.slice(0, 10)}</span>
                         </div>
                         </S.Dates>
-                    </S.DetailUser>
                     </S.DetailUser>
                         <S.DetailList>
                             <div>

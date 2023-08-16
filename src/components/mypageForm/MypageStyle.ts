@@ -60,6 +60,7 @@ export const Location = styled.section`
 
 export const EditBtn = styled.section`
     text-align: center;
+    margin-bottom:50px;
     button {
         ${cursor}
         width: 120px;
@@ -90,8 +91,6 @@ export const List = styled.div`
     flex-wrap: wrap;
     gap: 30px;
     margin : 35px 0;
-    /* padding-bottom: 35px; */
-    /* border-bottom: 1px solid #d9d9d9; */
     img {
         width: 200px;
         height: 195px;
@@ -117,7 +116,7 @@ export const List = styled.div`
     }
     .day {
         display: inline-block;
-        width : 44px;
+        width : 66px;
         text-align: right;
     }
 `;
