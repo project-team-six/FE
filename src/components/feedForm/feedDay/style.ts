@@ -8,7 +8,7 @@ export const MainContentWrapper = styled.div`
 
 export const Label = styled.label`
     width: 100px;
-    margin-right: 6%;
+    margin-right: 4.7%;
 `;
 
 export const StyledDatePicker = styled(DatePicker)`

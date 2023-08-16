@@ -11,6 +11,7 @@ export type InitialType = {
 	username: string;
 	exp: number;
 	iat: number;
+	profileImageUrl:string,
 };
 
 // Redux store의 tokenSlice 상태를 정의한 것입니다. 이 상태는 decodeToken이라는 속성을 가지고 있으며, 이 속성에는 InitialType의 형태로 디코딩한 토큰의 정보가 저장됩니다.
@@ -27,6 +28,7 @@ const initialState: TokenSliceState = {
 		username: "",
 		exp: 0,
 		iat: 0,
+		profileImageUrl:"",
 	},
 	isLogin: false,
 };

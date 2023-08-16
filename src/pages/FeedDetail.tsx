@@ -1,18 +1,14 @@
-import React, { useState } from "react";
-import FeedDetailList from "../components/feedDetail/FeedDetailList";
-import CommentList from "../components/feedDetail/CommentList";
+import { useState } from "react";
+import FeedDetailList from "../components/feedDetailForm/feedDetailForm/FeedDetailList";
+import CommentList from "../components/feedDetailForm/commentListForm/CommentList";
 
 const FeedDetail: React.FC = () => {
-
     const [closed, setClosed] = useState(false);
-    const handleClose = () => {
-        setClosed(true)
-    }
 
     return (
         <article>
             <section>
-                <FeedDetailList closed={closed} onClose={handleClose}/>
+                <FeedDetailList closed={closed} onClose={setClosed}/>
             </section>
             <section>
                 <CommentList closed={closed}/>

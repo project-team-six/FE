@@ -1,8 +1,14 @@
 import styled from "styled-components/";
-import { Flex, cursor } from "../common/GlobalStyle";
+import { Flex, cursor } from "../../common/GlobalStyle";
+
+const LayoutBox = styled.main`
+max-width : 1280px;
+margin : 0 auto;
+`
 
 const DetailMain = styled.article`
     width: 57%;
+    margin : 0 auto;
 `;
 
 const DetailTitle = styled.section`
@@ -118,8 +124,62 @@ const DetailContent = styled.section`
     width: 100%;
     height: 100%;
     margin: 10px auto;
+    text-align : justify;
     p {margin: 40px 0;}
     span {margin-right: 15px;}
 `;
 
-export { DetailMain, NotAuth, Auth, DetailTitle, DetailUser, DetailList, ImageList, DetailContent };
+const UserProfile = styled.div`
+    width: 300px;
+    ${Flex}
+    div {width: 100%; 
+        /* margin: 0 10px; */
+    }
+    h1 {
+        font-size: 18px;
+        margin-left : 15px;
+    }
+    .profile-img {
+        border: 1px solid #000;
+        border-radius: 100%;
+        width: 110px;
+        height: 80px;
+        margin: 5px;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 100%;
+    }
+`;
+
+
+const Temperature = styled.div`
+    p{font-weight:500; padding-top:5px;}
+    font-weight: 500;
+    width: 100px;
+    margin-left : 15px;
+    span {
+        display: inline-block;
+        font-size: 12px;
+    }
+`;
+
+const ProgressBar = styled.div`
+    width: 100px;
+    height : 10px;
+    border: 1px solid #333;
+    border-radius: 25px;
+`;
+
+const Inner = styled.div`
+    width: 100%;
+    height: 9px;
+    background-color: #6f8a6b;
+    border-radius: 25px 0 0 25px;
+`;
+
+const Dates = styled.div``;
+
+export { LayoutBox, DetailMain, NotAuth, Auth, DetailTitle, DetailUser, DetailList, ImageList, DetailContent,UserProfile,Temperature,ProgressBar,Inner,Dates };

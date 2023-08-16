@@ -7,6 +7,7 @@ export type feedInitialValue = {
     transactionEndDate: string;
     consumerPeriod: string;
     purchaseDate: string;
+    location: string;
     images: [];
 };
 
@@ -30,4 +31,25 @@ export type locationType = {
 export type selectOptionType = {
     value: string;
     label: string;
+}
+
+export type commentPostType = {
+    postId: number;
+    commentContent: {
+        content: string;
+    };
+}
+
+export type commentEditType = commentPostType & {
+    commentId: string;
+};
+
+export type commentDeleteType = Omit<commentEditType, "commentContent">;
+
+export type commentType = {
+    id: number;
+    content: string;
+    nickname: string;
+    createdAt: string;
+    profileImageUrl: string;
 }

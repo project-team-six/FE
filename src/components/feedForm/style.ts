@@ -43,20 +43,22 @@ export const CategoryDiv = styled.div`
 
 export const CategoryLabel = styled.label`
     white-space: nowrap; 
-    margin-right: 13%;
+    margin-right: 12.5%;
 `;
 
 export const ContentWrapper = styled.div`
     display: flex;
-    align-items: center; 
+    align-items: center;
+    width: 100%;
 `;
 
 export const LocationLabel = styled.label`
+    white-space: nowrap; 
     margin-right: 16%;
 `;
 
 export const LocationDiv = styled.div`
-    width: 78%;
+    width: 74%;
     height: 40px;
     background-color: #6F8A6B;
     display: grid;
@@ -68,31 +70,39 @@ export const LocationSpan = styled.span`
     color: #FFFFFF;
 `;
 
+export const PrecautionContentWrapper = styled.section`
+    display: flex;
+    width: 100%;
+`;
+
 export const PrecautionsLabel = styled.label`
     white-space: nowrap; 
-    margin-right: 13%;
-    position: relative;
-    top: -45px;
+    margin-right: 12.5%;
 `;
 
 export const PrecautionsDiv = styled.div`
     font-size: 15px;
-    width: 570px;
-    height: 125px;
+    width: 92%;
+    height: 150px;
     border-radius: 4px;
     border: 1px solid hsl(0, 0%, 80%);
     padding: 8px 8px;
+    padding-left: 20px;
 `;
 
 export const CheckboxDiv = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
-    margin-right: 13px;
+    margin-right: 50px;
 `;
 
 export const CheckboxLabel = styled.label`
     margin-right: 10px;
+`;
+
+export const CheckboxInput = styled.input`
+    cursor: pointer;
 `;
 
 export const ButtonSection = styled.section`
@@ -108,4 +118,5 @@ export const Button = styled.button`
     border-radius: 20px;
     color: #FFFFFF;
     background-color: #6F8A6B;
+    cursor: pointer;
 `;

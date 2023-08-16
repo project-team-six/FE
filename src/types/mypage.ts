@@ -1,6 +1,6 @@
 export type MyPageAPIResponse = {
   data: {
-    mannerTemparature: Number;
+    mannerTemparature: number;
     nickname: string;
     pinedPosts: [];
     profileImageUrl: string;
@@ -9,7 +9,7 @@ export type MyPageAPIResponse = {
 };
 
 export type MyPageEditAPIResponse = {
-  userId: Number;
+  userId: number;
   nickName: string;
   password: string;
   phoneNumber: string;

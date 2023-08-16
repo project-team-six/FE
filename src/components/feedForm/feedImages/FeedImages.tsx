@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import * as S from "./style";
 import { pushNotification } from "../../../utils/notification";
 
-export const FeedImages = ({ images, setImages }: { images: File[]; setImages: (images: File[]) => void }) => {
+export const FeedImages = ({ images, setImages, isEdit }: { images: File[]; setImages: (images: File[]) => void, isEdit: boolean}) => {
 	const [imagePreviews, setImagePreviews] = useState<string[]>([]); // 이미지 미리보기
 	const changeImages = (e: ChangeEvent<HTMLInputElement>) => {
 		const files = e.target.files;
@@ -44,35 +44,38 @@ export const FeedImages = ({ images, setImages }: { images: File[]; setImages: (
 		setImages(temps);
 
 		// 이미지 미리보기에서도 삭제
-		const tt = [...imagePreviews];
-		tt.splice(index, 1);
-		setImagePreviews(tt);
+		const previewtemps = [...imagePreviews];
+		previewtemps.splice(index, 1);
+		setImagePreviews(previewtemps);
 	};
 
 	return (
-		<section>
+		<S.Article>
 			<S.TitleSpan>상품 이미지</S.TitleSpan>
-			<S.InputDiv>
-				<S.InputSpan fontSize={13} fontWeight='500'>최대 5장까지 업로드 가능합니다.</S.InputSpan>
-				<S.LabelDiv>
-					<S.Label htmlFor='File'>PC에서 불러오기</S.Label>
-				</S.LabelDiv>
-				<S.Input type='file' id='File' name='files' multiple onChange={changeImages} />
-			</S.InputDiv>
-			<S.PreviewContentWrapper>
-				{imagePreviews.map((img, index) => {
-					return (
-							<div key={index}>
-								{imagePreviews[index] && (
-									<S.PreviewMiddleDiv>
-										<S.PreviewImg src={imagePreviews[index]} alt={`Preview ${index}`} />
-										<button onClick={() => clickDeleteImgBtn(index)}>x</button>
-									</S.PreviewMiddleDiv>
-								)}
-							</div>		
-							);
-						})}
-			</S.PreviewContentWrapper>
-		</section>
+			<S.InputSection>
+				<S.InputDiv>
+					<S.InputSpan fontSize={13} fontWeight='500'>최대 5장까지 업로드 가능합니다.</S.InputSpan>
+					{isEdit ? <S.InputSpan fontSize={10} fontWeight='500'>사진을 추가하면 기존 사진이 삭제됩니다.</S.InputSpan> : <></>}
+					<S.LabelDiv>
+						<S.Label htmlFor='File'>PC에서 불러오기</S.Label>
+					</S.LabelDiv>
+					<S.Input type='file' id='File' name='files' multiple onChange={changeImages} />
+				</S.InputDiv>
+				<S.PreviewContentWrapper>
+					{imagePreviews.map((img, index) => {
+						return (
+								<div key={index}>
+									{imagePreviews[index] && (
+										<S.PreviewMiddleDiv>
+											<S.PreviewImg src={imagePreviews[index]} alt={`Preview ${index}`} />
+											<S.PreviewButton onClick={() => clickDeleteImgBtn(index)}>x</S.PreviewButton>
+										</S.PreviewMiddleDiv>
+									)}
+								</div>		
+								);
+							})}
+				</S.PreviewContentWrapper>
+			</S.InputSection>
+		</S.Article>
 	);
 };

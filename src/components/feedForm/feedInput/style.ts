@@ -5,8 +5,10 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-    width: 79%;
+    white-space: nowrap;     
+    width: 74%;
     height: 40px;
     border-radius: 4px;
     border: 1px solid hsl(0, 0%, 80%);
+    padding-left: 20px;
 `;
