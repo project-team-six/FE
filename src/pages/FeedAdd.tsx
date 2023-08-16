@@ -1,12 +1,18 @@
-import { feedInitialValue } from "../types/feedType";
-import FeedForm from "../components/feedForm/FeedForm";
-import { datetimeUtils } from "../utils/datetimeUtils";
 import { useMutation } from "react-query";
-import { postFeed } from "../api/feedApi";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { feedInitialValue } from "../types/feedType";
+import { datetimeUtils } from "../utils/datetimeUtils";
+import { postFeed } from "../api/feedApi";
 import { pushNotification } from "../utils/notification";
+import { RootState } from "../redux/config/configStore";
+import FeedForm from "../components/feedForm/FeedForm";
 
 const FeedAdd = () => {
+	const location = useSelector((state: RootState) => {
+		return state.locationSlice.userLocation;
+	});
+	
 	const date = datetimeUtils(new Date());
 	const initialValue: feedInitialValue = {
 		title: "",
@@ -17,6 +23,7 @@ const FeedAdd = () => {
 		transactionEndDate: date,
 		consumerPeriod: date,
 		purchaseDate: date,
+		location: `${location.sido} ${location.sigungu} ${location.dong}`,
 		images: [],
 	};
 

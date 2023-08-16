@@ -1,7 +1,7 @@
-import { ChangeEvent } from "react";
+import React, { ChangeEvent } from "react";
 import * as S from "./style";
 
-export const FeedInput = ({label, value, setValue}: {label: string, value: string, setValue: (value: string) => void }) => {
+export const FeedInput = React.memo(({label, value, setValue}: {label: string, value: string, setValue: (value: string) => void }) => {
     const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
     return (
         <div>
@@ -9,4 +9,4 @@ export const FeedInput = ({label, value, setValue}: {label: string, value: strin
             <S.Input type="text" required value={value} onChange={handleChangeValue}/>
         </div>
     )
-}
+});

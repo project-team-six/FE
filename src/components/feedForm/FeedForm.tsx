@@ -1,28 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { UseMutateFunction } from "react-query";
+import { UseMutateFunction, useQueryClient } from "react-query";
 import { feedInitialValue, feedType } from "../../types/feedType";
 import { FeedImages } from "./feedImages/FeedImages";
 import { FeedCategory } from "./feedCategory/FeedCategory";
 import { FeedDay } from "./feedDay/FeedDay";
 import { FeedInput } from "./feedInput/FeedInput";
 import { datetimeUtils } from "../../utils/datetimeUtils";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/config/configStore";
-// import { editFeed } from "../../api/feedApi";
-import * as S from "./style";
+import { editFeed } from "../../api/feedApi";
 import { pushNotification } from "../../utils/notification";
+import * as S from "./style";
 
-const FeedForm = ({ initialValue, mutation, btnName }: {
+const FeedForm = ({ initialValue, mutation, btnName, postId }: {
 	initialValue: feedInitialValue;
 	mutation?: UseMutateFunction<any, unknown, any, unknown>;
 	btnName: string;
+	postId?: number;
 }) => {
-	// 지역
-	const location = useSelector((state: RootState) => {
-		return state.locationSlice.userLocation;
-	});
-
 	const navigate = useNavigate();
 
 	// 이미지
@@ -54,6 +48,7 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 	const [isChecked, setIsChecked] = useState<boolean>(false);
 	const handleCheckboxChange = () => { setIsChecked(!isChecked); };
 
+	const editClient = useQueryClient();
 	const handleClick = () => {
 		if (isChecked && images && title && category && price && content) { 
 			let formData = new FormData();
@@ -68,24 +63,32 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 				purchaseDate: datetimeUtils(purchaseDate),
 			};
 			formData.append("data", new Blob([JSON.stringify(newFeed)], { type: "application/json" }));
-			images.map((img) => {
+			images.map((img) => { // 이미지
 				formData.append("file", img);
 				return true;
-			}); // 이미지
+			});
+
 			if (mutation) mutation(formData); // 등록
-			// else editFeed(1, formData) // 수정 (상세 페이지 완료 후 진행 예정)
+			else if (postId){ // 수정
+				editFeed(postId, formData).then(() => {
+					pushNotification("게시물 수정에 성공했습니다", "success");
+					editClient.invalidateQueries(["detailFeed"]);
+					navigate(`/feed/${postId}`); // 게시물 상세 페이지로 이동
+				});
+			} 
 		} else {
 			pushNotification("필수 항목을 모두 입력해주세요.", "warning");
 		}
 	};
-
+	
+	const isEdit = !mutation; // 수정 페이지 유무 저장
 	return (
 		<S.MainContentWrapper>
 			<S.TitleDiv>
 				<S.Span fontSize={20} fontWeight="400">게시물 작성</S.Span>
 				<S.Line />
 			</S.TitleDiv>
-			<FeedImages images={images} setImages={setImages} />
+			<FeedImages images={images} setImages={setImages} isEdit={isEdit}/>
 			<S.Line />
 			<S.FormSection>
 				<form>
@@ -100,7 +103,7 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 					<section>
 						<S.CategoryDiv>
 							<S.CategoryLabel>카테고리</S.CategoryLabel>
-							<FeedCategory setCategory={setCategory} />
+							<FeedCategory category={category} setCategory={setCategory} />
 						</S.CategoryDiv>
 						<S.Line />
 					</section>
@@ -133,7 +136,7 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 						<S.ContentWrapper>
 							<S.LocationLabel>지역</S.LocationLabel>
 							<S.LocationDiv>
-								<S.LocationSpan>{location.sido} {location.sigungu} {location.dong}</S.LocationSpan>
+								<S.LocationSpan>{initialValue.location}</S.LocationSpan>
 							</S.LocationDiv>
 						</S.ContentWrapper>
 						<S.Line />
@@ -158,7 +161,7 @@ const FeedForm = ({ initialValue, mutation, btnName }: {
 						</S.PrecautionContentWrapper>
 						<S.CheckboxDiv>
 							<S.CheckboxLabel>동의</S.CheckboxLabel>
-							<input type="checkbox" checked={isChecked} onChange={handleCheckboxChange}/>
+							<S.CheckboxInput type="checkbox" checked={isChecked} onChange={handleCheckboxChange}/>
 						</S.CheckboxDiv>
 					</section>
 					<S.ButtonSection>
