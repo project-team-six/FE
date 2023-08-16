@@ -1,32 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { deadlineFeed, fetchListFeed } from "../../../api/feedApi";
+import { deadlineFeed, fetchFeed } from "../../../api/feedApi";
 import { RootState } from "../../../redux/config/configStore";
 import { pushNotification } from "../../../utils/notification";
 import * as S from "./style";
 import profileDefault from "../../../asstes/profileImageDefault.png";
 
-interface FeedDetailProps{
-    closed: boolean;
-    onClose: (value: boolean)=> void;
-}
-
-const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
+const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: boolean)=> void}) => {
     const [SelectImage, setSelectImage] = useState("");
-    const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+    const navigate = useNavigate();
+
     const { id } = useParams();
     const postId = Number(id);
-    const userId: Number = useSelector((state: RootState) => {
-        return Number(state.tokenSlice.decodeToken.userId);
-    });
-    const profileImageUrl: string = useSelector((state: RootState) => {
-        return (state.tokenSlice.decodeToken.profileImageUrl);
-    });
+
+    const userInfo = useSelector((state: RootState) => {return state.tokenSlice.decodeToken; });
+    const userId: Number = Number(userInfo.userId); // 사용자 ID
+    const profileImageUrl: string = userInfo.profileImageUrl; // 사용자 프로필 이미지 URL
+
     const { data: detailFeed, isLoading, isError } = useQuery(
         ["detailFeed", postId],
-        () => fetchListFeed(postId),
+        () => fetchFeed(postId),
         { staleTime: 1000 * 60 * 3 }
     );
 
@@ -78,6 +74,8 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
         closedMutation.mutate(postId); // 서버에도 반영
     };
 
+    const priceUnit = /^[0-9]+$/.test(detailFeed.price) ? "원" : ""; // 가격이 숫자인지 아닌지 확인 후 숫자면 뒤에 "원"을 넣어줌
+
     return (
         <S.LayoutBox>
             {isLoading ? (
@@ -93,7 +91,7 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
                         <div>
                             {userId === authId ? (
                             <S.Auth>
-                                <button>수정</button>
+                                <button onClick={() => navigate(`/feed/${postId}/edit`)}>수정</button>
                                 <button onClick={handleCloseClick}>마감</button>
                             </S.Auth>
                             ) : (
@@ -162,13 +160,13 @@ const FeedDetailList: React.FC<FeedDetailProps> = ({closed, onClose}) => {
                                 </S.ImageList>
                             </div>
                             <div>
-                                <h2>{detailFeed?.price} 원</h2>
+                                <h2>{detailFeed?.price} {priceUnit}</h2>
                                 <p>
                                     거래가능날짜 : 
                                     {detailFeed.transactionStartDate} -
                                     {detailFeed.transactionEndDate}
                                 </p>
-                                <p>유통기한 <span>: {detailFeed.consumerPeriod}</span>
+                                <p>유통기한 <span> : {detailFeed.consumerPeriod}</span>
                                 </p>
                                 <p>구매날짜 <span> : {detailFeed.purchaseDate}</span>
                                 </p>

@@ -7,6 +7,7 @@ export type feedInitialValue = {
     transactionEndDate: string;
     consumerPeriod: string;
     purchaseDate: string;
+    location: string;
     images: [];
 };
 
