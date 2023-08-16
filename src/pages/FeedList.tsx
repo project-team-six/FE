@@ -91,6 +91,7 @@ const FeedList = () => {
 					titleOrContent={titleOrContent}
 					page={page}
 					fetchPageable={fetchPageable}
+					pageSize={12}
 				/>
 			</div>
 			<PageNationSection>
