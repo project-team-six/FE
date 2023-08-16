@@ -66,16 +66,15 @@ export const editFeed = async (postId: number, newFeed: FormData) => {
 	return response;
 };
 
-export const fetchFeed = async (
+export const fetchFeedList = async (
 	location: string,
 	category: string,
-	title: string,
-	username: string,
 	status: string,
-	page: Number
+	titleOrContent: string,
+	page: number
 ) => {
 	const response = await instance.get(
-		`/post?location=${location}&category=${category}&title=${title}&username=${username}&status=${status}&page=${page}`
+		`/post?location=${location}&category=${category}&status=${status}&titleOrContent=${titleOrContent}&page=${page}`
 	);
-	return response;
+	return response.data.data;
 };

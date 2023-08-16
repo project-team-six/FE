@@ -36,8 +36,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 		navigate("/feedadd");
 	};
 
-	console.log(userInfo);
-
 	return (
 		<div>
 			{modalState && (

@@ -32,7 +32,7 @@ const CommentList: React.FC<FeedDetailProps> = ({ closed }) => {
         { staleTime: 1000 * 60 * 3 }
     );
 
-    console.log("commnet", comm);
+
 //     const invalidateQueries = {
 //         postId:"",
 //         comment : "",
@@ -42,7 +42,7 @@ const CommentList: React.FC<FeedDetailProps> = ({ closed }) => {
 //     const submitComment = useMutation({postId, comment, userId}) => newCommentData(postId, comment, userId),
 //     {
 //         onSuccess: () => queryClient.invalidateQueries(["comm"]);
-//     }, 
+//     },
 //     onError : (error) => {pushNotification('댓글 등록에 실패했습니다', "error");
 // },
 //       }
@@ -50,7 +50,6 @@ const CommentList: React.FC<FeedDetailProps> = ({ closed }) => {
 
     const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setComment(e.target.value);
-        console.log(comment);
     };
 
     return (
