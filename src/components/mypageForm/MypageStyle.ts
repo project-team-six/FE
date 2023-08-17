@@ -1,4 +1,4 @@
-import { cursor } from "./../common/GlobalStyle";
+import { Flex, cursor } from "./../common/GlobalStyle";
 import styled from "styled-components";
 
 export const LayoutBox = styled.div`
@@ -87,22 +87,23 @@ export const Feed = styled.section`
 
 export const List = styled.div`
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
     margin : 35px 0;
     img {
         width: 200px;
         height: 195px;
         border-radius: 25px 25px 0 0;
+        object-fit:contain;
+    }
+    .list-wrapper{
+        width:100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap : 30px;
     }
     div {
         ${cursor}
         width: 200px;
         border-radius: 25px 25px 0 0;
-    }
-    .postcontent {
-        padding: 0 10px;
     }
     h4 {
         margin: 10px 0;
@@ -111,12 +112,21 @@ export const List = styled.div`
     }
     span {
         padding-top:10px;
-        font-size: 12px;
+        font-size: 11px;
         color:#666;
     }
     .day {
         display: inline-block;
-        width : 66px;
+        width : 60px;
         text-align: right;
     }
 `;
+
+export const PostContent = styled.div`
+    width:100%;
+`
+
+export const ContentHead = styled.div`
+${Flex}
+justify-content: space-between;
+`

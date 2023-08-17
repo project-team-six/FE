@@ -21,6 +21,7 @@ text-align : center;
         width: 110px;
         height: 100px;
         border-radius: 100%;
+        object-fit:cover;
     }
     span {
         display: inline-block;

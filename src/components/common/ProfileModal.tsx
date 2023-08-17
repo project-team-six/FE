@@ -62,7 +62,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 								</p>
 							)}
 						</St.ModalButton>
-						<St.ModalButton onClick={handleNavigate("/mypage")}>
+						<St.ModalButton onClick={handleNavigate(`/mypage/${userInfo.userId}`)}>
 							<img src={require(`../../asstes/peopleIcon.png`)} alt='사람' />
 							<p>마이페이지</p>
 						</St.ModalButton>
