@@ -29,7 +29,7 @@ const MyPage: React.FC = () => {
     const { data: mypage, isLoading } = useQuery(["mypage", userId], () =>
         getMyPage(userId)
     );
-    console.log(mypage)
+
     useEffect(() => {
         if (userLocation.sido === "") {
             pushNotification("지역을 먼저 등록해주세요", "error");
