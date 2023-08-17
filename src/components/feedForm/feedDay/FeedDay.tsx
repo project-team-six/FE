@@ -1,5 +1,3 @@
-// import { useMemo } from "react";
-import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
 import * as S from "./style";
 import "react-datepicker/dist/react-datepicker.css";
@@ -28,25 +26,21 @@ export const FeedDay = ({
 		} else setStartDate(date);
 	};
 
-	const datePicker = (
-		<S.StyledDatePicker
-			selectsRange={range}
-			startDate={startDate}
-			endDate={endDate}
-			locale={ko}
-			dateFormat='yyyy-MM-dd'
-			shouldCloseOnSelect
-			minDate={new Date("2000-01-01")}
-			selected={startDate}
-			onChange={handleChange}
-		/>
-	);
-
 	return (
 		<S.MainContentWrapper>
 			<S.Label>{label}</S.Label>
 			<div>
-				{datePicker}
+				<S.StyledDatePicker
+					selectsRange={range}
+					startDate={startDate}
+					endDate={endDate}
+					locale={ko}
+					dateFormat='yyyy-MM-dd'
+					shouldCloseOnSelect
+					minDate={new Date("2000-01-01")}
+					selected={startDate}
+					onChange={handleChange}
+				/>
 			</div>
 		</S.MainContentWrapper>
 	);
