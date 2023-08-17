@@ -7,18 +7,25 @@ import UserProfile from "./UserProfile";
 import UserMannerTem from "./UserMannerTem";
 import { InitialType } from "../../redux/modules/locationSet";
 import * as S from "./MypageStyle";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const UserInfo = () => {
     const navigate = useNavigate();
-    const userId: Number = useSelector((state: RootState) => {
+    const accountId: Number = useSelector((state: RootState) => {
         return state.tokenSlice.decodeToken.userId;
-    });
+    }); // 현재 로그인된 사용자의 ID
+
+    const { id } = useParams();
+    const userId = Number(id)
+
     const userLocation: InitialType = useSelector((state: RootState) => {
         return state.locationSlice.userLocation;
     });
+
     // useQuery로 유저 정보 불러오기
-    const {data: mypage, isLoading, isError,} = useQuery(["mypage", userId], () => getMyPage(userId));
+    const { data: mypage, isLoading, isError } = useQuery(["mypage", userId], () =>
+        getMyPage(userId))
+
     if (isLoading) return <div>isLoading</div>;
     if (isError) return <div>iserror</div>;
 
@@ -44,9 +51,11 @@ const UserInfo = () => {
             <section>
                 <UserMannerTem mypage={mypage} />
             </section>
+            {+accountId === userId ? (
             <S.EditBtn >
             <button onClick={onClickuserEditnavigate}>회원정보 수정</button>
             </S.EditBtn>
+            ) : null }
         </S.UserInfoWrapper>
     );
 };

@@ -117,3 +117,8 @@ export const deleteComment = async (payload: commentDeleteType) => {
 	const response = await instance.delete(`post/${payload.postId}/comment/${payload.commentId}`);
 	return response;
 };
+
+export const postPin = async (postId: number) => {
+	const response = await instance.post(`/post/${postId}/pin`)
+	return response;
+}

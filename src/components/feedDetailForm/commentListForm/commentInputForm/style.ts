@@ -19,7 +19,7 @@ export const InputButton = styled.button`
     height: 45px;
     color: #FFFFFF;
     background-color: #6F8A6B; 
-    border-radius: 20px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 15px;
 `;

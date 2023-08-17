@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
 			{ path: "/feed/:id", element: <FeedDetail /> },
 			{ path: "/feed/:id/edit", element: <FeedEdit /> },
 			{ path: "/feedadd", element: <FeedAdd /> },
-			{ path: "/mypage", element: <MyPage /> },
+			{ path: "/mypage/:id", element: <MyPage /> },
 			{ path: "/mypage/edit", element: <MyPageEdit /> },
 			{ path: "/guidepage", element: <GuidePage /> },
 			{ path: "/auth/kakao/login", element: <Redirection /> },

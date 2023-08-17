@@ -130,8 +130,9 @@ const DetailContent = styled.section`
 `;
 
 const UserProfile = styled.div`
-    width: 300px;
+    ${cursor}
     ${Flex}
+    width: 300px;
     div {width: 100%; 
         /* margin: 0 10px; */
     }
@@ -149,7 +150,7 @@ const UserProfile = styled.div`
     img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         border-radius: 100%;
     }
 `;

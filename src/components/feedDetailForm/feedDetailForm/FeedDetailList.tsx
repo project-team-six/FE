@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { deadlineFeed, fetchFeed } from "../../../api/feedApi";
+import { deadlineFeed, fetchFeed, postPin } from "../../../api/feedApi";
 import { RootState } from "../../../redux/config/configStore";
 import { pushNotification } from "../../../utils/notification";
 import * as S from "./style";
-import profileDefault from "../../../asstes/profileImageDefault.png";
 
 const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: boolean)=> void}) => {
     const [SelectImage, setSelectImage] = useState("");
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
     const navigate = useNavigate();
 
     const { id } = useParams();
@@ -18,12 +18,12 @@ const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: b
 
     const userInfo = useSelector((state: RootState) => {return state.tokenSlice.decodeToken; });
     const userId: Number = Number(userInfo.userId); // 사용자 ID
-    const profileImageUrl: string = userInfo.profileImageUrl; // 사용자 프로필 이미지 URL
+
+    const queryClient = useQueryClient();
 
     const { data: detailFeed, isLoading, isError } = useQuery(
         ["detailFeed", postId],
-        () => fetchFeed(postId),
-        { staleTime: 1000 * 60 * 3 }
+        () => fetchFeed(postId)
     );
 
     const authId: Number = detailFeed?.userId;
@@ -31,7 +31,19 @@ const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: b
         if (detailFeed && detailFeed.imageUrlList.length > 0) {
             setSelectImage(detailFeed.imageUrlList[0]);
         }
-    }, [detailFeed]);
+    }, [detailFeed])
+
+    // 관심
+    const pinedMutation = useMutation(postPin,{
+        onSuccess: ()=>{
+            detailFeed.isPin === true ? pushNotification('관심글 등록을 취소했습니다', "warning") :  
+            pushNotification('관심글 등록에 성공했습니다', "success")
+            queryClient.invalidateQueries(["detailFeed"])
+        },
+        onError: ()=>{
+            pushNotification('관심글 등록에 실패했습니다', 'error')
+        },
+    })
 
     // 마감
     const closedClient = useQueryClient();
@@ -48,6 +60,12 @@ const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: b
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error...</div>;
 
+    // 관심을 누르면 서버에 반영 및 횟수 올라가기
+    const pinHandler =  () => {
+        pinedMutation.mutate(postId);
+    }
+
+    //이미지 캐러셀
     const handleSelectImage = (image: string, index:number) => {
         setSelectImage(image);
         setSelectedImageIndex(index);
@@ -66,16 +84,16 @@ const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: b
             setSelectImage(detailFeed.imageUrlList[selectedImageIndex + 1]);
         }
     };
-
+    
     // 마감    
-    onClose(detailFeed.isComplete);
+    onClose(detailFeed?.isComplete);
     const handleCloseClick = () => {
         onClose(true);
         closedMutation.mutate(postId); // 서버에도 반영
     };
 
     const priceUnit = /^[0-9]+$/.test(detailFeed.price) ? "원" : ""; // 가격이 숫자인지 아닌지 확인 후 숫자면 뒤에 "원"을 넣어줌
-
+    
     return (
         <S.LayoutBox>
             {isLoading ? (
@@ -97,17 +115,16 @@ const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: b
                             ) : (
                             <S.NotAuth>
                             <button><img src={require(`../../../asstes/chat.png`)} alt="채팅 아이콘" /></button>
-                            <button><img src={require(`../../../asstes/pin.png`)} alt="관심글 등록 아이콘" /></button>
+                            <button onClick={pinHandler}>{detailFeed.isPin === true ? <img src={require(`../../../asstes/pined.png`)} alt="관심 후 아이콘"/> : <img src={require(`../../../asstes/pin.png`)} alt="관심 아이콘" />}</button>
                             <button><img src={require(`../../../asstes/report.png`)} alt="신고 아이콘" /></button>
                             </S.NotAuth>
                             )}
                         </div>}
                     </S.DetailTitle>
                     <S.DetailUser>
-                    <S.DetailUser>
-                        <S.UserProfile>
-                        <div className="profile-img">
-                            <img src={profileImageUrl ? profileImageUrl : profileDefault} alt="profile"/>
+                        <S.UserProfile onClick={()=>navigate(`/mypage/${detailFeed.userId}`)}>
+                        <div className="profile-img" >
+                            <img src={detailFeed.profileImageUrl==="" ? require(`../../../asstes/profileImageDefault.png`) : detailFeed.profileImageUrl} alt="profile"/>
                         </div>
                         <div>
                             <h1>{detailFeed.nickname}</h1>
@@ -140,7 +157,6 @@ const FeedDetailList = ({closed, onClose} : {closed: boolean, onClose: (value: b
                             <span>{detailFeed?.modifiedAt.slice(0, 10)}</span>
                         </div>
                         </S.Dates>
-                    </S.DetailUser>
                     </S.DetailUser>
                         <S.DetailList>
                             <div>

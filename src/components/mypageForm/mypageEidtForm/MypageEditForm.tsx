@@ -35,10 +35,17 @@ const MypageEditForm = () => {
         imgRef.current?.click();
     };
 
+    // 유효성 검사
+    const isFormValid = () => {
+        return (
+            nickName && password && confirmPassword && phoneNumber && password === confirmPassword
+        );
+    };
+
     // Put 닉네임, 비밀번호, 폰번호 수정
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // 타입 가져오기
+        if(isFormValid()){
         try {
             // API 호출로 닉네임, 비밀번호, 폰번호 수정
             await putMyPageEdit(userId, nickName, password, phoneNumber);
@@ -49,17 +56,21 @@ const MypageEditForm = () => {
                 formData.append("file", selectedFile);
                 try {
                     await putMyPageEditImage(userId, formData);
-                    alert("이미지업로드 성공");
+                    pushNotification("이미지업로드 성공", "success");
                 } catch (error) {
-                    console.log("이미지업로드 실패", error);
+                    pushNotification("이미지업로드 실패", "error");
                 }
             }
-            alert("수정되었습니다");
+            pushNotification("수정되었습니다", "success");
             navigate(-1);
         } catch (error) {
-            console.log("수정 실패", error);
+            pushNotification("수정 실패. 항목을 다시 봐주세요", "error");
+        }
         }
     };
+
+    
+
     return (
     <LayoutBox>
             <S.EditForm onSubmit={submitHandler}>
@@ -99,6 +110,7 @@ const MypageEditForm = () => {
                         type="text"
                         value={nickName}
                         onChange={(e) => setNickName(e.target.value)}
+                        required
                         placeholder="기존의 닉네임이 저장되어있지 않으므로 반드시 적어주세요."
                     />
                 </S.Input>
@@ -108,6 +120,7 @@ const MypageEditForm = () => {
                     <input
                         type="password"
                         value={password}
+                        required
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="기존의 비밀번호가 저장되어있지 않으므로 반드시 적어주세요."
                     />
@@ -118,6 +131,7 @@ const MypageEditForm = () => {
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
                         onBlur={()=>{
                             if (password !== confirmPassword) {
                                 pushNotification("비밀번호와 일치하지 않습니다.", "error");
@@ -131,12 +145,13 @@ const MypageEditForm = () => {
                     <input
                         type="tel"
                         value={phoneNumber}
+                        required
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         placeholder="기존의 전화번호가 저장되어있지 않으므로 반드시 적어주세요."
                     />
                 </S.Input>
                 <S.Btn>
-                    <button type="submit" onClick={() => {pushNotification("수정되었습니다", "success");}}>
+                    <button type="submit">
                         수정 완료
                     </button>
                     <button
@@ -151,7 +166,7 @@ const MypageEditForm = () => {
                 </S.Btn>
             </S.EditForm>
         </LayoutBox>
-  )
+    )
 }
 
 export default MypageEditForm
