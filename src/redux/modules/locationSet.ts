@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { persistReducer } from "redux-persist"
+import { persistReducer } from "redux-persist";
 import storage from "redux-persist/es/storage/session";
 
 export type InitialType = {
@@ -26,12 +26,11 @@ const locationSlice = createSlice({
 	reducers: {
 		setLocation: (state: locationSliceState, action: PayloadAction<InitialType>) => {
 			const userLocation: InitialType = action.payload;
-			console.log("Location dispatched:", userLocation); // 디스패치된 주소값을 확인하기 위해 콘솔 출력
 			state.userLocation = userLocation;
 		},
 		resetLocation: (state: locationSliceState) => {
 			return initialState;
-		}
+		},
 	},
 });
 
@@ -40,10 +39,10 @@ const persistConfig = {
 	key: "root", // 스토리지에 저장될 키
 	storage,
 };
-  
+
 // Redux Persist를 적용한 rootReducer를 생성
 export const persistedLocReducer = persistReducer(persistConfig, locationSlice.reducer);
 
 export default locationSlice.reducer;
 export const selectToken = (state: { locationSlice: locationSliceState }) => state.locationSlice.userLocation;
-export const { setLocation, resetLocation } = locationSlice.actions
+export const { setLocation, resetLocation } = locationSlice.actions;
