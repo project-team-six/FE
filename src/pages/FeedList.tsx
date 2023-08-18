@@ -33,15 +33,13 @@ const FeedList = () => {
 		setTitleOrContent(event.target.value);
 	};
 
-	//페이지네이션 ?.?
+	//페이지네이션
 	const [totalPages, setTotalpages] = useState(0);
 	const fetchPageable = (totalPages: number) => {
 		setTotalpages(totalPages);
 	};
 
-	console.log("totalPages", totalPages);
-
-	const [page, setPage] = useState(0);
+	const [currentPage, setCurrentPage] = useState(0);
 
 	return (
 		<div>
@@ -89,7 +87,7 @@ const FeedList = () => {
 					category={category}
 					status={status}
 					titleOrContent={titleOrContent}
-					page={page}
+					page={currentPage}
 					fetchPageable={fetchPageable}
 					pageSize={12}
 				/>
@@ -97,7 +95,7 @@ const FeedList = () => {
 			<PageNationSection>
 				<MdArrowBackIos />
 				{Array.from({ length: totalPages }, (_, index: number) => (
-					<button key={index} onClick={() => setPage(index + 1)}>
+					<button key={index} onClick={() => setCurrentPage(index)}>
 						{index + 1}
 					</button>
 				))}

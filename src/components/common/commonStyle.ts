@@ -53,20 +53,27 @@ export const NavBtnSection = styled.section`
 export const FooterLayout = styled.div`
 	width: 100%;
 	margin: 0 auto;
-	height: 144px;
+	height: 180px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 	h6 {
-		font-size: 13px;
+		font-size: 14px;
 		margin-bottom: 15px;
 	}
 `;
 
+export const FooterBox = styled.div`
+	width: 1280px;
+	align-items: center;
+	display: flex;
+	gap: 220px;
+`;
+
 export const SummarySection = styled.section`
-	width: 345px;
+	width: 360px;
 	display: flex;
 	flex-direction: column;
 	text-align: justify;
@@ -75,22 +82,24 @@ export const SummarySection = styled.section`
 		height: 60x;
 	}
 	p {
-		font-size: 11px;
+		font-size: 13px;
 	}
 `;
 export const DetailSection = styled.section`
 	display: flex;
-	gap: 60px;
-	padding-right: 200px;
+	padding-top: 20px;
+	gap: 90px;
 `;
 
 export const MemberItem = styled.li`
-	font-size: 10px;
+	font-size: 12px;
+	margin-bottom: 5px;
 `;
 export const PageNavBtn = styled.button`
 	display: flex;
 	flex-direction: column;
-	font-size: 10px;
+	font-size: 12px;
+	margin-bottom: 5px;
 `;
 
 //ProfileModal Style
