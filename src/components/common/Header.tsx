@@ -8,6 +8,10 @@ import { setLogOut, TokenSliceState } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
 import ProfileModal from "./ProfileModal";
 import { resetLocation } from "../../redux/modules/locationSet";
+import { useMutation } from "react-query";
+import { signOut } from "../../api/userApi";
+import { pushNotification } from "../../utils/notification";
+import { deleteToken } from "../../utils/deleteToken";
 
 const Header = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -26,18 +30,23 @@ const Header = () => {
 		return state.tokenSlice;
 	});
 
-	const Logout = () => {
-		document.cookie = `accessToken=0; max-age=0`;
-		dispatch(setLogOut()); // 로그인된 정보 초기화
-		dispatch(resetLocation()); // 위치 정보 초기화
-	};
+	const logOutMutation = useMutation(signOut, {
+		onSuccess: (res) => {
+			pushNotification("로그아웃되었습니다", "success");
+			deleteToken("accessToken");
+			deleteToken("refreshToken");
+			dispatch(setLogOut()); // 로그인된 정보 초기화
+			dispatch(resetLocation()); // 위치 정보 초기화
+			navigate("/");
+		},
+		onError: () => {
+			pushNotification("로그아웃 실패!", "error");
+		},
+	});
 
-	//토근이 만료되면 자동 로그아웃
-	const currentTime = Date.now() / 1000; // 현재 시간
-	if (tokenInfo.decodeToken.exp > 0 && currentTime > tokenInfo.decodeToken.exp) {
-		alert("로그인이 만료되었습니다. 다시 로그인 해주시기 바랍니다.");
-		Logout();
-	}
+	const Logout = () => {
+		logOutMutation.mutate();
+	};
 
 	return (
 		<LayoutBox>

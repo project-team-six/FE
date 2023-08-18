@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router";
 import styled from "styled-components";
 import { signIn } from "../api/userApi";
-import mainlogo from "../asstes/mainlogo.png";
 import { Flex } from "../components/common/GlobalStyle";
 import { setDecodeToken } from "../redux/modules/user";
 import { User } from "../types/signIn";
@@ -16,12 +15,11 @@ const SignIn = () => {
 		navigate(path);
 	};
 
+	// 구조 분해 할당으로 입력된 정보 저장
 	const [userInfo, setUserInfo] = useState({
 		email: "",
 		password: "",
 	});
-
-	// 구조 분해 할당으로 입력된 정보 저장
 	const { email, password } = userInfo;
 	const onChangeLoginHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value, name } = e.target;
@@ -33,16 +31,20 @@ const SignIn = () => {
 
 	//로그인 성공하면 토큰 쿠키에 저장하고 리덕스로 토큰값 보내주는 곳
 	const dispatch = useDispatch();
+
 	const loginMutation = useMutation(signIn, {
 		onSuccess: (res) => {
-			const token = res.headers.authorization; // token 값 가져오기
+			const token = res.headers.authorization; // 엑세스토큰
+			const refreshToken = res.headers.refreshtoken; // 리프레쉬토큰
+
 			if (!token) {
 				pushNotification("로그인 실패!", "warning");
-			} // token 값이 없는 경우
-			else {
-				// token 값이 있는 경우
-				document.cookie = `accessToken=${token}; path=/;`; // cookie에 token 저장
+			} else {
+				// access token 값이 있는 경우
+				document.cookie = `accessToken=${token}; path=/;`; // access token을 쿠키에 저장
 				dispatch(setDecodeToken(token));
+				// refreshToken 값이 있는 경우
+				document.cookie = `refreshToken=${refreshToken}; path=/;`; // refreshToken을 쿠키에 저장
 				pushNotification("로그인 성공!", "success");
 			}
 			navigate("/");
@@ -60,6 +62,7 @@ const SignIn = () => {
 		loginMutation.mutate(user);
 	};
 
+	//카카오로그인
 	const kakaoLoginHandler = () => {
 		window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_REST_API_KEY}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=code`;
 	};
@@ -67,7 +70,7 @@ const SignIn = () => {
 	return (
 		<LoginLayout>
 			<LogoSection>
-				<img src={mainlogo} alt='로고' />
+				<img src={require(`../asstes/mainlogo.png`)} alt='로고' />
 			</LogoSection>
 			<InputSection>
 				<p>이메일주소</p>
@@ -89,11 +92,15 @@ const SignIn = () => {
 				<button onClick={handleNavigate("/findemail")}>비밀번호 찾기</button>
 			</FindSection>
 			<FormSection>
-				<FormButton onClick={onClickLoginBtnHandler} backgroundColor='#6F8A6B' color='white'>
+				<FormButton onClick={onClickLoginBtnHandler} $backgroundColor='#6F8A6B' color='white'>
 					로그인
 				</FormButton>
 				<p>또는</p>
-				<FormButton onClick={kakaoLoginHandler} backgroundColor='#FFEB3B' color='black' style={{ gap: "10px" }}>
+				<FormButton
+					onClick={kakaoLoginHandler}
+					$backgroundColor='#FFEB3B'
+					color='black'
+					style={{ gap: "10px" }}>
 					<img src={require(`../asstes/kakaologin.png`)} alt='카카오로고' />
 					<span>카카오톡</span>
 				</FormButton>
@@ -144,7 +151,7 @@ const FormSection = styled.section`
 
 type ButtonProps = {
 	color: string;
-	backgroundColor?: string;
+	$backgroundColor?: string;
 };
 
 const FormButton = styled.button<ButtonProps>`
@@ -153,7 +160,7 @@ const FormButton = styled.button<ButtonProps>`
 	height: 33px;
 	cursor: pointer;
 	border-radius: 21px;
-	background-color: ${(props) => props.backgroundColor};
+	background-color: ${(props) => props.$backgroundColor};
 	color: ${(props) => props.color};
 	font-size: 15px;
 	img {
