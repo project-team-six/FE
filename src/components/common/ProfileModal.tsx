@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router";
 import { RootState } from "../../redux/config/configStore";
 import * as St from "../common/commonStyle";
 import { pushNotification } from "../../utils/notification";
+import { setLocation } from "../../redux/modules/locationSet";
+import { locationType } from "../../types/feedType";
+import { useDispatch } from "react-redux";
 
 type ProfileModalProps = {
 	modalState: boolean;
@@ -24,18 +27,30 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 		return state.tokenSlice.decodeToken;
 	});
 
-	const location = useSelector((state: RootState) => {
-		return state.locationSlice.userLocation;
-	});
-
+	const dispatch = useDispatch();
+	const userLocationValue = userInfo.location; // 기존에 지역을 설정한 사용자의 지역 정보
+	useEffect(() => {
+		if (userLocationValue.trim() !== "") {
+			const temps = userLocationValue.split(" ");
+	
+			const address: locationType = {
+				sido: temps[0],
+				sigungu: temps[1],
+				dong: temps[2],
+			};
+			dispatch(setLocation(address));
+		}
+	}, [userLocationValue]);
+	
 	const clickFeedAddBtn = () => {
-		if (location.sido === "") {
+		if (userLocationInfo.sido === "" && userLocationValue.trim() === "") {
 			pushNotification("지역을 먼저 등록해주세요", "error");
 			return navigate("/locationsetting");
 		}
 		navigate("/feedadd");
 	};
 
+	const locationTag = userLocationValue ? userLocationValue : `${userLocationInfo.sido} ${userLocationInfo.sigungu} ${userLocationInfo.dong}`
 	return (
 		<div>
 			{modalState && (
@@ -52,12 +67,10 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 					<St.ModalNavSection onClick={modalHandle}>
 						<St.ModalButton onClick={handleNavigate("/locationsetting")}>
 							<img src={require(`../../asstes/locationIcon.png`)} alt='위치' />
-							{userLocationInfo.sido === "" ? (
+							{userLocationInfo.sido === "" && userInfo.location.trim() === "" ? (
 								<p>지역을 설정해주세요</p>
 							) : (
-								<p>
-									{userLocationInfo.sido} {userLocationInfo.sigungu} {userLocationInfo.dong}
-								</p>
+								<p>{locationTag}</p>
 							)}
 						</St.ModalButton>
 						<St.ModalButton onClick={handleNavigate(`/mypage/${userInfo.userId}`)}>

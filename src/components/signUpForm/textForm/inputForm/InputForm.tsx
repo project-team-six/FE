@@ -42,7 +42,7 @@ const InputForm = ({textInfo, setValue}: {textInfo: textInfoType, setValue: (val
             <br />
             <S.Input type={textInfo.type} value={inputValue} onChange={handleChange}/>
             <br />
-            <span>{valMsg}</span>
+            <S.Span>{valMsg}</S.Span>
         </S.MainContentWrapper>
     )
 }

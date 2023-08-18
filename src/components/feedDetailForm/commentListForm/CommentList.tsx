@@ -32,7 +32,10 @@ const CommentList: React.FC<FeedDetailProps> = ({ closed }) => {
                 <section>
                     <ul>
                         {results.map((com: commentType) => {
-                            return <CommentForm postId={postId} comment={com} closed={closed}/>;
+                            return (
+                            <div key={com.id}>
+                                <CommentForm postId={postId} comment={com} closed={closed}/>
+                            </div>)
                         })} 
                     </ul>
                     {isView ? <></> : <S.ViewDiv><S.ViewButton onClick={handleClickView}>댓글 전체보기</S.ViewButton></S.ViewDiv>}
