@@ -22,21 +22,30 @@ export const signOut = async () => {
 };
 
 export const getMyPage = async (userId: Number) => {
-	const res = await instance.get(`/auth/mypage/${userId}`);
-	return res.data;
+
+  const response = await instance.get(`/auth/mypage/${userId}`);
+  return response.data;
 };
 
-export const putMyPageEdit = async (userId: Number, nickname: string, password: string, phoneNumber: string) => {
-	const data = { nickname, password, phoneNumber };
-	const request = await instance.put(`/auth/mypage/${userId}`, data);
-	return request.data;
+export const putMyPageEdit = async (
+  userId: Number,
+  nickname: string,
+  password: string,
+  phoneNumber: string
+) => {
+  const data = { nickname, password, phoneNumber };
+  const response = await instance.put(`/auth/mypage/${userId}`, data);
+  return response.data;
 };
 
-export const putMyPageEditImage = async (userId: Number, formData: FormData) => {
-	const request = await instance.put(`/auth/mypage/${userId}/image`, formData, {
-		headers: { "Content-Type": "multipart/form-data" },
-	});
-	return request;
+export const putMyPageEditImage = async (
+  userId: Number,
+  formData: FormData
+) => {
+  const response = await instance.put(`/auth/mypage/${userId}/image`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return response;
 };
 
 export const findUserEmail = async (user: findIdType) => {

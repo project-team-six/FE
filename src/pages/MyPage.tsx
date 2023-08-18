@@ -7,10 +7,9 @@ import { RootState } from "../redux/config/configStore";
 import * as MySt from "../components/mypageForm/MypageStyle";
 import { InitialType } from "../redux/modules/locationSet";
 import { pushNotification } from "../utils/notification";
-import { formatDistanceToNow } from "date-fns";
-import { ko } from "date-fns/locale";
 import UserInfo from "../components/mypageForm/UserInfo";
 import { useParams } from "react-router";
+import PostList from "../components/mypageForm/PostList";
 
 const MyPage: React.FC = () => {
     const navigate = useNavigate();
@@ -36,6 +35,7 @@ const MyPage: React.FC = () => {
             navigate("/locationsetting");
         }
     }, [userLocation.sido, navigate]);
+
     return (
         <MySt.LayoutBox>
             {isLoading ? (
@@ -47,71 +47,11 @@ const MyPage: React.FC = () => {
                         <UserInfo />
                         <MySt.Feed>
                                 <h2>작성글 <strong>{mypage?.data?.userPosts?.length}</strong></h2>
-                            <MySt.List>
-                                {mypage?.data?.userPosts.length === 0 ? (
-                                    <p>아직 작성된 글이 없습니다.</p>
-                                ) : (
-                                    <div className="list-wrapper">
-                                        {mypage.data.userPosts.map((userPost: any, index: number) => {
-                                                const createdAt = new Date(userPost.createdAt);
-                                                return (
-                                                    <div key={index} onClick={()=>navigate(`/feed/${userPost.id}`)}>
-                                                        <img src={userPost.imageUrlList} alt="등록한 게시물 이미지"/>
-                                                        <MySt.PostContent>
-                                                            <MySt.ContentHead>
-                                                        <span>{userPost.location}</span>
-                                                        <span className="day">
-                                                            {formatDistanceToNow(createdAt, {addSuffix: true, locale: ko,})}
-                                                        </span>
-                                                        </MySt.ContentHead>
-                                                        <h4>{userPost.title}</h4>
-                                                        <p>
-                                                            {userPost.content.length > 35
-                                                                ? `${userPost.content.slice(0, 34)}...`
-                                                                : userPost.content}
-                                                        </p>
-                                                        <h4>{userPost.price} </h4>
-                                                        </MySt.PostContent>
-                                                    </div>
-                                                );
-                                        })}
-                                    </div>
-                                )}
-                            </MySt.List>
+                                <PostList posts={mypage?.data?.userPosts} navigate={navigate}/>
                             {+accountId === userId ? (
                             <>
                             <h2>관심글 <strong>{mypage?.data?.pinedPosts.length} </strong></h2>
-                            <MySt.List>
-                            {mypage?.data?.pinedPosts.length === 0 ? (
-                                    <p>아직 작성된 글이 없습니다.</p>
-                                ) : (
-                                    <div className="list-wrapper">
-                                        {mypage.data.pinedPosts.map((pinedPost: any, index: number) => {
-                                                const createdAt = new Date(pinedPost.createdAt);
-                                                return (
-                                                    <div key={index} onClick={()=>navigate(`/feed/${pinedPost.id}`)}>
-                                                        <img src={pinedPost.imageUrlList} alt="등록한 게시물 이미지"/>
-                                                        <MySt.PostContent>
-                                                            <MySt.ContentHead>
-                                                        <span>{pinedPost.location}</span>
-                                                        <span className="day">
-                                                            {formatDistanceToNow(createdAt, {addSuffix: true, locale: ko,})}
-                                                        </span>
-                                                            </MySt.ContentHead>
-                                                        <h4>{pinedPost.title}</h4>
-                                                        <p>
-                                                            {pinedPost.content.length > 30
-                                                                ? `${pinedPost.content.slice(0, 30)}...`
-                                                                : pinedPost.content}
-                                                        </p>
-                                                        <h4>{pinedPost.price} </h4>
-                                                        </MySt.PostContent>
-                                                    </div>
-                                                );
-                                        })}
-                                    </div>
-                                )}
-                            </MySt.List>
+                            <PostList posts={mypage?.data?.pinedPosts} navigate={navigate} />
                             </>
                             ): null }
                         </MySt.Feed>
