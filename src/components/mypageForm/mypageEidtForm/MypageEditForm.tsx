@@ -69,25 +69,18 @@ const MypageEditForm = () => {
         }
     };
 
-    
+    const passwordMismatch = () => {
+        if (password !== confirmPassword) {pushNotification("비밀번호와 일치하지 않습니다.", "error");}
+    }
 
     return (
     <LayoutBox>
             <S.EditForm onSubmit={submitHandler}>
                 <S.ProfileImg>
                     <h1>프로필 이미지</h1>
-                    <S.Avatar
-                        name="file"
-                        type="file"
-                        onChange={onChangeHandler}
-                        accept="image/jpg, image/png, image/jpeg"
-                        ref={imgRef}
-                    />
+                    <S.Avatar name="file" type="file" onChange={onChangeHandler} accept="image/jpg, image/png, image/jpeg" ref={imgRef} />
                     {selectedFile ? (
-                        <img
-                            src={URL.createObjectURL(selectedFile)}
-                            alt="업로드된 이미지"
-                        />
+                        <img src={URL.createObjectURL(selectedFile)} alt="업로드된 이미지" />
                     ) : (
                         <span></span>
                     )}
@@ -106,49 +99,21 @@ const MypageEditForm = () => {
                 {/* 닉네임 수정 */}
                 <S.Input>
                     <h4>닉네임</h4>
-                    <input
-                        type="text"
-                        value={nickName}
-                        onChange={(e) => setNickName(e.target.value)}
-                        required
-                        placeholder="기존의 닉네임이 저장되어있지 않으므로 반드시 적어주세요."
-                    />
+                    <input type="text" value={nickName} onChange={(e) => setNickName(e.target.value)} required placeholder="기존의 닉네임이 저장되어있지 않으므로 반드시 적어주세요." />
                 </S.Input>
                 {/* 비밀번호 수정 */}
                 <S.Input>
                     <h4>비밀번호</h4>
-                    <input
-                        type="password"
-                        value={password}
-                        required
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="기존의 비밀번호가 저장되어있지 않으므로 반드시 적어주세요."
-                    />
+                    <input type="password" value={password} required onChange={(e) => setPassword(e.target.value)} placeholder="기존의 비밀번호가 저장되어있지 않으므로 반드시 적어주세요." />
                 </S.Input>
                 <S.Input>
                     <h4>비밀번호 확인</h4>
-                    <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                        onBlur={()=>{
-                            if (password !== confirmPassword) {
-                                pushNotification("비밀번호와 일치하지 않습니다.", "error");
-                            }
-                        }}
-                    />
+                    <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required onBlur={passwordMismatch} />
                 </S.Input>
                 {/* 전화번호 수정 */}
                 <S.Input>
                     <h4>전화번호</h4>
-                    <input
-                        type="tel"
-                        value={phoneNumber}
-                        required
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="기존의 전화번호가 저장되어있지 않으므로 반드시 적어주세요."
-                    />
+                    <input type="tel" value={phoneNumber} required onChange={(e) => setPhoneNumber(e.target.value)} placeholder="기존의 전화번호가 저장되어있지 않으므로 반드시 적어주세요." />
                 </S.Input>
                 <S.Btn>
                     <button type="submit">

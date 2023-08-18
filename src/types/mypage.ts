@@ -1,17 +1,15 @@
-export type MyPageAPIResponse = {
-  data: {
-    mannerTemparature: number;
-    nickname: string;
-    pinedPosts: [];
-    profileImageUrl: string;
-    userPosts: [];
-  };
+export type Post = {
+  id: string;
+  location: string;
+  createdAt: string;
+  imageUrlList: string;
+  title: string;
+  content: string;
+  price: number;
 };
 
-export type MyPageEditAPIResponse = {
-  userId: number;
-  nickName: string;
-  password: string;
-  phoneNumber: string;
-  token: string;
-};
+export type MypageEditType = {
+  nickName : string,
+  password : string,
+  phoneNumber : string
+}
