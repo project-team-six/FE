@@ -134,6 +134,7 @@ const InputSection = styled.form`
 		background-color: #f3f3f3;
 		border-radius: 5px;
 		margin-bottom: 5px;
+		padding-left: 7px;
 	}
 `;
 const FindSection = styled.section`

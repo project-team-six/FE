@@ -32,7 +32,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 	useEffect(() => {
 		if (userLocationValue.trim() !== "") {
 			const temps = userLocationValue.split(" ");
-	
+
 			const address: locationType = {
 				sido: temps[0],
 				sigungu: temps[1],
@@ -41,7 +41,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 			dispatch(setLocation(address));
 		}
 	}, [userLocationValue]);
-	
+
 	const clickFeedAddBtn = () => {
 		if (userLocationInfo.sido === "" && userLocationValue.trim() === "") {
 			pushNotification("지역을 먼저 등록해주세요", "error");
@@ -50,14 +50,20 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 		navigate("/feedadd");
 	};
 
-	const locationTag = userLocationValue ? userLocationValue : `${userLocationInfo.sido} ${userLocationInfo.sigungu} ${userLocationInfo.dong}`
+	const locationTag = userLocationValue
+		? userLocationValue
+		: `${userLocationInfo.sido} ${userLocationInfo.sigungu} ${userLocationInfo.dong}`;
 	return (
 		<div>
 			{modalState && (
 				<St.ProfileLayout>
 					<St.UserInfoSection>
 						<St.ProfileImgBox>
-							<img src={require(`../../asstes/sobun.png`)} alt='소분이' />
+							{userInfo.profileImageUrl ? (
+								<img src={userInfo.profileImageUrl} alt='유저프로필' />
+							) : (
+								<img src={require(`../../asstes/profileImageDefault.png`)} alt='기본프로필' />
+							)}
 						</St.ProfileImgBox>
 						<St.NicknameBox>
 							<p>{userInfo.nickname}</p>

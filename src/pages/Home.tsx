@@ -30,7 +30,7 @@ const Home = () => {
 				/>
 			</MainFeedSection>
 			<ShowAllButton>
-				<button onClick={handleNavigate("/feedlist")}>전체보기</button>
+				<button onClick={handleNavigate("/feedlist")}>우리지역 소분목록보기</button>
 			</ShowAllButton>
 		</div>
 	);
@@ -71,6 +71,10 @@ const ShowAllButton = styled.div`
 		cursor: pointer;
 		font-size: 20px;
 		&:active {
+			color: #6f8a6b;
+			border-bottom: 2.5px solid #6f8a6b; /* 원하는 클릭된 상태의 스타일을 지정하세요 */
+		}
+		&:hover {
 			color: #6f8a6b;
 			border-bottom: 2.5px solid #6f8a6b; /* 원하는 클릭된 상태의 스타일을 지정하세요 */
 		}

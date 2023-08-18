@@ -9,6 +9,7 @@ export const Input = styled.input`
 	height: 40px;
 	background-color: #f3f3f3;
 	border-radius: 5px;
+	padding-left: 8px;
 
 	/* 숫자 버튼 숨김 */
 	-moz-appearance: textfield;

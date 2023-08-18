@@ -36,7 +36,6 @@ const Header = () => {
 			deleteToken("accessToken");
 			deleteToken("refreshToken");
 			dispatch(setLogOut()); // 로그인된 정보 초기화
-			dispatch(resetLocation()); // 위치 정보 초기화
 			navigate("/");
 		},
 		onError: () => {

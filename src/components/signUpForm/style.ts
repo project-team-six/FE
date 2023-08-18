@@ -78,5 +78,6 @@ export const Button = styled.button`
 `;
 
 export const InputForm = styled.span`
+	padding-left: 7px;
 	color: red;
 `;

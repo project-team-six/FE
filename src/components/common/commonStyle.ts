@@ -118,8 +118,8 @@ export const ProfileLayout = styled.div`
 export const UserInfoSection = styled.section`
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
-	gap: 5px;
+	padding-left: 15px;
+	gap: 15px;
 	height: 90px;
 	border-bottom: 0.5px solid grey;
 `;
@@ -127,12 +127,12 @@ export const UserInfoSection = styled.section`
 export const ProfileImgBox = styled.div`
 	width: 50px;
 	height: 50px;
-	border: 1.2px solid #6f8a6b;
 	border-radius: 100%;
 	${Flex}
 	img {
-		width: 26px;
-		height: 39px;
+		width: 100%;
+		height: 100%;
+		border-radius: 100%;
 	}
 `;
 
