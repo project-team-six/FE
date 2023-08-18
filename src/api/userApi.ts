@@ -32,8 +32,8 @@ export const signIn = async (user: User) => {
 };
 
 export const getMyPage = async (userId: Number) => {
-  const res = await instance.get(`/auth/mypage/${userId}`);
-  return res.data;
+  const response = await instance.get(`/auth/mypage/${userId}`);
+  return response.data;
 };
 
 export const putMyPageEdit = async (
@@ -43,18 +43,18 @@ export const putMyPageEdit = async (
   phoneNumber: string
 ) => {
   const data = { nickname, password, phoneNumber };
-  const request = await instance.put(`/auth/mypage/${userId}`, data);
-  return request.data;
+  const response = await instance.put(`/auth/mypage/${userId}`, data);
+  return response.data;
 };
 
 export const putMyPageEditImage = async (
   userId: Number,
   formData: FormData
 ) => {
-  const request = await instance.put(`/auth/mypage/${userId}/image`, formData, {
+  const response = await instance.put(`/auth/mypage/${userId}/image`, formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
-  return request;
+  return response;
 };
 
 export const findUserEmail = async (user: findIdType) => {
