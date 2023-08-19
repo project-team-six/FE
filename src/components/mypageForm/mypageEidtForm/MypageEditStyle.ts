@@ -10,7 +10,6 @@ const EditForm = styled.form`
 `;
 
 const ProfileImg = styled.div`
-	/* border : 1px solid red; */
 	text-align: center;
 	h1 {
 		font-size: 2rem;
@@ -19,7 +18,7 @@ const ProfileImg = styled.div`
 	}
 	img {
 		width: 110px;
-		height: 100px;
+		height: 110px;
 		border-radius: 100%;
 		object-fit: cover;
 	}
@@ -27,7 +26,6 @@ const ProfileImg = styled.div`
 		display: inline-block;
 		width: 110px;
 		height: 110px;
-		border: 1px solid #000;
 		border-radius: 100%;
 	}
 	button {

@@ -22,7 +22,7 @@ export const LogoSection = styled.section`
 
 export const SignButton = styled.button`
 	cursor: pointer;
-	width: 65px;
+	width: 80px;
 	height: 30px;
 	border-radius: 6px;
 	&:hover {

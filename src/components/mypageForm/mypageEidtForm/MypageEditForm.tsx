@@ -6,6 +6,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/config/configStore";
 import { putMyPageEdit, putMyPageEditImage } from "../../../api/userApi";
 import { pushNotification } from "../../../utils/notification";
+import { deleteToken } from "../../../utils/deleteToken";
+import { useDispatch } from "react-redux";
+import { setDecodeToken } from "../../../redux/modules/user";
 
 const MypageEditForm = () => {
 	const [nickName, setNickName] = useState("");
@@ -39,23 +42,30 @@ const MypageEditForm = () => {
 	};
 
 	// Put 닉네임, 비밀번호, 폰번호 수정
-	const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+	const dispatch = useDispatch();
+	const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (isFormValid()) {
 			try {
 				// API 호출로 닉네임, 비밀번호, 폰번호 수정
-				await putMyPageEdit(userId, nickName, password, phoneNumber);
+				putMyPageEdit(userId, nickName, password, phoneNumber);
 
 				// 수정된 이미지가 있다면 이미지 업로드 API 호출
 				if (selectedFile) {
 					let formData = new FormData();
 					formData.append("file", selectedFile);
-					try {
-						await putMyPageEditImage(userId, formData);
-						pushNotification("이미지업로드 성공", "success");
-					} catch (error) {
-						pushNotification("이미지업로드 실패", "error");
-					}
+
+					putMyPageEditImage(userId, formData)
+						.then((response) => {
+							const token = response.headers.authorization;
+							deleteToken("accessToken"); // 기존 token 삭제
+							document.cookie = `accessToken=${token}; path=/;`; // access token 갱신
+							dispatch(setDecodeToken(token)); // redux 업데이트
+							pushNotification("이미지업로드 성공", "success");
+						})
+						.catch(() => {
+							pushNotification("이미지업로드 실패", "error");
+						});
 				}
 				pushNotification("수정되었습니다", "success");
 				navigate(-1);
@@ -86,7 +96,9 @@ const MypageEditForm = () => {
 					{selectedFile ? (
 						<img src={URL.createObjectURL(selectedFile)} alt='업로드된 이미지' />
 					) : (
-						<span></span>
+						<span>
+							<img src={require("../../../asstes/profileImageDefault.png")} alt='기본 이미지' />
+						</span>
 					)}
 					<div>
 						<button onClick={onImgUpdateHandler}>업로드</button>
@@ -108,7 +120,7 @@ const MypageEditForm = () => {
 						onChange={(e) => setNickName(e.target.value)}
 						required
 						placeholder='기존의 닉네임이 저장되어있지 않으므로 반드시 적어주세요.'
-						minLength={5}
+						minLength={1}
 					/>
 				</S.Input>
 				{/* 비밀번호 수정 */}

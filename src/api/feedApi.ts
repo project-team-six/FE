@@ -1,11 +1,5 @@
-import { commentDeleteType, commentEditType, commentPostType, locationType } from "../types/feedType";
+import { commentDeleteType, commentEditType, commentPostType } from "../types/feedType";
 import { instance } from "./instance";
-
-// 지역 설정
-export const setUserLocation = async (userLocation: locationType) => {
-	const response = await instance.put("/auth/location", userLocation);
-	return response;
-};
 
 // 게시물
 export const fetchFeed = async (postId: number) => {
