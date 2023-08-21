@@ -45,7 +45,6 @@ const SignIn = () => {
 				dispatch(setDecodeToken(token));
 				// refreshToken 값이 있는 경우
 				document.cookie = `refreshToken=${refreshToken}; path=/;`; // refreshToken을 쿠키에 저장
-				pushNotification("로그인 성공!", "success");
 			}
 			navigate("/");
 		},

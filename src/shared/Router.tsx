@@ -1,4 +1,3 @@
-import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Root from "../pages/Root";
@@ -11,8 +10,7 @@ import FeedDetail from "../pages/FeedDetail";
 import FeedEdit from "../pages/FeedEdit";
 import FeedList from "../pages/FeedList";
 import FeedAdd from "../pages/FeedAdd";
-import GuidePage from "../pages/GuidePage";
-import Redirection from "../pages/Redirection";
+import KakaoRedirection from "../pages/KakaoRedirection";
 import FindEmail from "../pages/FindEmail";
 import FindPassword from "../pages/FindPassword";
 
@@ -33,8 +31,7 @@ export const router = createBrowserRouter([
 			{ path: "/feedadd", element: <FeedAdd /> },
 			{ path: "/mypage/:id", element: <MyPage /> },
 			{ path: "/mypage/edit", element: <MyPageEdit /> },
-			{ path: "/guidepage", element: <GuidePage /> },
-			{ path: "/auth/kakao/login", element: <Redirection /> },
+			{ path: "/auth/kakao/login", element: <KakaoRedirection /> },
 		],
 	},
 ]);

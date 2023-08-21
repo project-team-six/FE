@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import * as S from "../components/feedListForm/style";
 import FeedCards from "../components/feedListForm/FeedCards";
 import { ImSearch } from "react-icons/im";
 import { useSelector } from "react-redux";
@@ -43,7 +43,7 @@ const FeedList = () => {
 
 	return (
 		<div>
-			<CategorySection>
+			<S.CategorySection>
 				<button onClick={() => handleCategoryChange("")} className={category === "" ? "active" : ""}>
 					전체
 				</button>
@@ -65,9 +65,9 @@ const FeedList = () => {
 				<button onClick={() => handleCategoryChange("ETC")} className={category === "ETC" ? "active" : ""}>
 					기타
 				</button>
-			</CategorySection>
-			<SearchFilterSection>
-				<SearchBox>
+			</S.CategorySection>
+			<S.SearchFilterSection>
+				<S.SearchBox>
 					<ImSearch style={{ marginLeft: "15px" }} />
 					<input
 						type='text'
@@ -75,12 +75,12 @@ const FeedList = () => {
 						value={titleOrContent}
 						onChange={userInputHandler}
 					/>
-				</SearchBox>
-				<FilterBox>
+				</S.SearchBox>
+				<S.FilterBox>
 					<input type='checkbox' onChange={handleStatusChange} />
-					<p>소분 진행중인 상품만 보기</p>
-				</FilterBox>
-			</SearchFilterSection>
+					소분 진행중인 상품만 보기
+				</S.FilterBox>
+			</S.SearchFilterSection>
 			<div className='FeedListSection'>
 				<FeedCards
 					location={location}
@@ -92,7 +92,7 @@ const FeedList = () => {
 					pageSize={12}
 				/>
 			</div>
-			<PageNationSection>
+			<S.PageNationSection>
 				<MdArrowBackIos />
 				{Array.from({ length: totalPages }, (_, index: number) => (
 					<button key={index} onClick={() => setCurrentPage(index)}>
@@ -100,82 +100,9 @@ const FeedList = () => {
 					</button>
 				))}
 				<MdArrowForwardIos />
-			</PageNationSection>
+			</S.PageNationSection>
 		</div>
 	);
 };
 
 export default FeedList;
-
-const CategorySection = styled.section`
-	width: 100%;
-	height: 55px;
-	border-top: 1px solid grey;
-	border-bottom: 1px solid grey;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 10%;
-	button {
-		height: 30px;
-		cursor: pointer;
-		font-size: 14px;
-		font-weight: bold;
-		&.active {
-			color: #6f8a6b;
-			border-bottom: 2.5px solid #6f8a6b; /* 원하는 클릭된 상태의 스타일을 지정하세요 */
-		}
-	}
-`;
-
-const SearchFilterSection = styled.section`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 10%;
-	width: 100%;
-	height: 75px;
-	@media (max-width: 700px) {
-		flex-direction: column;
-	}
-`;
-
-const SearchBox = styled.div`
-	display: flex;
-	align-items: center;
-	width: 300px;
-	height: 35px;
-	border-radius: 17.5px;
-	border: 1px solid grey;
-	img {
-		margin-left: 5px;
-		width: 25px;
-		height: 25px;
-	}
-	input {
-		margin-left: 10px;
-		width: 80%;
-		height: 33px;
-		outline: none;
-	}
-`;
-
-const FilterBox = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	@media (max-width: 700px) {
-		margin-right: 20px;
-	}
-`;
-
-const PageNationSection = styled.section`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 80px;
-	button {
-		cursor: pointer;
-	}
-`;

@@ -35,13 +35,10 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 	// 관심
 	const pinedMutation = useMutation(postPin, {
 		onSuccess: () => {
-			detailFeed.isPin === true
-				? pushNotification("관심글 등록을 취소했습니다", "warning")
-				: pushNotification("관심글 등록에 성공했습니다", "success");
 			queryClient.invalidateQueries(["detailFeed"]);
 		},
 		onError: () => {
-			pushNotification("관심글 등록에 실패했습니다", "error");
+			pushNotification("로그인 후 이용해주세요", "error");
 		},
 	});
 
@@ -49,7 +46,6 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 	const closedClient = useQueryClient();
 	const closedMutation = useMutation(deadlineFeed, {
 		onSuccess: () => {
-			pushNotification("게시물이 마감되었습니다.", "success");
 			closedClient.invalidateQueries(["detailFeed"]);
 		},
 		onError: () => {

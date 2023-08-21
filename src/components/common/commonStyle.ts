@@ -103,6 +103,18 @@ export const PageNavBtn = styled.button`
 `;
 
 //ProfileModal Style
+export const ModalLayout = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+`;
+
 export const ProfileLayout = styled.div`
 	position: absolute;
 	right: 40px;
@@ -112,7 +124,6 @@ export const ProfileLayout = styled.div`
 	height: 340px;
 	background-color: white;
 	border-radius: 14px;
-	z-index: 99;
 `;
 
 export const UserInfoSection = styled.section`

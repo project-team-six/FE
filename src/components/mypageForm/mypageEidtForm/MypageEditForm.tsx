@@ -61,13 +61,11 @@ const MypageEditForm = () => {
 							deleteToken("accessToken"); // 기존 token 삭제
 							document.cookie = `accessToken=${token}; path=/;`; // access token 갱신
 							dispatch(setDecodeToken(token)); // redux 업데이트
-							pushNotification("이미지업로드 성공", "success");
 						})
 						.catch(() => {
 							pushNotification("이미지업로드 실패", "error");
 						});
 				}
-				pushNotification("수정되었습니다", "success");
 				navigate(-1);
 			} catch (error) {
 				pushNotification("수정 실패. 항목을 다시 봐주세요", "error");
@@ -77,7 +75,7 @@ const MypageEditForm = () => {
 
 	const passwordMismatch = () => {
 		if (password !== confirmPassword) {
-			pushNotification("비밀번호와 일치하지 않습니다.", "error");
+			pushNotification("비밀번호가 일치하지 않습니다.", "error");
 		}
 	};
 
@@ -163,7 +161,6 @@ const MypageEditForm = () => {
 					<button
 						type='button'
 						onClick={() => {
-							pushNotification("수정 취소합니다", "success");
 							navigate(-1);
 						}}>
 						취소
