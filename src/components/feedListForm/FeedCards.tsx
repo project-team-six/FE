@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router";
 import * as S from "./style";
 import { fetchFeedList } from "../../api/feedApi";
+import { priceUtils } from "../../utils/priceUtils";
 
 const FeedCards = ({
 	location,
@@ -86,7 +87,7 @@ const FeedCards = ({
 								</p>
 							</S.ContentBox>
 							<div className='priceBox'>
-								<p>{item.price}</p>
+								<p>{priceUtils(item.price)}</p>
 							</div>
 						</S.FeedInfoBox>
 					</S.FeedCard>

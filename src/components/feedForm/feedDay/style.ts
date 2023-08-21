@@ -6,6 +6,14 @@ export const MainContentWrapper = styled.div`
     align-items: center; 
 `;
 
+export const Line = styled.div`
+    width: 100%;
+    height: 1px;
+    background-color: #D9D9D9;
+    margin-top: 25px;
+    margin-bottom: 25px;
+`;
+
 export const Label = styled.label`
     width: 100px;
     margin-right: 4.7%;

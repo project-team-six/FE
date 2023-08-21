@@ -1,13 +1,13 @@
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router";
 import { useMutation } from "react-query";
-import { findIdType } from "../../../types/findUser";
 import { findUserEmail } from "../../../api/userApi";
 import { pushNotification } from "../../../utils/notification";
 import * as Sf from "../../common/commonFormStyles";
+import { findEmailType } from "../../../types/userType";
 
 const SearchEmailForm = ({setResult}: {setResult: (value: string) => void}) => {
-    const [inputValue, setInputValue] = useState<findIdType>({
+    const [inputValue, setInputValue] = useState<findEmailType>({
         username: "", // 이름
         phoneNumber: "", // 전화번호
     });
@@ -32,7 +32,7 @@ const SearchEmailForm = ({setResult}: {setResult: (value: string) => void}) => {
 	});
 
     const clickFindEmailBtn = () => {
-		const userInfo: findIdType = {
+		const userInfo: findEmailType = {
 			username,
 			phoneNumber,
 		};

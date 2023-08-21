@@ -12,3 +12,11 @@ export const Input = styled.input`
     border: 1px solid hsl(0, 0%, 80%);
     padding-left: 20px;
 `;
+
+export const Line = styled.div`
+    width: 100%;
+    height: 1px;
+    background-color: #D9D9D9;
+    margin-top: 25px;
+    margin-bottom: 25px;
+`;

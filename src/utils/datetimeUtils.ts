@@ -1,3 +1,3 @@
-export function dateTimeUtils(dateTime: Date): string {
-	return dateTime.toISOString().split("T")[0];
-}
+export const dateTimeUtils = (dateTime: Date): string => {
+    return dateTime.toISOString().split("T")[0];
+};
