@@ -1,15 +1,24 @@
-import { toast } from "react-toastify";
+import { toast, ToastOptions } from "react-toastify";
 
 type ToastType = "error" | "warning" | "success";
 
+let lastToastId: number | null = null;
+
 export const pushNotification = (msg: string, type: ToastType) => {
-	toast[type](msg, {
+	// 이전 알림 닫기
+	if (lastToastId) {
+		toast.dismiss(lastToastId);
+	}
+
+	const toastOptions: ToastOptions = {
 		position: "top-center",
-		autoClose: 3000,
+		autoClose: 1000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: true,
 		draggable: true,
-		progress: undefined,
-	});
+	};
+
+	const toastId = toast[type](msg, toastOptions);
+	lastToastId = toastId as number;
 };

@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { feedInitialValue } from "../types/feedType";
-import { datetimeUtils } from "../utils/datetimeUtils";
+import { dateTimeUtils } from "../utils/dateTimeUtils";
 import { postFeed } from "../api/feedApi";
 import { pushNotification } from "../utils/notification";
 import { RootState } from "../redux/config/configStore";
@@ -12,8 +12,8 @@ const FeedAdd = () => {
 	const location = useSelector((state: RootState) => {
 		return state.locationSlice.userLocation;
 	});
-	
-	const date = datetimeUtils(new Date());
+
+	const date = dateTimeUtils(new Date());
 	const initialValue: feedInitialValue = {
 		title: "",
 		content: "",
@@ -30,7 +30,6 @@ const FeedAdd = () => {
 	const navigate = useNavigate();
 	const feedAddMutation = useMutation(postFeed, {
 		onSuccess: (data) => {
-			pushNotification("게시물 등록에 성공했습니다", "success");
 			navigate(-1);
 		},
 		onError: (error) => {

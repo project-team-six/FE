@@ -62,7 +62,6 @@ const CommentForm = ({ postId, comment, closed }: { postId: number; comment: com
 		};
 		deleteComment(commentToDelete)
 			.then(() => {
-				pushNotification("댓글을 삭제했습니다", "success");
 				deleteClient.invalidateQueries(["comments"]);
 			})
 			.catch(() => {

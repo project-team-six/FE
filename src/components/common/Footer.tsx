@@ -47,7 +47,6 @@ function Footer() {
 							<St.PageNavBtn onClick={handleNavigate("/feedlist")}>FeedList</St.PageNavBtn>
 							<St.PageNavBtn onClick={handleNavigate("/signin")}>SignIn</St.PageNavBtn>
 							<St.PageNavBtn onClick={handleNavigate("/signup")}>SignUp</St.PageNavBtn>
-							<St.PageNavBtn onClick={handleNavigate("/guidepage")}>GuidePage</St.PageNavBtn>
 						</div>
 					</St.DetailSection>
 				</St.FooterBox>

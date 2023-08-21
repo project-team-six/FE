@@ -44,3 +44,5 @@ instance.interceptors.response.use(
 		return Promise.reject(error);
 	}
 );
+
+//accesstoken undefined 뜰때 처리하기

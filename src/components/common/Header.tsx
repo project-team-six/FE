@@ -7,7 +7,6 @@ import { RootState } from "../../redux/config/configStore";
 import { setLogOut, TokenSliceState } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
 import ProfileModal from "./ProfileModal";
-import { resetLocation } from "../../redux/modules/locationSet";
 import { useMutation } from "react-query";
 import { signOut } from "../../api/userApi";
 import { pushNotification } from "../../utils/notification";
@@ -21,8 +20,8 @@ const Header = () => {
 		navigate(path);
 	};
 
-	const toggleModal: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-		event.preventDefault(); // 이벤트의 기본 동작을 막을 수 있으면 추가
+	const toggleModal: React.MouseEventHandler = (event) => {
+		event.preventDefault();
 		setIsProfileModal((prevModalState) => !prevModalState);
 	};
 
@@ -32,7 +31,6 @@ const Header = () => {
 
 	const logOutMutation = useMutation(signOut, {
 		onSuccess: (res) => {
-			pushNotification("로그아웃되었습니다", "success");
 			deleteToken("accessToken");
 			deleteToken("refreshToken");
 			dispatch(setLogOut()); // 로그인된 정보 초기화

@@ -26,8 +26,8 @@ const LocationSetting = () => {
 		// 서버에서 설정한 위치 정보 전달
 		setUserLocation(address)
 			.then((response) => {
-				const token = response.headers.authorization;
 				deleteToken("accessToken"); // 기존 token 삭제
+				const token = response.headers.authorization;
 				document.cookie = `accessToken=${token}; path=/;`; // access token 갱신
 				dispatch(setDecodeToken(token)); // redux 업데이트
 

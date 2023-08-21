@@ -1,7 +1,6 @@
 import React from "react";
 import { NavigateFunction, useNavigate } from "react-router";
 import styled from "styled-components";
-import { Flex } from "../components/common/GlobalStyle";
 import FeedCards from "../components/feedListForm/FeedCards";
 
 const Home = () => {
@@ -29,9 +28,9 @@ const Home = () => {
 					pageSize={8}
 				/>
 			</MainFeedSection>
-			<ShowAllButton>
+			<ShowAllButtonBox>
 				<button onClick={handleNavigate("/feedlist")}>우리지역 소분목록보기</button>
-			</ShowAllButton>
+			</ShowAllButtonBox>
 		</div>
 	);
 };
@@ -61,7 +60,7 @@ const MainTextBox = styled.div`
 	font-size: 20px;
 `;
 
-const ShowAllButton = styled.div`
+const ShowAllButtonBox = styled.div`
 	display: flex;
 	height: 80px;
 	justify-content: center;

@@ -4,13 +4,15 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setDecodeToken } from "../redux/modules/user";
 
-const Redirection = () => {
+const KakaoRedirection = () => {
+	//인가코드 파싱하기
 	const code = new URL(window.location.toString()).searchParams.get("code");
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	useEffect(() => {
-		axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/kakao/login?code=${code}`).then((r) => {
-			const token = r.headers.authorization;
+		//인가코드 서버로 보내서 액세스토큰 받기
+		axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/kakao/login?code=${code}`).then((response) => {
+			const token = response.headers.authorization;
 			document.cookie = `accessToken=${token}; path=/;`;
 			dispatch(setDecodeToken(token));
 			navigate("/");
@@ -20,4 +22,4 @@ const Redirection = () => {
 	return <div>로그인중입니다</div>;
 };
 
-export default Redirection;
+export default KakaoRedirection;
