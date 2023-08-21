@@ -8,6 +8,14 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { MdArrowBackIos } from "react-icons/md";
 
 const FeedList = () => {
+	//페이지네이션
+	const [totalPages, setTotalpages] = useState(0);
+
+	const fetchPageable = (totalPages: number) => {
+		setTotalpages(totalPages);
+	};
+
+	const [currentPage, setCurrentPage] = useState(0);
 	//카테고리 (필터)
 	const [category, setCategory] = useState("");
 	const handleCategoryChange = (category: string) => {
@@ -32,14 +40,6 @@ const FeedList = () => {
 	const userInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setTitleOrContent(event.target.value);
 	};
-
-	//페이지네이션
-	const [totalPages, setTotalpages] = useState(0);
-	const fetchPageable = (totalPages: number) => {
-		setTotalpages(totalPages);
-	};
-
-	const [currentPage, setCurrentPage] = useState(0);
 
 	return (
 		<div>
