@@ -11,10 +11,17 @@ instance.interceptors.request.use(async (config) => {
 	const accessToken = document.cookie.replace(/(?:(?:^|.*;\s*)accessToken\s*=\s*([^;]*).*$)|^.*$/, "$1");
 	const refreshToken = document.cookie.replace(/(?:(?:^|.*;\s*)refreshToken\s*=\s*([^;]*).*$)|^.*$/, "$1");
 
-	if (accessToken) {
+	if (accessToken && refreshToken) {
 		config.headers.Authorization = accessToken;
 		config.headers.RefreshToken = refreshToken;
 	}
+	if (accessToken === undefined) {
+		// accessToken이 undefined 뜰때 토큰 삭제
+		deleteToken("accessToken");
+		// 쿠키에서도 삭제
+		document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	}
+
 	return config;
 });
 
@@ -23,8 +30,15 @@ instance.interceptors.response.use(
 	(response) => {
 		return response;
 	},
-	(error) => {
-		const { status, headers } = error.response;
+	async (error) => {
+		const { response } = error; // 디스트럭처링을 통해 response를 가져옵니다.
+
+		if (!response) {
+			// response가 없을 경우에 대한 예외 처리
+			return Promise.reject(error);
+		}
+
+		const { status, headers } = response;
 
 		if (status === 401) {
 			const config = { ...error.config };
@@ -44,5 +58,3 @@ instance.interceptors.response.use(
 		return Promise.reject(error);
 	}
 );
-
-//accesstoken undefined 뜰때 처리하기

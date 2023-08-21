@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router";
 import * as S from "./style";
 import { fetchFeedList } from "../../api/feedApi";
-import { priceUtils } from "../../utils/priceUtils";
+import { useCallback, useEffect } from "react";
 
 const FeedCards = ({
 	location,
@@ -18,7 +18,7 @@ const FeedCards = ({
 	status: string;
 	titleOrContent: string;
 	page: number;
-	fetchPageable: (page: number) => void;
+	fetchPageable: (totalPages: number) => void;
 	pageSize: number;
 }) => {
 	//게시물 조회
@@ -32,11 +32,18 @@ const FeedCards = ({
 
 	const navigate = useNavigate();
 
+	// fetchPageable 함수를 불필요한 재렌더링을 방지하기 위해 useCallback으로 래핑합니다.
+	const memoizedFetchPageable = useCallback(fetchPageable, [fetchPageable]);
+
+	// 의존성 배열을 업데이트하여 useEffect 사용
+	useEffect(() => {
+		if (feedList) {
+			memoizedFetchPageable(feedList.totalPages);
+		}
+	}, [feedList, memoizedFetchPageable, fetchPageable]);
+
 	if (isLoading) return <div>Loading...</div>;
 	if (isError) return <div>Error...</div>;
-
-	//전체페이지 갯수
-	fetchPageable(feedList.totalPages);
 
 	//시간포맷함수
 	const formatTimeDifference = (dateString: string) => {
@@ -87,7 +94,7 @@ const FeedCards = ({
 								</p>
 							</S.ContentBox>
 							<div className='priceBox'>
-								<p>{priceUtils(item.price)}</p>
+								<p>{item.price}</p>
 							</div>
 						</S.FeedInfoBox>
 					</S.FeedCard>
