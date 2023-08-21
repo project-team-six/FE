@@ -18,6 +18,7 @@ const FeedAdd = () => {
 		title: "",
 		content: "",
 		category: "",
+		originPrice: "",
 		price: "",
 		transactionStartDate: date,
 		transactionEndDate: date,

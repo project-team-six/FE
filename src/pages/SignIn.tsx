@@ -6,8 +6,8 @@ import styled from "styled-components";
 import { signIn } from "../api/userApi";
 import { Flex } from "../components/common/GlobalStyle";
 import { setDecodeToken } from "../redux/modules/user";
-import { User } from "../types/signIn";
 import { pushNotification } from "../utils/notification";
+import { User } from "../types/userType";
 
 const SignIn = () => {
 	const navigate: NavigateFunction = useNavigate();

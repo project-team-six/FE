@@ -1,53 +1,39 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { UseMutateFunction, useQueryClient } from "react-query";
-import { feedInitialValue, feedType } from "../../types/feedType";
+import { feedDateType, feedInitialValue, feedTextType, feedType } from "../../types/feedType";
 import { FeedImages } from "./feedImages/FeedImages";
 import { FeedCategory } from "./feedCategory/FeedCategory";
 import { FeedDay } from "./feedDay/FeedDay";
 import { FeedInput } from "./feedInput/FeedInput";
-import { dateTimeUtils } from "../../utils/dateTimeUtils";
 import { editFeed } from "../../api/feedApi";
 import { pushNotification } from "../../utils/notification";
 import * as S from "./style";
 
-const FeedForm = ({
-	initialValue,
-	mutation,
-	btnName,
-	postId,
-}: {
-	initialValue: feedInitialValue;
-	mutation?: UseMutateFunction<any, unknown, any, unknown>;
-	btnName: string;
-	postId?: number;
-}) => {
+const FeedForm = ({ initialValue, mutation, btnName, postId }: { initialValue: feedInitialValue, mutation?: UseMutateFunction<any, unknown, any, unknown>, btnName: string, postId?: number }) => {
 	const navigate = useNavigate();
+
+	// 제목, 원가, 가격, 내용
+	const [textEntered, setTextEntered] = useState<feedTextType>({
+		title: initialValue.title,
+		content: initialValue.content,
+		originPrice: initialValue.originPrice,
+		price: initialValue.price,
+	});
 
 	// 이미지
 	const [images, setImages] = useState<File[]>(initialValue.images);
 
-	// 제목
-	const [title, setTitle] = useState<string>(initialValue.title);
-
 	// 카테고리
 	const [category, setCategory] = useState<string>(initialValue.category);
 
-	// 가격
-	const [price, setPrice] = useState<string>(initialValue.price);
-
 	// 거래 가능 날짜
-	const [dealableStartDate, setDealableStartDate] = useState<Date>(new Date(initialValue.transactionStartDate)); // 시작일
-	const [dealableEndDate, setDealableEndDate] = useState<Date>(new Date(initialValue.transactionEndDate)); // 종료일
-
-	// 소비기한
-	const [expirationDate, setExpirationDate] = useState(new Date(initialValue.consumerPeriod));
-
-	// 구매 날짜 (필수)
-	const [purchaseDate, setPurchaseDate] = useState(new Date(initialValue.purchaseDate));
-
-	// 제목
-	const [content, setContent] = useState<string>(initialValue.content);
+	const [dateEntered, setDateEntered] = useState<feedDateType>({
+		transactionStartDate: initialValue.transactionStartDate,
+		transactionEndDate: initialValue.transactionEndDate,
+		consumerPeriod: initialValue.consumerPeriod,
+		purchaseDate: initialValue.purchaseDate,
+	});
 
 	// 주의사항 동의
 	const [isChecked, setIsChecked] = useState<boolean>(false);
@@ -57,28 +43,27 @@ const FeedForm = ({
 
 	const editClient = useQueryClient();
 	const handleClick = () => {
-		if (isChecked && images && title && category && price && content) {
+		if (isChecked && images && category) {
 			let formData = new FormData();
 			const newFeed: feedType = {
-				title,
-				content,
+				title: textEntered.title,
+				content: textEntered.content,
 				category,
-				price,
-				transactionStartDate: dateTimeUtils(dealableStartDate),
-				transactionEndDate: dateTimeUtils(dealableEndDate),
-				consumerPeriod: dateTimeUtils(expirationDate),
-				purchaseDate: dateTimeUtils(purchaseDate),
+				originPrice: textEntered.originPrice,
+				price: textEntered.price,
+				transactionStartDate: dateEntered.transactionStartDate,
+				transactionEndDate: dateEntered.transactionEndDate,
+				consumerPeriod: dateEntered.consumerPeriod,
+				purchaseDate: dateEntered.purchaseDate
 			};
 			formData.append("data", new Blob([JSON.stringify(newFeed)], { type: "application/json" }));
-			images.map((img) => {
-				// 이미지
+			images.map((img) => { // 이미지
 				formData.append("file", img);
 				return true;
 			});
 
 			if (mutation) mutation(formData); // 등록
-			else if (postId) {
-				// 수정
+			else if (postId) { // 수정
 				editFeed(postId, formData).then(() => {
 					editClient.invalidateQueries(["detailFeed"]);
 					navigate(`/feed/${postId}`); // 게시물 상세 페이지로 이동
@@ -90,6 +75,7 @@ const FeedForm = ({
 	};
 
 	const isEdit = !mutation; // 수정 페이지 유무 저장
+	
 	return (
 		<S.MainContentWrapper>
 			<S.TitleDiv>
@@ -103,12 +89,13 @@ const FeedForm = ({
 			<S.FormSection>
 				<form>
 					<section>
-						<FeedInput label='제목' value={title} setValue={setTitle} />
-						<S.Line />
+						<FeedInput label="제목" name="title" textEntered={textEntered} setTextEntered={setTextEntered} />
 					</section>
 					<section>
-						<FeedInput label='가격' value={price} setValue={setPrice} />
-						<S.Line />
+						<FeedInput label="원가" name="originPrice" textEntered={textEntered} setTextEntered={setTextEntered}  />
+					</section>
+					<section>
+						<FeedInput label="가격" name="price" textEntered={textEntered} setTextEntered={setTextEntered}  />
 					</section>
 					<section>
 						<S.CategoryDiv>
@@ -117,31 +104,13 @@ const FeedForm = ({
 						</S.CategoryDiv>
 						<S.Line />
 					</section>
-					<FeedDay
-						label='거래 가능 날짜'
-						range={true}
-						startDate={dealableStartDate}
-						setStartDate={setDealableStartDate}
-						endDate={dealableEndDate}
-						setEndDate={setDealableEndDate}
-					/>
-					<S.Line />
 					<section>
-						<FeedDay
-							label='소비기한'
-							range={false}
-							startDate={expirationDate}
-							setStartDate={setExpirationDate}
-						/>
-						<S.Line />
+						<FeedDay label="거래 가능 날짜" name="dealable" range={true} dateEntered={dateEntered} setDateEntered={setDateEntered}/>
 					</section>
-					<FeedDay
-						label='제품 구매 날짜'
-						range={false}
-						startDate={purchaseDate}
-						setStartDate={setPurchaseDate}
-					/>
-					<S.Line />
+						<FeedDay label="소비기한" name="consumerPeriod" range={false} dateEntered={dateEntered} setDateEntered={setDateEntered}/>
+					<section>
+						<FeedDay label="제품 구매 날짜" name="purchase" range={false} dateEntered={dateEntered} setDateEntered={setDateEntered}/>
+					</section>
 					<section>
 						<S.ContentWrapper>
 							<S.LocationLabel>지역</S.LocationLabel>
@@ -152,8 +121,7 @@ const FeedForm = ({
 						<S.Line />
 					</section>
 					<section>
-						<FeedInput label='내용' value={content} setValue={setContent} />
-						<S.Line />
+						<FeedInput label="내용" name="content" textEntered={textEntered} setTextEntered={setTextEntered}  />
 					</section>
 					<section>
 						<S.PrecautionContentWrapper>
@@ -175,12 +143,8 @@ const FeedForm = ({
 						</S.CheckboxDiv>
 					</section>
 					<S.ButtonSection>
-						<S.Button type='button' onClick={handleClick}>
-							{btnName}
-						</S.Button>
-						<S.Button type='button' onClick={() => navigate(-1)}>
-							취소
-						</S.Button>
+						<S.Button type='button' onClick={handleClick}>{btnName}</S.Button>
+						<S.Button type='button' onClick={() => navigate(-1)}>취소</S.Button>
 					</S.ButtonSection>
 				</form>
 			</S.FormSection>

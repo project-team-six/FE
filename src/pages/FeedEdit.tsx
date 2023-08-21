@@ -16,6 +16,7 @@ const FeedEdit = () => {
 		title: detailFeed.title,
 		content: detailFeed.content,
 		category: detailFeed.category,
+		originPrice: detailFeed.originPrice,
 		price: detailFeed.price,
 		transactionStartDate: detailFeed.transactionStartDate,
 		transactionEndDate: detailFeed.transactionEndDate,

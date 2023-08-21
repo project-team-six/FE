@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { deadlineFeed, fetchFeed, postPin } from "../../../api/feedApi";
 import { RootState } from "../../../redux/config/configStore";
 import { pushNotification } from "../../../utils/notification";
+import { priceUtils } from "../../../utils/priceUtils";
 import * as S from "./style";
 
 const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value: boolean) => void }) => {
@@ -87,9 +88,7 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 		onClose(true);
 		closedMutation.mutate(postId); // 서버에도 반영
 	};
-
-	const priceUnit = /^[0-9]+$/.test(detailFeed.price) ? "원" : ""; // 가격이 숫자인지 아닌지 확인 후 숫자면 뒤에 "원"을 넣어줌
-
+	
 	return (
 		<S.LayoutBox>
 			{isLoading ? (
@@ -205,8 +204,11 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 						</div>
 						<div>
 							<h2>
-								{detailFeed?.price} {priceUnit}
+								{priceUtils(detailFeed.price)}
 							</h2>
+							<p>
+								원가 <span> : {priceUtils(detailFeed.originPrice)}</span>
+							</p>
 							<p>
 								거래가능날짜 :&nbsp;
 								{detailFeed.transactionStartDate} - {detailFeed.transactionEndDate}

@@ -1,7 +1,7 @@
-import { User } from "../types/signIn";
-import { findIdType, findPwType } from "../types/findUser";
+
 import { instance } from "./instance";
 import { locationType } from "../types/feedType";
+import { User, findEmailType, findPwType } from "../types/userType";
 
 export const signUp = async (newUserInfo: FormData) => {
 	const response = await instance.post("/auth/signup", newUserInfo, {
@@ -46,7 +46,7 @@ export const putMyPageEditImage = async (userId: Number, formData: FormData) => 
 	return response;
 };
 
-export const findUserEmail = async (user: findIdType) => {
+export const findUserEmail = async (user: findEmailType) => {
 	const response = await instance.post("/auth/findemail", user);
 	return response;
 };
