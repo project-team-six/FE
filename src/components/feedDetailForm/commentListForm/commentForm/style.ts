@@ -28,6 +28,7 @@ export const Span = styled.span<SpanProps>`
 	font-weight: ${(props) => props.fontWeight};
 	margin-right: 10px;
 `;
+
 export const CommentContentDiv = styled.div`
 	margin-top: 10px;
 `;
