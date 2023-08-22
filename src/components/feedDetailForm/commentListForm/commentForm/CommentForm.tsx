@@ -7,9 +7,7 @@ import { deleteComment, editComment } from "../../../../api/feedApi";
 import { pushNotification } from "../../../../utils/notification";
 import { RootState } from "../../../../redux/config/configStore";
 import * as S from "./style";
-import profileDefault from "../../../../asstes/profileImageDefault.png";
-import trash from "../../../../asstes/trash.png";
-import edit from "../../../../asstes/edit.png";
+import { profileImageDefault, trash, edit } from "../../../../asstes/asstes";
 import { RiDeleteBack2Line } from "react-icons/ri";
 import { BsCheckSquare } from "react-icons/bs";
 
@@ -73,7 +71,7 @@ const CommentForm = ({ postId, comment, closed }: { postId: number; comment: com
 		<S.CommentLi>
 			<S.CommentDiv>
 				<S.CommentProfileImg
-					src={comment.profileImageUrl ? comment.profileImageUrl : profileDefault}
+					src={comment.profileImageUrl ? comment.profileImageUrl : profileImageDefault}
 					alt='프로필 이미지'
 				/>
 				<div>

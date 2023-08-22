@@ -1,5 +1,6 @@
 import React from "react";
-import * as S from './MypageStyle'
+import * as S from "./MypageStyle";
+import { profileImageDefault } from "../../asstes/asstes";
 
 const UserProfile = ({mypage}:{mypage:any}) => {
     return (
@@ -12,7 +13,7 @@ const UserProfile = ({mypage}:{mypage:any}) => {
                     />
                 ) : (
                     <img
-                        src={require("../../asstes/profileImageDefault.png")}
+                        src={profileImageDefault}
                         alt="기본 프로필이미지"
                     />
                 )}

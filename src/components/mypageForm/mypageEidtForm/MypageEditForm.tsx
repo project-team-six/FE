@@ -1,6 +1,4 @@
 import React, { ChangeEvent, useRef, useState } from "react";
-import * as S from "./MypageEditStyle";
-import { LayoutBox } from "../../common/GlobalStyle";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/config/configStore";
@@ -9,6 +7,9 @@ import { pushNotification } from "../../../utils/notification";
 import { deleteToken } from "../../../utils/deleteToken";
 import { useDispatch } from "react-redux";
 import { setDecodeToken } from "../../../redux/modules/user";
+import * as S from "./MypageEditStyle";
+import { LayoutBox } from "../../common/GlobalStyle";
+import { profileImageDefault } from "../../../asstes/asstes";
 
 const MypageEditForm = () => {
 	const [nickName, setNickName] = useState("");
@@ -97,7 +98,7 @@ const MypageEditForm = () => {
 						<img src={URL.createObjectURL(selectedFile)} alt='업로드된 이미지' />
 					) : (
 						<span>
-							<img src={require("../../../asstes/profileImageDefault.png")} alt='기본 이미지' />
+							<img src={profileImageDefault} alt='기본 이미지' />
 						</span>
 					)}
 					<div>

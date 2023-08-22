@@ -11,6 +11,7 @@ import { useMutation } from "react-query";
 import { signOut } from "../../api/userApi";
 import { pushNotification } from "../../utils/notification";
 import { deleteToken } from "../../utils/deleteToken";
+import { mainlogo, chatIcon, alertIcon, profileIcon } from "../../asstes/asstes";
 
 const Header = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -49,19 +50,19 @@ const Header = () => {
 		<LayoutBox>
 			<St.HeaderBox>
 				<St.LogoSection onClick={handleNavigate("/")}>
-					<img src={require(`../../asstes/mainlogo.png`)} alt='header_logo' />
+					<img src={mainlogo} alt='header_logo' />
 				</St.LogoSection>
 				<St.NavBtnSection>
 					{tokenInfo.isLogin ? (
 						<div style={{ display: "flex", gap: "35px" }}>
 							<St.NavButton>
-								<img src={require(`../../asstes/chatIcon.png`)} alt='채팅' />
+								<img src={chatIcon} alt='채팅' />
 							</St.NavButton>
 							<St.NavButton>
-								<img src={require(`../../asstes/alertIcon.png`)} alt='알람' />
+								<img src={alertIcon} alt='알람' />
 							</St.NavButton>
 							<St.NavButton onClick={toggleModal}>
-								<img src={require(`../../asstes/profileIcon.png`)} alt='프로필' />
+								<img src={profileIcon} alt='프로필' />
 							</St.NavButton>
 							<ProfileModal modalState={isProfileModal} logoutHandle={Logout} modalHandle={toggleModal} />
 						</div>

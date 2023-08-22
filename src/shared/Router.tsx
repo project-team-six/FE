@@ -13,6 +13,8 @@ import FeedAdd from "../pages/FeedAdd";
 import KakaoRedirection from "../pages/KakaoRedirection";
 import FindEmail from "../pages/FindEmail";
 import FindPassword from "../pages/FindPassword";
+import ChatRoom from "../pages/ChatRoom";
+import ChatRoomDetail from "../pages/ChatRoomDetail";
 
 export const router = createBrowserRouter([
 	{
@@ -32,6 +34,8 @@ export const router = createBrowserRouter([
 			{ path: "/mypage/:id", element: <MyPage /> },
 			{ path: "/mypage/edit", element: <MyPageEdit /> },
 			{ path: "/auth/kakao/login", element: <KakaoRedirection /> },
+			{ path: "/chatroom", element: <ChatRoom /> },
+			{ path: "/chatroom/:id", element: <ChatRoomDetail /> }
 		],
 	},
 ]);

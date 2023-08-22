@@ -7,6 +7,7 @@ import { RootState } from "../../../redux/config/configStore";
 import { pushNotification } from "../../../utils/notification";
 import { priceUtils } from "../../../utils/priceUtils";
 import * as S from "./style";
+import { chat, pined, pin, report, profileImageDefault, leftArrow, rightArrow} from "../../../asstes/asstes";
 
 const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value: boolean) => void }) => {
 	const [SelectImage, setSelectImage] = useState("");
@@ -112,17 +113,17 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 								) : (
 									<S.NotAuth>
 										<button>
-											<img src={require(`../../../asstes/chat.png`)} alt='채팅 아이콘' />
+											<img src={chat} alt='채팅 아이콘' />
 										</button>
 										<button onClick={pinHandler}>
 											{detailFeed.isPin === true ? (
-												<img src={require(`../../../asstes/pined.png`)} alt='관심 후 아이콘' />
+												<img src={pined} alt='관심 후 아이콘' />
 											) : (
-												<img src={require(`../../../asstes/pin.png`)} alt='관심 아이콘' />
+												<img src={pin} alt='관심 아이콘' />
 											)}
 										</button>
 										<button>
-											<img src={require(`../../../asstes/report.png`)} alt='신고 아이콘' />
+											<img src={report} alt='신고 아이콘' />
 										</button>
 									</S.NotAuth>
 								)}
@@ -136,7 +137,7 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 									src={
 										detailFeed.profileImageUrl !== undefined
 											? detailFeed.profileImageUrl
-											: require("../../../asstes/profileImageDefault.png")
+											: require(profileImageDefault)
 									}
 									alt='profile'
 								/>
@@ -178,7 +179,7 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 							<img src={SelectImage} alt='선택된된 이미지' />
 							<S.ImageList>
 								<img
-									src={require(`../../../asstes/leftArrow.png`)}
+									src={leftArrow}
 									alt='왼쪽 화살표'
 									onClick={moveLeft}
 								/>
@@ -196,7 +197,7 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 									);
 								})}
 								<img
-									src={require(`../../../asstes/rightArrow.png`)}
+									src={rightArrow}
 									alt='오른쪽 화살표'
 									onClick={moveRight}
 								/>
