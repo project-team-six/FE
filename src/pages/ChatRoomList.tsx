@@ -13,7 +13,6 @@ const ChatRoomList = () => {
     const queryClient = useQueryClient();
 	const commentAddMutation = useMutation(addChatRoom, {
 		onSuccess: (res) => {
-            console.log("res", res)
 			queryClient.invalidateQueries(["rooms"]);
 		},
 		onError: () => {

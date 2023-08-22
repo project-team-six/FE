@@ -21,7 +21,7 @@ const ChatRoomForm = ({roomId}: {roomId: string}) => {
 	});
 
     // 연결
-    const client = useRef<CompatClient>(); // 초기값은 null로 설정
+    const client = useRef<CompatClient>();
     const accessToken = document.cookie.replace(/(?:(?:^|.*;\s*)accessToken\s*=\s*([^;]*).*$)|^.*$/, '$1'); // 사용자 토큰
 
     // SockJS 연결 생성
