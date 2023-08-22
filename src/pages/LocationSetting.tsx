@@ -26,11 +26,13 @@ const LocationSetting = () => {
 		// 서버에서 설정한 위치 정보 전달
 		setUserLocation(address)
 			.then((response) => {
-				deleteToken("accessToken"); // 기존 token 삭제
 				const token = response.headers.authorization;
-				document.cookie = `accessToken=${token}; path=/;`; // access token 갱신
-				dispatch(setDecodeToken(token)); // redux 업데이트
-
+				if (token) {
+					// 토큰이 있는 경우
+					deleteToken("accessToken"); // 기존 token 삭제
+					document.cookie = `accessToken=${token}; path=/;`; // access token 갱신
+					dispatch(setDecodeToken(token)); // redux 업데이트
+				}
 				pushNotification(`지역이 ${data.sido} ${data.sigungu} ${data.bname}으로 설정되었습니다!`, "success");
 			})
 			.catch((error) => {

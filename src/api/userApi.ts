@@ -1,4 +1,3 @@
-
 import { instance } from "./instance";
 import { locationType } from "../types/feedType";
 import { User, findEmailType, findPwType } from "../types/userType";
@@ -11,9 +10,7 @@ export const signUp = async (newUserInfo: FormData) => {
 };
 
 export const signIn = async (user: User) => {
-	const response = await instance.post("/auth/login", user, {
-		headers: { "Content-Type": "application/json" },
-	});
+	const response = await instance.post("/auth/login", user);
 	return response;
 };
 

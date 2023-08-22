@@ -6,6 +6,7 @@ import { signIn } from "../api/userApi";
 import { setDecodeToken } from "../redux/modules/user";
 import { pushNotification } from "../utils/notification";
 import { User } from "../types/userType";
+import axios from "axios";
 import styled from "styled-components";
 import { Flex } from "../components/common/GlobalStyle";
 import { mainlogo, kakaologin } from "../asstes/asstes";
@@ -37,7 +38,6 @@ const SignIn = () => {
 		onSuccess: (res) => {
 			const token = res.headers.authorization; // 엑세스토큰
 			const refreshToken = res.headers.refreshtoken; // 리프레쉬토큰
-
 			if (!token) {
 				pushNotification("로그인 실패!", "warning");
 			} else {
@@ -49,17 +49,35 @@ const SignIn = () => {
 			}
 			navigate("/");
 		},
-		onError: () => {
-			pushNotification("로그인 실패!", "error");
+		onError: (response) => {
+			if (axios.isAxiosError(response) && response.response) {
+				pushNotification(response.response.data.error.message, "error");
+			} else {
+				pushNotification("오류가 발생했습니다.", "error");
+			}
 		},
 	});
-
+	//이메일 형식 체크
+	const isValidEmail = (email: string) => {
+		const emailRegex =
+			/([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		return emailRegex.test(email);
+	};
+	//로그인 유효성 검사 후 통과하면 mutate 실행
 	const onClickLoginBtnHandler = () => {
 		const user: User = {
 			email,
 			password,
 		};
-		loginMutation.mutate(user);
+		if (email.trim() === "") {
+			return pushNotification("이메일을 입력해주세요", "warning");
+		} else if (!isValidEmail(email)) {
+			return pushNotification("올바른 이메일 형식이 아닙니다", "error");
+		} else if (password.trim() === "") {
+			return pushNotification("비밀번호를 입력해주세요", "warning");
+		} else {
+			loginMutation.mutate(user);
+		}
 	};
 
 	//카카오로그인
@@ -109,6 +127,7 @@ const SignIn = () => {
 	);
 };
 export default SignIn;
+
 const LoginLayout = styled.div`
 	display: grid;
 	place-items: center;
