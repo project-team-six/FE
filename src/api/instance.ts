@@ -14,12 +14,8 @@ instance.interceptors.request.use(async (config) => {
 	if (accessToken && refreshToken) {
 		config.headers.Authorization = accessToken;
 		config.headers.RefreshToken = refreshToken;
-	}
-	if (accessToken === undefined) {
-		// accessToken이 undefined 뜰때 토큰 삭제
-		deleteToken("accessToken");
-		// 쿠키에서도 삭제
-		document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	} else if (!accessToken) {
+		deleteToken("accessToken"); //accessToken 값 undefined 뜰때 쿠키에서 삭제
 	}
 
 	return config;
@@ -43,16 +39,17 @@ instance.interceptors.response.use(
 		if (status === 401) {
 			const config = { ...error.config };
 			const newToken = headers.authorization;
+			if (newToken) {
+				deleteToken("accessToken"); // 기존 토큰 삭제
+				document.cookie = `accessToken=${newToken}; path=/;`;
 
-			deleteToken("accessToken"); // 기존 토큰 삭제
-			document.cookie = `accessToken=${newToken}; path=/;`;
+				const dispatch = useDispatch();
+				config.headers.Authorization = newToken;
+				dispatch(setDecodeToken(newToken));
 
-			const dispatch = useDispatch();
-			config.headers.Authorization = newToken;
-			dispatch(setDecodeToken(newToken));
-
-			// 실패했던 기존 request 재시도
-			return instance(config);
+				// 실패했던 기존 request 재시도
+				return instance(config);
+			}
 		}
 
 		return Promise.reject(error);

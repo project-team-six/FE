@@ -58,9 +58,11 @@ const MypageEditForm = () => {
 					putMyPageEditImage(userId, formData)
 						.then((response) => {
 							const token = response.headers.authorization;
-							deleteToken("accessToken"); // 기존 token 삭제
-							document.cookie = `accessToken=${token}; path=/;`; // access token 갱신
-							dispatch(setDecodeToken(token)); // redux 업데이트
+							if (token) {
+								deleteToken("accessToken"); // 기존 token 삭제
+								document.cookie = `accessToken=${token}; path=/;`; // access token 갱신
+								dispatch(setDecodeToken(token)); // redux 업데이트
+							}
 						})
 						.catch(() => {
 							pushNotification("이미지업로드 실패", "error");
