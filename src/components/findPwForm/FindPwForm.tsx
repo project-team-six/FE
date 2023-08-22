@@ -3,9 +3,9 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router";
 import { findPassword } from "../../api/userApi";
 import { pushNotification } from "../../utils/notification";
-import mainlogo from "../../asstes/mainlogo.png";
-import * as Sf from "../common/commonFormStyles";
 import { findPwType } from "../../types/userType";
+import { mainlogo } from "../../asstes/asstes";
+import * as Sf from "../common/commonFormStyles";
 
 const FindPwForm = () => {
 	const [inputValue, setInputValue] = useState<findPwType>({

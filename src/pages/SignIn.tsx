@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router";
-import styled from "styled-components";
 import { signIn } from "../api/userApi";
-import { Flex } from "../components/common/GlobalStyle";
 import { setDecodeToken } from "../redux/modules/user";
 import { pushNotification } from "../utils/notification";
 import { User } from "../types/userType";
+import styled from "styled-components";
+import { Flex } from "../components/common/GlobalStyle";
+import { mainlogo, kakaologin } from "../asstes/asstes";
 
 const SignIn = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -69,7 +70,7 @@ const SignIn = () => {
 	return (
 		<LoginLayout>
 			<LogoSection>
-				<img src={require(`../asstes/mainlogo.png`)} alt='로고' />
+				<img src={mainlogo} alt='로고' />
 			</LogoSection>
 			<InputSection>
 				<p>이메일주소</p>
@@ -100,7 +101,7 @@ const SignIn = () => {
 					$backgroundColor='#FFEB3B'
 					color='black'
 					style={{ gap: "10px" }}>
-					<img src={require(`../asstes/kakaologin.png`)} alt='카카오로고' />
+					<img src={kakaologin} alt='카카오로고' />
 					<span>카카오톡</span>
 				</FormButton>
 			</FormSection>

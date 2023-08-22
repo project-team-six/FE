@@ -1,10 +1,9 @@
 import { useState } from "react";
 import SearchEmailForm from "./searchEmailForm/SearchEmailForm";
 import { useNavigate } from "react-router";
-import mainlogo from "../../asstes/mainlogo.png";
-import findEmailLogo from "../../asstes/findEmailLogo.png";
 import * as S from "./style";
 import * as Sf from "../common/commonFormStyles";
+import { mainlogo, findEmailLogo} from "../../asstes/asstes";
 
 const FindEmailForm = () => {
 	const [result, setResult] = useState<string>(""); // 찾은 이메일 유무 저장

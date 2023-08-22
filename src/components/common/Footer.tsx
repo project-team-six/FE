@@ -1,7 +1,7 @@
 import React from "react";
-import * as St from "../common/commonStyle";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import mainlogo from "../../asstes/mainlogo.png";
+import * as St from "../common/commonStyle";
+import { mainlogo } from "../../asstes/asstes";
 import { FlexBox, LayoutBox } from "./GlobalStyle";
 
 function Footer() {
