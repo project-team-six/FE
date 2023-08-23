@@ -1,16 +1,9 @@
 import { ChangeEvent, useState } from "react";
 import { textInfoType } from "../../../../types/userType";
 import * as S from "./style";
+import Input from "../../../../theme/Input";
 
-const InputForm = ({
-	textInfo,
-	setValue,
-	placeholder,
-}: {
-	textInfo: textInfoType;
-	setValue: (value: string) => void;
-	placeholder: string;
-}) => {
+const InputForm = ({ textInfo, setValue }: { textInfo: textInfoType, setValue: (value: string) => void }) => {
 	const [inputValue, setInputValue] = useState<string>("");
 	const [valMsg, setValMsg] = useState<string>("");
 
@@ -48,11 +41,7 @@ const InputForm = ({
 
 	return (
 		<S.MainContentWrapper>
-			<label>{textInfo.kind}</label>
-			<br />
-			<S.Input type={textInfo.type} value={inputValue} onChange={handleChange} placeholder={placeholder} />
-			<br />
-			<S.Span>{valMsg}</S.Span>
+			<Input label={textInfo.kind} icon={textInfo.icon} type={textInfo.type} value={inputValue} handleChange={handleChange} width={30} placeholder={textInfo.placeholder} message={valMsg}/>
 		</S.MainContentWrapper>
 	);
 };
