@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
-import Root from "../pages/Root";
+import Root from "../layout/Root";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import MyPage from "../pages/MyPage";
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
 			{ path: "/mypage/edit", element: <MyPageEdit /> },
 			{ path: "/auth/kakao/login", element: <KakaoRedirection /> },
 			{ path: "/chatroom", element: <ChatRoom /> },
-			{ path: "/chatroom/:id", element: <ChatRoomDetail /> }
+			{ path: "/chatroom/:id", element: <ChatRoomDetail /> },
 		],
 	},
 ]);

@@ -42,7 +42,6 @@ instance.interceptors.response.use(
 			if (newToken) {
 				deleteToken("accessToken"); // 기존 토큰 삭제
 				document.cookie = `accessToken=${newToken}; path=/;`;
-
 				const dispatch = useDispatch();
 				config.headers.Authorization = newToken;
 				dispatch(setDecodeToken(newToken));
