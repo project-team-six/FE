@@ -2,8 +2,8 @@ import styled from "styled-components/";
 import { Flex, cursor } from "../../common/GlobalStyle";
 
 const LayoutBox = styled.main`
-max-width : 1280px;
-margin : 0 auto;
+    max-width : 1280px;
+    margin : 0 auto;
 `
 
 const DetailMain = styled.article`
@@ -21,6 +21,7 @@ const DetailTitle = styled.section`
     img {width: 35px;}
     p {color: #8c8c8c;}
 `;
+
 const NotAuth = styled.div`
     ${Flex}
     margin-top:30px;

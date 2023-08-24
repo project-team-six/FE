@@ -19,8 +19,12 @@ import report from "./report.png";
 import rightArrow from "./rightArrow.png";
 import rubbish from "./rubbish-bin.png";
 import trash from "./trash.png";
+import emailIcon from "./emailIcon.png";
+import userIcon from "./userIcon.png";
+import phoneIcon from "./phoneIcon.png";
+import pwIcon from "./pwIcon.png";
 
 export {addFeedIcon, alertIcon, chat, chatIcon, edit, findEmailLogo, 
     kakaologin, leftArrow, locationIcon, logoutIcon, mainlogo, peopleIcon, 
     pin, pined, profileIcon, profileImageDefault, report_small, report, rightArrow,
-    rubbish, trash };
+    rubbish, trash, emailIcon, userIcon, phoneIcon, pwIcon};
