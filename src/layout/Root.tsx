@@ -1,22 +1,21 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import { styled } from "styled-components";
-import Footer from "../components/common/Footer";
-import Header from "../components/common/Header";
+import Footer from "./Footer";
+import Header from "./Header";
 
 function Root() {
 	return (
-		<StContainer>
+		<Container>
 			<Header />
 			<Outlet />
 			<Footer />
-		</StContainer>
+		</Container>
 	);
 }
 
 export default Root;
 
-const StContainer = styled.div`
+const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 `;
