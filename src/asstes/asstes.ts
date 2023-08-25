@@ -32,6 +32,14 @@ import trashIcon from "./trashIcon.png";
 import feedLocationicon from "./feedLocationicon.png";
 import calendarIcon from "./calendarIcon.png";
 
+// 게시물 등록 (주의 사항)
+import precautionsIcon from "./precautionsIcon.png";
+import oneIcon from "./oneIcon.png";
+import twoIcon from "./twoIcon.png";
+import threeIcon from "./threeIcon.png";
+import fourIcon from "./fourIcon.png";
+import fiveIcon from "./fiveIcon.png";
+
 // 회원 가입
 import profileDefault from "./profileDefault.png";
 import editIcon from "./editIcon.png";

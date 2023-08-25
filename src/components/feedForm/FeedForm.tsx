@@ -10,9 +10,13 @@ import { editFeed } from "../../api/feedApi";
 import { pushNotification } from "../../utils/notification";
 import * as S from "./style";
 import { feedLocationicon } from "../../asstes/asstes";
+import FeedModal from "./feedModal/FeedModal";
 
 const FeedForm = ({ initialValue, mutation, btnName, postId }: { initialValue: feedInitialValue, mutation?: UseMutateFunction<any, unknown, any, unknown>, btnName: string, postId?: number }) => {
 	const navigate = useNavigate();
+
+	// 안내 모달
+	const [modalState, setModalState] = useState(true);
 
 	// 제목, 원가, 가격, 내용
 	const [textEntered, setTextEntered] = useState<feedTextType>({
@@ -75,6 +79,7 @@ const FeedForm = ({ initialValue, mutation, btnName, postId }: { initialValue: f
 	
 	return (
 		<S.MainContentWrapper>
+			{modalState && <FeedModal modalState={modalState} setModalState={setModalState} />}
 			<S.Section>
 				<S.Span fontSize={28} fontWeight="600">게시물 작성</S.Span>
 			</S.Section>
