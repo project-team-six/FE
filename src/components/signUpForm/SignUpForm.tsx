@@ -1,13 +1,14 @@
+import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useMutation } from "react-query";
-import TextForm from "./textForm/TextForm";
 import { signUp } from "../../api/userApi";
+import { newUser } from "../../types/userType";
 import { pushNotification } from "../../utils/notification";
 import ProfileForm from "./profileForm/ProfileForm";
+import TextForm from "./textForm/TextForm";
+import Announcement from "../common/announcement/Announcement";
 import * as S from "./style";
-import {  newUser } from "../../types/userType";
-import { useState } from "react";
-import axios from "axios";
 
 const SignUpForm = () => {
     const [textUserInfo, setTextUserInfo] = useState<newUser>(
@@ -47,6 +48,7 @@ const SignUpForm = () => {
 
     return (
         <S.MainContentWrapper>
+			<Announcement />
             <ProfileForm setProfile={setProfile}/>
 			<TextForm setTextUserInfo={setTextUserInfo}/>
             <S.Button onClick={clickAddBtn}>가입 완료</S.Button>

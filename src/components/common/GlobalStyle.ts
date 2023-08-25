@@ -7,8 +7,6 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     font-style: normal;
 }
-
-
     html, body, div, span, label, input,h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, fieldset, form, label, legend, article,figure, figcaption, footer, header,nav, section, textarea {
         box-sizing: border-box;
         margin: 0;

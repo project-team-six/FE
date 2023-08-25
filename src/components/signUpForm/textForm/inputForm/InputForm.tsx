@@ -41,7 +41,7 @@ const InputForm = ({ textInfo, setValue }: { textInfo: textInfoType, setValue: (
 
 	return (
 		<S.MainContentWrapper>
-			<Input label={textInfo.kind} icon={textInfo.icon} type={textInfo.type} value={inputValue} handleChange={handleChange} width={30} placeholder={textInfo.placeholder} message={valMsg}/>
+			<Input label={textInfo.kind} icon={textInfo.icon} type={textInfo.type} value={inputValue} handleChange={handleChange} width={33} placeholder={textInfo.placeholder} message={valMsg}/>
 		</S.MainContentWrapper>
 	);
 };
