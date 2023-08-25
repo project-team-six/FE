@@ -4,24 +4,21 @@ import { useNavigate } from "react-router";
 import { findPassword } from "../../api/userApi";
 import { pushNotification } from "../../utils/notification";
 import { findPwType } from "../../types/userType";
-import { mainlogo } from "../../asstes/asstes";
-import * as Sf from "../common/commonFormStyles";
+import Input from "../../theme/Input";
+import * as S from "./style";
+import { emailIcon, userIcon, phoneIcon } from "../../asstes/asstes";
+import Announcement from "../common/announcement/Announcement";
 
 const FindPwForm = () => {
-	const [inputValue, setInputValue] = useState<findPwType>({
-		username: "", // 이름
-		phoneNumber: "", // 전화번호
-		email: "", // 이메일
-	});
+	const [username, setUsername] = useState<string>(""); // 이름
+    const handleChangeUsername = (e: ChangeEvent<HTMLInputElement>) => { setUsername(e.target.value) };
 
-	const { username, phoneNumber, email } = inputValue;
-	const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
-		setInputValue({
-			...inputValue,
-			[name]: value,
-		});
-	};
+	const [email, setEmail] = useState<string>(""); // 이메일
+    const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value) };
+
+    const [phoneNumber, setPhoneNumber] = useState<string>(""); // 전화번호
+    const handleChangePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => { setPhoneNumber(e.target.value) };
+
 
 	const findPwMutation = useMutation(findPassword, {
 		onSuccess: () => {
@@ -43,37 +40,26 @@ const FindPwForm = () => {
 
 	const navigate = useNavigate();
 	return (
-		<Sf.MainContentWrapper>
-			<Sf.LogoImg src={mainlogo} alt='mainlogo' />
-			<span>비밀번호 찾기</span>
-			<form>
-				<Sf.InputDiv>
-					<label>이메일</label>
-					<br />
-					<Sf.Input name='email' onChange={handleInput} />
-				</Sf.InputDiv>
-				<Sf.InputDiv>
-					<label>이름</label>
-					<br />
-					<Sf.Input name='username' onChange={handleInput} />
-				</Sf.InputDiv>
-				<Sf.InputDiv>
-					<label>전화번호</label>
-					<br />
-					<Sf.Input name='phoneNumber' onChange={handleInput} />
-				</Sf.InputDiv>
-				<Sf.MovePageDiv>
-					<button type='button' onClick={() => navigate("/findemail")}>
-						이메일 찾기
-					</button>
-				</Sf.MovePageDiv>
-				<Sf.FindDiv>
-					<Sf.FindBtn type='button' onClick={clickFindPwBtn}>
-						찾기
-					</Sf.FindBtn>
-				</Sf.FindDiv>
-			</form>
-		</Sf.MainContentWrapper>
+		<S.MainContentWrapper>
+			<Announcement />
+			<div>
+				<S.Section>
+				<Input label={"이름"} icon={userIcon} type={"text"} value={username} handleChange={handleChangeUsername} width={33} placeholder={"이름을 입력해주세요. ex)홍길동"} message={""}/>
+				</S.Section>
+				<S.Section>
+					<Input label={"이메일"} icon={emailIcon} type={"text"} value={email} handleChange={handleChangeEmail} width={33} placeholder={"이메일을 입력해주세요."} message={""}/>
+				</S.Section>
+				<S.Section>
+					<Input label={"핸드폰 번호"} icon={phoneIcon} type={"text"} value={phoneNumber} handleChange={handleChangePhoneNumber} width={33} placeholder={"'-'는 제외하고 숫자만 입력해주세요."} message={""}/>
+				</S.Section>
+				<S.SectionButton>
+					<S.Button onClick={clickFindPwBtn}>찾기</S.Button>
+				</S.SectionButton>
+				<section>
+					<S.EmailButton onClick={() => navigate("/findemail")}>이메일이 기억나지 않으신가요?</S.EmailButton>
+				</section>
+			</div>
+		</S.MainContentWrapper>
 	);
 };
 
