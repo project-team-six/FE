@@ -1,6 +1,7 @@
 import React from "react";
 import { NavigateFunction, useNavigate } from "react-router";
 import styled from "styled-components";
+import { mainBanner } from "../asstes/asstes";
 import FeedCards from "../components/feedListForm/FeedCards";
 
 const Home = () => {
@@ -15,7 +16,15 @@ const Home = () => {
 
 	return (
 		<div>
-			<BannerSection></BannerSection>
+			<BannerSection>
+				<h1 style={{ paddingTop: "120px" }}>나누고 나눠지는</h1>
+				<h1 style={{ paddingBottom: "50px" }}>1인가구를 위한 소분 커뮤니티</h1>
+				<p>
+					<span>소분소분</span>은 제품 종류와 상관없이 사용자들이 함께 나누고 소통하는 공간을 제공합니다.
+				</p>
+				<p>식품부터 일회용품까지, 소비의 의미를 새롭게 만나보세요.</p>
+				<StartBtn>시작하기</StartBtn>
+			</BannerSection>
 			<MainFeedSection>
 				<MainTextBox>최근 게시물</MainTextBox>
 				<FeedCards
@@ -39,12 +48,36 @@ export default Home;
 
 const BannerSection = styled.section`
 	width: 100%;
-	height: 295px;
-	background-color: beige;
-	img {
-		width: 100%;
-		height: 100%;
+	height: 920px;
+	background-image: url(${mainBanner});
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	h1 {
+		font-size: 65px;
+		color: white;
 	}
+	p,
+	span {
+		font-size: 16px;
+		color: white;
+	}
+	span {
+		font-weight: bold;
+	}
+`;
+
+const StartBtn = styled.button`
+	cursor: pointer;
+	width: 160px;
+	height: 50px;
+	border: 2px solid white;
+	border-radius: 10px;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 77px;
 `;
 
 const MainFeedSection = styled.section`

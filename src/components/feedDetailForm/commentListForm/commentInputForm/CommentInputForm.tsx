@@ -15,7 +15,6 @@ const CommentInputForm = ({ postId }: { postId: number }) => {
 	const commentAddMutation = useMutation(postComment, {
 		onSuccess: () => {
 			queryClient.invalidateQueries(["comments"]); // 화면에 바로 반영하기 위해 query key 갱신
-			queryClient.invalidateQueries(["alertList"]); // 화면에 바로 반영하기 위해 query key 갱신
 			setComment("");
 		},
 		onError: () => {
