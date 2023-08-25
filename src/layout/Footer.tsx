@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { mainlogo } from "../asstes/asstes";
+import { mainLogo } from "../asstes/asstes";
 import { FlexBox } from "../components/common/GlobalStyle";
 
 function Footer() {
@@ -16,7 +16,7 @@ function Footer() {
 			<FooterLayout>
 				<FooterBox>
 					<SummarySection>
-						<img src={mainlogo} alt='메인로고' />
+						<img src={mainLogo} alt='메인로고' />
 						<p>
 							Welcome to Sobun Sobun. We are a small community for single-person households. This website
 							is created through a collaboration between three front-end developers, four back-end
