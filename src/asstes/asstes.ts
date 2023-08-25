@@ -24,7 +24,15 @@ import userIcon from "./userIcon.png";
 import phoneIcon from "./phoneIcon.png";
 import pwIcon from "./pwIcon.png";
 
+// 게시물 등록
+import feedImageAddIcon from "./feedImageAddIcon.png"
+import trashIcon from "./trashIcon.png";
+import feedLocationicon from "./feedLocationicon.png";
+import calendarIcon from "./calendarIcon.png";
+
 export {addFeedIcon, alertIcon, chat, chatIcon, edit, findEmailLogo, 
     kakaologin, leftArrow, locationIcon, logoutIcon, mainlogo, peopleIcon, 
     pin, pined, profileIcon, profileImageDefault, report_small, report, rightArrow,
-    rubbish, trash, emailIcon, userIcon, phoneIcon, pwIcon};
+    rubbish, trash, emailIcon, userIcon, phoneIcon, pwIcon,
+    trashIcon, feedImageAddIcon, feedLocationicon, calendarIcon
+};

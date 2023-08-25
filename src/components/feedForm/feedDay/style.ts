@@ -2,28 +2,46 @@ import DatePicker from "react-datepicker";
 import styled from "styled-components";
 
 export const MainContentWrapper = styled.div`
+    position: relative;
+    align-items: center;
+`;
+
+export const MainDatePickerDiv = styled.div`
     display: flex;
-    align-items: center; 
 `;
 
-export const Line = styled.div`
-    width: 100%;
-    height: 1px;
-    background-color: #D9D9D9;
-    margin-top: 25px;
-    margin-bottom: 25px;
-`;
-
-export const Label = styled.label`
-    width: 100px;
-    margin-right: 4.7%;
+export const DatePickerDiv = styled.div`
+    display: flex;
+    position: relative;
+    align-items: center;
 `;
 
 export const StyledDatePicker = styled(DatePicker)`
-    width: 200px;
-    height: 40px;
+    width: 215px;
+    height: 45px;
     box-sizing: border-box;
     padding: 8px 20px;
     border-radius: 4px;
     border: 1px solid hsl(0, 0%, 80%);
+`;
+
+export const DashSpanDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+`;
+
+export const DashSpan = styled.span`
+    font-size: 16px;
+    font-weight: 700;  
+`;
+
+export const Icon = styled.img`
+    width: 24px;
+    height: 22px;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
 `;

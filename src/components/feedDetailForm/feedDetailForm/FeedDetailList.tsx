@@ -137,7 +137,7 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 									src={
 										detailFeed.profileImageUrl !== undefined
 											? detailFeed.profileImageUrl
-											: require(profileImageDefault)
+											: profileImageDefault
 									}
 									alt='profile'
 								/>
