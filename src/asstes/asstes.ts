@@ -8,7 +8,7 @@ import kakaologin from "./kakaologin.png";
 import leftArrow from "./leftArrow.png";
 import locationIcon from "./locationIcon.png";
 import logoutIcon from "./logoutIcon.png";
-import mainLogo from "./mainLogo.png";
+import h_mainLogo from "./h_mainLogo.png";
 import peopleIcon from "./peopleIcon.png";
 import pin from "./pin.png";
 import pined from "./pined.png";
@@ -39,11 +39,39 @@ import editIcon from "./editIcon.png";
 // 이메일 찾기
 import EmailFindIcon from "./EmailFindIcon.png";
 
-export {addFeedIcon, chat, edit, findEmailLogo, 
-    kakaologin, leftArrow, locationIcon, logoutIcon, mainlogo, peopleIcon, 
-    pin, pined, profileIcon, profileImageDefault, report_small, report, rightArrow,
-    rubbish, trash, emailIcon, userIcon, phoneIcon, pwIcon,
-    trashIcon, feedImageAddIcon, feedLocationicon, calendarIcon,
-    profileDefault, editIcon, EmailFindIcon, 	mainBanner, h_profile, h_alertIcon, h_chatIcon,
+export {
+	addFeedIcon,
+	chat,
+	edit,
+	findEmailLogo,
+	kakaologin,
+	leftArrow,
+	locationIcon,
+	logoutIcon,
+	h_mainLogo,
+	peopleIcon,
+	pin,
+	pined,
+	profileIcon,
+	profileImageDefault,
+	report_small,
+	report,
+	rightArrow,
+	rubbish,
+	trash,
+	emailIcon,
+	userIcon,
+	phoneIcon,
+	pwIcon,
+	trashIcon,
+	feedImageAddIcon,
+	feedLocationicon,
+	calendarIcon,
+	profileDefault,
+	editIcon,
+	EmailFindIcon,
+	mainBanner,
+	h_profile,
+	h_alertIcon,
+	h_chatIcon,
 };
-

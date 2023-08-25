@@ -10,7 +10,7 @@ import { useMutation } from "react-query";
 import { signOut } from "../api/userApi";
 import { pushNotification } from "../utils/notification";
 import { deleteToken } from "../utils/deleteToken";
-import { mainLogo, h_chatIcon, h_alertIcon, h_profile } from "../asstes/asstes";
+import { h_mainLogo, h_chatIcon, h_alertIcon, h_profile } from "../asstes/asstes";
 import { Badge } from "@mui/material";
 import AlertModal from "../components/alertForm/AlertModal";
 
@@ -61,7 +61,7 @@ const Header = () => {
 		<div style={{ position: "sticky", top: "0" }}>
 			<HeaderBox>
 				<LogoSection onClick={handleNavigate("/")}>
-					<img src={mainLogo} alt='header_logo' />
+					<img src={h_mainLogo} alt='header_logo' />
 				</LogoSection>
 				<NavBtnSection>
 					{tokenInfo.isLogin ? (
