@@ -3,7 +3,7 @@ import SearchEmailForm from "./searchEmailForm/SearchEmailForm";
 import { useNavigate } from "react-router";
 import * as S from "./style";
 import * as Sf from "../common/commonFormStyles";
-import { mainlogo, findEmailLogo} from "../../asstes/asstes";
+import { mainLogo, findEmailLogo } from "../../asstes/asstes";
 
 const FindEmailForm = () => {
 	const [result, setResult] = useState<string>(""); // 찾은 이메일 유무 저장
@@ -28,7 +28,7 @@ const FindEmailForm = () => {
 
 	return (
 		<Sf.MainContentWrapper>
-			<Sf.LogoImg src={mainlogo} />
+			<Sf.LogoImg src={mainLogo} />
 			<span>이메일 찾기</span>
 			{result ? foundEmail : <SearchEmailForm setResult={setResult} />}
 		</Sf.MainContentWrapper>

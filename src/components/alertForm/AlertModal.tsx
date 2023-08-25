@@ -19,7 +19,11 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 	};
 
 	//알림 조회
-	const { data: alertList, isLoading, isError } = useQuery(["alertList"], () => fetchAlert());
+	const {
+		data: alertList,
+		isLoading,
+		isError,
+	} = useQuery(["alertList"], () => fetchAlert(), { refetchInterval: 60000 });
 
 	setAlertCount(alertList?.data.length);
 

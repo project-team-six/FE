@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { findPassword } from "../../api/userApi";
 import { pushNotification } from "../../utils/notification";
 import { findPwType } from "../../types/userType";
-import { mainlogo } from "../../asstes/asstes";
+import { mainLogo } from "../../asstes/asstes";
 import * as Sf from "../common/commonFormStyles";
 
 const FindPwForm = () => {
@@ -44,7 +44,7 @@ const FindPwForm = () => {
 	const navigate = useNavigate();
 	return (
 		<Sf.MainContentWrapper>
-			<Sf.LogoImg src={mainlogo} alt='mainlogo' />
+			<Sf.LogoImg src={mainLogo} alt='mainLogo' />
 			<span>비밀번호 찾기</span>
 			<form>
 				<Sf.InputDiv>
