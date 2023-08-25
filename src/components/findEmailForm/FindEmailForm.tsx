@@ -3,7 +3,8 @@ import SearchEmailForm from "./searchEmailForm/SearchEmailForm";
 import { useNavigate } from "react-router";
 import * as S from "./style";
 import * as Sf from "../common/commonFormStyles";
-import { mainLogo, findEmailLogo } from "../../asstes/asstes";
+import { EmailFindIcon} from "../../asstes/asstes";
+import Announcement from "../common/announcement/Announcement";
 
 const FindEmailForm = () => {
 	const [result, setResult] = useState<string>(""); // 찾은 이메일 유무 저장
@@ -11,25 +12,24 @@ const FindEmailForm = () => {
 	const navigate = useNavigate();
 	const foundEmail = (
 		<S.ResultDiv>
-			<img src={findEmailLogo} alt='이메일 찾기 로고' />
-			<S.ResultEmailDiv>
-				<span>{result}</span>
-			</S.ResultEmailDiv>
+			<S.ResultImg src={EmailFindIcon} alt='이메일 찾기 로고' />
+			<S.SpanDiv>
+				<S.Span color="black">회원님의 이메일은</S.Span>
+				<S.Div />
+				<S.Span color="2BB673">{result}</S.Span>
+				<S.Div />
+				<S.Span color="black">입니다</S.Span>
+			</S.SpanDiv>
 			<S.ResultSection>
-				<S.ResultBtn color='#6F8A6B' borderColor='1px solid #6F8A6B' onClick={() => navigate("/findpassword")}>
-					비밀번호 찾기
-				</S.ResultBtn>
-				<S.ResultBtn color='#FFFFFF' $backgroundColor='#6F8A6B' onClick={() => navigate("/signin")}>
-					로그인
-				</S.ResultBtn>
+				<S.ResultBtn $backgroundColor='#CDCDCD' onClick={() => navigate("/signin")}>로그인</S.ResultBtn>
+				<S.ResultBtn $backgroundColor='#2BB673' onClick={() => navigate("/findpassword")}>비밀번호 찾기</S.ResultBtn>
 			</S.ResultSection>
 		</S.ResultDiv>
 	);
 
 	return (
 		<Sf.MainContentWrapper>
-			<Sf.LogoImg src={mainLogo} />
-			<span>이메일 찾기</span>
+			<Announcement />
 			{result ? foundEmail : <SearchEmailForm setResult={setResult} />}
 		</Sf.MainContentWrapper>
 	);

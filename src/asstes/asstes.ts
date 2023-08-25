@@ -32,36 +32,18 @@ import trashIcon from "./trashIcon.png";
 import feedLocationicon from "./feedLocationicon.png";
 import calendarIcon from "./calendarIcon.png";
 
-export {
-	addFeedIcon,
-	h_alertIcon,
-	chat,
-	h_chatIcon,
-	edit,
-	findEmailLogo,
-	kakaologin,
-	leftArrow,
-	locationIcon,
-	logoutIcon,
-	mainLogo,
-	peopleIcon,
-	pin,
-	pined,
-	profileIcon,
-	profileImageDefault,
-	report_small,
-	report,
-	rightArrow,
-	rubbish,
-	trash,
-	emailIcon,
-	userIcon,
-	phoneIcon,
-	pwIcon,
-	trashIcon,
-	feedImageAddIcon,
-	feedLocationicon,
-	calendarIcon,
-	mainBanner,
-	h_profile,
+// 회원 가입
+import profileDefault from "./profileDefault.png";
+import editIcon from "./editIcon.png";
+
+// 이메일 찾기
+import EmailFindIcon from "./EmailFindIcon.png";
+
+export {addFeedIcon, chat, edit, findEmailLogo, 
+    kakaologin, leftArrow, locationIcon, logoutIcon, mainlogo, peopleIcon, 
+    pin, pined, profileIcon, profileImageDefault, report_small, report, rightArrow,
+    rubbish, trash, emailIcon, userIcon, phoneIcon, pwIcon,
+    trashIcon, feedImageAddIcon, feedLocationicon, calendarIcon,
+    profileDefault, editIcon, EmailFindIcon, 	mainBanner, h_profile, h_alertIcon, h_chatIcon,
 };
+
