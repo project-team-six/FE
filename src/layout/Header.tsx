@@ -13,7 +13,7 @@ import { pushNotification } from "../utils/notification";
 import { deleteToken } from "../utils/deleteToken";
 import { mainlogo, chatIcon, alertIcon, profileIcon } from "../asstes/asstes";
 import { Badge } from "@mui/material";
-import AlertModal from "../components/common/AlertModal";
+import AlertModal from "../components/alertForm/AlertModal";
 
 const Header = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -24,6 +24,7 @@ const Header = () => {
 	//알람, 프로필모달 핸들러
 	const [isProfileModal, setIsProfileModal] = useState(false);
 	const [isAlertModal, setIsAlertModal] = useState(false);
+	const [alertCount, setAlertCount] = useState(0);
 	const toggleProfileModal: React.MouseEventHandler = (event) => {
 		event.preventDefault();
 		setIsProfileModal((prevModalState) => !prevModalState);
@@ -69,14 +70,18 @@ const Header = () => {
 							</NavButton>
 							<NavButton onClick={toggleAlertModal}>
 								{/* 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | string */}
-								<Badge badgeContent={4} color='secondary'>
+								<Badge badgeContent={alertCount} color='secondary'>
 									<img src={alertIcon} alt='알람' />
 								</Badge>
 							</NavButton>
 							<NavButton onClick={toggleProfileModal}>
 								<img src={profileIcon} alt='프로필' />
 							</NavButton>
-							<AlertModal modalState={isAlertModal} modalHandle={toggleAlertModal} />
+							<AlertModal
+								modalState={isAlertModal}
+								modalHandle={toggleAlertModal}
+								setAlertCount={setAlertCount}
+							/>
 							<ProfileModal
 								modalState={isProfileModal}
 								logoutHandle={Logout}
