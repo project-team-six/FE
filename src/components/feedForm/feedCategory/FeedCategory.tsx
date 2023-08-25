@@ -17,8 +17,8 @@ export const FeedCategory = ({category, setCategory}: {category: string, setCate
     const customStyles = {
         control: (base: any) => ({
           ...base,
-          width: "101.1%",
-          height: "40px", // 높이 조절
+          width: "215px;",
+          height: "45px",
           cursor: "pointer",
           paddingLeft: "10px",
         }),

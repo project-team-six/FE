@@ -1,96 +1,78 @@
 import styled from "styled-components";
-import { Flex } from "../../common/GlobalStyle";
 
-export const Article = styled.article`
+export const MainContentWrapper = styled.div`
+	max-width: 1920px;
+	min-width: 1280px;
 	width: 100%;
 `;
 
-export const TitleSpan = styled.span`
-	margin-right: 200px;
-	width: 100%;
+export const ImageSection = styled.section`
+    display: flex;
+	margin-left: 110px;
 `;
 
-export const InputSection = styled.section`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+export const ImageAddDiv = styled.div`
+	width: 126px;
+	height: 126px;
+	background-color: #FBFBFB;
+	border: 1px solid #2BB673;
+	border-radius: 5px;
 `;
 
-export const InputDiv = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 285px;
-	height: 270px;
-	margin-bottom: 30px;
-	background-color: #eee;
-	border-radius: 4px;
+export const ImageLabel = styled.label`
+    width: 126px;
+    height: 126px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
-interface InputSpanProps {
-    fontSize: number;
-    fontWeight: string;
-  }
-
-export const InputSpan = styled.span<InputSpanProps>`
-	display: block;
-	font-size: ${(props) => props.fontSize}px;
-	font-weight: ${(props) => props.fontWeight};
-	width: 170px;
-	height: 30px;
+export const ImageLabelSpan = styled.span`
+	margin-top: 10px;
+	color: #2BB673;
 `;
 
-export const LabelDiv = styled.div`
-  	width: 165px;
-	height: 30px;
-	background-color: #9C9D9D;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+export const ImageAddInput = styled.input`
+    display: none; 
 `;
 
-export const Label = styled.label`
-	color: #FFFFFF;
-	cursor: pointer;
+export const ImageContainer = styled.div`
+    position: relative;
 `;
 
-export const Input = styled.input`
-	display: none;
-`;
-
-export const PreviewContentWrapper = styled.div`
-	text-align: center;
-	width : 100%;
-	${Flex}
-	gap: 7px;
-`;
-
-export const PreviewMiddleDiv = styled.div`
-	display: flex;
-	flex-direction: column;
+export const ImagePreviewWrapper = styled.div`
+    position: relative;
+    display: inline-block;
 `;
 
 export const PreviewImg = styled.img`
-	width: 50px;
-	height: 50px;
+    width: 126px;
+	height: 126px;
+
+    margin-right: 33px;
 `;
 
-export const PreviewButton = styled.button`
-	font-weight: 800;
+export const DeleteButtonDiv = styled.div`
+	position: absolute;
+	top: 49%;
+	left: 40%;
+	width: 126px;
+	height: 126px;
+	transform: translate(-50%, -50%);
+	border: none;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+	background-color: rgba(0, 0, 0, 0.5); 
+
+    ${ImageContainer}:hover & {
+        opacity: 1;
+    }
+`;
+
+export const DeleteButton = styled.button`
 	cursor: pointer;
-	position: relative;
-	width: 20px;
-	top: -50px;
-	right: -29px;
-
-	&:hover {
-		background-color: #D5D7D8;
-		border-radius: 20px;
-	}
-`;
-
-export const PreviewBtnSpan = styled.span`
-	display: inline-block;
-	text-align: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
 `;

@@ -11,6 +11,7 @@ export type feedInitialValue = {
     purchaseDate: string;
     location: string;
     images: [];
+    previews: [];
 };
 
 export type feedType = {

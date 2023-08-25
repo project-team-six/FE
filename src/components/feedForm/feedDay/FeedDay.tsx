@@ -1,11 +1,11 @@
+import { feedDateType } from "../../../types/feedType";
+import { useState } from "react";
 import { ko } from "date-fns/locale";
 import * as S from "./style";
 import "react-datepicker/dist/react-datepicker.css";
-import { feedDateType } from "../../../types/feedType";
-import { useState } from "react";
+import { calendarIcon } from "../../../asstes/asstes";
 
-// dateEntered={dateEntered} setDateEntered={setDateEntered}
-export const FeedDay = ({label, name, range, dateEntered, setDateEntered}: { label: string, name: string, range: boolean, dateEntered: feedDateType, setDateEntered: (startDate: feedDateType) => void; }) => {
+export const FeedDay = ({name, range, dateEntered, setDateEntered}: { name: string, range: boolean, dateEntered: feedDateType, setDateEntered: (startDate: feedDateType) => void; }) => {
 	let [initialValue1, initialValue2] = ["", ""]; // 초기 값
     switch (name) {
         case "dealable": // 거래 가능 날짜
@@ -22,34 +22,51 @@ export const FeedDay = ({label, name, range, dateEntered, setDateEntered}: { lab
 	
 	const [startDateTime, setStartDateTime] = useState(new Date(initialValue1)); // 시작
 	const [endDateTime, setEndDateTime] = useState(new Date(initialValue2));	 // 종료
-	
-	const handleChange = (date: any) => {
-		if (range) {
-			const [start, end] = date;
-			setStartDateTime(start);
-			setEndDateTime(end);
-		} else setStartDateTime(date);
-	};
 
 	return (
-		<div>
-			<S.MainContentWrapper>
-				<S.Label>{label}</S.Label>
-				<div>
+		<S.MainContentWrapper>
+			{range ? 
+				<S.MainDatePickerDiv>
+				<S.DatePickerDiv>
 					<S.StyledDatePicker
-						selectsRange={range}
-						startDate={startDateTime}
-						endDate={endDateTime}
 						locale={ko}
-						dateFormat='yyyy-MM-dd'
-						shouldCloseOnSelect
-						minDate={new Date("2000-01-01")}
+						dateFormat="yyyy.MM.dd"
 						selected={startDateTime}
-						onChange={handleChange}
+						closeOnScroll={true} 
+						onChange={(date: Date) => setStartDateTime(date)}
 					/>
-				</div>
-			</S.MainContentWrapper>
-			<S.Line />
-		</div>
+					<S.Icon src={calendarIcon} alt="달력"/>
+				</S.DatePickerDiv>
+				<S.DashSpanDiv>
+					<S.DashSpan> ~ </S.DashSpan>
+				</S.DashSpanDiv>
+				<S.DatePickerDiv>
+					<S.StyledDatePicker
+						locale={ko}
+						dateFormat="yyyy.MM.dd"
+						selected={endDateTime}
+						closeOnScroll={true} 
+						onChange={(date: Date) => setEndDateTime(date)}
+					/>
+					<S.Icon src={calendarIcon} alt="달력"/>
+				</S.DatePickerDiv>
+			</S.MainDatePickerDiv>
+			:
+			<div>
+				<S.StyledDatePicker
+					selectsRange={range}
+					startDate={startDateTime}
+					endDate={endDateTime}
+					locale={ko}
+					dateFormat='yyyy-MM-dd'
+					shouldCloseOnSelect
+					minDate={new Date("2000-01-01")}
+					selected={startDateTime}
+					onChange={(date: Date) => setStartDateTime(date)}
+				/>
+				<S.Icon src={calendarIcon} alt="달력"/>
+			</div> 
+			}
+		</S.MainContentWrapper>
 	);
 };
