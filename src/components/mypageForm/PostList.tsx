@@ -1,35 +1,34 @@
 import React from "react";
-import * as MySt from './MypageStyle'
 import { formatDistanceToNow } from "date-fns";
 import { ko } from "date-fns/locale";
 import { Post } from "../../types/mypage";
+import * as S from './MypageStyle'
 
 
 interface PostListProps {
     posts: Post[];
     navigate:(url:string)=> void;
+    messege : string;
 }
 
-const PostList:React.FC<PostListProps> = ({posts, navigate}) => {
+const PostList:React.FC<PostListProps> = ({posts, navigate, messege}) => {
     return (
-        <MySt.List>
-            {posts.length === 0 ? (
-                <p>아직 작성된 글이 없습니다.</p>
+        <S.Post>
+            {posts?.length === 0 ? (
+                <div>
+                <h1>{messege}</h1>
+                <button></button>
+                </div>
             ) : (
-                <div className="list-wrapper">
-                    {posts.map(
+                <S.ListWrapper className="list-wrapper">
+                    {posts?.map(
                         (posts: Post, index: number) => {
                             const createdAt = new Date(posts.createdAt);
                             return (
-                                <div key={index} onClick={() => navigate(`/feed/${posts.id}`)} >
+                                <S.Feed key={index} onClick={() => navigate(`/feed/${posts.id}`)} >
                                     <img src={posts.imageUrlList} alt="등록한 게시물 이미지" />
-                                    <MySt.PostContent>
-                                        <MySt.ContentHead>
-                                            <span>{posts.location}</span>
-                                            <span className="day">
-                                                {formatDistanceToNow(createdAt, {addSuffix: true, locale: ko})}
-                                            </span>
-                                        </MySt.ContentHead>
+                                    <div>
+                                        
                                         <h4>{posts.title}</h4>
                                         <p>
                                             {posts.content.length > 35
@@ -37,14 +36,20 @@ const PostList:React.FC<PostListProps> = ({posts, navigate}) => {
                                                 : posts.content}
                                         </p>
                                         <h4>{posts.price} </h4>
-                                    </MySt.PostContent>
-                                </div>
+                                        <div>
+                                            <span>{posts.location} | </span>
+                                            <span className="day">
+                                                {formatDistanceToNow(createdAt, {addSuffix: true, locale: ko})}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </S.Feed>
                             );
                         }
                     )}
-                </div>
+                </S.ListWrapper>
             )}
-        </MySt.List>
+        </S.Post>
     );
 };
 

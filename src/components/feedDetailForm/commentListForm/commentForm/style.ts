@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import  styled  from "styled-components";
 
 export const CommentLi = styled.li`
 	display: flex;

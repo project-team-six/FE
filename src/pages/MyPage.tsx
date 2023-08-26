@@ -4,64 +4,113 @@ import { useQuery } from "react-query";
 import { getMyPage } from "../api/userApi";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/config/configStore";
-import * as MySt from "../components/mypageForm/MypageStyle";
 import { InitialType } from "../redux/modules/locationSet";
 import { pushNotification } from "../utils/notification";
 import UserInfo from "../components/mypageForm/UserInfo";
 import { useParams } from "react-router";
 import PostList from "../components/mypageForm/PostList";
+import * as S from "../components/mypageForm/MypageStyle";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import TabPanel from "@mui/lab/TabPanel";
+import TabContext from "@mui/lab/TabContext";
 
 const MyPage: React.FC = () => {
-	const navigate = useNavigate();
-	const accountId: Number = useSelector((state: RootState) => {
-		return state.tokenSlice.decodeToken.userId;
-	}); // 현재 로그인된 사용자의 ID
+    const [value, setValue] = React.useState("one");
+    const TabChangehandler = (event: React.SyntheticEvent, newValue: string) => {
+        setValue(newValue); // 탭 변경
+    };
 
-	const { id } = useParams();
-	const userId = Number(id);
+    const navigate = useNavigate();
+    const accountId: Number = useSelector((state: RootState) => {
+        return state.tokenSlice.decodeToken.userId;
+    }); // 현재 로그인된 사용자의 ID
 
-	const userLocation: InitialType = useSelector((state: RootState) => {
-		return state.locationSlice.userLocation;
-	});
+    const { id } = useParams();
+    const userId = Number(id);
 
-	// useQuery로 유저 정보 불러오기
-	const { data: mypage, isLoading } = useQuery(["mypage"], () => getMyPage(userId));
+    const userLocation: InitialType = useSelector((state: RootState) => {
+        return state.locationSlice.userLocation;
+    });
 
-	useEffect(() => {
-		if (userLocation.sido === "") {
-			pushNotification("지역을 먼저 등록해주세요", "error");
-			navigate("/locationsetting");
-		}
-	}, [userLocation.sido, navigate]);
+    // useQuery로 유저 정보 불러오기
+    const { data: mypage, isLoading } = useQuery(["mypage"], () =>
+        getMyPage(userId)
+    );
+    console.log("mypage", mypage);
 
-	return (
-		<MySt.LayoutBox>
-			{isLoading ? (
-				<div>Loading...</div>
-			) : (
-				<MySt.LayoutBody>
-					<MySt.Title>마이페이지</MySt.Title>
-					<MySt.Wrapper>
-						<UserInfo />
-						<MySt.Feed>
-							<h2>
-								작성글 <strong>{mypage?.data?.userPosts?.length}</strong>
-							</h2>
-							<PostList posts={mypage?.data?.userPosts} navigate={navigate} />
-							{+accountId === userId ? (
-								<>
-									<h2>
-										관심글 <strong>{mypage?.data?.pinedPosts.length} </strong>
-									</h2>
-									<PostList posts={mypage?.data?.pinedPosts} navigate={navigate} />
-								</>
-							) : null}
-						</MySt.Feed>
-					</MySt.Wrapper>
-				</MySt.LayoutBody>
-			)}
-		</MySt.LayoutBox>
-	);
+    useEffect(() => {
+        if (userLocation.sido === "") {
+            pushNotification("지역을 먼저 등록해주세요", "error");
+            navigate("/locationsetting");
+        }
+    }, [userLocation.sido, navigate]);
+
+    if (isLoading) {
+        <div>Loding...</div>;
+    }
+
+    return (
+        <S.Main>
+            <S.InlineLayout>
+                <section>
+                    <UserInfo mypage={mypage} />
+                </section>
+                <Box sx={{ width: "100%"}} >
+                    <TabContext value={value} >
+                        <Box sx={{ borderBottom: 1, borderColor: "divider", display:"flex", justifyContent:"center", margin:"40px 0 45px"}}>
+                            <Tabs
+                                value={value}
+                                onChange={TabChangehandler}
+                                aria-label="secondary tabs example"
+                                TabIndicatorProps={{
+                                    style: { background: "#2bb673"},
+                                }}
+                            >
+                                <Tab
+                                    value="one"
+                                    label="작성글"
+                                    style={{
+                                        color: value === "one" ? "#2bb673" : "", // 선택한 탭일 때의 텍스트 색상
+                                        fontWeight: "bold",
+                                        fontSize: "16px",
+                                    }}
+                                />
+                                <Tab
+                                    value="two"
+                                    label="관심글"
+                                    style={{
+                                        color: value === "two" ? "#2bb673" : "", // 선택한 탭일 때의 텍스트 색상
+                                        fontWeight: "bold",
+                                        fontSize: "16px",
+                                    }}
+                                />
+                            </Tabs>
+                        </Box>
+                        <TabPanel value="one">
+                            <PostList
+                                posts={mypage?.data?.userPosts}
+                                navigate={navigate}
+																messege="아직 작성글이 없습니다."
+                            />
+                        </TabPanel>
+                        <TabPanel value="two">
+                            {+accountId === userId ? (
+                                <>
+                                    <PostList
+                                        posts={mypage?.data?.pinedPosts}
+                                        navigate={navigate}
+																				messege="아직 관심글이 없습니다."
+                                    />
+                                </>
+                            ) : null}
+                        </TabPanel>
+                    </TabContext>
+                </Box>
+            </S.InlineLayout>
+        </S.Main>
+    );
 };
 
 export default MyPage;

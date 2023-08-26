@@ -23,8 +23,16 @@ import emailIcon from "./emailIcon.png";
 import userIcon from "./userIcon.png";
 import phoneIcon from "./phoneIcon.png";
 import pwIcon from "./pwIcon.png";
+import cog from './cog.png'
+import locationpin from './locationpin.png'
+import pencil from './pencil.png'
+import smileyneutral from './smiley-neutral.png'
+import smileywink from './smiley-wink.png'
+import emailIconWhite from './emailIconWhite.png'
+import profileImg from './profileImg.png'
 
 export {addFeedIcon, alertIcon, chat, chatIcon, edit, findEmailLogo, 
     kakaologin, leftArrow, locationIcon, logoutIcon, mainlogo, peopleIcon, 
     pin, pined, profileIcon, profileImageDefault, report_small, report, rightArrow,
-    rubbish, trash, emailIcon, userIcon, phoneIcon, pwIcon};
+    rubbish, trash, emailIcon, userIcon, phoneIcon, pwIcon, cog, locationpin, 
+    pencil, smileyneutral, smileywink, emailIconWhite, profileImg};
