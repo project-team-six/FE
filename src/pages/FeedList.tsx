@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "../components/feedListForm/style";
-import FeedCards from "../components/feedListForm/FeedCards";
+import FeedCards from "../components/feedListForm/feedCards/FeedCards";
 import { ImSearch } from "react-icons/im";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/config/configStore";

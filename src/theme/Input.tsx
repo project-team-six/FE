@@ -9,14 +9,12 @@ interface InputProps {
 	value: string; // input 태그 value 
 	handleChange: (e: ChangeEvent<HTMLInputElement>) => void; // input 태그 함수
 	width: Number; // input 태그 넓이
-	placeholder: string;
+	placeholder: string; // 안내 메시지
 	message: string; // 오류 메세지
 	pattern?:string;
 }
 
 const Input: React.FC<InputProps> = ({ label, icon, type, value, handleChange, width, placeholder, message }: InputProps) => {
-
-
 	return  (
 		<div> 
 			{message.trim() === "" ?
@@ -28,6 +26,7 @@ const Input: React.FC<InputProps> = ({ label, icon, type, value, handleChange, w
 					InputProps={{
 					startAdornment: <InputAdornment position="start">
 						<img src={icon} alt="icon"/></InputAdornment>,
+						sx: {borderRadius:"10px"}		
 					}}
 					value={value}
 					onChange={(e: ChangeEvent<HTMLInputElement>) => {handleChange(e)}}
@@ -44,6 +43,7 @@ const Input: React.FC<InputProps> = ({ label, icon, type, value, handleChange, w
 					InputProps={{
 						startAdornment: <InputAdornment position="start">
 						<img src={icon} alt="icon"/></InputAdornment>,
+						sx: {borderRadius:"10px"}	
 					}}
 					helperText={message}
 					value={value}
@@ -53,11 +53,10 @@ const Input: React.FC<InputProps> = ({ label, icon, type, value, handleChange, w
 		</div>
 	);
 };
-
 export default Input;
 
 const StyledTextField = styled(TextField)`
-  ::placeholder {
-    font-size: 11px;
-  }
+	::placeholder {
+		font-size: 11px;
+	}
 `;

@@ -1,4 +1,4 @@
-import { fetchChatRoomList, addChatRoom } from "../api/chatApi";
+import { fetchMyChatRoom, addChatRoom } from "../api/chatApi";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { pushNotification } from "../utils/notification";
 import { chatRoomType } from "../types/chatType";
@@ -8,12 +8,12 @@ const ChatRoomList = () => {
     const navigate = useNavigate();
 
     // 전체 조회
-    const { data: rooms, isLoading, isError } = useQuery(["rooms"], fetchChatRoomList);
+    const { data: myRooms, isLoading, isError } = useQuery(["myRooms"], fetchMyChatRoom);
     
     const queryClient = useQueryClient();
 	const commentAddMutation = useMutation(addChatRoom, {
 		onSuccess: (res) => {
-			queryClient.invalidateQueries(["rooms"]);
+			queryClient.invalidateQueries(["myRooms"]);
 		},
 		onError: () => {
 			pushNotification("채팅 실패", "error");
@@ -27,7 +27,7 @@ const ChatRoomList = () => {
         <div>
             <button onClick={() => commentAddMutation.mutate()}>추가하기</button>
             <ul>
-                {rooms.map((room: chatRoomType) => {
+                {myRooms.map((room: chatRoomType) => {
                     return (
                     <li>
                         <span>{room.name}</span>

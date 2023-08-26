@@ -9,7 +9,7 @@ import { User } from "../types/userType";
 import axios from "axios";
 import styled from "styled-components";
 import { Flex } from "../components/common/GlobalStyle";
-import { mainlogo, kakaologin } from "../asstes/asstes";
+import { h_mainLogo, kakaologin } from "../asstes/asstes";
 
 const SignIn = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -88,7 +88,7 @@ const SignIn = () => {
 	return (
 		<LoginLayout>
 			<LogoSection>
-				<img src={mainlogo} alt='로고' />
+				<img src={h_mainLogo} alt='로고' />
 			</LogoSection>
 			<InputSection>
 				<p>이메일주소</p>

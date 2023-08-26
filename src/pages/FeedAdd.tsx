@@ -7,6 +7,7 @@ import { postFeed } from "../api/feedApi";
 import { pushNotification } from "../utils/notification";
 import { RootState } from "../redux/config/configStore";
 import FeedForm from "../components/feedForm/FeedForm";
+import axios from "axios";
 
 const FeedAdd = () => {
 	const location = useSelector((state: RootState) => {
@@ -26,6 +27,7 @@ const FeedAdd = () => {
 		purchaseDate: date,
 		location: `${location.sido} ${location.sigungu} ${location.dong}`,
 		images: [],
+		previews: [],
 	};
 
 	const navigate = useNavigate();
@@ -33,8 +35,12 @@ const FeedAdd = () => {
 		onSuccess: (data) => {
 			navigate(-1);
 		},
-		onError: (error) => {
-			pushNotification("게시물 등록에 실패했습니다", "error");
+		onError: (response) => {
+			if (axios.isAxiosError(response) && response.response) {
+				pushNotification(response.response.data.error.message, "error");
+			} else {
+				pushNotification("게시물 등록에 실패했습니다.", "error");
+			}
 		},
 	});
 

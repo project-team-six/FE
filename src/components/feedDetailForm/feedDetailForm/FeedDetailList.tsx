@@ -7,7 +7,7 @@ import { RootState } from "../../../redux/config/configStore";
 import { pushNotification } from "../../../utils/notification";
 import { priceUtils } from "../../../utils/priceUtils";
 import * as S from "./style";
-import { chat, pined, pin, report, profileImageDefault, leftArrow, rightArrow} from "../../../asstes/asstes";
+import { chat, pined, pin, report, profileImageDefault, leftArrow, rightArrow } from "../../../asstes/asstes";
 
 const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value: boolean) => void }) => {
 	const [SelectImage, setSelectImage] = useState("");
@@ -90,7 +90,7 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 		onClose(true);
 		closedMutation.mutate(postId); // 서버에도 반영
 	};
-	
+
 	return (
 		<S.LayoutBox>
 			{isLoading ? (
@@ -136,8 +136,8 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 							<div className='profile-img'>
 								<img
 									src={
-										userInfo.profileImageUrl !== undefined
-											? userInfo.profileImageUrl
+										detailFeed.profileImageUrl !== undefined
+											? detailFeed.profileImageUrl
 											: profileImageDefault
 									}
 									alt='profile'
@@ -162,11 +162,7 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 						<div>
 							<img src={SelectImage} alt='선택된된 이미지' />
 							<S.ImageList>
-								<img
-									src={leftArrow}
-									alt='왼쪽 화살표'
-									onClick={moveLeft}
-								/>
+								<img src={leftArrow} alt='왼쪽 화살표' onClick={moveLeft} />
 								{detailFeed?.imageUrlList.map((image: string, index: number) => {
 									return (
 										<img
@@ -180,17 +176,11 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 										/>
 									);
 								})}
-								<img
-									src={rightArrow}
-									alt='오른쪽 화살표'
-									onClick={moveRight}
-								/>
+								<img src={rightArrow} alt='오른쪽 화살표' onClick={moveRight} />
 							</S.ImageList>
 						</div>
 						<div>
-							<h2>
-								{priceUtils(detailFeed.price)}
-							</h2>
+							<h2>{priceUtils(detailFeed.price)}</h2>
 							<p>
 								원가 <span> : {priceUtils(detailFeed.originPrice)}</span>
 							</p>

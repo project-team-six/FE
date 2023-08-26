@@ -1,6 +1,20 @@
 import { commentDeleteType, commentEditType, commentPostType } from "../types/feedType";
 import { instance } from "./instance";
 
+//게시물 전체 조회
+export const fetchFeedList = async (
+	location: string,
+	category: string,
+	status: string,
+	titleOrContent: string,
+	page: number
+) => {
+	const response = await instance.get(
+		`/post?location=${location}&category=${category}&status=${status}&titleOrContent=${titleOrContent}&page=${page}`
+	);
+	return response.data.data;
+};
+
 // 게시물
 export const fetchFeed = async (postId: number) => {
 	// 게시물 상세 조회
@@ -31,19 +45,6 @@ export const editFeed = async (postId: number, newFeed: FormData) => {
 	return response;
 };
 
-export const fetchFeedList = async (
-	location: string,
-	category: string,
-	status: string,
-	titleOrContent: string,
-	page: number
-) => {
-	const response = await instance.get(
-		`/post?location=${location}&category=${category}&status=${status}&titleOrContent=${titleOrContent}&page=${page}`
-	);
-	return response.data.data;
-};
-
 // 댓글
 export const postComment = async (payload: commentPostType) => {
 	// 댓글 등록
@@ -58,15 +59,18 @@ export const fetchComments = async (postId: number) => {
 };
 
 export const editComment = async (payload: commentEditType) => {
+	// 댓글 수정
 	const response = await instance.put(`post/${payload.postId}/comment/${payload.commentId}`, payload.commentContent);
 	return response;
 };
 
 export const deleteComment = async (payload: commentDeleteType) => {
+	// 댓글 삭제
 	const response = await instance.delete(`post/${payload.postId}/comment/${payload.commentId}`);
 	return response;
 };
 
+//게시물 찜하기
 export const postPin = async (postId: number) => {
 	const response = await instance.post(`/post/${postId}/pin`);
 	return response;

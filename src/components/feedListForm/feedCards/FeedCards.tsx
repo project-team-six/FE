@@ -1,8 +1,9 @@
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router";
 import * as S from "./style";
-import { fetchFeedList } from "../../api/feedApi";
+import { fetchFeedList } from "../../../api/feedApi";
 import { useCallback, useEffect } from "react";
+import { priceUtils } from "../../../utils/priceUtils";
 
 const FeedCards = ({
 	location,
@@ -76,26 +77,26 @@ const FeedCards = ({
 							<img src={item.imageUrlList[0]} alt='게시글첫번째사진' />
 						</S.FeedImageBox>
 						<S.FeedInfoBox>
-							<S.UserLocationTimeBox>
-								<p>{item.location}</p>
-								<p>{formatTimeDifference(item.createdAt)}</p>
-							</S.UserLocationTimeBox>
 							<S.ContentBox>
-								<p style={{ fontWeight: "700" }}>{item.title}</p>
 								<p
 									className='ellipsis'
 									style={{
-										width: "255px",
+										width: "285px",
 										whiteSpace: "nowrap",
 										overflow: "hidden",
 										textOverflow: "ellipsis",
 									}}>
-									{item.content}
+									{item.title}
 								</p>
 							</S.ContentBox>
-							<div className='priceBox'>
-								<p>{item.price}</p>
-							</div>
+							<S.PriceBox>
+								<p>{priceUtils(item.price)}</p>
+							</S.PriceBox>
+							<S.UserLocationTimeBox>
+								<p>{item.location}</p>
+								<p>ㅣ</p>
+								<p>{formatTimeDifference(item.createdAt)}</p>
+							</S.UserLocationTimeBox>
 						</S.FeedInfoBox>
 					</S.FeedCard>
 				</div>

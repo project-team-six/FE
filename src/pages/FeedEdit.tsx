@@ -8,7 +8,7 @@ const FeedEdit = () => {
 	const { id } = useParams();
 	const postId = Number(id);
 	const { data: detailFeed, isLoading, isError } = useQuery( ["detailFeed", postId], () => fetchFeed(postId) );
-	
+
 	if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error...</div>;
 
@@ -24,6 +24,7 @@ const FeedEdit = () => {
 		purchaseDate: detailFeed.purchaseDate,
 		location: detailFeed.location,
 		images: [],
+		previews: detailFeed.imageUrlList,
 	};
 
 	return <FeedForm initialValue={initialValue} btnName='수정하기' postId={postId}/>;

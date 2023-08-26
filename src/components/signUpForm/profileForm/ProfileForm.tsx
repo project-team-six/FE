@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import * as S from "./style";
-import { profileImageDefault } from "../../../asstes/asstes";
+import { profileDefault, editIcon } from "../../../asstes/asstes";
 
 const ProfileForm = ({setProfile}: {setProfile: React.Dispatch<React.SetStateAction<File | undefined>>}) => {
     const [imagePreview, setImagePreview] = useState<string>(); // 썸네일
@@ -28,12 +28,12 @@ const ProfileForm = ({setProfile}: {setProfile: React.Dispatch<React.SetStateAct
         <S.ImgForm>
             {imagePreview?
             <S.Img src={imagePreview} alt="profile"/> : 
-            <S.Img src={profileImageDefault} alt="profileImageDefault"/>
+            <S.Img src={profileDefault} alt="profileImageDefault"/>
             }
             <S.ImgFormButton>
                 <S.CustomImgInput onChange={changeProfile} />
-                <S.ImgButton as="label" htmlFor="profile">업로드</S.ImgButton>
-                <S.ImgButton onClick={clickDeleteProfileBtn}>초기화</S.ImgButton>
+                <S.ImgButton as="label" htmlFor="profile"><img src={editIcon} alt="edit"/></S.ImgButton>
+                <S.ResetButton onClick={clickDeleteProfileBtn}>프로필 초기화</S.ResetButton>
             </S.ImgFormButton>
         </S.ImgForm>
     )

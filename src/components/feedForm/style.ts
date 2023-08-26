@@ -4,119 +4,108 @@ export const MainContentWrapper = styled.div`
     display: grid;
     place-items: center;
     margin: 0 auto;
-    width: 57%;
-    margin-top: 100px;
-    margin-bottom: 165px;
+    margin-top: 57px;
+    max-width: 1920px;
+	min-width: 1290px;
+	width: 100%;
 `;
 
-type InputSpanProps = {
+type SpanProps = {
     fontSize: number;
     fontWeight: string;
 };
 
-export const Span = styled.span<InputSpanProps>`
+export const Span = styled.span<SpanProps>`
     font-size: ${(props) => props.fontSize}px;
     font-weight: ${(props) => props.fontWeight};
 `;
 
 export const Line = styled.div`
+	width: 100%;
+	height: 2px;
+	background-color: #2BB673;
+	margin-top: 22px;
+	margin-bottom: 42px;
+`;
+
+export const SubLine = styled.div`
+	width: 100%;
+	height: 1px;
+	background-color: #EDEDED;
+	margin-top: 48px;
+	margin-bottom: 48px;
+`;
+
+export const Section = styled.section`
+    width: 940px;
+    margin-bottom: 40px;
+`;
+
+export const SectionDiv = styled.div`
     width: 100%;
-    height: 1px;
-    background-color: #D9D9D9;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-left: 67px;
 `;
 
-export const TitleDiv = styled.div`
-    text-align: left;
-    width: 100%;
-`;
-
-export const FormSection = styled.section`
-    width: 100%;
-`;
-
-export const CategoryDiv = styled.div`
-    display: flex;
-    align-items: center; 
-`;
-
-export const CategoryLabel = styled.label`
-    white-space: nowrap; 
-    margin-right: 12.5%;
-`;
-
-export const ContentWrapper = styled.div`
+export const LabelDiv = styled.div`
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 90px;
 `;
 
-export const LocationLabel = styled.label`
-    white-space: nowrap; 
-    margin-right: 16%;
+export const Label = styled.label`
+    font-size: 15px;
+    width: 90px;
+    text-align: right;
+`;
+
+export const InputDiv = styled.div`
+    margin-left: 57px;
+    margin-bottom: 67px;
+`;
+
+export const InputSection = styled.section`
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
 `;
 
 export const LocationDiv = styled.div`
-    width: 74%;
-    height: 40px;
-    background-color: #6F8A6B;
-    display: grid;
+    width: 758px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
     place-items: center;
+    border: 1px solid #2BB673;
     border-radius: 4px;
+    gap: 10px;
 `;
 
 export const LocationSpan = styled.span`
-    color: #FFFFFF;
+    color: #2BB673;
 `;
 
-export const PrecautionContentWrapper = styled.section`
-    display: flex;
-    width: 100%;
+export const LocationIcon = styled.img`
+    width: 17px;
+    height: 21px;
 `;
 
-export const PrecautionsLabel = styled.label`
-    white-space: nowrap; 
-    margin-right: 12.5%;
-`;
-
-export const PrecautionsDiv = styled.div`
-    font-size: 15px;
-    width: 92%;
-    height: 150px;
-    border-radius: 4px;
-    border: 1px solid hsl(0, 0%, 80%);
-    padding: 8px 8px;
-    padding-left: 20px;
-`;
-
-export const CheckboxDiv = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-    margin-right: 50px;
-`;
-
-export const CheckboxLabel = styled.label`
-    margin-right: 10px;
-`;
-
-export const CheckboxInput = styled.input`
-    cursor: pointer;
-`;
-
-export const ButtonSection = styled.section`
+export const ButtonDiv = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 100px;
-    gap: 100px;
+    gap: 28px;
 `;
 
-export const Button = styled.button`
-    width: 130px;
-    height: 30px;
-    border-radius: 20px;
-    color: #FFFFFF;
-    background-color: #6F8A6B;
-    cursor: pointer;
+type ButtonProps = {
+    color: string;
+    $backgroundColor: string;
+};
+
+export const Button = styled.button<ButtonProps>`
+    color: #${(props) => props.color};
+    background-color: #${(props) => props.$backgroundColor};
+    width: 285px;
+    height: 55px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 700;
 `;

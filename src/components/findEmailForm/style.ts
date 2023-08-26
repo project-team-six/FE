@@ -6,23 +6,44 @@ export const ResultDiv = styled.div`
 	margin-top: 40px;
 `;
 
-export const ResultEmailSection = styled.section`
-	display: flex;
-	justify-content: center; /* 수평 가운데 정렬 */
-	align-items: center; /* 수직 가운데 정렬 */
-	background-color: red;
+export const ResultImg = styled.img`
+	width: 117px;
+	height: 111px;
+	margin-bottom: 65px;
 `;
 
-export const ResultEmailDiv = styled.div`
-	width: 330px;
-	height: 40px;
-	background-color: #f3f3f3;
-	margin-top: 40px;
-	margin-bottom: 40px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+type SpanProps = {
+	color: string;
+};
+
+export const Span = styled.span<SpanProps>`
+	font-size: 15px;
+	font-weight: 700;
+	color: #${(props) => props.color};
+`;
+
+export const SpanDiv = styled.div`
+	margin-bottom: 60px;
 	text-align: center;
+`;
+
+export const Div = styled.div`
+	margin-bottom: 10px;
+`;
+
+type ButtonProps = {
+	$backgroundColor: string;
+};
+
+export const ResultBtn = styled.button<ButtonProps>`
+	width: 285px;
+	height: 55px;
+	border-radius: 10px;
+	background-color: ${(props) => props.$backgroundColor};
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 35px;
 `;
 
 export const ResultSection = styled.section`
@@ -30,19 +51,4 @@ export const ResultSection = styled.section`
 	flex-direction: column;
 	gap: 10px;
 	margin-bottom: 100px;
-`;
-
-type ButtonProps = {
-	color: string;
-	$backgroundColor?: string;
-	borderColor?: string;
-};
-
-export const ResultBtn = styled.button<ButtonProps>`
-	width: 140px;
-	height: 35px;
-	border-radius: 20px;
-	background-color: ${(props) => props.$backgroundColor};
-	border: ${(props) => props.borderColor};
-	color: ${(props) => props.color};
 `;
