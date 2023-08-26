@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export const CommentBox = styled.article`
     max-width : 1280px;

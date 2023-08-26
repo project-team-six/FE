@@ -1,26 +1,35 @@
-import React from "react";
-import * as S from "./MypageStyle";
-import { profileImageDefault } from "../../asstes/asstes";
+import {profileImg } from "../../asstes/asstes";
+import styled from "styled-components";
+import { Flex } from "../common/GlobalStyle";
 
-const UserProfile = ({mypage}:{mypage:any}) => {
+const UserProfile = ({ mypage }: { mypage: any }) => {
     return (
-        <S.UserProfile>
-            <div className="profile-img">
+        <ProfileImg>
+            <div>
                 {mypage?.data?.profileImageUrl ? (
-                    <img
-                        src={`${mypage.data.profileImageUrl}`}
-                        alt="업로드된 이미지"
-                    />
-                ) : (
-                    <img
-                        src={profileImageDefault}
-                        alt="기본 프로필이미지"
-                    />
-                )}
+                        <img
+                            src={`${mypage.data.profileImageUrl}`}
+                            alt="업로드된 이미지"
+                        />
+                    ) : (
+                        <img src={profileImg} alt="기본 프로필이미지" />
+                    )}
             </div>
-            <h2>{mypage?.data?.nickname}</h2>
-        </S.UserProfile>
+        </ProfileImg>
     );
 };
 
 export default UserProfile;
+
+const ProfileImg = styled.section`
+    max-width: 295px;
+    width: 100%;
+	min-width:140px;
+    height: 100%;
+    ${Flex}
+    img{
+        width:120px;
+        height:120px;
+        border-radius:100%;
+    }
+`;

@@ -1,7 +1,7 @@
-import { createGlobalStyle, css, styled } from "styled-components";
+import styled from 'styled-components'
+import { createGlobalStyle, css } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -25,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 14px;
         ol, ul {list-style:none};
 
-        color: rgb(29, 29, 31);
+        color: #333;
     }
 
     body {
@@ -52,6 +52,7 @@ export const cursor = css`
 
 export const Layout = css`
 	min-width: 1280px;
+    max-width : 1920px;
 	margin: 0 auto;
 `;
 

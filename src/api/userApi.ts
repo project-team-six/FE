@@ -30,16 +30,30 @@ export const getMyPage = async (userId: Number) => {
 	return response.data;
 };
 
-export const putMyPageEdit = async (userId: Number, nickname: string, password: string, phoneNumber: string) => {
-	const data = { nickname, password, phoneNumber };
-	const response = await instance.put(`/auth/mypage/${userId}`, data);
-	return response.data;
+export const putMyPageEdit = async (userId: Number, nickname: string, phoneNumber: string) => {
+	const data = { nickname, phoneNumber };
+		const response = await instance.put(`/auth/mypage/${userId}`, data);
+	console.log("putMypageResponse", response)
+	return response;
+}
+
+export const putMyPagePasswordEdit = async (userId: Number, password:string) => {
+	const data = { password };
+	const response = await instance.put(`/auth/mypagePassword/${userId}`, data);
+	console.log("putPasswordresponse", response)
+	return response;
 };
 
 export const putMyPageEditImage = async (userId: Number, formData: FormData) => {
-	const response = await instance.put(`/auth/mypage/${userId}/image`, formData, {
+	const response = await instance.put(`/auth/mypageImage/${userId}`, formData, {
 		headers: { "Content-Type": "multipart/form-data" },
 	});
+	return response;
+};
+
+export const postPopularity = async (receiverUserId: number) => {
+	const response = await instance.post(`/popularity/${receiverUserId}`);
+	console.log("postPopularity", response)
 	return response;
 };
 

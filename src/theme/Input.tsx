@@ -11,6 +11,7 @@ interface InputProps {
 	width: Number; // input 태그 넓이
 	placeholder: string; // 안내 메시지
 	message: string; // 오류 메세지
+	pattern?:string;
 }
 
 const Input: React.FC<InputProps> = ({ label, icon, type, value, handleChange, width, placeholder, message }: InputProps) => {

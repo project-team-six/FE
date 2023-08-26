@@ -21,6 +21,7 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 	const userInfo = useSelector((state: RootState) => {
 		return state.tokenSlice.decodeToken;
 	});
+	console.log(userInfo)
 	const userId: Number = Number(userInfo.userId); // 사용자 ID
 
 	const queryClient = useQueryClient();
@@ -144,23 +145,6 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 							</div>
 							<div>
 								<h1>{detailFeed.nickname}</h1>
-								<S.Temperature>
-									<p>매너온도</p>
-									<div>
-										<span
-											style={{
-												marginLeft: `${detailFeed.mannerTemperature - 2}%`,
-											}}>
-											▼{detailFeed.mannerTemperature}°C
-										</span>
-									</div>
-									<S.ProgressBar>
-										<S.Inner
-											style={{
-												width: `${detailFeed.mannerTemperature}%`,
-											}}></S.Inner>
-									</S.ProgressBar>
-								</S.Temperature>
 							</div>
 						</S.UserProfile>
 						<S.Dates>
