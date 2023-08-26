@@ -7,7 +7,7 @@ import { pushNotification } from "../../utils/notification";
 import { setLocation } from "../../redux/modules/locationSet";
 import { locationType } from "../../types/feedType";
 import styled from "styled-components";
-import { profileImageDefault, locationIcon, peopleIcon, addFeedIcon, logoutIcon } from "../../asstes/asstes";
+import { profileImageDefault, p_location } from "../../asstes/asstes";
 import { Flex } from "./GlobalStyle";
 import { ModalLayout } from "./commonFormStyles";
 
@@ -43,7 +43,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 			};
 			dispatch(setLocation(address));
 		}
-	}, [userLocationValue]);
+	}, [userLocationValue, dispatch]);
 
 	const clickFeedAddBtn = () => {
 		if (userLocationInfo.sido === "" && userLocationValue.trim() === "") {
@@ -71,12 +71,23 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 							</ProfileImgBox>
 							<NicknameBox>
 								<p>{userInfo.nickname}</p>
-								<p>{userInfo.sub}</p>
+								<p style={{ fontSize: "13px", fontWeight: "normal", color: "#6A6A6A" }}>
+									{userInfo.sub}
+								</p>
 							</NicknameBox>
 						</UserInfoSection>
 						<ModalNavSection onClick={modalHandle}>
-							<ModalButton onClick={handleNavigate("/locationsetting")}>
-								<img src={locationIcon} alt='위치' />
+							<ModalButton
+								onClick={handleNavigate("/locationsetting")}
+								style={{
+									borderBottom: "0.5px solid #d3d3d3",
+									fontSize: "10px",
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									gap: "5px",
+								}}>
+								<img src={p_location} alt='위치' />
 								{userLocationInfo.sido === "" && userInfo.location.trim() === "" ? (
 									<p>지역을 설정해주세요</p>
 								) : (
@@ -84,15 +95,12 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 								)}
 							</ModalButton>
 							<ModalButton onClick={handleNavigate(`/mypage/${userInfo.userId}`)}>
-								<img src={peopleIcon} alt='사람' />
 								<p>마이페이지</p>
 							</ModalButton>
 							<ModalButton onClick={clickFeedAddBtn}>
-								<img src={addFeedIcon} alt='게시물추가' />
 								<p>게시물작성</p>
 							</ModalButton>
-							<ModalButton onClick={logoutHandle} style={{ borderRadius: "0 0 12px 12px" }}>
-								<img src={logoutIcon} alt='로그아웃' />
+							<ModalButton onClick={logoutHandle} style={{ borderRadius: "0 0 6px 6px" }}>
 								<p>로그아웃</p>
 							</ModalButton>
 						</ModalNavSection>
@@ -107,13 +115,13 @@ export default ProfileModal;
 
 const ProfileLayout = styled.div`
 	position: absolute;
-	right: 40px;
-	top: 50px;
-	border: 1.6px solid #6f8a6b;
-	width: 320px;
-	height: 340px;
+	right: 15%;
+	top: 8%;
+	width: 220px;
+	height: 250px;
 	background-color: white;
-	border-radius: 14px;
+	border-radius: 6px;
+	z-index: 998;
 `;
 
 const UserInfoSection = styled.section`
@@ -121,13 +129,13 @@ const UserInfoSection = styled.section`
 	align-items: center;
 	padding-left: 15px;
 	gap: 15px;
-	height: 90px;
-	border-bottom: 0.5px solid grey;
+	height: 80px;
+	border-bottom: 0.5px solid #d3d3d3;
 `;
 
 const ProfileImgBox = styled.div`
-	width: 50px;
-	height: 50px;
+	width: 45px;
+	height: 45px;
 	border-radius: 100%;
 	${Flex}
 	img {
@@ -140,30 +148,31 @@ const ProfileImgBox = styled.div`
 const NicknameBox = styled.div`
 	p {
 		font-size: 15px;
+		font-weight: bold;
 	}
-	margin-right: 50px;
 `;
 
 const ModalNavSection = styled.section`
-	height: 300px;
+	height: 170px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 `;
 
 const ModalButton = styled.button`
-	display: flex;
-	align-items: center;
-	gap: 20px;
-	padding-left: 20px;
-	height: 62px;
+	height: 42.5px;
 	width: 100%;
 	cursor: pointer;
 	&:hover {
-		background-color: rgba(111, 138, 107, 0.1);
+		background-color: #efefef;
 	}
 	img {
 		height: 16px;
 		width: 16px;
 	}
 	p {
-		font-size: 15px;
+		font-size: 13px;
+		color: #6a6a6a;
 	}
 `;

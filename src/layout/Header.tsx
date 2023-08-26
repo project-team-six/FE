@@ -131,7 +131,7 @@ const LogoSection = styled.section`
 	cursor: pointer;
 	img {
 		margin-left: 20px;
-		width: 130px;
+		width: 115px;
 		height: 50px;
 	}
 `;
