@@ -50,10 +50,10 @@ function Footer() {
 						</div>
 					</DetailSection>
 				</FooterBox>
+				<FlexBox style={{ padding: "10px 0 10px 0", fontSize: "11px", color: "white" }}>
+					&copy; 2023 Sobun Sobun Inc. All rights reserved
+				</FlexBox>
 			</FooterLayout>
-			<FlexBox style={{ padding: "10px 0 10px 0", fontSize: "11px" }}>
-				&copy; 2023 Sobun Sobun Inc. All rights reserved
-			</FlexBox>
 		</div>
 	);
 }
@@ -67,9 +67,9 @@ const FooterLayout = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+	background-color: #393939;
 	h6 {
+		color: white;
 		font-size: 14px;
 		margin-bottom: 15px;
 	}
@@ -93,6 +93,7 @@ const SummarySection = styled.section`
 	}
 	p {
 		font-size: 13px;
+		color: white;
 	}
 `;
 const DetailSection = styled.section`
@@ -104,10 +105,12 @@ const DetailSection = styled.section`
 const MemberItem = styled.li`
 	font-size: 12px;
 	margin-bottom: 5px;
+	color: white;
 `;
 const PageNavBtn = styled.button`
 	display: flex;
 	flex-direction: column;
 	font-size: 12px;
 	margin-bottom: 5px;
+	color: white;
 `;

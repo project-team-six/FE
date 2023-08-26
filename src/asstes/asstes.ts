@@ -1,14 +1,10 @@
 import addFeedIcon from "./addFeedIcon.png";
-import h_alertIcon from "./h_alertIcon.png";
 import chat from "./chat.png";
-import h_chatIcon from "./h_chatIcon.png";
 import edit from "./edit.png";
 import findEmailLogo from "./findEmailLogo.png";
 import kakaologin from "./kakaologin.png";
 import leftArrow from "./leftArrow.png";
-import locationIcon from "./locationIcon.png";
 import logoutIcon from "./logoutIcon.png";
-import h_mainLogo from "./h_mainLogo.png";
 import peopleIcon from "./peopleIcon.png";
 import pin from "./pin.png";
 import pined from "./pined.png";
@@ -23,8 +19,25 @@ import emailIcon from "./emailIcon.png";
 import userIcon from "./userIcon.png";
 import phoneIcon from "./phoneIcon.png";
 import pwIcon from "./pwIcon.png";
-import mainBanner from "./mainBanner.png";
+
+// 헤더
+import h_mainLogo from "./h_mainLogo.png";
+import h_chatIcon from "./h_chatIcon.png";
+import h_alertIcon from "./h_alertIcon.png";
 import h_profile from "./h_profile.png";
+
+//프로필 모달
+import p_location from "./p_location.png";
+
+// 메인(Home)
+import mainBanner from "./mainBanner.png";
+import socks from "./socks.png";
+import cleaner from "./cleaner.png";
+import bottle from "./bottle.png";
+import carrot from "./carrot.png";
+import carrrealTimeChat1 from "./realTimeChat1.png";
+import carrrealTimeChat2 from "./realTimeChat2.png";
+import carrrealTimeChat3 from "./realTimeChat3.png";
 
 // 게시물 등록
 import feedImageAddIcon from "./feedImageAddIcon.png";
@@ -54,7 +67,6 @@ export {
 	findEmailLogo,
 	kakaologin,
 	leftArrow,
-	locationIcon,
 	logoutIcon,
 	h_mainLogo,
 	peopleIcon,
@@ -82,10 +94,19 @@ export {
 	h_profile,
 	h_alertIcon,
 	h_chatIcon,
+	socks,
+	cleaner,
+	bottle,
+	carrot,
+	carrrealTimeChat1,
+	carrrealTimeChat2,
+	carrrealTimeChat3,
+	p_location,
 	oneIcon,
 	twoIcon,
 	threeIcon,
 	fourIcon,
 	fiveIcon,
 	precautionsIcon,
+
 };

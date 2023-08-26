@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery, useQueryClient } from "react-query";
-import { NavigateFunction, useNavigate } from "react-router";
 import styled from "styled-components";
 import { deleteAlert, fetchAlert } from "../../api/alertApi";
 import { AlertList } from "../../types/alertType";
@@ -13,10 +12,6 @@ type AlertModalProps = {
 };
 const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAlertCount }) => {
 	SseAlert();
-	const navigate: NavigateFunction = useNavigate();
-	const handleNavigate = (path: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		navigate(path);
-	};
 
 	//알림 조회
 	const {
@@ -35,7 +30,7 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 				deleteAlertClient.invalidateQueries(["alertList"]);
 			})
 			.catch(() => {
-				console.log("알림삭제 실패 무슨 연휴일까나!");
+				console.log("알림삭제 실패");
 			});
 	};
 	if (isLoading) return <div>Loading...</div>;
@@ -81,6 +76,7 @@ const AlertLayout = styled.div`
 	&::-webkit-scrollbar {
 		display: none;
 	}
+	z-index: 998;
 `;
 const AlertSection = styled.div`
 	display: flex;
