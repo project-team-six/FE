@@ -82,4 +82,10 @@ export {
 	h_profile,
 	h_alertIcon,
 	h_chatIcon,
+	oneIcon,
+	twoIcon,
+	threeIcon,
+	fourIcon,
+	fiveIcon,
+	precautionsIcon,
 };

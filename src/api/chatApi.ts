@@ -1,9 +1,14 @@
 import { instance } from "./instance";
 
 // 채팅방
-export const fetchChatRoomList = async () => { // 전체 조회
-	const response = await instance.get("/chat/rooms");
-	return response.data;
+export const fetchMyChatRoom = async () => { // 내 채팅방 조회
+	const response = await instance.get("/chat/rooms/user");
+	return response.data; 
+};
+
+export const fetchChatRoom = async (roomId: string) => { // 채팅방 상세 조회
+	const response = await instance.get(`/chat/room/${roomId}`);
+	return response;
 };
 
 export const addChatRoom = async () => { // 생성
@@ -13,11 +18,6 @@ export const addChatRoom = async () => { // 생성
 
 export const enterChatRoom = async (roomId: string) => { // 입장
     const response = await instance.get(`/chat/room/enterA/${roomId}`);
-	return response;
-};
-
-export const fetchChatRoom = async (roomId: string) => { // 채팅방 상세 조회
-	const response = await instance.get(`/chat/room/${roomId}`);
 	return response;
 };
 
