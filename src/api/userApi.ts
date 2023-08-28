@@ -33,14 +33,12 @@ export const getMyPage = async (userId: Number) => {
 export const putMyPageEdit = async (userId: Number, nickname: string, phoneNumber: string) => {
 	const data = { nickname, phoneNumber };
 		const response = await instance.put(`/auth/mypage/${userId}`, data);
-	console.log("putMypageResponse", response)
 	return response;
 }
 
 export const putMyPagePasswordEdit = async (userId: Number, password:string) => {
 	const data = { password };
 	const response = await instance.put(`/auth/mypagePassword/${userId}`, data);
-	console.log("putPasswordresponse", response)
 	return response;
 };
 

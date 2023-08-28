@@ -28,7 +28,6 @@ const ProfileEditForm = () => {
     const auth: string = useSelector((state: RootState) => {
         return state.tokenSlice.decodeToken.auth;
     });
-    console.log(auth);
 
     // 유효성 검사
     const isInfoValid = () => {
@@ -72,17 +71,9 @@ const ProfileEditForm = () => {
                     console.log(error);
                     pushNotification("수정 실패. 비밀번호와 비밀번호 확인을 다시 봐주세요", "error");
                 });
-        } else {
-            pushNotification("수정 실패. 비밀번호와 비밀번호 확인을 다시 봐주세요", "error");
         }
     };
 
-    // const passwordMismatch = () => {
-    //     if (password !== confirmPassword) {
-    //         pushNotification("비밀번호가 일치하지 않습니다.", "error");
-    //         console.log(password, confirmPassword)
-    //     }
-    // };
     return (
         <S.EditForm onSubmit={submitHandler}>
             {/* 닉네임 수정 */}
@@ -90,11 +81,9 @@ const ProfileEditForm = () => {
                 label={"닉네임"}
                 type="text"
                 value={nickname}
-                handleChange={(e: ChangeEvent<HTMLInputElement>) => {
-                    setNickname(e.target.value);
-                }}
+                handleChange={(e: ChangeEvent<HTMLInputElement>) => setNickname(e.target.value)}
                 placeholder=""
-                width={30}
+                width={35}
                 message={""}
                 icon={userIcon}
             />
@@ -103,9 +92,9 @@ const ProfileEditForm = () => {
                 label={"전화번호"}
                 type="tel"
                 value={phoneNumber}
-                handleChange={(e) => setPhoneNumber(e.target.value)}
+                handleChange={(e:ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value)}
                 placeholder="01012345678"
-                width={30}
+                width={35}
                 message={""}
                 icon={phoneIcon}
             />
@@ -119,15 +108,8 @@ const ProfileEditForm = () => {
                 />
             )}
             <S.Btn>
-                <button type="submit">수정 완료</button>
-                <button
-                    type="button"
-                    onClick={() => {
-                        navigate(-1);
-                    }}
-                >
-                    취소
-                </button>
+                <S.SubmitBtn type="submit" onClick={() => navigate(-1)}>수정 완료</S.SubmitBtn>
+                <S.BackBtn type="button" onClick={() => navigate(-1)}>뒤로 가기</S.BackBtn>
             </S.Btn>
         </S.EditForm>
     );
