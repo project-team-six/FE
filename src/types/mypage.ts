@@ -5,7 +5,7 @@ export type Post = {
   imageUrlList: string;
   title: string;
   content: string;
-  price: number;
+  price: string;
 };
 
 export type MypageEditType = {

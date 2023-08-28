@@ -24,11 +24,11 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         font-size: 14px;
         ol, ul {list-style:none};
-
         color: #333;
     }
 
     body {
+        font-family: 'Pretendard';
         width: 100%;
         height: 100%;
     }

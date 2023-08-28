@@ -18,7 +18,10 @@ import TabContext from "@mui/lab/TabContext";
 
 const MyPage: React.FC = () => {
     const [value, setValue] = React.useState("one");
-    const TabChangehandler = (event: React.SyntheticEvent, newValue: string) => {
+    const TabChangehandler = (
+        event: React.SyntheticEvent,
+        newValue: string
+    ) => {
         setValue(newValue); // 탭 변경
     };
 
@@ -38,7 +41,6 @@ const MyPage: React.FC = () => {
     const { data: mypage, isLoading } = useQuery(["mypage"], () =>
         getMyPage(userId)
     );
-    console.log("mypage", mypage);
 
     useEffect(() => {
         if (userLocation.sido === "") {
@@ -57,15 +59,23 @@ const MyPage: React.FC = () => {
                 <section>
                     <UserInfo mypage={mypage} />
                 </section>
-                <Box sx={{ width: "100%"}} >
-                    <TabContext value={value} >
-                        <Box sx={{ borderBottom: 1, borderColor: "divider", display:"flex", justifyContent:"center", margin:"40px 0 45px"}}>
+                <Box sx={{ width: "100%" }}>
+                    <TabContext value={value}>
+                        <Box
+                            sx={{
+                                borderBottom: 1,
+                                borderColor: "divider",
+                                display: "flex",
+                                justifyContent: "center",
+                                margin: "40px 0 45px",
+                            }}
+                        >
                             <Tabs
                                 value={value}
                                 onChange={TabChangehandler}
                                 aria-label="secondary tabs example"
                                 TabIndicatorProps={{
-                                    style: { background: "#2bb673"},
+                                    style: { background: "#2bb673" },
                                 }}
                             >
                                 <Tab
@@ -77,6 +87,7 @@ const MyPage: React.FC = () => {
                                         fontSize: "16px",
                                     }}
                                 />
+                                {+accountId === userId ? (
                                 <Tab
                                     value="two"
                                     label="관심글"
@@ -86,13 +97,15 @@ const MyPage: React.FC = () => {
                                         fontSize: "16px",
                                     }}
                                 />
+                                ) : null}
                             </Tabs>
                         </Box>
                         <TabPanel value="one">
                             <PostList
                                 posts={mypage?.data?.userPosts}
                                 navigate={navigate}
-																messege="아직 작성글이 없습니다."
+                                messege="아직 작성글이 없습니다."
+                                btnMessege = "소분하러 가기"
                             />
                         </TabPanel>
                         <TabPanel value="two">
@@ -101,7 +114,9 @@ const MyPage: React.FC = () => {
                                     <PostList
                                         posts={mypage?.data?.pinedPosts}
                                         navigate={navigate}
-																				messege="아직 관심글이 없습니다."
+                                        messege="아직 관심글이 없습니다."
+                                        btnMessege = "관심 등록하러 가기"
+
                                     />
                                 </>
                             ) : null}

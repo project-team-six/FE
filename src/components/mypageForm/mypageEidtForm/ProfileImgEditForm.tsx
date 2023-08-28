@@ -7,12 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/config/configStore";
 import { setDecodeToken } from "../../../redux/modules/user";
 import { pushNotification } from "../../../utils/notification";
-import { useNavigate } from "react-router";
 
 const ProfileImgEditForm = () => {
     const [selectedFile, setSelectedFile] = useState<File | undefined>();
     const imgRef = useRef<HTMLInputElement | null>(null);
-    const navigate = useNavigate();
 
     const userId: number = useSelector((state: RootState) => {
         return state.tokenSlice.decodeToken.userId;
@@ -35,8 +33,8 @@ const ProfileImgEditForm = () => {
         }
     };
 
-    const handleImageUpload = (e:any) => {
-			e.preventDefault()
+    const handleImageUpload = (e: any) => {
+        e.preventDefault();
         if (selectedFile) {
             let formData = new FormData();
             formData.append("file", selectedFile);
@@ -63,17 +61,7 @@ const ProfileImgEditForm = () => {
         <S.ProfileImg>
             <h1>회원정보 수정</h1>
             <form>
-                <div onClick={onImgUpdateHandler}>
-								<S.Avatar
-                    name="file"
-                    type="file"
-                    onChange={onChangeHandler}
-                    accept="image/jpg, image/png, image/jpeg"
-                    ref={imgRef}
-                />
-                    <span>파일 업로드</span>
-                </div>
-                <div className="image-container">
+                <S.ImgBox>
                     {selectedFile ? (
                         <img
                             src={URL.createObjectURL(selectedFile)}
@@ -84,33 +72,23 @@ const ProfileImgEditForm = () => {
                             <img src={profileImg} alt="기본 이미지" />
                         </span>
                     )}
-                    <button onClick={handleImageUpload}>
-                        <img src={pencil} alt="편집" />
-                    </button>
-                </div>
-                {/* <input
-          type="file"
-          id="file-input"
-          style={{ display: 'none' }}
-          onChange={onChangeHandler}
-          accept="image/jpg, image/png, image/jpeg"
-        /> */}
-
-                <S.ResetBtn
-                    type="button"
-                    onClick={() => setSelectedFile(undefined)}
-                >
+                    <S.Avatar onClick={onImgUpdateHandler}>
+                        <input
+                            name="file"
+                            type="file"
+                            onChange={onChangeHandler}
+                            accept="image/jpg, image/png, image/jpeg"
+                            ref={imgRef}
+                        />
+                        <span>파일 업로드</span>
+                    </S.Avatar>
+                    <S.EditBtn onClick={handleImageUpload}>
+                        <img src={pencil} alt="편집 아이콘" />
+                    </S.EditBtn>
+                </S.ImgBox>
+                <S.ResetBtn type="button" onClick={() => setSelectedFile(undefined)}>
                     프로필 초기화
                 </S.ResetBtn>
-
-                {/* <button onClick={onChangeHandler}><img src={pencil} alt="편집"/></button>
-						<S.ResetBtn
-							type='button'
-							onClick={() => {
-								setSelectedFile(undefined);
-							}}>
-							프로필 초기화
-						</S.ResetBtn> */}
             </form>
         </S.ProfileImg>
     );

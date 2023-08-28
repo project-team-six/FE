@@ -3,22 +3,24 @@ import { formatDistanceToNow } from "date-fns";
 import { ko } from "date-fns/locale";
 import { Post } from "../../types/mypage";
 import * as S from './MypageStyle'
+import { priceUtils } from "../../utils/priceUtils";
 
 
 interface PostListProps {
     posts: Post[];
     navigate:(url:string)=> void;
     messege : string;
+    btnMessege : string;
 }
 
-const PostList:React.FC<PostListProps> = ({posts, navigate, messege}) => {
+const PostList:React.FC<PostListProps> = ({posts, navigate, messege, btnMessege}) => {
     return (
         <S.Post>
             {posts?.length === 0 ? (
-                <div>
-                <h1>{messege}</h1>
-                <button></button>
-                </div>
+                <S.NonPost>
+                    <h1>{messege}</h1>
+                    <button onClick={()=>{navigate('/feedlist')}}>{btnMessege}</button>
+                </S.NonPost>
             ) : (
                 <S.ListWrapper className="list-wrapper">
                     {posts?.map(
@@ -35,7 +37,7 @@ const PostList:React.FC<PostListProps> = ({posts, navigate, messege}) => {
                                                 ? `${posts.content.slice(0, 34)}...`
                                                 : posts.content}
                                         </p>
-                                        <h4>{posts.price} </h4>
+                                        <h4>{priceUtils(posts.price)} </h4>
                                         <div>
                                             <span>{posts.location} | </span>
                                             <span className="day">
