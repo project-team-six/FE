@@ -39,4 +39,10 @@ export const IconBox = styled.div`
 	height: 440px;
 	border-radius: 20px;
 	background-color: #f5f5f5;
+	position: relative;
+	img {
+		opacity: 0;
+		transition: all 1s;
+		position: absolute;
+	}
 `;

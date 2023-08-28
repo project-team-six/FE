@@ -19,13 +19,13 @@ import emailIcon from "./emailIcon.png";
 import userIcon from "./userIcon.png";
 import phoneIcon from "./phoneIcon.png";
 import pwIcon from "./pwIcon.png";
-import cog from './cog.png'
-import locationpin from './locationpin.png'
-import pencil from './pencil.png'
-import smileyneutral from './smiley-neutral.png'
-import smileywink from './smiley-wink.png'
-import emailIconWhite from './emailIconWhite.png'
-import profileImg from './profileImg.png'
+import cog from "./cog.png";
+import locationpin from "./locationpin.png";
+import pencil from "./pencil.png";
+import smileyneutral from "./smiley-neutral.png";
+import smileywink from "./smiley-wink.png";
+import emailIconWhite from "./emailIconWhite.png";
+import profileImg from "./profileImg.png";
 
 // 헤더
 import h_mainLogo from "./h_mainLogo.png";
@@ -42,9 +42,9 @@ import socks from "./socks.png";
 import cleaner from "./cleaner.png";
 import bottle from "./bottle.png";
 import carrot from "./carrot.png";
-import carrrealTimeChat1 from "./realTimeChat1.png";
-import carrrealTimeChat2 from "./realTimeChat2.png";
-import carrrealTimeChat3 from "./realTimeChat3.png";
+import realTimeChat1 from "./realTimeChat1.png";
+import realTimeChat2 from "./realTimeChat2.png";
+import realTimeChat3 from "./realTimeChat3.png";
 
 // 게시물 등록
 import feedImageAddIcon from "./feedImageAddIcon.png";
@@ -105,9 +105,9 @@ export {
 	cleaner,
 	bottle,
 	carrot,
-	carrrealTimeChat1,
-	carrrealTimeChat2,
-	carrrealTimeChat3,
+	realTimeChat1,
+	realTimeChat2,
+	realTimeChat3,
 	p_location,
 	oneIcon,
 	twoIcon,
@@ -115,6 +115,11 @@ export {
 	fourIcon,
 	fiveIcon,
 	precautionsIcon,
-	cog, locationpin, 
-	pencil, smileyneutral, smileywink, emailIconWhite, profileImg
+	cog,
+	locationpin,
+	pencil,
+	smileyneutral,
+	smileywink,
+	emailIconWhite,
+	profileImg,
 };
