@@ -67,8 +67,12 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 };
 export default AlertModal;
 const AlertLayout = styled.div`
+	position: absolute;
+	right: 16%;
+	top: 6%;
 	width: 290px;
 	height: 400px;
+	border: 1px solid #d3d3d3;
 	background-color: white;
 	border-radius: 10px;
 	overflow-y: auto;
