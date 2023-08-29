@@ -30,10 +30,12 @@
 		"@types/react-select": "^5.0.1",
 		"@types/redux-persist": "^4.3.1",
 		"@types/styled-components": "^5.1.26",
+		"@types/throttle": "^1.0.1",
 		"date-fns": "^2.30.0",
 		"event-source-polyfill": "^1.0.31",
 		"js-cookie": "^3.0.5",
 		"jwt-decode": "^3.1.2",
+		"lodash": "^4.17.21",
 		"react": "^18.2.0",
 		"react-datepicker": "^4.16.0",
 		"react-dom": "^18.2.0",
@@ -82,6 +84,7 @@
 	},
 	"devDependencies": {
 		"@types/event-source-polyfill": "^1.0.1",
+		"@types/lodash": "^4.14.197",
 		"@types/sockjs-client": "^1.5.1"
 	}
 }

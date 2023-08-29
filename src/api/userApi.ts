@@ -32,11 +32,11 @@ export const getMyPage = async (userId: Number) => {
 
 export const putMyPageEdit = async (userId: Number, nickname: string, phoneNumber: string) => {
 	const data = { nickname, phoneNumber };
-		const response = await instance.put(`/auth/mypage/${userId}`, data);
+	const response = await instance.put(`/auth/mypage/${userId}`, data);
 	return response;
-}
+};
 
-export const putMyPagePasswordEdit = async (userId: Number, password:string) => {
+export const putMyPagePasswordEdit = async (userId: Number, password: string) => {
 	const data = { password };
 	const response = await instance.put(`/auth/mypagePassword/${userId}`, data);
 	return response;
@@ -51,7 +51,6 @@ export const putMyPageEditImage = async (userId: Number, formData: FormData) => 
 
 export const postPopularity = async (receiverUserId: number) => {
 	const response = await instance.post(`/popularity/${receiverUserId}`);
-	console.log("postPopularity", response)
 	return response;
 };
 

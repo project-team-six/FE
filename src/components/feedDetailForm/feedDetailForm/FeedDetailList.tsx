@@ -21,7 +21,6 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 	const userInfo = useSelector((state: RootState) => {
 		return state.tokenSlice.decodeToken;
 	});
-	console.log(userInfo)
 	const userId: Number = Number(userInfo.userId); // 사용자 ID
 
 	const queryClient = useQueryClient();
