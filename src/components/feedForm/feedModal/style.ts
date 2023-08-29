@@ -10,7 +10,6 @@ export const ModalLayout = styled.div`
 	top: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 99;
 	background-color: rgba(0, 0, 0, 0.5); /* 배경색 + 투명도 조절 */
 `;
 
@@ -19,7 +18,7 @@ export const PrecautionsLayout = styled.div`
 	width: 445px;
 	height: 630px;
 	border-radius: 20px;
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 `;
 
 export const PrecautionsDiv = styled.div`
@@ -39,7 +38,7 @@ export const PrecautionsIcon = styled.img`
 
 type SpanProps = {
 	fontSize: number;
-	fontWeight:string;
+	fontWeight: string;
 };
 
 export const Span = styled.span<SpanProps>`
@@ -69,11 +68,11 @@ export const Icon = styled.img`
 export const ButtonDiv = styled.div`
 	width: 100%;
 	height: 62px;
-	background-color: #2BB673;
+	background-color: #2bb673;
 	border-radius: 0 0 20px 20px;
 	display: flex;
 	justify-content: center;
-    align-items: center;
+	align-items: center;
 	${cursor};
 `;
 
@@ -82,7 +81,7 @@ export const Button = styled.button`
 	height: 100%;
 	align-items: center;
 	text-align: center;
-	color: #E5E5E5;
+	color: #e5e5e5;
 	font-size: 20px;
 	font-weight: 700;
 	${cursor};

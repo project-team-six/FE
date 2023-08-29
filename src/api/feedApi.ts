@@ -19,7 +19,6 @@ export const fetchFeedList = async (
 export const fetchFeed = async (postId: number) => {
 	// 게시물 상세 조회
 	const response = await instance.get(`/post/${postId}`);
-	console.log(response)
 	return response.data.data;
 };
 

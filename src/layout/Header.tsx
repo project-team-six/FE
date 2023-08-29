@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -13,6 +13,9 @@ import { deleteToken } from "../utils/deleteToken";
 import { h_mainLogo, h_chatIcon, h_alertIcon, h_profile } from "../asstes/asstes";
 import { Badge } from "@mui/material";
 import AlertModal from "../components/alertForm/AlertModal";
+import { VscChevronDown } from "react-icons/vsc";
+import { Flex } from "../components/common/GlobalStyle";
+import { throttle } from "lodash";
 
 const Header = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -57,8 +60,39 @@ const Header = () => {
 		logOutMutation.mutate();
 	};
 
+	// 스크롤이 내려가고 올라오는지 확인해주는 핸들러
+	const [visible, setVisible] = useState(true);
+	const beforeScrollY = useRef(0);
+
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	});
+
+	const handleScroll = useMemo(
+		() =>
+			throttle(() => {
+				const currentScrollY = window.scrollY;
+				if (beforeScrollY.current < currentScrollY) {
+					setVisible(false);
+				} else {
+					setVisible(true);
+				}
+				beforeScrollY.current = currentScrollY;
+			}, 250),
+		[beforeScrollY]
+	);
+
 	return (
-		<div style={{ position: "sticky", top: "0" }}>
+		<div
+			style={{
+				position: "sticky",
+				top: visible ? "0" : "-10%",
+				transition: " all 1s",
+				zIndex: "997",
+			}}>
 			<HeaderBox>
 				<LogoSection onClick={handleNavigate("/")}>
 					<img src={h_mainLogo} alt='header_logo' />
@@ -83,13 +117,25 @@ const Header = () => {
 								</Badge>
 							</NavButton>
 							<NavButton onClick={toggleProfileModal}>
-								<ProfileBox>
-									{userProfile ? (
-										<img src={userProfile} alt='유저프로필' />
-									) : (
-										<img src={h_profile} alt='기본프로필' />
-									)}
-								</ProfileBox>
+								{userProfile ? (
+									<>
+										<ProfileBox $backgroundColor='transparent'>
+											<img src={userProfile} alt='유저프로필' style={{ borderRadius: "100%" }} />
+										</ProfileBox>
+										<ArrowBox>
+											<VscChevronDown />
+										</ArrowBox>
+									</>
+								) : (
+									<>
+										<ProfileBox $backgroundColor='black'>
+											<img src={h_profile} alt='기본프로필' />
+										</ProfileBox>
+										<ArrowBox>
+											<VscChevronDown />
+										</ArrowBox>
+									</>
+								)}
 							</NavButton>
 							<AlertModal
 								modalState={isAlertModal}
@@ -153,17 +199,31 @@ const NavBtnSection = styled.section`
 	display: flex;
 `;
 
-const ProfileBox = styled.div`
+type DivProps = {
+	$backgroundColor: string;
+};
+
+const ProfileBox = styled.div<DivProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: black;
+	background-color: #${(props) => props.$backgroundColor};
 	border-radius: 100%;
 	width: 44px;
 	height: 44px;
 	img {
 		width: 46px;
 		height: 46px;
+	}
+`;
+
+const ArrowBox = styled.div`
+	${Flex}
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
+	&:hover {
+		background-color: #efefef;
 	}
 `;
 

@@ -115,11 +115,12 @@ export default ProfileModal;
 
 const ProfileLayout = styled.div`
 	position: absolute;
-	right: 15%;
-	top: 8%;
+	right: 13%;
+	top: 6%;
 	width: 220px;
 	height: 250px;
 	background-color: white;
+	border: 1px solid #d3d3d3;
 	border-radius: 6px;
 	z-index: 998;
 `;

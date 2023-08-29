@@ -81,17 +81,15 @@ const FeedList = () => {
 					소분 진행중인 상품만 보기
 				</S.FilterBox>
 			</S.SearchFilterSection>
-			<div className='FeedListSection'>
-				<FeedCards
-					location={location}
-					category={category}
-					status={status}
-					titleOrContent={titleOrContent}
-					page={currentPage}
-					fetchPageable={fetchPageable}
-					pageSize={12}
-				/>
-			</div>
+			<FeedCards
+				location={location}
+				category={category}
+				status={status}
+				titleOrContent={titleOrContent}
+				page={currentPage}
+				fetchPageable={fetchPageable}
+				pageSize={12}
+			/>
 			<S.PageNationSection>
 				<MdArrowBackIos />
 				{Array.from({ length: totalPages }, (_, index: number) => (
