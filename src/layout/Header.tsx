@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -15,6 +15,7 @@ import { Badge } from "@mui/material";
 import AlertModal from "../components/alertForm/AlertModal";
 import { VscChevronDown } from "react-icons/vsc";
 import { Flex } from "../components/common/GlobalStyle";
+import { throttle } from "lodash";
 
 const Header = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -59,8 +60,38 @@ const Header = () => {
 		logOutMutation.mutate();
 	};
 
+	// 스크롤이 내려가고 올라오는지 확인해주는 핸들러
+	const [visible, setVisible] = useState(true);
+	const beforeScrollY = useRef(0);
+
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+
+	const handleScroll = useMemo(
+		() =>
+			throttle(() => {
+				const currentScrollY = window.scrollY;
+				if (beforeScrollY.current < currentScrollY) {
+					setVisible(false);
+				} else {
+					setVisible(true);
+				}
+				beforeScrollY.current = currentScrollY;
+			}, 250),
+		[beforeScrollY]
+	);
+
 	return (
-		<div style={{ position: "sticky", top: "0" }}>
+		<div
+			style={{
+				position: "sticky",
+				top: visible ? "0" : "-10%",
+				transition: " all 1s",
+			}}>
 			<HeaderBox>
 				<LogoSection onClick={handleNavigate("/")}>
 					<img src={h_mainLogo} alt='header_logo' />
@@ -88,7 +119,7 @@ const Header = () => {
 								{userProfile ? (
 									<>
 										<ProfileBox $backgroundColor='transparent'>
-											<img src={userProfile} alt='유저프로필' />
+											<img src={userProfile} alt='유저프로필' style={{ borderRadius: "100%" }} />
 										</ProfileBox>
 										<ArrowBox>
 											<VscChevronDown />

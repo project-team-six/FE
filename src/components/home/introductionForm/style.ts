@@ -42,7 +42,7 @@ export const IconBox = styled.div`
 	position: relative;
 	img {
 		opacity: 0;
-		transition: all 1s;
+		transition: all 2s;
 		position: absolute;
 	}
 `;
