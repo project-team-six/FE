@@ -1,27 +1,27 @@
 import styled from "styled-components";
+import { Flex, cursor } from "../../common/GlobalStyle";
 
 export const CommentBox = styled.article`
-    max-width : 1280px;
-    margin : 0 auto;
+    max-width: 1920px;
+    margin: 0 auto 100px;
 `;
 
 export const CommentArticle = styled.article`
-    width: 57%;
-    margin : 0 auto;
+    max-width: 1375px;
+    margin: 0 auto;
 `;
 
 export const SpanDiv = styled.div`
-    margin-bottom: 15px;
+    margin-bottom: 40px;
 `;
 
 export const Span = styled.span`
-    font-size: 22px;
-    font-weight: 700;
-    margin-right: 10px;
-`
+    font-size: 20px;
+    font-weight: 600;
+`;
 export const CommentLi = styled.li`
     display: flex;
-    margin-right: 25px; 
+    margin-right: 25px;
     justify-content: space-between;
 `;
 
@@ -32,7 +32,7 @@ export const CommentDiv = styled.div`
 export const CommentProfileImg = styled.img`
     width: 50px;
     height: 50px;
-    margin-right: 25px; 
+    margin-right: 25px;
     margin-bottom: 25px;
 `;
 
@@ -41,14 +41,14 @@ export const CommentContentDiv = styled.div`
 `;
 
 export const ViewDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 45px;
+    ${Flex}
+    margin: 45px 0;
 `;
 
 export const ViewButton = styled.button`
-    cursor: pointer;
+    ${cursor}
+    font-size:1.3rem;
+    padding:5px 0;
     border-bottom: 1px solid black;
     display: inline-block;
 `;

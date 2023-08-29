@@ -1,25 +1,32 @@
-import  styled  from "styled-components";
+import styled from "styled-components";
 
 export const InputForm = styled.form`
     display: flex;
-    gap: 50px;
+    gap: 30px;
     height: 105px;
+    justify-content: space-around;
 `;
 
 export const Input = styled.input`
-    width: 610px;
-    height: 45px;
-    border: 1px solid #7F7F7F;
+    width: 85%;
+    height: 55px;
+    border: 1px solid #7f7f7f;
+    border-radius: 10px;
     margin-bottom: 115px;
-    padding-left: 10px;
+    padding-left: 15px;
+    font-size: 18px;
 `;
 
 export const InputButton = styled.button`
-    width: 90px;
-    height: 45px;
-    color: #FFFFFF;
-    background-color: #6F8A6B; 
-    border-radius: 25px;
+    width: 160px;
+    height: 55px;
+    color: #ffffff;
+    background-color: #d3d3d3;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    &:hover {
+        background-color: #333;
+    }
 `;

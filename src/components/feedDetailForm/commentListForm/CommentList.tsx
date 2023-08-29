@@ -16,29 +16,50 @@ const CommentList: React.FC<FeedDetailProps> = ({ closed }) => {
     const postId = Number(id);
 
     // 댓글 전체 조회
-    const { data: comments, isLoading, isError } = useQuery(["comments"], ()=>{return fetchComments(postId)});
+    const {
+        data: comments,
+        isLoading,
+        isError,
+    } = useQuery(["comments"], () => {
+        return fetchComments(postId);
+    });
     const [isView, setIsView] = useState<boolean>(false);
-    const handleClickView = () => {setIsView(true)};
+    const handleClickView = () => {
+        setIsView(true);
+    };
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error...</div>;
-    
-    const results = isView ? comments : comments.slice(0,3); // 댓글 목록
+
+    const results = isView ? comments : comments.slice(0, 3); // 댓글 목록
     return (
         <S.CommentBox>
             <S.CommentArticle>
-                <S.SpanDiv><S.Span>댓글 {comments.length}</S.Span></S.SpanDiv>
-                {closed ? <></> : <CommentInputForm postId={postId}/>}
+                <S.SpanDiv>
+                    <S.Span>댓글 {comments.length}</S.Span>
+                </S.SpanDiv>
+                {closed ? <></> : <CommentInputForm postId={postId} />}
                 <section>
                     <ul>
                         {results.map((com: commentType) => {
                             return (
-                            <div key={com.id}>
-                                <CommentForm postId={postId} comment={com} closed={closed}/>
-                            </div>)
-                        })} 
+                                <div key={com.id}>
+                                    <CommentForm
+                                        postId={postId}
+                                        comment={com}
+                                        closed={closed}
+                                    />
+                                </div>
+                            );
+                        })}
                     </ul>
-                    {isView ? <></> : <S.ViewDiv><S.ViewButton onClick={handleClickView}>댓글 전체보기</S.ViewButton></S.ViewDiv>}
+                    {isView ? (
+                        <></>
+                    ) : (
+                        <S.ViewDiv>
+                            <S.ViewButton onClick={handleClickView}>댓글 전체보기</S.ViewButton>
+                        </S.ViewDiv>
+                    )}
                 </section>
             </S.CommentArticle>
         </S.CommentBox>
