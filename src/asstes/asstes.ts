@@ -6,12 +6,8 @@ import kakaologin from "./kakaologin.png";
 import leftArrow from "./leftArrow.png";
 import logoutIcon from "./logoutIcon.png";
 import peopleIcon from "./peopleIcon.png";
-import pin from "./pin.png";
-import pined from "./pined.png";
 import profileIcon from "./profileIcon.png";
 import profileImageDefault from "./profileImageDefault.png";
-import report_small from "./report_small.png";
-import report from "./report.png";
 import rightArrow from "./rightArrow.png";
 import rubbish from "./rubbish-bin.png";
 import trash from "./trash.png";
@@ -19,13 +15,13 @@ import emailIcon from "./emailIcon.png";
 import userIcon from "./userIcon.png";
 import phoneIcon from "./phoneIcon.png";
 import pwIcon from "./pwIcon.png";
-import cog from './cog.png'
-import locationpin from './locationpin.png'
-import pencil from './pencil.png'
-import smileyneutral from './smiley-neutral.png'
-import smileywink from './smiley-wink.png'
-import emailIconWhite from './emailIconWhite.png'
-import profileImg from './profileImg.png'
+import cog from "./cog.png";
+import locationpin from "./locationpin.png";
+import pencil from "./pencil.png";
+import smileyneutral from "./smiley-neutral.png";
+import smileywink from "./smiley-wink.png";
+import emailIconWhite from "./emailIconWhite.png";
+import profileImg from "./profileImg.png";
 
 // 헤더
 import h_mainLogo from "./h_mainLogo.png";
@@ -67,54 +63,67 @@ import editIcon from "./editIcon.png";
 // 이메일 찾기
 import EmailFindIcon from "./EmailFindIcon.png";
 
+// 게시물 상세
+import pin from "./pin.png";
+import pined from "./pined.png";
+import reportred from "./report-red.png";
+import report from "./report.png";
+import moremenu from "./moremenu.png";
+
 export {
-	addFeedIcon,
-	chat,
-	edit,
-	findEmailLogo,
-	kakaologin,
-	leftArrow,
-	logoutIcon,
-	h_mainLogo,
-	peopleIcon,
-	pin,
-	pined,
-	profileIcon,
-	profileImageDefault,
-	report_small,
-	report,
-	rightArrow,
-	rubbish,
-	trash,
-	emailIcon,
-	userIcon,
-	phoneIcon,
-	pwIcon,
-	trashIcon,
-	feedImageAddIcon,
-	feedLocationicon,
-	calendarIcon,
-	profileDefault,
-	editIcon,
-	EmailFindIcon,
-	mainBanner,
-	h_profile,
-	h_alertIcon,
-	h_chatIcon,
-	socks,
-	cleaner,
-	bottle,
-	carrot,
-	carrrealTimeChat1,
-	carrrealTimeChat2,
-	carrrealTimeChat3,
-	p_location,
-	oneIcon,
-	twoIcon,
-	threeIcon,
-	fourIcon,
-	fiveIcon,
-	precautionsIcon,
-	cog, locationpin, 
-	pencil, smileyneutral, smileywink, emailIconWhite, profileImg
+    addFeedIcon,
+    chat,
+    edit,
+    findEmailLogo,
+    kakaologin,
+    leftArrow,
+    logoutIcon,
+    h_mainLogo,
+    peopleIcon,
+    pin,
+    pined,
+    profileIcon,
+    profileImageDefault,
+    report,
+    rightArrow,
+    rubbish,
+    trash,
+    emailIcon,
+    userIcon,
+    phoneIcon,
+    pwIcon,
+    trashIcon,
+    feedImageAddIcon,
+    feedLocationicon,
+    calendarIcon,
+    profileDefault,
+    editIcon,
+    EmailFindIcon,
+    mainBanner,
+    h_profile,
+    h_alertIcon,
+    h_chatIcon,
+    socks,
+    cleaner,
+    bottle,
+    carrot,
+    carrrealTimeChat1,
+    carrrealTimeChat2,
+    carrrealTimeChat3,
+    p_location,
+    oneIcon,
+    twoIcon,
+    threeIcon,
+    fourIcon,
+    fiveIcon,
+    precautionsIcon,
+    cog,
+    locationpin,
+    pencil,
+    smileyneutral,
+    smileywink,
+    emailIconWhite,
+    profileImg,
+    reportred,
+    moremenu,
 };
