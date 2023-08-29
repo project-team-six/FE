@@ -2,9 +2,7 @@ import addFeedIcon from "./addFeedIcon.png";
 import chat from "./chat.png";
 import edit from "./edit.png";
 import findEmailLogo from "./findEmailLogo.png";
-import kakaologin from "./kakaologin.png";
 import leftArrow from "./leftArrow.png";
-import logoutIcon from "./logoutIcon.png";
 import peopleIcon from "./peopleIcon.png";
 import pin from "./pin.png";
 import pined from "./pined.png";
@@ -45,6 +43,7 @@ import carrot from "./carrot.png";
 import realTimeChat1 from "./realTimeChat1.png";
 import realTimeChat2 from "./realTimeChat2.png";
 import realTimeChat3 from "./realTimeChat3.png";
+import line from "./line.png";
 
 // 게시물 등록
 import feedImageAddIcon from "./feedImageAddIcon.png";
@@ -72,9 +71,7 @@ export {
 	chat,
 	edit,
 	findEmailLogo,
-	kakaologin,
 	leftArrow,
-	logoutIcon,
 	h_mainLogo,
 	peopleIcon,
 	pin,
@@ -122,4 +119,5 @@ export {
 	smileywink,
 	emailIconWhite,
 	profileImg,
+	line,
 };

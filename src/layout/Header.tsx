@@ -69,7 +69,7 @@ const Header = () => {
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
 		};
-	}, []);
+	});
 
 	const handleScroll = useMemo(
 		() =>
@@ -91,6 +91,7 @@ const Header = () => {
 				position: "sticky",
 				top: visible ? "0" : "-10%",
 				transition: " all 1s",
+				zIndex: "997",
 			}}>
 			<HeaderBox>
 				<LogoSection onClick={handleNavigate("/")}>

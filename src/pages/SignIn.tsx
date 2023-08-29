@@ -9,7 +9,7 @@ import { User } from "../types/userType";
 import axios from "axios";
 import styled from "styled-components";
 import { Flex } from "../components/common/GlobalStyle";
-import { h_mainLogo, kakaologin } from "../asstes/asstes";
+import { line } from "../asstes/asstes";
 
 const SignIn = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -87,42 +87,39 @@ const SignIn = () => {
 
 	return (
 		<LoginLayout>
-			<LogoSection>
-				<img src={h_mainLogo} alt='로고' />
-			</LogoSection>
+			<LogoSection>로그인</LogoSection>
 			<InputSection>
-				<p>이메일주소</p>
+				<p>이메일</p>
 				<input
 					type='text'
 					name='email'
 					value={email}
 					onChange={onChangeLoginHandler}
-					style={{ marginBottom: "30px" }}
+					style={{ marginBottom: "40px" }}
 				/>
 				<p>비밀번호</p>
 				<input type='password' name='password' value={password} onChange={onChangeLoginHandler} />
 			</InputSection>
+			<FormSection>
+				<FormButton onClick={onClickLoginBtnHandler} $backgroundColor='#2BB673' color='white'>
+					로그인
+				</FormButton>
+				<OrLine>
+					<img src={line} alt='선' />
+					<span>또는</span>
+					<img src={line} alt='선' />
+				</OrLine>
+				<FormButton onClick={kakaoLoginHandler} $backgroundColor='#FCE224' color='black'>
+					카카오로 로그인/회원가입
+				</FormButton>
+			</FormSection>
 			<FindSection>
-				<button onClick={handleNavigate("/signup")}>회원가입</button>
-				<span>ㅣ</span>
 				<button onClick={handleNavigate("/findemail")}>이메일 찾기</button>
 				<span>ㅣ</span>
 				<button onClick={handleNavigate("/findemail")}>비밀번호 찾기</button>
+				<span>ㅣ</span>
+				<button onClick={handleNavigate("/signup")}>회원가입</button>
 			</FindSection>
-			<FormSection>
-				<FormButton onClick={onClickLoginBtnHandler} $backgroundColor='#6F8A6B' color='white'>
-					로그인
-				</FormButton>
-				<p>또는</p>
-				<FormButton
-					onClick={kakaoLoginHandler}
-					$backgroundColor='#FFEB3B'
-					color='black'
-					style={{ gap: "10px" }}>
-					<img src={kakaologin} alt='카카오로고' />
-					<span>카카오톡</span>
-				</FormButton>
-			</FormSection>
 		</LoginLayout>
 	);
 };
@@ -133,40 +130,33 @@ const LoginLayout = styled.div`
 	place-items: center;
 	margin: 0 auto;
 	max-width: 1280px;
-	margin-top: 100px;
+	margin-top: 125px;
 `;
 const LogoSection = styled.section`
-	img {
-		width: 200px;
-		height: 100px;
-		margin-bottom: 30px;
-	}
-	padding-bottom: 30px;
+	font-size: 35px;
+	font-weight: 500;
+	margin-bottom: 75px;
 `;
 const InputSection = styled.form`
 	p {
+		font-size: 17px;
+		font-weight: 500;
 		padding-bottom: 5px;
 	}
 	input {
-		width: 330px;
-		height: 40px;
-		background-color: #f3f3f3;
-		border-radius: 5px;
-		margin-bottom: 5px;
+		width: 400px;
+		height: 55px;
+		border: 1px solid #c5c5c5;
+		border-radius: 10px;
 		padding-left: 7px;
-	}
-`;
-const FindSection = styled.section`
-	margin-left: 100px;
-	button {
-		cursor: pointer;
 	}
 `;
 const FormSection = styled.section`
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	gap: 20px;
-	padding: 70px 0 100px 0;
+	padding-top: 35px;
 `;
 
 type ButtonProps = {
@@ -176,15 +166,36 @@ type ButtonProps = {
 
 const FormButton = styled.button<ButtonProps>`
 	${Flex}
-	width: 139px;
-	height: 33px;
+	width: 400px;
+	height: 55px;
 	cursor: pointer;
-	border-radius: 21px;
+	border-radius: 10px;
 	background-color: ${(props) => props.$backgroundColor};
 	color: ${(props) => props.color};
-	font-size: 15px;
-	img {
-		width: 19px;
-		height: 36px;
+	font-size: 18px;
+	font-weight: bold;
+`;
+
+const OrLine = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 25px;
+	span {
+		font-size: 15px;
+		font-weight: 500;
+		color: #9a9a9a;
+	}
+`;
+
+const FindSection = styled.section`
+	margin: 50px 0 290px 0;
+	span {
+		color: #9a9a9a;
+	}
+	button {
+		cursor: pointer;
+		font-size: 14px;
+		color: #9a9a9a;
+		font-weight: 500;
 	}
 `;
