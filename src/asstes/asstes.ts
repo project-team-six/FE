@@ -41,6 +41,14 @@ import realTimeChat2 from "./realTimeChat2.png";
 import realTimeChat3 from "./realTimeChat3.png";
 import line from "./line.png";
 
+// 제너럴페이지(FeedList)
+import WHOLE from "./WHOLE.png";
+import FRESH_FOOD from "./FRESH_FOOD.png";
+import BEAUTY from "./BEAUTY.png";
+import DAILY_NECESSITIES from "./DAILY_NECESSITIES.png";
+import ETC from "./ETC.png";
+import searchIcon from "./searchIcon.png";
+
 // 게시물 등록
 import feedImageAddIcon from "./feedImageAddIcon.png";
 import trashIcon from "./trashIcon.png";
@@ -129,6 +137,12 @@ export {
   reportred,
   moremenu,
 	line,
+	FRESH_FOOD,
+	WHOLE,
+	BEAUTY,
+	DAILY_NECESSITIES,
+	ETC,
+	searchIcon,
 	chatClose,
 	chatBack,
 	chatSend,
