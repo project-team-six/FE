@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./style";
-import { pin, pined, profileDefault, report } from "../../../../asstes/asstes";
+import { pin, pined, profileImg, report } from "../../../../asstes/asstes";
 import { priceUtils } from "../../../../utils/priceUtils";
 import { useNavigate, useParams } from "react-router";
 import { useSelector } from "react-redux";
@@ -57,9 +57,9 @@ const TitleInfo: React.FC<TitleInfoProps> = ({detailFeed,closed,handleCloseClick
             >
                 <S.ProfileImg
                     src={
-                        detailFeed.profileImageUrl !== undefined
-                            ? detailFeed.profileImageUrl
-                            : profileDefault
+                        detailFeed.profileImageUrl === "nonImage"
+                            ? profileImg
+                            : detailFeed.profileImageUrl
                     }
                     alt="profile"
                 />

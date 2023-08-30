@@ -32,8 +32,9 @@ const PostList: React.FC<PostListProps> = ({
                     </button>
                 </S.NonPost>
             ) : (
-                <S.ListWrapper className="list-wrapper">
-                    {posts?.map((posts: Post, index: number) => {
+                <S.ListWrapper>
+                    {posts?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .map((posts: Post, index: number) => {
                         const createdAt = new Date(posts.createdAt);
                         return (
                             <S.Feed

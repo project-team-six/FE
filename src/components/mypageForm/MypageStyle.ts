@@ -7,7 +7,7 @@ export const Main = styled.main`
 
 export const InlineLayout = styled.article`
     background-color: #fff;
-    width: 1230px;
+    max-width: 1230px;
     height: 100%;
     margin: 0 auto;
     padding-top: 80px;
@@ -26,13 +26,9 @@ export const UserInfoWrapper = styled.section`
 
 export const UserInfo = styled.section`
     width: 335px;
+    min-width:200px;
     margin-right: 10px;
-    h2,
-    h4,
-    strong,
-    span {
-        color: #fff;
-    }
+    h2,h4,strong,span {color: #fff}
 `;
 
 export const Nickname = styled.div`
@@ -69,6 +65,7 @@ export const Info = styled.div`
 `;
 
 export const Popularity = styled.section`
+    
     width: 270px;
     min-width: 120px;
     height: 100%;
@@ -88,6 +85,7 @@ export const Popularity = styled.section`
         font-size: 20px;
         margin: 5px 0;
     }
+    button{${cursor}}
 `;
 
 export const Post = styled.div`
@@ -125,6 +123,7 @@ export const NonPost = styled.div`
 
 export const ListWrapper = styled.div`
     ${Flex}
+    ${cursor}
     justify-content: flex-start;
     gap: 30px;
     flex-wrap: wrap;

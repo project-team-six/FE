@@ -222,7 +222,7 @@ const ProfileBox = styled.div<DivProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #${(props) => props.$backgroundColor};
+	background-color: ${(props) => props.$backgroundColor};
 	border-radius: 100%;
 	width: 44px;
 	height: 44px;

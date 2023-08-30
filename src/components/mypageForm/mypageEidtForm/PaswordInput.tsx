@@ -1,5 +1,4 @@
 import React from 'react'
-import * as S from './MypageEditStyle'
 import Input from "../../../theme/Input";
 import { pwIcon } from "../../../asstes/asstes";
 
@@ -31,7 +30,6 @@ const PasswordInput:React.FC<PasswordInputProps> = ({password, setPassword, conf
         type='password'
         value={confirmPassword}
         handleChange={(e) => setConfirmPassword(e.target.value)}
-        // onBlur={passwordMismatch}
         pattern="^(^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{0,}$"
         message={ confirmPassword && !/^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(confirmPassword) ? "비밀번호가 일치하지 않습니다." : ""}
         width={35}

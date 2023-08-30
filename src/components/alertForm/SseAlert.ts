@@ -17,7 +17,6 @@ const SseAlert = () => {
 		};
 
 		sse.addEventListener("sse", (event: any) => {
-			console.log("메롱", event);
 		});
 
 		sse.onmessage = (event) => {

@@ -1,22 +1,20 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, useRef } from "react";
 import * as S from "./MypageEditStyle";
 import { pencil, profileImg } from "../../../asstes/asstes";
-import { deleteToken } from "../../../utils/deleteToken";
-import { putMyPageEditImage } from "../../../api/userApi";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/config/configStore";
-import { setDecodeToken } from "../../../redux/modules/user";
-import { pushNotification } from "../../../utils/notification";
 
-const ProfileImgEditForm = () => {
-    const [selectedFile, setSelectedFile] = useState<File | undefined>();
+interface ProfileImgEditFormProps{
+    selectedFile: File | undefined,
+    setSelectedFile : React.Dispatch<React.SetStateAction<File | undefined>>,
+}
+
+const ProfileImgEditForm:React.FC<ProfileImgEditFormProps> = ({selectedFile, setSelectedFile}) => {
     const imgRef = useRef<HTMLInputElement | null>(null);
 
-    const userId: number = useSelector((state: RootState) => {
-        return state.tokenSlice.decodeToken.userId;
-    });
-
-    const dispatch = useDispatch();
+    const profileImageUrl: string = useSelector((state: RootState) => {
+		return state.tokenSlice.decodeToken.profileImageUrl;
+	});
 
     const onImgUpdateHandler = () => {
         imgRef.current?.click();
@@ -33,30 +31,6 @@ const ProfileImgEditForm = () => {
         }
     };
 
-    const handleImageUpload = (e: any) => {
-        e.preventDefault();
-        if (selectedFile) {
-            let formData = new FormData();
-            formData.append("file", selectedFile);
-
-            putMyPageEditImage(userId, formData)
-                .then((response) => {
-                    const token = response.headers.authorization;
-                    if (token) {
-                        deleteToken("accessToken"); // 기존 token 삭제
-                        document.cookie = `accessToken=${token.trim()}; path=/;`; // access token 갱신
-                        dispatch(setDecodeToken(token)); // redux 업데이트
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                    pushNotification("이미지업로드 실패", "error");
-                });
-        } else {
-            pushNotification("이미지를 선택해주세요", "error");
-        }
-    };
-
     return (
         <S.ProfileImg>
             <h1>회원정보 수정</h1>
@@ -69,10 +43,10 @@ const ProfileImgEditForm = () => {
                         />
                     ) : (
                         <span>
-                            <img src={profileImg} alt="기본 이미지" />
+                            <img src={profileImageUrl === "nonImage" ? profileImg : profileImageUrl} alt="현재 이미지" />
                         </span>
                     )}
-                    <S.Avatar onClick={onImgUpdateHandler}>
+                    <S.Avatar >
                         <input
                             name="file"
                             type="file"
@@ -80,9 +54,8 @@ const ProfileImgEditForm = () => {
                             accept="image/jpg, image/png, image/jpeg"
                             ref={imgRef}
                         />
-                        <span>파일 업로드</span>
                     </S.Avatar>
-                    <S.EditBtn onClick={handleImageUpload}>
+                    <S.EditBtn onClick={onImgUpdateHandler}>
                         <img src={pencil} alt="편집 아이콘" />
                     </S.EditBtn>
                 </S.ImgBox>

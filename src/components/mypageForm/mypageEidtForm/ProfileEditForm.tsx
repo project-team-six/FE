@@ -1,15 +1,15 @@
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { RootState } from "../../../redux/config/configStore";
-import { putMyPageEdit, putMyPagePasswordEdit } from "../../../api/userApi";
+import { putMyPageEdit, putMyPageEditImage, putMyPagePasswordEdit } from "../../../api/userApi";
 import { pushNotification } from "../../../utils/notification";
 import Input from "../../../theme/Input";
 import * as S from "./MypageEditStyle";
 import { phoneIcon, userIcon } from "../../../asstes/asstes";
-import { deleteToken } from "../../../utils/deleteToken";
-import { setDecodeToken } from "../../../redux/modules/user";
 import PasswordInput from "./PaswordInput";
+import ProfileImgEditForm from "./ProfileImgEditForm";
+import { updateToken } from "../../../utils/updateToken";
 
 const ProfileEditForm = () => {
 	const location = useLocation();
@@ -18,6 +18,7 @@ const ProfileEditForm = () => {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState(userInfo.phoneNumber || "");
+	const [selectedFile, setSelectedFile] = useState<File | undefined>();
 
 	const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ const ProfileEditForm = () => {
 	const auth: string = useSelector((state: RootState) => {
 		return state.tokenSlice.decodeToken.auth;
 	});
-
+	
 	// 유효성 검사
 	const isInfoValid = () => {
 		return nickname && phoneNumber;
@@ -37,7 +38,7 @@ const ProfileEditForm = () => {
 		return password !== "" && confirmPassword !== "" && password === confirmPassword;
 	};
 
-	// Put 닉네임, 폰번호 수정
+	// Put
 	const dispatch = useDispatch();
 	const submitHandler = (e: any) => {
 		e.preventDefault();
@@ -45,37 +46,37 @@ const ProfileEditForm = () => {
 			// API 호출로 닉네임, 폰번호 수정
 			putMyPageEdit(userId, nickname, phoneNumber)
 				.then((response) => {
-					const token = response.headers.authorization;
-					if (token) {
-						deleteToken("accessToken"); // 기존 token 삭제
-						document.cookie = `accessToken=${token.trim()}; path=/;`; // access token 갱신
-						dispatch(setDecodeToken(token)); // redux 업데이트
-					}
+					updateToken(response, dispatch)
 				})
 				.catch((error) => {
-					console.log(error);
 					pushNotification("수정 실패. 닉네임, 전화번호를 다시 봐주세요", "error");
 				});
 		}
 		if (isPasswordValid()) {
 			putMyPagePasswordEdit(userId, password)
 				.then((response) => {
-					const token = response.headers.authorization;
-					if (token) {
-						deleteToken("accessToken"); // 기존 token 삭제
-						document.cookie = `accessToken=${token.trim()}; path=/;`; // access token 갱신
-						dispatch(setDecodeToken(token)); // redux 업데이트
-					}
+					updateToken(response, dispatch)
 				})
 				.catch((error) => {
-					console.log(error);
 					pushNotification("수정 실패. 비밀번호와 비밀번호 확인을 다시 봐주세요", "error");
 				});
 		}
+		if (selectedFile) {
+			let formData = new FormData();
+			formData.append("file", selectedFile);
+			putMyPageEditImage(userId, formData)
+					.then((response) => {
+						updateToken(response, dispatch)
+					})
+					.catch((error) => {
+							pushNotification("이미지업로드 실패", "error");
+					});
+	}
 	};
-
+	
 	return (
 		<S.EditForm onSubmit={submitHandler}>
+			<ProfileImgEditForm selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
 			{/* 닉네임 수정 */}
 			<Input
 				label={"닉네임"}

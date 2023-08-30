@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { Flex } from "../../../common/GlobalStyle";
 
 export const Image = styled.div``;
+
 export const SelectImgWrapper = styled.div`
-    width: 710px;
-    height: 655px;
+    width: 550px;
+    height: 505px;
     ${Flex}
-    /* border : 1px solid #b6b6b6; */
     border-radius: 10px;
     img {
         border-radius: 10px;
@@ -19,7 +19,7 @@ export const ImageList = styled.div`
     ${Flex};
     gap: 10px;
     width: 100%;
-    margin: 15px 0 40px;
+    margin: 15px 10px 40px 0;
     .selectedImage {
         border: 1px solid #333;
     }
@@ -33,8 +33,8 @@ export const ArrowImg = styled.img`
 
 export const PreviewImg = styled.img`
     border: none;
-    width: 85px;
-    height: 85px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 10px;
 `;

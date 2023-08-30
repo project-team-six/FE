@@ -38,7 +38,7 @@ const MyPage: React.FC = () => {
     });
 
     // useQuery로 유저 정보 불러오기
-    const { data: mypage, isLoading } = useQuery(["mypage"], () =>
+    const { data: mypage, isLoading } = useQuery(["mypage", userId], () =>
         getMyPage(userId)
     );
 
