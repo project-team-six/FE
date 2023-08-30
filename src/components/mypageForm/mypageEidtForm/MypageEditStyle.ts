@@ -52,13 +52,12 @@ export const ImgBox = styled.div`
 `;
 
 export const Avatar = styled.div`
+display:none;
 	position: relative;
 	input {
-		/* display: none; */
+		display: none;
 	}
-	margin: -110px auto 0;
-	width: 110px;
-	height: 110px;
+	margin: 0 auto;
 	${Flex}
 `;
 
@@ -66,7 +65,7 @@ export const EditBtn = styled.div`
 	${cursor}
 	position:absolute;
 	bottom: 0;
-	left: 53%;
+	left: 70%;
 	width: 30px;
 	height: 30px;
 	background-color: #f0f0f0;
