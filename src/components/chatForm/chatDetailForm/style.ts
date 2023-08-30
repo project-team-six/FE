@@ -113,6 +113,15 @@ export const InputButton = styled.button`
 	cursor: pointer;	
 `;
 
+export const PhotoLabel = styled.label`
+	margin-right: 5px;
+	cursor: pointer;	
+`;
+
+export const InputPhoto = styled.input`
+	display: none;
+`;
+
 export const Li = styled.li`
 	display: flex;
 	margin-bottom: 20px;
@@ -154,4 +163,50 @@ export const ProfileImg = styled.img`
 	height: 38px;
 	border-radius: 50%;
 	margin-right: 10px;
+`;
+
+export const PhotoSection = styled.section`
+	position: sticky;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-left: 7px;
+	background-color: #F1F1F1;
+	height: 120px;
+	z-index: 999;
+`;
+
+export const PreviewImg = styled.img`
+	width: 100px;
+	height: 100px;
+	max-width: 100%;
+	max-height: 100%;
+`;
+
+export const DeleteButton = styled.button`
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgba(0, 0, 0, 0.5);
+	border: none;
+	cursor: pointer;
+	width: 100px; 
+	height: 100px;
+`;
+
+export const DeleteButtonDiv = styled.div`
+	position: relative;
+	&:hover ${DeleteButton} {
+		display: block; // 이미지를 감싸는 div에 호버 시 버튼 표시
+	}
+`;
+
+export const SendPhotoButton = styled.button`
+	position: absolute;
+	top: 45%;
+	left: 89%;
+	cursor: pointer;
 `;

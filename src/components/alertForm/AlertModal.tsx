@@ -20,7 +20,7 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 		isError,
 	} = useQuery(["alertList"], () => fetchAlert(), { refetchInterval: 60000 });
 
-	setAlertCount(alertList?.data.length);
+	setAlertCount(alertList && alertList?.data.length);
 
 	//알림 삭제
 	const deleteAlertClient = useQueryClient();

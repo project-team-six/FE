@@ -70,7 +70,7 @@ const FeedCards = ({
 
 	return (
 		<S.FeedListSection>
-			{feedList.content.slice(0, pageSize).map((item: any) => (
+			{feedList && feedList.content && feedList.content.slice(0, pageSize).map((item: any) => (
 				<div key={item.id}>
 					<S.FeedCard onClick={handleNavigate(`/feed/${item.id}`)}>
 						<S.FeedImageBox>
