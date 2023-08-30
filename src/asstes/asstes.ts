@@ -87,7 +87,6 @@ export {
 	pined,
 	profileIcon,
 	profileImageDefault,
-	report_small,
 	report,
 	rightArrow,
 	rubbish,
