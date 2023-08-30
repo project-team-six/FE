@@ -77,9 +77,17 @@ export const Popularity = styled.section`
     ${Flex}
     flex-direction: column;
     border-radius: 0 20px 20px 0;
-    h5,p {color: #fff;}
-    h5 {font-size: 36px;}
-    p {font-size: 20px;margin: 5px 0;}
+    h5,
+    p {
+        color: #fff;
+    }
+    h5 {
+        font-size: 36px;
+    }
+    p {
+        font-size: 20px;
+        margin: 5px 0;
+    }
 `;
 
 export const Post = styled.div`
@@ -88,53 +96,63 @@ export const Post = styled.div`
 `;
 
 export const NonPost = styled.div`
-height : 300px;
-width:100%;
-${Flex}
-flex-direction: column;
-h1 {
-    font-size:1.5rem;
-    display :block;
-    margin : 15px 0;}
-button {
-    ${cursor}
-    display : block;
-    width:200px;
-    height : 40px;
-    border : 1px solid #3ac884;
-    border-radius : 10px;
-    &:hover{
-    background-color:#3ac884;
-    border : none;
+    height: 300px;
+    width: 100%;
+    ${Flex}
+    flex-direction: column;
+    h1 {
+        font-size: 1.5rem;
+        display: block;
+        margin: 15px 0;
     }
-    &:active{
-        background-color:#56EBA3;
-        border : none;
+    button {
+        ${cursor}
+        display : block;
+        width: 200px;
+        height: 40px;
+        border: 1px solid #3ac884;
+        border-radius: 10px;
+        &:hover {
+            background-color: #3ac884;
+            border: none;
+        }
+        &:active {
+            background-color: #56eba3;
+            border: none;
+        }
     }
-}
-`
+`;
 
 export const ListWrapper = styled.div`
     ${Flex}
     justify-content: flex-start;
-    gap : 30px;
-    
+    gap: 30px;
+    flex-wrap: wrap;
 `;
 
 export const Feed = styled.div`
     width: 285px;
-    border-radius:15px;
-    h4,p,span {
+    border-radius: 15px;
+    h4,
+    p,
+    span {
         margin: 10px 0;
-        padding : 0 5px;
+        padding: 0 5px;
     }
     img {
         width: 285px;
         height: 340px;
         border-radius: 15px;
-        object-fit:cover;
+        object-fit: cover;
     }
-    h4 {font-size: 18px;}
-    p {font-size: 16px;}
-    span {color: #838383;font-size: 15px;}
+    h4 {
+        font-size: 18px;
+    }
+    p {
+        font-size: 16px;
+    }
+    span {
+        color: #838383;
+        font-size: 15px;
+    }
 `;
