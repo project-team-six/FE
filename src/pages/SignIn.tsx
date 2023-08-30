@@ -33,7 +33,6 @@ const SignIn = () => {
 
 	//로그인 성공하면 토큰 쿠키에 저장하고 리덕스로 토큰값 보내주는 곳
 	const dispatch = useDispatch();
-
 	const loginMutation = useMutation(signIn, {
 		onSuccess: (res) => {
 			const token = res.headers.authorization; // 엑세스토큰
@@ -57,12 +56,14 @@ const SignIn = () => {
 			}
 		},
 	});
+
 	//이메일 형식 체크
 	const isValidEmail = (email: string) => {
 		const emailRegex =
 			/([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 		return emailRegex.test(email);
 	};
+	
 	//로그인 유효성 검사 후 통과하면 mutate 실행
 	const onClickLoginBtnHandler = () => {
 		const user: User = {

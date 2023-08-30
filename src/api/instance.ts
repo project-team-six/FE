@@ -2,14 +2,15 @@ import axios, { AxiosInstance } from "axios";
 import { useDispatch } from "react-redux";
 import { setDecodeToken } from "../redux/modules/user";
 import { deleteToken } from "../utils/deleteToken";
+import { getToken } from "../utils/getToken";
 
 export const instance: AxiosInstance = axios.create({
 	baseURL: process.env.REACT_APP_SERVER_URL,
 });
 
 instance.interceptors.request.use(async (config) => {
-	const accessToken = document.cookie.replace(/(?:(?:^|.*;\s*)accessToken\s*=\s*([^;]*).*$)|^.*$/, "$1");
-	const refreshToken = document.cookie.replace(/(?:(?:^|.*;\s*)refreshToken\s*=\s*([^;]*).*$)|^.*$/, "$1");
+	const accessToken = getToken("accessToken");
+	const refreshToken = getToken("refreshToken");
 
 	if (accessToken && refreshToken) {
 		config.headers.Authorization = accessToken;

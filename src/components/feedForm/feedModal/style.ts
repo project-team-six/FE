@@ -10,35 +10,34 @@ export const ModalLayout = styled.div`
 	top: 0;
 	width: 100%;
 	height: 100%;
+	z-index: 99;
 	background-color: rgba(0, 0, 0, 0.5); /* 배경색 + 투명도 조절 */
 `;
 
 export const PrecautionsLayout = styled.div`
 	position: relative;
-	width: 445px;
-	height: 630px;
+	width: 457px;
+	height: 606px;
 	border-radius: 20px;
-	background-color: #ffffff;
+	background-color: #FFFFFF;
 `;
 
 export const PrecautionsDiv = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	width: 350px;
-	margin-top: 50px;
-	margin-left: 32px;
-	margin-right: 32px;
+	margin: 47px 34px 20px 34px;
 `;
 
-export const PrecautionsIcon = styled.img`
-	width: 30px;
-	height: 30px;
+export const TitleDiv = styled.div`
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: center;
 `;
 
 type SpanProps = {
 	fontSize: number;
-	fontWeight: string;
+	fontWeight:string;
 };
 
 export const Span = styled.span<SpanProps>`
@@ -46,33 +45,30 @@ export const Span = styled.span<SpanProps>`
 	font-weight: ${(props) => props.fontWeight};
 `;
 
-export const Line = styled.div`
-	margin-bottom: 8px;
-`;
-
-export const Ul = styled.ul`
-	margin-top: 25px;
-`;
-
 export const Li = styled.li`
+	padding: 15px 25px 15px 25px;
 	display: flex;
-	margin-bottom: 35px;
+	width: 390px;
+	height: 66px;
+	background-color: #F8F8F8;
+	margin-bottom: 17px;
+	border-radius: 20px;
 `;
 
 export const Icon = styled.img`
-	width: 10px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 	margin-right: 20px;
 `;
 
 export const ButtonDiv = styled.div`
 	width: 100%;
-	height: 62px;
-	background-color: #2bb673;
+	height: 70px;
+	background-color: #2BB673;
 	border-radius: 0 0 20px 20px;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+    align-items: center;
 	${cursor};
 `;
 
@@ -81,7 +77,7 @@ export const Button = styled.button`
 	height: 100%;
 	align-items: center;
 	text-align: center;
-	color: #e5e5e5;
+	color: #CCCCCC;
 	font-size: 20px;
 	font-weight: 700;
 	${cursor};
