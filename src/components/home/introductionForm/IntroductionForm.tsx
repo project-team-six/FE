@@ -20,7 +20,7 @@ const IntroductionForm = () => {
 			});
 		});
 
-		const images = document.querySelectorAll("img");
+		const images = document.querySelectorAll(".icon-box img");
 		images.forEach((img) => {
 			observer.observe(img);
 		});
@@ -45,7 +45,7 @@ const IntroductionForm = () => {
 						<br /> 식품부터 일회용품까지, 소비의 의미를 새롭게 만나보세요.
 					</p>
 				</S.TextBox>
-				<S.IconBox>
+				<S.IconBox className='icon-box'>
 					<img src={socks} alt='양말' style={{ top: "14px", left: "20px" }} />
 					<img src={cleaner} alt='세제' style={{ top: "140px", left: "100px" }} />
 					<img src={carrot} alt='당근' style={{ top: "20px", right: "150px" }} />
@@ -53,7 +53,7 @@ const IntroductionForm = () => {
 				</S.IconBox>
 			</S.IntroLayoutBox>
 			<S.IntroLayoutBox>
-				<S.IconBox>
+				<S.IconBox className='icon-box'>
 					<img
 						src={realTimeChat1}
 						alt='채팅아이콘'
