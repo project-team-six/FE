@@ -9,7 +9,6 @@ import {
     emailIconWhite,
     locationpin,
     smileyneutral,
-    smileywink,
 } from "../../asstes/asstes";
 import UserProfile from "./UserProfile";
 

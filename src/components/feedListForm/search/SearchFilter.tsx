@@ -12,6 +12,13 @@ const SearchFilter = ({
 	userInputHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	handleStatusChange: (status: string) => void;
 }) => {
+	const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Enter') {
+			event.preventDefault(); 
+			
+		}
+	};
+
 	return (
 		<S.SearchFilterSection>
 			<S.FilterBox>
@@ -27,7 +34,7 @@ const SearchFilter = ({
 				</S.FinishButton>
 			</S.FilterBox>
 			<S.SearchBox>
-				<input type='text' value={titleOrContent} onChange={userInputHandler} />
+				<input type='text' value={titleOrContent} onChange={userInputHandler} onKeyPress={handleKeyPress}/>
 				<img src={searchIcon} alt='돋보기아이콘' />
 			</S.SearchBox>
 		</S.SearchFilterSection>

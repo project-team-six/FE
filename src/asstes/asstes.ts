@@ -9,7 +9,6 @@ import profileImageDefault from "./profileImageDefault.png";
 import rightArrow from "./rightArrow.png";
 import rubbish from "./rubbish-bin.png";
 import trash from "./trash.png";
-import emailIcon from "./emailIcon.png";
 import userIcon from "./userIcon.png";
 import phoneIcon from "./phoneIcon.png";
 import pwIcon from "./pwIcon.png";
@@ -71,7 +70,8 @@ import moremenu from "./moremenu.png";
 
 // 회원 가입
 import profileDefault from "./profileDefault.png";
-import editIcon from "./editIcon.png";
+import userProfile from "./userProfile.png"
+import signUpCamera from "./signUpCamera.png"
 
 // 이메일 찾기
 import EmailFindIcon from "./EmailFindIcon.png";
@@ -99,7 +99,6 @@ export {
 	rightArrow,
 	rubbish,
 	trash,
-	emailIcon,
 	userIcon,
 	phoneIcon,
 	pwIcon,
@@ -108,7 +107,8 @@ export {
 	feedLocationicon,
 	calendarIcon,
 	profileDefault,
-	editIcon,
+	userProfile,
+	signUpCamera,
 	EmailFindIcon,
 	mainBanner,
 	h_profile,
@@ -134,8 +134,8 @@ export {
 	smileywink,
 	emailIconWhite,
 	profileImg,
-  reportred,
-  moremenu,
+	reportred,
+	moremenu,
 	line,
 	FRESH_FOOD,
 	WHOLE,

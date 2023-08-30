@@ -58,7 +58,7 @@ const ChatDetailModal = ({roomId, isFeed, modalState, modalHandle, preModalState
     };
 
     // enter 눌렀을 때 관리 (입력된 내용이 있으면 댓글 등록)
-	const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (event.key === 'Enter') {
 			event.preventDefault(); 
 			handleSendMsg();
@@ -86,7 +86,7 @@ const ChatDetailModal = ({roomId, isFeed, modalState, modalHandle, preModalState
                             <S.HeaderSpanDiv>
                                 <S.Span fontSize={16} fontWeight="700">{roomData?.name}</S.Span>
                                 <br />
-                                <S.Span fontSize={11} fontWeight="400" color="A9A9A9">{roomData?.participants[1]}</S.Span>
+                                <S.ParticipantDiv><S.Span fontSize={11} fontWeight="400" color="A9A9A9">{roomData?.participants.join(", ")}</S.Span></S.ParticipantDiv>
                             </S.HeaderSpanDiv>
                             <S.Button onClick={() => handleClickClose()}><img src={chatClose} alt="close"/></S.Button>
                         </S.HeaderSection>

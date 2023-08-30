@@ -47,6 +47,13 @@ export const HeaderSpanDiv = styled.div`
 	text-align: center;
 `;
 
+export const ParticipantDiv = styled.div`
+	width: 150px;
+	white-space: nowrap; 
+	overflow: hidden;
+	text-overflow: ellipsis; 
+`;
+
 type ButtonProps = {
 	width?: number;
 	height?: number;

@@ -38,6 +38,14 @@ const CommentInputForm = ({ postId }: { postId: number }) => {
 		}
 	};
 
+	// enter 눌렀을 때 관리 (입력된 내용이 있으면 댓글 등록)
+	const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Enter') {
+			event.preventDefault(); 
+			if (comment.trim() !== "") handleClickCmtAddBtn();
+		}
+	};
+
 	return (
 		<section>
 			<S.InputForm>
@@ -46,6 +54,7 @@ const CommentInputForm = ({ postId }: { postId: number }) => {
 					value={comment}
 					onChange={handleChangeCommnet}
 					placeholder='댓글을 입력해주세요.'
+					onKeyPress={handleKeyPress}
 				/>
 				<S.InputButton type='button' onClick={handleClickCmtAddBtn}>
 					등록
