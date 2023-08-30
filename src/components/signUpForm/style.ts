@@ -9,10 +9,12 @@ export const MainContentWrapper = styled.div`
 `;
 
 export const Button = styled.button`
+	font-size: 18px;
+	font-weight: 700;
 	cursor: pointer;
 	margin-top: 60px;
 	margin-bottom: 240px;
-	width: 285px;
+	width: 400px;
 	height: 55px;
 	color: #FFFFFF;
 	background-color: #2BB673;

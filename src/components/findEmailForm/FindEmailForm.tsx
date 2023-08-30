@@ -29,7 +29,7 @@ const FindEmailForm = () => {
 
 	return (
 		<Sf.MainContentWrapper>
-			<Announcement />
+			<Announcement content="이메일 찾기"/>
 			{result ? foundEmail : <SearchEmailForm setResult={setResult} />}
 		</Sf.MainContentWrapper>
 	);

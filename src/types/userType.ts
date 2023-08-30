@@ -13,7 +13,6 @@ export type newUser = Omit<userType, "matchPin">;
 export type textInfoType  = {
     kind: string;
     type: string;
-    icon: string;
     errorMsg: string;
     condition: string | RegExp; // 유효성 조건
     placeholder: string;
