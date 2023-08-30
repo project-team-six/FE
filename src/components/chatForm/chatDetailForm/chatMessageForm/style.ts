@@ -47,7 +47,7 @@ export const MessageBox = styled.div<DivProps>`
 `;
 
 export const TimeBox = styled.div`
-	margin-top: 5px;
+	margin-top: auto;
 	margin-left: 10px;
 `;
 
@@ -62,4 +62,9 @@ export const NotificationLi = styled.li`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+`;
+
+export const Photo = styled.img`
+	width: 150px; 
+	height: 150px;
 `;
