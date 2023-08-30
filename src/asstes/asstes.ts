@@ -4,12 +4,8 @@ import edit from "./edit.png";
 import findEmailLogo from "./findEmailLogo.png";
 import leftArrow from "./leftArrow.png";
 import peopleIcon from "./peopleIcon.png";
-import pin from "./pin.png";
-import pined from "./pined.png";
 import profileIcon from "./profileIcon.png";
 import profileImageDefault from "./profileImageDefault.png";
-import report_small from "./report_small.png";
-import report from "./report.png";
 import rightArrow from "./rightArrow.png";
 import rubbish from "./rubbish-bin.png";
 import trash from "./trash.png";
@@ -58,6 +54,12 @@ import precautions3 from "./precautions3.png";
 import precautions4 from "./precautions4.png";
 import precautions5 from "./precautions5.png";
 
+// 게시물 상세
+import pin from "./pin.png";
+import pined from "./pined.png";
+import reportred from "./report-red.png";
+import report from "./report.png";
+import moremenu from "./moremenu.png";
 
 // 회원 가입
 import profileDefault from "./profileDefault.png";
@@ -125,6 +127,8 @@ export {
 	smileywink,
 	emailIconWhite,
 	profileImg,
+  reportred,
+  moremenu,
 	line,
 	chatClose,
 	chatBack,
