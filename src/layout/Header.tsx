@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/config/configStore";
-import { setLogOut, TokenSliceState } from "../redux/modules/user";
+import { setDecodeToken, setLogOut, TokenSliceState } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 import ProfileModal from "../components/common/ProfileModal";
 import { useMutation } from "react-query";
@@ -16,6 +16,8 @@ import AlertModal from "../components/alertForm/AlertModal";
 import { VscChevronDown } from "react-icons/vsc";
 import { Flex } from "../components/common/GlobalStyle";
 import { throttle } from "lodash";
+import { getToken } from "../utils/getToken";
+import ChatListModal from "../components/chatForm/ChatListModal";
 
 const Header = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -23,27 +25,42 @@ const Header = () => {
 	const handleNavigate = (path: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		navigate(path);
 	};
-	//알람, 프로필모달 핸들러
+
+	// 프로필
 	const [isProfileModal, setIsProfileModal] = useState(false);
-	const [isAlertModal, setIsAlertModal] = useState(false);
-	const [alertCount, setAlertCount] = useState(0);
 	const toggleProfileModal: React.MouseEventHandler = (event) => {
 		event.preventDefault();
 		setIsProfileModal((prevModalState) => !prevModalState);
 	};
+
+	// 알람
+	const [isAlertModal, setIsAlertModal] = useState(false);
+	const [alertCount, setAlertCount] = useState(0);
 	const toggleAlertModal: React.MouseEventHandler = (event) => {
 		event.preventDefault();
 		setIsAlertModal((prevModalState) => !prevModalState);
 	};
 
-	//토큰 디코드한 값 가져오기
+	// 채팅
+	const [isChatModal, setIsChatModal] = useState<boolean>(false);
+	const toggleChatModal: React.MouseEventHandler = (event) => {
+		event.preventDefault();
+		setIsChatModal((prevModalState) => !prevModalState);
+	};
+
+	// 토큰 저장되어 있는지 확인
+	const accessToken = getToken("accessToken");
+	useEffect(() => {
+		if (accessToken) dispatch(setDecodeToken(accessToken));
+	}, [accessToken]);
+ 
+	// 토큰 디코드한 값 가져오기
 	const tokenInfo: TokenSliceState = useSelector((state: RootState) => {
 		return state.tokenSlice;
 	});
+	const userProfile = tokenInfo.decodeToken.profileImageUrl; // 현재 로그인된 사용자의 프로필 이미지 URL
 
-	const userProfile = tokenInfo.decodeToken.profileImageUrl;
-
-	//로그아웃
+	// 로그아웃
 	const logOutMutation = useMutation(signOut, {
 		onSuccess: (res) => {
 			deleteToken("accessToken");
@@ -100,11 +117,8 @@ const Header = () => {
 				<NavBtnSection>
 					{tokenInfo.isLogin ? (
 						<div style={{ display: "flex", gap: "35px" }}>
-							<NavButton>
-								<img src={h_chatIcon} alt='채팅' />
-							</NavButton>
+							<NavButton onClick={toggleChatModal}><img src={h_chatIcon} alt='채팅' /></NavButton>
 							<NavButton onClick={toggleAlertModal}>
-								{/* 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | string */}
 								<Badge
 									badgeContent={alertCount}
 									sx={{
@@ -147,6 +161,7 @@ const Header = () => {
 								logoutHandle={Logout}
 								modalHandle={toggleProfileModal}
 							/>
+							<ChatListModal modalState={isChatModal} modalHandle={setIsChatModal}/>
 						</div>
 					) : (
 						<div>
