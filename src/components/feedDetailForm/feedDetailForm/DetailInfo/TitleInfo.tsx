@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 import { pin, pined, profileDefault, report } from "../../../../asstes/asstes";
 import { priceUtils } from "../../../../utils/priceUtils";
 import { useNavigate, useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/config/configStore";
+import { enterChatRoom } from "../../../../api/chatApi";
+import { useMutation } from "react-query";
+import ChatDetailModal from "../../../chatForm/chatDetailForm/ChatDetailModal";
 
 interface TitleInfoProps {
     detailFeed: any;
@@ -23,10 +26,13 @@ const TitleInfo: React.FC<TitleInfoProps> = ({detailFeed,closed,handleCloseClick
     });
     const userId: Number = Number(userInfo.userId); // 사용자 ID
 
-    //채팅방 연결
-    // const openchat = () => {
-    //     navigate(`/chatroom/${roomId}`);
-    // };
+    // 채팅방 연결
+    const [isChatModal, setIsChatModal] = useState<boolean>(false);
+    const roomMutation = useMutation(enterChatRoom, {
+        onSuccess: () => {
+            setIsChatModal(!isChatModal); // 채팅 모달 열기
+        },
+    });
     
     return (
         <div>
@@ -99,10 +105,11 @@ const TitleInfo: React.FC<TitleInfoProps> = ({detailFeed,closed,handleCloseClick
                                 )}
                                 <S.Btn
                                     color="#2bb673"
-                                    // onClick={openchat}
+                                    onClick={() => roomMutation.mutate(detailFeed.chatroomId)}
                                 >
                                     연락하기
                                 </S.Btn>
+                                <ChatDetailModal roomId={detailFeed.chatroomId} isFeed={true} modalState={isChatModal} modalHandle={setIsChatModal}/>
                             </S.NotAuth>
                         )}
                     </div>
