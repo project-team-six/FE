@@ -48,10 +48,10 @@ const SignUpForm = () => {
 
     return (
         <S.MainContentWrapper>
-			<Announcement />
+			<Announcement content="회원가입"/>
             <ProfileForm setProfile={setProfile}/>
 			<TextForm setTextUserInfo={setTextUserInfo}/>
-            <S.Button onClick={clickAddBtn}>가입 완료</S.Button>
+            <S.Button onClick={clickAddBtn}>회원가입</S.Button>
         </S.MainContentWrapper>
     )
 }

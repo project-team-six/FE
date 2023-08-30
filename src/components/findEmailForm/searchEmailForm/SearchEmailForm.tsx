@@ -4,9 +4,8 @@ import { useMutation } from "react-query";
 import { findUserEmail } from "../../../api/userApi";
 import { pushNotification } from "../../../utils/notification";
 import { findEmailType } from "../../../types/userType";
-import Input from "../../../theme/Input";
+import TextInputForm from "../../common/textInputForm/TextInputForm";
 import * as S from "./style";
-import { userIcon, phoneIcon } from "../../../asstes/asstes";
 
 const SearchEmailForm = ({ setResult }: { setResult: (value: string) => void }) => {
 	const [username, setUsername] = useState<string>(""); // 이름
@@ -41,28 +40,10 @@ const SearchEmailForm = ({ setResult }: { setResult: (value: string) => void }) 
 	return (
 		<S.MainContentWrapper>
 			<S.Section>
-				<Input
-					label={"이름"}
-					icon={userIcon}
-					type={"text"}
-					value={username}
-					handleChange={handleChangeUsername}
-					width={33}
-					placeholder={"이름을 입력해주세요. ex)홍길동"}
-					message={""}
-				/>
+				<TextInputForm label="이름" type="text" value={username} handleChange={handleChangeUsername} placeholder="이름을 입력해주세요. ex)홍길동" msg=""/>
 			</S.Section>
 			<S.Section>
-				<Input
-					label={"전화번호"}
-					icon={phoneIcon}
-					type={"text"}
-					value={phoneNumber}
-					handleChange={handleChangePhoneNumber}
-					width={33}
-					placeholder={"'-'는 제외하고 숫자만 입력해주세요."}
-					message={""}
-				/>
+				<TextInputForm label="휴대폰 번호" type="text" value={phoneNumber} handleChange={handleChangePhoneNumber} placeholder="'-'없이 숫자만 입력해주세요." msg=""/>
 			</S.Section>
 			<S.SectionButton>
 				<S.Button onClick={() => clickFindEmailBtn()}>찾기</S.Button>

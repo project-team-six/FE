@@ -1,18 +1,10 @@
 import styled from "styled-components";
 
-export const SpanDiv = styled.div`
-	width: 100%;
-	margin-bottom: 65px;
+export const SpanSection = styled.section`
+	margin-bottom: 50px;
 `;
 
-type SpanProps = {
-	color: string;
-	$borderBottom?: string;
-};
-
-export const Span = styled.span<SpanProps>`
-	font-size: 24px;
+export const Span = styled.span`
+	font-size: 35px;
 	font-weight: 700;
-	color: #${(props) => props.color};
-	border-bottom: ${(props) => props.$borderBottom};
 `;

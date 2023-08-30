@@ -1,7 +1,7 @@
 import { commentDeleteType, commentEditType, commentPostType } from "../types/feedType";
 import { instance } from "./instance";
 
-//게시물 전체 조회
+// 게시물 전체 조회
 export const fetchFeedList = async (
 	location: string,
 	category: string,
@@ -69,7 +69,7 @@ export const deleteComment = async (payload: commentDeleteType) => {
 	return response;
 };
 
-//게시물 찜하기
+// 게시물 찜하기
 export const postPin = async (postId: number) => {
 	const response = await instance.post(`/post/${postId}/pin`);
 	return response;

@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { EventSourcePolyfill } from "event-source-polyfill";
+import { getToken } from "../../utils/getToken";
 
 const SseAlert = () => {
 	useEffect(() => {
-		const token = document.cookie.replace(/(?:(?:^|.*;\s*)accessToken\s*=\s*([^;]*).*$)|^.*$/, "$1");
+		const token = getToken("accessToken");
 		const eventSourceInitDict: any = {
 			headers: {
 				Authorization: `${token}`,

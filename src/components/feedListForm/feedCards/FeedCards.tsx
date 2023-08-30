@@ -46,7 +46,7 @@ const FeedCards = ({
 	if (isLoading) return <div>Loading...</div>;
 	if (isError) return <div>Error...</div>;
 
-	//시간포맷함수
+	// 시간포맷함수
 	const formatTimeDifference = (dateString: string) => {
 		const currentDate = new Date();
 		const targetDate = new Date(dateString);

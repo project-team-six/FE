@@ -31,6 +31,14 @@ import realTimeChat2 from "./realTimeChat2.png";
 import realTimeChat3 from "./realTimeChat3.png";
 import line from "./line.png";
 
+// 제너럴페이지(FeedList)
+import WHOLE from "./WHOLE.png";
+import FRESH_FOOD from "./FRESH_FOOD.png";
+import BEAUTY from "./BEAUTY.png";
+import DAILY_NECESSITIES from "./DAILY_NECESSITIES.png";
+import ETC from "./ETC.png";
+import searchIcon from "./searchIcon.png";
+
 // 게시물 등록
 import feedImageAddIcon from "./feedImageAddIcon.png";
 import trashIcon from "./trashIcon.png";
@@ -38,12 +46,11 @@ import feedLocationicon from "./feedLocationicon.png";
 import calendarIcon from "./calendarIcon.png";
 
 // 게시물 등록 (주의 사항)
-import precautionsIcon from "./precautionsIcon.png";
-import oneIcon from "./oneIcon.png";
-import twoIcon from "./twoIcon.png";
-import threeIcon from "./threeIcon.png";
-import fourIcon from "./fourIcon.png";
-import fiveIcon from "./fiveIcon.png";
+import precautions1 from "./precautions1.png";
+import precautions2 from "./precautions2.png";
+import precautions3 from "./precautions3.png";
+import precautions4 from "./precautions4.png";
+import precautions5 from "./precautions5.png";
 
 // 게시물 상세
 import pin from "./pin.png";
@@ -63,51 +70,73 @@ import smileywink from "./smiley-wink.png";
 import emailIconWhite from "./emailIconWhite.png";
 import profileImg from "./profileImg.png";
 
+// 회원 가입
+import profileDefault from "./profileDefault.png";
+import userProfile from "./userProfile.png"
+import signUpCamera from "./signUpCamera.png"
+
+// 이메일 찾기
+import EmailFindIcon from "./EmailFindIcon.png";
+
+// 채팅
+import chatClose from "./chatClose.png";
+import chatBack from "./chatBack.png";
+import chatSend from "./chatSend.png";
+import chatPhotoAdd from "./chatPhotoAdd.png";
+import chatDelete from "./chatDelete.png";
+
 export {
-    leftArrow,
-    h_mainLogo,
-    pin,
-    pined,
-    profileImageDefault,
-    report,
-    rightArrow,
-    emailIcon,
-    userIcon,
-    phoneIcon,
-    pwIcon,
-    trashIcon,
-    feedImageAddIcon,
-    feedLocationicon,
-    calendarIcon,
-    profileDefault,
-    editIcon,
-    EmailFindIcon,
-    mainBanner,
-    h_profile,
-    h_alertIcon,
-    h_chatIcon,
-    socks,
-    cleaner,
-    bottle,
-    carrot,
-    p_location,
-    oneIcon,
-    twoIcon,
-    threeIcon,
-    fourIcon,
-    fiveIcon,
-    precautionsIcon,
-    cog,
-    locationpin,
-    pencil,
-    smileyneutral,
-    smileywink,
-    emailIconWhite,
-    profileImg,
-    reportred,
-    moremenu,
-    realTimeChat1,
-    realTimeChat2,
-    realTimeChat3,
-    line,
+	leftArrow,
+	h_mainLogo,
+	pin,
+	pined,
+	profileImageDefault,
+	report,
+	rightArrow,
+	userIcon,
+	phoneIcon,
+	pwIcon,
+	trashIcon,
+	feedImageAddIcon,
+	feedLocationicon,
+	calendarIcon,
+	profileDefault,
+	userProfile,
+	signUpCamera,
+	EmailFindIcon,
+	mainBanner,
+	h_profile,
+	h_alertIcon,
+	h_chatIcon,
+	socks,
+	cleaner,
+	bottle,
+	carrot,
+	p_location,
+	precautions1,
+	precautions2,
+	precautions3,
+	precautions4,
+	precautions5,
+	cog,
+	locationpin,
+	pencil,
+	smileyneutral,
+	smileywink,
+	emailIconWhite,
+	profileImg,
+	reportred,
+	moremenu,
+	line,
+	FRESH_FOOD,
+	WHOLE,
+	BEAUTY,
+	DAILY_NECESSITIES,
+	ETC,
+	searchIcon,
+	chatClose,
+	chatBack,
+	chatSend,
+	chatPhotoAdd,
+	chatDelete,
 };

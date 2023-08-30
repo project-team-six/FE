@@ -1,86 +1,115 @@
 import React, { useState } from "react";
-import * as S from "../components/feedListForm/style";
-import FeedCards from "../components/feedListForm/feedCards/FeedCards";
-import { ImSearch } from "react-icons/im";
+import * as AS from "../asstes/asstes";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/config/configStore";
-import { MdArrowForwardIos } from "react-icons/md";
-import { MdArrowBackIos } from "react-icons/md";
+import CategorySection from "../components/feedListForm/category/CategorySection";
+import SearchFilter from "../components/feedListForm/search/SearchFilter";
+import FeedCards from "../components/feedListForm/feedCards/FeedCards";
+import PageNation from "../components/feedListForm/pagenation/PageNation";
 
 const FeedList = () => {
-	//페이지네이션
-	const [totalPages, setTotalpages] = useState(0);
+	// 카테고리 (필터)
+	const [categoryObj, setCategoryObj] = useState({
+		category: "",
+		bannerText: "소분목록",
+		categoryURL: `${AS.WHOLE}`,
+	});
 
-	const fetchPageable = (totalPages: number) => {
-		setTotalpages(totalPages);
-	};
+	const category = categoryObj.category;
+	const bannerText = categoryObj.bannerText;
+	const categoryURL = categoryObj.categoryURL;
 
-	const [currentPage, setCurrentPage] = useState(0);
-	//카테고리 (필터)
-	const [category, setCategory] = useState("");
 	const handleCategoryChange = (category: string) => {
-		setCategory(category);
+		switch (category) {
+			case "":
+				setCategoryObj({
+					category: "",
+					bannerText: "소분목록",
+					categoryURL: `${AS.WHOLE}`,
+				});
+				break;
+			case "FRESH_FOOD":
+				setCategoryObj({
+					category: "FRESH_FOOD",
+					bannerText: "신선식품",
+					categoryURL: `${AS.FRESH_FOOD}`,
+				});
+				break;
+			case "BEAUTY":
+				setCategoryObj({
+					category: "BEAUTY",
+					bannerText: "뷰티제품",
+					categoryURL: `${AS.BEAUTY}`,
+				});
+				break;
+			case "DAILY_NECESSITIES":
+				setCategoryObj({
+					category: "DAILY_NECESSITIES",
+					bannerText: "생활용품",
+					categoryURL: `${AS.DAILY_NECESSITIES}`,
+				});
+				break;
+			case "ETC":
+				setCategoryObj({
+					category: "ETC",
+					bannerText: "기타제품",
+					categoryURL: `${AS.ETC}`,
+				});
+				break;
+			default:
+				break;
+		}
 	};
 
-	//유저지역 (필터)
+	// 유저지역 (필터)
 	const fetchLocation = useSelector((state: RootState) => {
 		return state.locationSlice.userLocation;
 	});
 	const location = fetchLocation.sido + " " + fetchLocation.sigungu + " " + fetchLocation.dong;
 
-	//소분완료여부 (필터)
+	// 소분완료여부 (필터)
 	const [status, setStatus] = useState("");
-	const handleStatusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setStatus(event.target.checked ? "IN_PROGRESS" : "");
+	const handleStatusChange = (status: string) => {
+		switch (status) {
+			case "IN_PROGRESS":
+				setStatus("IN_PROGRESS");
+				break;
+			case "COMPLETED":
+				setStatus("COMPLETED");
+				break;
+			default:
+				setStatus("");
+				break;
+		}
 	};
 
-	//제목, 내용 통합검색
+	// 제목, 내용 통합검색
 	const [titleOrContent, setTitleOrContent] = useState("");
-
 	const userInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setTitleOrContent(event.target.value);
 	};
 
+	// 페이지네이션
+	const [totalPages, setTotalpages] = useState(0);
+	const [currentPage, setCurrentPage] = useState(0);
+
+	const fetchPageable = (totalPages: number) => {
+		setTotalpages(totalPages);
+	};
 	return (
 		<div>
-			<S.CategorySection>
-				<button onClick={() => handleCategoryChange("")} className={category === "" ? "active" : ""}>
-					전체
-				</button>
-				<button
-					onClick={() => handleCategoryChange("FRESH_FOOD")}
-					className={category === "FRESH_FOOD" ? "active" : ""}>
-					신선식품
-				</button>
-				<button
-					onClick={() => handleCategoryChange("BEAUTY")}
-					className={category === "BEAUTY" ? "active" : ""}>
-					뷰티
-				</button>
-				<button
-					onClick={() => handleCategoryChange("DAILY_NECESSITIES")}
-					className={category === "DAILY_NECESSITIES" ? "active" : ""}>
-					생필품
-				</button>
-				<button onClick={() => handleCategoryChange("ETC")} className={category === "ETC" ? "active" : ""}>
-					기타
-				</button>
-			</S.CategorySection>
-			<S.SearchFilterSection>
-				<S.SearchBox>
-					<ImSearch style={{ marginLeft: "15px" }} />
-					<input
-						type='text'
-						placeholder='검색어를 입력해주세요'
-						value={titleOrContent}
-						onChange={userInputHandler}
-					/>
-				</S.SearchBox>
-				<S.FilterBox>
-					<input type='checkbox' onChange={handleStatusChange} />
-					소분 진행중인 상품만 보기
-				</S.FilterBox>
-			</S.SearchFilterSection>
+			<CategorySection
+				category={category}
+				bannerText={bannerText}
+				categoryURL={categoryURL}
+				handleCategoryChange={handleCategoryChange}
+			/>
+			<SearchFilter
+				titleOrContent={titleOrContent}
+				status={status}
+				userInputHandler={userInputHandler}
+				handleStatusChange={handleStatusChange}
+			/>
 			<FeedCards
 				location={location}
 				category={category}
@@ -90,15 +119,7 @@ const FeedList = () => {
 				fetchPageable={fetchPageable}
 				pageSize={12}
 			/>
-			<S.PageNationSection>
-				<MdArrowBackIos />
-				{Array.from({ length: totalPages }, (_, index: number) => (
-					<button key={index} onClick={() => setCurrentPage(index)}>
-						{index + 1}
-					</button>
-				))}
-				<MdArrowForwardIos />
-			</S.PageNationSection>
+			<PageNation totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
 		</div>
 	);
 };
