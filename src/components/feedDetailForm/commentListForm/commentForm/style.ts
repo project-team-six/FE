@@ -3,7 +3,7 @@ import { Flex, cursor } from "../../../common/GlobalStyle";
 
 export const CommentLi = styled.li`
     width: 100%;
-    height: 125px;
+    height: 110px;
     ${Flex}
     margin-right: 25px;
     justify-content: space-between;
@@ -33,7 +33,7 @@ export const Span = styled.span<SpanProps>`
 `;
 
 export const ReportSpan = styled.span`
-    font-size: 15px;
+    font-size: 14px;
     display: inline-block;
     ${Flex}
     ${cursor}
@@ -43,13 +43,13 @@ export const CommentContentDiv = styled.div`
     margin-top: 10px;
     input {
         padding: 10px;
-        height: 45px;
+        height: 40px;
         border-radius: 10px;
-        font-size: 17px;
+        font-size: 1.1rem;
         width: 200%;
     }
     span {
-        font-size: 17px;
+        font-size: 1.1rem;
     }
 `;
 
@@ -62,10 +62,10 @@ export const CommentEditInput = styled.input`
 export const IconButton = styled.button`
     margin: 35px 0 0 20px;
     ${cursor}
-    width:95px;
-    height: 45px;
+    width:90px;
+    height: 40px;
     color: #fff;
-    font-size: 18px;
+    font-size: 1.2rem;
     border-radius: 10px;
     font-weight: 600;
     background-color: ${(props) => props.color};

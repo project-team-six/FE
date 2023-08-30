@@ -74,16 +74,16 @@ const CommentForm = ({postId,comment,closed,}: {postId: number; comment: comment
             <S.CommentDiv>
                 <S.CommentProfileImg
                     src={
-                        comment.profileImageUrl
-                            ? comment.profileImageUrl
-                            : profileImg
+                        comment.profileImageUrl === "nonImage"
+                            ? profileImg
+                            : comment.profileImageUrl
                     }
                     alt="프로필 이미지"
                 />
                 <div>
                     <div style={{ display: "flex", alignItems: "center" }}>
-                        <S.Span fontSize={20} fontWeight="700">{comment.nickname}</S.Span>
-                        <S.Span fontSize={16} fontWeight="400">{convertTimeFormat(comment.createdAt)}</S.Span>
+                        <S.Span fontSize={18} fontWeight="700">{comment.nickname}</S.Span>
+                        <S.Span fontSize={14} fontWeight="400">{convertTimeFormat(comment.createdAt)}</S.Span>
                         <S.ReportSpan><img src={reportred} alt="신고아이콘" /> 신고하기</S.ReportSpan>
                     </div>
                     <S.CommentContentDiv>

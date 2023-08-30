@@ -51,9 +51,9 @@ const TitleInfo: React.FC<TitleInfoProps> = ({detailFeed,closed,handleCloseClick
             >
                 <S.ProfileImg
                     src={
-                        detailFeed.profileImageUrl !== undefined
-                            ? detailFeed.profileImageUrl
-                            : profileImg
+                        detailFeed.profileImageUrl === "nonImage"
+                            ? profileImg
+                            : detailFeed.profileImageUrl
                     }
                     alt="profile"
                 />
