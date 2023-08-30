@@ -7,7 +7,7 @@ import { deleteComment, editComment } from "../../../../api/feedApi";
 import { pushNotification } from "../../../../utils/notification";
 import { RootState } from "../../../../redux/config/configStore";
 import * as S from "./style";
-import {profileImageDefault,reportred,moremenu,} from "../../../../asstes/asstes";
+import {reportred, moremenu, profileImg,} from "../../../../asstes/asstes";
 
 const CommentForm = ({postId,comment,closed,}: {postId: number; comment: commentType; closed: boolean;}) => {
     const nickname: string = useSelector((state: RootState) => {
@@ -76,7 +76,7 @@ const CommentForm = ({postId,comment,closed,}: {postId: number; comment: comment
                     src={
                         comment.profileImageUrl
                             ? comment.profileImageUrl
-                            : profileImageDefault
+                            : profileImg
                     }
                     alt="프로필 이미지"
                 />

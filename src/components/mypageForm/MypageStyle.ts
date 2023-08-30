@@ -125,6 +125,7 @@ export const NonPost = styled.div`
 
 export const ListWrapper = styled.div`
     ${Flex}
+    ${cursor}
     justify-content: flex-start;
     gap: 30px;
     flex-wrap: wrap;

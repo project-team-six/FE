@@ -54,30 +54,12 @@ export const ImgBox = styled.div`
 export const Avatar = styled.div`
 	position: relative;
 	input {
-		display: none;
+		/* display: none; */
 	}
 	margin: -110px auto 0;
 	width: 110px;
 	height: 110px;
 	${Flex}
-	span {
-		position: absolute;
-		bottom: 0;
-		line-height: 180px;
-		height: 110px;
-		width: 110px;
-		opacity: 0;
-		z-index: 1;
-		&:hover {
-			opacity: 1;
-			color: #fff;
-		}
-	}
-	&:hover {
-		border-radius: 100%;
-		background: rgb(0, 0, 0);
-		background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(2, 0, 36, 0) 90%);
-	}
 `;
 
 export const EditBtn = styled.div`

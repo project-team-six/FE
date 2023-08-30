@@ -8,14 +8,18 @@ import { RootState } from "../../../redux/config/configStore";
 import { setDecodeToken } from "../../../redux/modules/user";
 import { pushNotification } from "../../../utils/notification";
 
-const ProfileImgEditForm = () => {
+
+
+const ProfileImgEditForm:React.FC = () => {
     const [selectedFile, setSelectedFile] = useState<File | undefined>();
     const imgRef = useRef<HTMLInputElement | null>(null);
 
     const userId: number = useSelector((state: RootState) => {
         return state.tokenSlice.decodeToken.userId;
     });
-
+    const profileImageUrl: string = useSelector((state: RootState) => {
+		return state.tokenSlice.decodeToken.profileImageUrl;
+	});
     const dispatch = useDispatch();
 
     const onImgUpdateHandler = () => {
@@ -33,29 +37,29 @@ const ProfileImgEditForm = () => {
         }
     };
 
-    const handleImageUpload = (e: any) => {
-        e.preventDefault();
-        if (selectedFile) {
-            let formData = new FormData();
-            formData.append("file", selectedFile);
+    // const handleImageUpload = (e: any) => {
+    //     e.preventDefault();
+    //     if (selectedFile) {
+    //         let formData = new FormData();
+    //         formData.append("file", selectedFile);
 
-            putMyPageEditImage(userId, formData)
-                .then((response) => {
-                    const token = response.headers.authorization;
-                    if (token) {
-                        deleteToken("accessToken"); // 기존 token 삭제
-                        document.cookie = `accessToken=${token.trim()}; path=/;`; // access token 갱신
-                        dispatch(setDecodeToken(token)); // redux 업데이트
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                    pushNotification("이미지업로드 실패", "error");
-                });
-        } else {
-            pushNotification("이미지를 선택해주세요", "error");
-        }
-    };
+    //         putMyPageEditImage(userId, formData)
+    //             .then((response) => {
+    //                 const token = response.headers.authorization;
+    //                 if (token) {
+    //                     deleteToken("accessToken"); // 기존 token 삭제
+    //                     document.cookie = `accessToken=${token.trim()}; path=/;`; // access token 갱신
+    //                     dispatch(setDecodeToken(token)); // redux 업데이트
+    //                 }
+    //             })
+    //             .catch((error) => {
+    //                 console.log(error);
+    //                 pushNotification("이미지업로드 실패", "error");
+    //             });
+    //     } else {
+    //         pushNotification("이미지를 선택해주세요", "error");
+    //     }
+    // };
 
     return (
         <S.ProfileImg>
@@ -69,7 +73,7 @@ const ProfileImgEditForm = () => {
                         />
                     ) : (
                         <span>
-                            <img src={profileImg} alt="기본 이미지" />
+                            <img src={profileImageUrl} alt="현재 이미지" />
                         </span>
                     )}
                     <S.Avatar onClick={onImgUpdateHandler}>
@@ -80,9 +84,8 @@ const ProfileImgEditForm = () => {
                             accept="image/jpg, image/png, image/jpeg"
                             ref={imgRef}
                         />
-                        <span>파일 업로드</span>
                     </S.Avatar>
-                    <S.EditBtn onClick={handleImageUpload}>
+                    <S.EditBtn >
                         <img src={pencil} alt="편집 아이콘" />
                     </S.EditBtn>
                 </S.ImgBox>
