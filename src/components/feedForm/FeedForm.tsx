@@ -12,7 +12,7 @@ import * as S from "./style";
 import { feedLocationicon } from "../../asstes/asstes";
 import FeedModal from "./feedModal/FeedModal";
 
-const FeedForm = ({ initialValue, mutation, btnName, postId }: { initialValue: feedInitialValue, mutation?: UseMutateFunction<any, unknown, any, unknown>, btnName: string, postId?: number }) => {
+const FeedForm = ({ initialValue, mutation, btnName, postId }: { initialValue: feedInitialValue, mutation?: UseMutateFunction<any, unknown, any, unknown>, btnName: string, postId?: number}) => {
 	const navigate = useNavigate();
 
 	// 안내 모달
@@ -44,7 +44,8 @@ const FeedForm = ({ initialValue, mutation, btnName, postId }: { initialValue: f
 	const editClient = useQueryClient();
 	const handleClick = () => {
 		const isAllValuesEmpty = Object.values(textEntered).every(value => value !== "");
-		if (isAllValuesEmpty && images.length > 0 && category) {
+
+		if (isAllValuesEmpty && (postId || images.length > 0) && category) {
 			let formData = new FormData();
 			const newFeed: feedType = {
 				title: textEntered.title,
@@ -136,7 +137,7 @@ const FeedForm = ({ initialValue, mutation, btnName, postId }: { initialValue: f
 					</S.InputSection>
 				</S.InputDiv>
 				<S.ButtonDiv>
-					<S.Button onClick={handleClick} color="FFFFFF" $backgroundColor="2BB673">등록</S.Button>
+					<S.Button onClick={handleClick} color="FFFFFF" $backgroundColor="2BB673">{btnName}</S.Button>
 					<S.Button onClick={() => navigate(-1)} color="FFFFFF" $backgroundColor="CDCDCD">취소</S.Button>
 				</S.ButtonDiv>
 			</S.Section>

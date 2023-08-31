@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { profileImageDefault, p_location } from "../../asstes/asstes";
 import { Flex } from "./GlobalStyle";
 import { ModalLayout } from "./commonFormStyles";
+import { setUserLocation } from "../../api/userApi";
 
 type ProfileModalProps = {
 	modalState: boolean;
@@ -42,6 +43,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 				dong: temps[2],
 			};
 			dispatch(setLocation(address));
+			setUserLocation(address); // 신규 가입 유저의 경우 기본 지역 값으로 저장
 		}
 	}, [userLocationValue, dispatch]);
 

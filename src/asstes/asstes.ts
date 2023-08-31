@@ -70,9 +70,6 @@ import profileDefault from "./profileDefault.png";
 import userProfile from "./userProfile.png"
 import signUpCamera from "./signUpCamera.png"
 
-// 이메일 찾기
-import EmailFindIcon from "./EmailFindIcon.png";
-
 // 채팅
 import chatClose from "./chatClose.png";
 import chatBack from "./chatBack.png";
@@ -111,6 +108,9 @@ export {
 	cleaner,
 	bottle,
 	carrot,
+	realTimeChat1,
+	realTimeChat2,
+	realTimeChat3,
 	p_location,
 	precautions1,
 	precautions2,
