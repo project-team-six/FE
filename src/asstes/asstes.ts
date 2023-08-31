@@ -1,25 +1,13 @@
-import addFeedIcon from "./addFeedIcon.png";
-import chat from "./chat.png";
-import edit from "./edit.png";
-import findEmailLogo from "./findEmailLogo.png";
-import leftArrow from "./leftArrow.png";
-import peopleIcon from "./peopleIcon.png";
-import profileIcon from "./profileIcon.png";
 import profileImageDefault from "./profileImageDefault.png";
-import rightArrow from "./rightArrow.png";
-import rubbish from "./rubbish-bin.png";
-import trash from "./trash.png";
-import emailIcon from "./emailIcon.png";
+
+// 회원 가입
+import editIcon from "./editIcon.png";
 import userIcon from "./userIcon.png";
 import phoneIcon from "./phoneIcon.png";
 import pwIcon from "./pwIcon.png";
-import cog from "./cog.png";
-import locationpin from "./locationpin.png";
-import pencil from "./pencil.png";
-import smileyneutral from "./smiley-neutral.png";
-import smileywink from "./smiley-wink.png";
-import emailIconWhite from "./emailIconWhite.png";
-import profileImg from "./profileImg.png";
+
+// 이메일 찾기
+import EmailFindIcon from "./EmailFindIcon.png";
 
 // 헤더
 import h_mainLogo from "./h_mainLogo.png";
@@ -27,7 +15,7 @@ import h_chatIcon from "./h_chatIcon.png";
 import h_alertIcon from "./h_alertIcon.png";
 import h_profile from "./h_profile.png";
 
-//프로필 모달
+// 프로필 모달
 import p_location from "./p_location.png";
 
 //알림 모달
@@ -71,13 +59,22 @@ import pined from "./pined.png";
 import reportred from "./report-red.png";
 import report from "./report.png";
 import moremenu from "./moremenu.png";
+import leftArrow from "./leftArrow.png";
+import rightArrow from "./rightArrow.png";
+
+// 마이페이지
+import cog from "./cog.png";
+import locationpin from "./locationpin.png";
+import pencil from "./pencil.png";
+import smileyneutral from "./smiley-neutral.png";
+import smileywink from "./smiley-wink.png";
+import emailIconWhite from "./emailIconWhite.png";
+import profileImg from "./profileImg.png";
 
 // 회원 가입
 import profileDefault from "./profileDefault.png";
-import editIcon from "./editIcon.png";
-
-// 이메일 찾기
-import EmailFindIcon from "./EmailFindIcon.png";
+import userProfile from "./userProfile.png"
+import signUpCamera from "./signUpCamera.png"
 
 // 채팅
 import chatClose from "./chatClose.png";
@@ -87,22 +84,17 @@ import chatPhotoAdd from "./chatPhotoAdd.png";
 import chatDelete from "./chatDelete.png";
 
 export {
-	addFeedIcon,
-	chat,
-	edit,
-	findEmailLogo,
+	realTimeChat1,
+	realTimeChat2,
+	realTimeChat3,
+	editIcon,
 	leftArrow,
 	h_mainLogo,
-	peopleIcon,
 	pin,
 	pined,
-	profileIcon,
 	profileImageDefault,
 	report,
 	rightArrow,
-	rubbish,
-	trash,
-	emailIcon,
 	userIcon,
 	phoneIcon,
 	pwIcon,
@@ -111,7 +103,8 @@ export {
 	feedLocationicon,
 	calendarIcon,
 	profileDefault,
-	editIcon,
+	userProfile,
+	signUpCamera,
 	EmailFindIcon,
 	mainBanner,
 	h_profile,
@@ -121,9 +114,6 @@ export {
 	cleaner,
 	bottle,
 	carrot,
-	realTimeChat1,
-	realTimeChat2,
-	realTimeChat3,
 	p_location,
 	precautions1,
 	precautions2,

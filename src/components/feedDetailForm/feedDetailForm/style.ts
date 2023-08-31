@@ -8,7 +8,7 @@ export const LayoutBox = styled.main`
 `;
 
 export const DetailMain = styled.article`
-    max-width: 1550px;
+    max-width: 1280px;
     margin: 0 auto;
 `;
 
@@ -33,11 +33,12 @@ export const Category = styled.div`
 export const InlineWrapper = styled.div`
     width: 100%;
     ${Flex}
+    align-items: flex-start;
     justify-content: space-between;
 `;
 
 export const InfoSection = styled.div`
-    width: 720px;
+    width: 620px;
     min-width: 550px;
 `;
 
@@ -76,25 +77,25 @@ export const DetailList = styled.ul`
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    margin-top: 90px;
+    margin-top: 50px;
     align-content: center;
     li {
-        border-bottom: 1px solid #dcdcdc;
         border-top: 1px solid #dcdcdc;
+        &:last-child{border-bottom:1px solid #dcdcdc;}
         width: 100%;
-        height: 75px;
+        height: 60px;
         ${Flex}
         justify-content: flex-start;
     }
     strong {
         margin-left: 20px;
         display: inline-block;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         width: 230px;
         /* height: 75px; */
     }
     span {
-        font-size: 18px;
+        font-size: 1rem;
         color: #777;
         display: inline-block;
         padding-left: 24px;

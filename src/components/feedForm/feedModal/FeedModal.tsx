@@ -22,7 +22,7 @@ const FeedModal = ({modalState, setModalState}: {modalState: boolean, setModalSt
                             <ul>
                                 {precautions.map((p, index) => {
                                     return (
-                                        <S.Li>
+                                        <S.Li key={index}>
                                             <S.Icon src={p.icon} alt={index.toString()}/>
                                             <div>
                                                 <S.Span fontSize={16} fontWeight="700">{p.title}</S.Span>

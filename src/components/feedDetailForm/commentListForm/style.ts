@@ -7,12 +7,13 @@ export const CommentBox = styled.article`
 `;
 
 export const CommentArticle = styled.article`
-    max-width: 1375px;
+    max-width: 65%;
+    min-width:900px;
     margin: 0 auto;
 `;
 
 export const SpanDiv = styled.div`
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 `;
 
 export const Span = styled.span`
@@ -47,7 +48,7 @@ export const ViewDiv = styled.div`
 
 export const ViewButton = styled.button`
     ${cursor}
-    font-size:1.3rem;
+    font-size:1.2rem;
     padding:5px 0;
     border-bottom: 1px solid black;
     display: inline-block;

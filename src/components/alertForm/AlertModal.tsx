@@ -28,6 +28,7 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 		}
 	}, [alertList, setAlertCount]);
 
+
 	//알림 삭제
 	const deleteAllAlertClient = useQueryClient();
 	const allAlertDeleteBtn = () => {

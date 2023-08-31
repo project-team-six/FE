@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { textInfoType } from "../../../../types/userType";
+import TextInputForm from "../../../common/textInputForm/TextInputForm";
 import * as S from "./style";
-import Input from "../../../../theme/Input";
 
 const InputForm = ({ textInfo, setValue }: { textInfo: textInfoType, setValue: (value: string) => void }) => {
 	const [inputValue, setInputValue] = useState<string>("");
@@ -34,14 +34,13 @@ const InputForm = ({ textInfo, setValue }: { textInfo: textInfoType, setValue: (
 				setValMsg(errorMsg);
 			}
 		}
-
 		if (isOk) setValue(val);
 		else setValue("");
 	};
 
 	return (
 		<S.MainContentWrapper>
-			<Input label={textInfo.kind} icon={textInfo.icon} type={textInfo.type} value={inputValue} handleChange={handleChange} width={33} placeholder={textInfo.placeholder} message={valMsg}/>
+			<TextInputForm label={textInfo.kind} type={textInfo.type} value={inputValue} handleChange={handleChange} msg={valMsg} placeholder={textInfo.placeholder}/>
 		</S.MainContentWrapper>
 	);
 };

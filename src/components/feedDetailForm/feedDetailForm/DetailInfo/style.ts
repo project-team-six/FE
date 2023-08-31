@@ -6,30 +6,33 @@ export const FeedCounter = styled.div`
     width:100px;
     justify-content: space-between;
     span {
-        font-size: 14px;
+        font-size: 1rem;
         color: #2bb673;
     }
 `;
 export const Location = styled.p`
     margin-top: 12px;
-    font-size: 18px;
+    font-size: 1.2rem;
     color: #7d7d7d;
     font-weight: 600;
 `;
 
 export const Title = styled.div`
     width: 100%;
-    height: 50px;
     ${Flex}
     justify-content : space-between;
-    margin: 10px 0;
-    h1 {font-size: 2.8rem;}
+    margin: 2% 0;
+    h1 {
+    font-size: 2.2rem; max-width:85%;
+    line-height:1.4;
+    height: 100%;
+    }
     button {${Flex}}
     img {width: 24px;}
     p {
         height: 20px;
         line-height: 24px;
-        font-size: 14px;
+        font-size: 1rem;
         color: #8c8c8c;
     }
 `;
@@ -40,7 +43,7 @@ export const UserProfile = styled.div`
     width:100%;
     justify-content: flex-start;
     h1 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         margin-left: 15px;
         color: #7d7d7d;
     }
@@ -63,16 +66,20 @@ export const Wapper = styled.div`
 `;
 
 export const Price = styled.div`
+width: 50%;
     p, span {
         color: #8c8c8c;
         font-size: 15px;
         margin: 15px 0 5px;
     }
-    h2 {font-size: 40px;}
+    h2 {font-size: 2.3rem; max-width:85%;}
 `;
 
 export const Auth = styled.div`
-    height: 30px;
+    width:100%;
+    height:77px;
+    ${Flex}
+    align-items: flex-end;
 `;
 
 export const NotAuth = styled.div`
@@ -83,12 +90,11 @@ export const NotAuth = styled.div`
 export const Btn = styled.button`
     ${cursor}
     font-weight:700;
-    font-size: 20px;
-    width: 160px;
-    height: 55px;
+    font-size: 1.3rem;
+    width: 130px;
+    height: 45px;
     border-radius: 10px;
     background-color: ${(props) => props.color};
     color: #fff;
     margin: 0 10px;
-    line-height: 2.7;
 `;

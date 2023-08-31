@@ -27,7 +27,7 @@ const FeedEdit = () => {
 		previews: detailFeed.imageUrlList,
 	};
 
-	return <FeedForm initialValue={initialValue} btnName='수정하기' postId={postId}/>;
+	return <FeedForm initialValue={initialValue} btnName="수정하기" postId={postId}/>;
 };
 
 export default FeedEdit;

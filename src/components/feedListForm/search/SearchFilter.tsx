@@ -22,6 +22,7 @@ const SearchFilter = ({
 		if (event.key === "Enter") {
 			event.preventDefault(); // 기본 엔터 행동방지
 			setTitleOrContent(inputValue);
+
 		}
 	};
 

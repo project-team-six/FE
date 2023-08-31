@@ -4,10 +4,9 @@ import { useNavigate } from "react-router";
 import { findPassword } from "../../api/userApi";
 import { pushNotification } from "../../utils/notification";
 import { findPwType } from "../../types/userType";
-import Input from "../../theme/Input";
-import * as S from "./style";
-import { emailIcon, userIcon, phoneIcon } from "../../asstes/asstes";
+import TextInputForm from "../common/textInputForm/TextInputForm";
 import Announcement from "../common/announcement/Announcement";
+import * as S from "./style";
 
 const FindPwForm = () => {
 	const [username, setUsername] = useState<string>(""); // 이름
@@ -41,16 +40,16 @@ const FindPwForm = () => {
 	const navigate = useNavigate();
 	return (
 		<S.MainContentWrapper>
-			<Announcement />
+			<Announcement content="비밀번호 찾기"/>
 			<div>
 				<S.Section>
-				<Input label={"이름"} icon={userIcon} type={"text"} value={username} handleChange={handleChangeUsername} width={33} placeholder={"이름을 입력해주세요. ex)홍길동"} message={""}/>
+					<TextInputForm label="이름" type="text" value={username} handleChange={handleChangeUsername} placeholder="이름을 입력해주세요. ex)홍길동" msg=""/>
 				</S.Section>
 				<S.Section>
-					<Input label={"이메일"} icon={emailIcon} type={"text"} value={email} handleChange={handleChangeEmail} width={33} placeholder={"이메일을 입력해주세요."} message={""}/>
+					<TextInputForm label="이메일" type="text" value={email} handleChange={handleChangeEmail} placeholder="이메일을 입력해주세요." msg=""/>
 				</S.Section>
 				<S.Section>
-					<Input label={"핸드폰 번호"} icon={phoneIcon} type={"text"} value={phoneNumber} handleChange={handleChangePhoneNumber} width={33} placeholder={"'-'는 제외하고 숫자만 입력해주세요."} message={""}/>
+					<TextInputForm label="핸드폰 번호" type="text" value={phoneNumber} handleChange={handleChangePhoneNumber} placeholder="'-'없이 숫자만 입력해주세요." msg=""/>
 				</S.Section>
 				<S.SectionButton>
 					<S.Button onClick={clickFindPwBtn}>찾기</S.Button>

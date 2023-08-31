@@ -8,7 +8,7 @@ import FeedCards from "../components/feedListForm/feedCards/FeedCards";
 import PageNation from "../components/feedListForm/pagenation/PageNation";
 
 const FeedList = () => {
-	//카테고리 (필터)
+	// 카테고리 (필터)
 	const [categoryObj, setCategoryObj] = useState({
 		category: "",
 		bannerText: "소분목록",
@@ -61,13 +61,13 @@ const FeedList = () => {
 		}
 	};
 
-	//유저지역 (필터)
+	// 유저지역 (필터)
 	const fetchLocation = useSelector((state: RootState) => {
 		return state.locationSlice.userLocation;
 	});
 	const location = fetchLocation.sido + " " + fetchLocation.sigungu + " " + fetchLocation.dong;
 
-	//소분완료여부 (필터)
+	// 소분완료여부 (필터)
 	const [status, setStatus] = useState("");
 	const handleStatusChange = (status: string) => {
 		switch (status) {
@@ -85,7 +85,7 @@ const FeedList = () => {
 
 	// 제목, 내용 통합검색
 	const [titleOrContent, setTitleOrContent] = useState<string>("");
-
+  
 	// 페이지네이션
 	const [totalPages, setTotalpages] = useState(0);
 	const [currentPage, setCurrentPage] = useState(0);

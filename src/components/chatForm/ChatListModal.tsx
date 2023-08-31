@@ -50,7 +50,7 @@ const ChatListModal = ({modalState, modalHandle}: {modalState: boolean, modalHan
                                                 <S.ProfileImg src={r.titleImageUrl !== null ? r.titleImageUrl : profileImg} alt="profile"/>
                                                 <S.Section>
                                                     <S.SpanDiv>
-                                                        <S.Span fontSize={15} fontWeight="700" MarginRight={10}>{r.name}</S.Span>
+                                                        <S.TitleDiv><S.Span fontSize={15} fontWeight="700" MarginRight={10}>{r.name}</S.Span></S.TitleDiv>
                                                         <S.Span fontSize={10} fontWeight="400" fontColor="B1B1B1">{time}</S.Span>
                                                     </S.SpanDiv>
                                                     <S.ContentDiv><S.Span fontSize={12} fontWeight="500" fontColor="7C7C7C">{r.lastMessage}</S.Span></S.ContentDiv>

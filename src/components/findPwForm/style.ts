@@ -19,11 +19,13 @@ export const SectionButton = styled.section`
 `;
 
 export const Button = styled.button`
-    width: 285px;
+    width: 400px;
     height: 55px;
     color: #FFFFFF;
     background-color: #2BB673;
     border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
 `;
 
 export const EmailButton = styled.button`

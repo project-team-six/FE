@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { cursor } from "../common/GlobalStyle";
 
 export const MainContentWrapper = styled.div`
     display: grid;
@@ -101,6 +102,7 @@ type ButtonProps = {
 };
 
 export const Button = styled.button<ButtonProps>`
+    ${cursor}
     color: #${(props) => props.color};
     background-color: #${(props) => props.$backgroundColor};
     width: 285px;

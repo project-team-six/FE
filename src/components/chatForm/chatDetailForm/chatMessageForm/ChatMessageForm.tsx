@@ -21,9 +21,9 @@ const ChatMessageForm = ({roomId, roomData, isRequestSend}: {roomId: string, roo
             {roomData && messages && messages.map((m: chatRoomMessageType) => {
                 const profile = m.profileImageUrl === null ? profileImg : m.profileImageUrl; // 발신자 프로필 이미지 URL
                 const isEnter = m.type === "ENTER" || m.type === "QUIT"; // 메시지 종류: 알림
+                const isImage = m.type === "IMAGE"; // 이미지
                 const time = formatRelativeTime(m.createdAt); // 메시지 생성 일시
                 const isSend = m.sender === nickname; // 메시지 종류: 발신/수신
-                
                 return (
                     <div>
                         {!isEnter? 
@@ -32,7 +32,9 @@ const ChatMessageForm = ({roomId, roomData, isRequestSend}: {roomId: string, roo
                             <S.Li>
                                 <S.SendBox>
                                     <S.MessageBox padding="10px 7px 10px 10px" $backgroundColor="2BB673" borderRadius="15px 0 15px 15px">
-                                        <S.Span fontSize={13} fontWeight="400" color="616161">{m.message}</S.Span>
+                                        {isImage ? 
+                                        <S.Photo src={m.imageUrl} alt="msgImg"/>
+                                        :<S.Span fontSize={13} fontWeight="400" color="616161">{m.message}</S.Span>}
                                     </S.MessageBox>
                                 </S.SendBox>
                             </S.Li>
@@ -42,7 +44,9 @@ const ChatMessageForm = ({roomId, roomData, isRequestSend}: {roomId: string, roo
                                     <S.Span fontSize={14} fontWeight="700">{m.sender}</S.Span>
                                     <S.ReceiveBox>
                                         <S.MessageBox padding="10px 7px 10px 10px" $backgroundColor="F1F1F1" borderRadius="0 15px 15px 15px">
-                                            <S.Span fontSize={13} fontWeight="400" color="616161">{m.message}</S.Span>
+                                            {isImage ? 
+                                            <S.Photo src={m.imageUrl} alt="msgImg"/>
+                                            :<S.Span fontSize={13} fontWeight="400" color="616161">{m.message}</S.Span>}
                                         </S.MessageBox>
                                         <S.TimeBox>
                                             <S.Span fontSize={9} fontWeight="400" color="959595">{time}</S.Span>

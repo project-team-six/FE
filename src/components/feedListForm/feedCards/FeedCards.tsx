@@ -46,7 +46,7 @@ const FeedCards = ({
 	if (isLoading) return <div>Loading...</div>;
 	if (isError) return <div>Error...</div>;
 
-	//시간포맷함수
+	// 시간포맷함수
 	const formatTimeDifference = (dateString: string) => {
 		const currentDate = new Date();
 		const targetDate = new Date(dateString);
@@ -70,39 +70,38 @@ const FeedCards = ({
 
 	return (
 		<S.FeedListSection>
-			{feedList &&
-				feedList.content &&
-				feedList.content.slice(0, pageSize).map((item: any) => (
-					<div key={item.id}>
-						<S.FeedCard onClick={handleNavigate(`/feed/${item.id}`)}>
-							<S.FeedImageBox>
-								<img src={item.imageUrlList[0]} alt='게시글첫번째사진' />
-							</S.FeedImageBox>
-							<S.FeedInfoBox>
-								<S.ContentBox>
-									<p
-										className='ellipsis'
-										style={{
-											width: "285px",
-											whiteSpace: "nowrap",
-											overflow: "hidden",
-											textOverflow: "ellipsis",
-										}}>
-										{item.title}
-									</p>
-								</S.ContentBox>
-								<S.PriceBox>
-									<p>{priceUtils(item.price)}</p>
-								</S.PriceBox>
-								<S.UserLocationTimeBox>
-									<p>{item.location}</p>
-									<p>ㅣ</p>
-									<p>{formatTimeDifference(item.createdAt)}</p>
-								</S.UserLocationTimeBox>
-							</S.FeedInfoBox>
-						</S.FeedCard>
-					</div>
-				))}
+			{feedList && feedList.content && feedList.content.slice(0, pageSize).map((item: any) => (
+				<div key={item.id}>
+					<S.FeedCard onClick={handleNavigate(`/feed/${item.id}`)}>
+						<S.FeedImageBox>
+							<img src={item.imageUrlList[0]} alt='게시글첫번째사진' />
+						</S.FeedImageBox>
+						<S.FeedInfoBox>
+							<S.ContentBox>
+								<p
+									className='ellipsis'
+									style={{
+										width: "285px",
+										whiteSpace: "nowrap",
+										overflow: "hidden",
+										textOverflow: "ellipsis",
+									}}>
+									{item.title}
+								</p>
+							</S.ContentBox>
+							<S.PriceBox>
+								<p>{priceUtils(item.price)}</p>
+							</S.PriceBox>
+							<S.UserLocationTimeBox>
+								<p>{item.location}</p>
+								<p>ㅣ</p>
+								<p>{formatTimeDifference(item.createdAt)}</p>
+							</S.UserLocationTimeBox>
+						</S.FeedInfoBox>
+					</S.FeedCard>
+				</div>
+			))}
+
 		</S.FeedListSection>
 	);
 };

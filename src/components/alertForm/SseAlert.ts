@@ -64,6 +64,7 @@ const SseAlert = () => {
 	// }, []);
 
 	return null;
+
 };
 
 export default SseAlert;
