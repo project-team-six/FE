@@ -6,13 +6,16 @@ import userIcon from "./userIcon.png";
 import phoneIcon from "./phoneIcon.png";
 import pwIcon from "./pwIcon.png";
 
+// 이메일 찾기
+import EmailFindIcon from "./EmailFindIcon.png";
+
 // 헤더
 import h_mainLogo from "./h_mainLogo.png";
 import h_chatIcon from "./h_chatIcon.png";
 import h_alertIcon from "./h_alertIcon.png";
 import h_profile from "./h_profile.png";
 
-//프로필 모달
+// 프로필 모달
 import p_location from "./p_location.png";
 
 // 메인(Home)
@@ -108,9 +111,6 @@ export {
 	cleaner,
 	bottle,
 	carrot,
-	realTimeChat1,
-	realTimeChat2,
-	realTimeChat3,
 	p_location,
 	precautions1,
 	precautions2,
