@@ -27,7 +27,6 @@ export const setUserLocation = async (userLocation: locationType) => {
 
 export const getMyPage = async (userId: Number) => {
 	const response = await instance.get(`/auth/mypage/${userId}`);
-	console.log('마이페이지', response)
 	return response.data;
 };
 
@@ -52,7 +51,6 @@ export const putMyPageEditImage = async (userId: Number, formData: FormData) => 
 
 export const postPopularity = async (receiverUserId: number) => {
 	const response = await instance.post(`/popularity/${receiverUserId}`);
-	console.log('인기도', response)
 	return response;
 };
 
