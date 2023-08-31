@@ -83,15 +83,10 @@ const FeedList = () => {
 		}
 	};
 
-	//제목, 내용 통합검색
-	//엔터
-	const [titleOrContent, setTitleOrContent] = useState("");
+	// 제목, 내용 통합검색
+	const [titleOrContent, setTitleOrContent] = useState<string>("");
 
-	const userInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setTitleOrContent(event.target.value);
-	};
-
-	//페이지네이션
+	// 페이지네이션
 	const [totalPages, setTotalpages] = useState(0);
 	const [currentPage, setCurrentPage] = useState(0);
 
@@ -107,10 +102,9 @@ const FeedList = () => {
 				handleCategoryChange={handleCategoryChange}
 			/>
 			<SearchFilter
-				titleOrContent={titleOrContent}
 				status={status}
-				userInputHandler={userInputHandler}
 				handleStatusChange={handleStatusChange}
+				setTitleOrContent={setTitleOrContent}
 			/>
 			<FeedCards
 				location={location}

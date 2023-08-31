@@ -1,17 +1,30 @@
+import { ChangeEvent } from "react";
+import { useState } from "react";
 import { searchIcon } from "../../../asstes/asstes";
 import * as S from "./style";
 
 const SearchFilter = ({
-	titleOrContent,
 	status,
-	userInputHandler,
 	handleStatusChange,
+	setTitleOrContent,
 }: {
-	titleOrContent: string;
 	status: string;
-	userInputHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	handleStatusChange: (status: string) => void;
+	setTitleOrContent: (titleOrContent: string) => void;
 }) => {
+	const [inputValue, setInputValue] = useState<string>("");
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setInputValue(e.target.value);
+	};
+
+	// 엔터 이벤트 관리
+	const userInputHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === "Enter") {
+			event.preventDefault(); // 기본 엔터 행동방지
+			setTitleOrContent(inputValue);
+		}
+	};
+
 	return (
 		<S.SearchFilterSection>
 			<S.FilterBox>
@@ -27,7 +40,7 @@ const SearchFilter = ({
 				</S.FinishButton>
 			</S.FilterBox>
 			<S.SearchBox>
-				<input type='text' value={titleOrContent} onChange={userInputHandler} />
+				<input type='text' value={inputValue} onChange={handleChange} onKeyPress={userInputHandler} />
 				<img src={searchIcon} alt='돋보기아이콘' />
 			</S.SearchBox>
 		</S.SearchFilterSection>

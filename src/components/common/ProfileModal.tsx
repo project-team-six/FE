@@ -63,10 +63,10 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 					<ProfileLayout onClick={(e: any) => e.stopPropagation()}>
 						<UserInfoSection>
 							<ProfileImgBox>
-								{userInfo.profileImageUrl ? (
-									<img src={userInfo.profileImageUrl} alt='유저프로필' />
-								) : (
+								{userInfo.profileImageUrl === "nonImage" ? (
 									<img src={profileImageDefault} alt='기본프로필' />
+								) : (
+									<img src={userInfo.profileImageUrl} alt='유저프로필' />
 								)}
 							</ProfileImgBox>
 							<NicknameBox>

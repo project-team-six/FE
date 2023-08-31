@@ -30,6 +30,9 @@ import h_profile from "./h_profile.png";
 //프로필 모달
 import p_location from "./p_location.png";
 
+//알림 모달
+import noAlertIcon from "./noAlertIcon.png";
+
 // 메인(Home)
 import mainBanner from "./mainBanner.png";
 import socks from "./socks.png";
@@ -134,8 +137,8 @@ export {
 	smileywink,
 	emailIconWhite,
 	profileImg,
-  reportred,
-  moremenu,
+	reportred,
+	moremenu,
 	line,
 	FRESH_FOOD,
 	WHOLE,
@@ -148,4 +151,5 @@ export {
 	chatSend,
 	chatPhotoAdd,
 	chatDelete,
+	noAlertIcon,
 };

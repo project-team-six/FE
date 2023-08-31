@@ -1,38 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery, useQueryClient } from "react-query";
+import { NavigateFunction, useNavigate } from "react-router";
 import styled from "styled-components";
-import { deleteAlert, fetchAlert } from "../../api/alertApi";
+import { allDeleteAlert, fetchAlert } from "../../api/alertApi";
+import { noAlertIcon, profileImageDefault } from "../../asstes/asstes";
 import { AlertList } from "../../types/alertType";
 import { ModalLayout } from "../common/commonFormStyles";
-import SseAlert from "./SseAlert";
+// import SseAlert from "./SseAlert";
 type AlertModalProps = {
 	modalState: boolean;
 	modalHandle: React.MouseEventHandler<HTMLDivElement>;
 	setAlertCount: React.Dispatch<React.SetStateAction<number>>;
 };
 const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAlertCount }) => {
-	SseAlert();
-
+	// SseAlert();
+	const navigate: NavigateFunction = useNavigate();
+	const handleNavigate = (path: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		navigate(path);
+	};
 	//알림 조회
-	const {
-		data: alertList,
-		isLoading,
-		isError,
-	} = useQuery(["alertList"], () => fetchAlert(), { refetchInterval: 60000 });
+	const { data: alertList, isLoading, isError } = useQuery(["alertList"], () => fetchAlert());
 
-	setAlertCount(alertList?.data.length);
+	//불필요한 렌더링 방지
+	useEffect(() => {
+		if (alertList) {
+			setAlertCount(alertList?.data.length);
+		}
+	}, [alertList, setAlertCount]);
 
 	//알림 삭제
-	const deleteAlertClient = useQueryClient();
-	const SingleAlertDeleteBtn = (notificationId: number) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		deleteAlert(notificationId)
+	const deleteAllAlertClient = useQueryClient();
+	const allAlertDeleteBtn = () => {
+		allDeleteAlert()
 			.then(() => {
-				deleteAlertClient.invalidateQueries(["alertList"]);
+				deleteAllAlertClient.invalidateQueries(["alertList"]);
 			})
 			.catch(() => {
-				console.log("알림삭제 실패");
+				console.log("알림전체삭제 실패");
 			});
 	};
+
 	if (isLoading) return <div>Loading...</div>;
 	if (isError) return <div>Error...</div>;
 	return (
@@ -42,23 +49,50 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 					<AlertLayout onClick={(e: any) => e.stopPropagation()}>
 						{alertList?.data.map((alert: AlertList) => {
 							return (
-								<AlertSection key={alert.notificationId}>
-									<ProfileImgBox>
-										<img src={alert.senderProfileImageUrl} alt='보낸이 프로필' />
-									</ProfileImgBox>
-									<TextWrapper>
-										<MemoBox>{`${alert.senderNickname}님으로부터 ${alert.message}`}</MemoBox>
-										<AlertAtBox>{alert.createdAt}</AlertAtBox>
-									</TextWrapper>
-									<SingleDeleteButton onClick={SingleAlertDeleteBtn(alert.notificationId)}>
-										알림삭제
-									</SingleDeleteButton>
-								</AlertSection>
+								<>
+									<AlertSection key={alert.notificationId} onClick={handleNavigate(alert.url)}>
+										{alert.senderProfileImageUrl === "nonImage" ? (
+											<>
+												<ProfileImgBox>
+													<img src={profileImageDefault} alt='보낸이 프로필' />
+												</ProfileImgBox>
+											</>
+										) : (
+											<>
+												<ProfileImgBox>
+													<img src={alert.senderProfileImageUrl} alt='보낸이 프로필' />
+												</ProfileImgBox>
+											</>
+										)}
+										<TextWrapper>
+											<MemoBox>{`${alert.senderNickname}님으로부터 ${alert.message}`}</MemoBox>
+											<AlertAtBox>{alert.createdAt}</AlertAtBox>
+										</TextWrapper>
+									</AlertSection>
+								</>
 							);
 						})}
-						<AllDeleteBox>
-							<button>알림 전체 삭제</button>
-						</AllDeleteBox>
+						{alertList?.data.length === 0 ? (
+							<div
+								style={{
+									display: "flex",
+									flexDirection: "column",
+									justifyContent: "center",
+									alignItems: "center",
+									height: "400px",
+									gap: "10px",
+									paddingBottom: "15px",
+								}}>
+								<img src={noAlertIcon} alt='무표정' style={{ width: "30px", height: "30px" }} />
+								<div>새로운 알림이 없습니다.</div>
+							</div>
+						) : (
+							<>
+								<AllDeleteBox>
+									<button onClick={allAlertDeleteBtn}>알림 전체 삭제</button>
+								</AllDeleteBox>
+							</>
+						)}
 					</AlertLayout>
 				</ModalLayout>
 			)}
@@ -117,14 +151,7 @@ const AlertAtBox = styled.div`
 	color: #7b7b7b;
 	font-size: 12px;
 `;
-const SingleDeleteButton = styled.button`
-	cursor: pointer;
-	position: absolute;
-	bottom: 5px;
-	color: #7b7b7b;
-	right: 10px;
-	font-size: 12px;
-`;
+
 const AllDeleteBox = styled.div`
 	display: flex;
 	justify-content: center;
