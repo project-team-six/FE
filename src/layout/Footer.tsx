@@ -39,7 +39,7 @@ function Footer() {
 						</ul>
 						<ul className='designer-member-list'>
 							<h6>Designer</h6>
-							<MemberItem>Akkaya Pelin</MemberItem>
+							<MemberItem>Kim Se Young</MemberItem>
 						</ul>
 						<div className='page-list'>
 							<h6>Pages</h6>
@@ -50,9 +50,6 @@ function Footer() {
 						</div>
 					</DetailSection>
 				</FooterBox>
-				<FlexBox style={{ padding: "10px 0 10px 0", fontSize: "11px", color: "white" }}>
-					&copy; 2023 Sobun Sobun Inc. All rights reserved
-				</FlexBox>
 			</FooterLayout>
 		</div>
 	);

@@ -53,7 +53,7 @@ const ChatListModal = ({ modalState, modalHandle }: { modalState: boolean; modal
 										<S.Li key={r.roomId}>
 											<S.LiButton onClick={() => handleClickChat(r.roomId)}>
 												<S.ProfileImg
-													src={r.titleImageUrl !== null ? r.titleImageUrl : profileImg}
+													src={r.titleImageUrl !== "nonImage" ? r.titleImageUrl : profileImg}
 													alt='profile'
 												/>
 												<S.Section>

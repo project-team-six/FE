@@ -63,7 +63,7 @@ const SignIn = () => {
 			/([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 		return emailRegex.test(email);
 	};
-	
+
 	//로그인 유효성 검사 후 통과하면 mutate 실행
 	const onClickLoginBtnHandler = () => {
 		const user: User = {
@@ -117,7 +117,7 @@ const SignIn = () => {
 			<FindSection>
 				<button onClick={handleNavigate("/findemail")}>이메일 찾기</button>
 				<span>ㅣ</span>
-				<button onClick={handleNavigate("/findemail")}>비밀번호 찾기</button>
+				<button onClick={handleNavigate("/findpassword")}>비밀번호 찾기</button>
 				<span>ㅣ</span>
 				<button onClick={handleNavigate("/signup")}>회원가입</button>
 			</FindSection>
@@ -135,7 +135,7 @@ const LoginLayout = styled.div`
 `;
 const LogoSection = styled.section`
 	font-size: 35px;
-	font-weight: 500;
+	font-weight: 700;
 	margin-bottom: 75px;
 `;
 const InputSection = styled.form`
