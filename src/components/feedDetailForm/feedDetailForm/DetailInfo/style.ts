@@ -97,5 +97,4 @@ export const Btn = styled.button`
     background-color: ${(props) => props.color};
     color: #fff;
     margin: 0 10px;
-    line-height: 2.7;
 `;

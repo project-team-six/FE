@@ -35,7 +35,6 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
     const queryClient = useQueryClient();
     const popularityMutation = useMutation(postPopularity, {
         onSuccess: (response) => {
-            console.log("data", response)
             const hasRaised = response.data.data.includes("올렸습니다");
             setHasClicked(hasRaised);
             queryClient.invalidateQueries(["mypage", userId]);
@@ -65,7 +64,7 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
                     <span>
                         <img src={emailIconWhite} alt="이메일아이콘" />
                     </span>
-                    <strong>{email}</strong>
+                    <strong>{mypage?.data?.email}</strong>
                 </S.Info>
                 <S.Info>
                     <span>
@@ -75,8 +74,7 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
                         <strong>지역을 설정해주세요</strong>
                     ) : (
                         <strong>
-                            {`${userLocation.sido} ${userLocation.sigungu}
-                            ${userLocation.dong}`}
+                            {mypage?.data?.location}
                         </strong>
                     )}
                 </S.Info>
@@ -86,7 +84,7 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
                 <img src={smileywink} alt="기본이모지" />
                 :
                 <button onClick={popularityHandler}>
-                    <img src={hasClicked ? smileywink : smileyneutral} alt="기본이모지"/>
+                    <img src={mypage?.data?.isPopularity ? smileywink : smileyneutral} alt="기본이모지"/>
                 </button>
                 }
                 <h5>{mypage?.data?.popularity}</h5>
