@@ -36,13 +36,16 @@ const SignUpForm = () => {
 	});
 
 	const clickAddBtn = () => {
-		if (textUserInfo) {
+		const isAllValuesEmpty = Object.values(textUserInfo).every(value => value !== "");
+		if (isAllValuesEmpty) {
 			let formData = new FormData();
 
 			formData.append("data", new Blob([JSON.stringify(textUserInfo)], { type: "application/json" }));
 			if (profile) formData.append("file", profile); // 프로필 이미지
 
 			signUpMutation.mutate(formData);
+		} else {
+			pushNotification("필수 항목을 모두 입력해주세요.", "warning");
 		}
 	};
 
