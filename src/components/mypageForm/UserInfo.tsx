@@ -20,14 +20,12 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 	});
 
 	const accountId: Number = userTokenInfo.userId; // 사용자의 ID
-	const profileUrl = userTokenInfo.profileImageUrl; // 프로필 이미지 URL
-
-	const email: string = useSelector((state: RootState) => {
-		return state.tokenSlice.decodeToken.sub;
-	}); // 현재 로그인된 사용자의 email
 
 	const { id } = useParams();
 	const userId = Number(id);
+	const isAdmin = accountId === userId;
+	const profileUrl = isAdmin ? userTokenInfo.profileImageUrl : mypage && mypage.data.profileImageUrl; // 프로필 이미지 URL
+	const nickname = isAdmin ? userTokenInfo.nickname : mypage && mypage.data.nickname;
 
 	const userLocation: InitialType = useSelector((state: RootState) => {
 		return state.locationSlice.userLocation;
@@ -57,12 +55,13 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 	const popularityHandler = () => {
 		popularityMutation.mutate(userId);
 	};
+
 	return (
 		<S.UserInfoWrapper>
 			<UserProfile profileUrl={profileUrl} />
 			<S.UserInfo>
 				<S.Nickname>
-					<h2>{userTokenInfo.nickname}</h2>
+					<h2>{nickname}</h2>
 					{+accountId === userId ? (
 						<button onClick={onClickuserEditnavigate}>
 							<img src={cog} alt='회원정보 수정' />

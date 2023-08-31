@@ -68,7 +68,6 @@ const CommentForm = ({ postId, comment, closed }: { postId: number; comment: com
 				pushNotification("댓글 삭제를 실패했습니다", "error");
 			});
 	};
-
 	return (
 		<S.CommentLi>
 			<S.CommentDiv>

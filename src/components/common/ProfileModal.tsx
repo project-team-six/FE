@@ -119,7 +119,7 @@ const ProfileLayout = styled.div`
 	position: absolute;
 	right: 13%;
 	top: 6%;
-	width: 220px;
+	width: 230px;
 	height: 250px;
 	background-color: white;
 	border: 1px solid #d3d3d3;

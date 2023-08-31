@@ -28,7 +28,6 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 		}
 	}, [alertList, setAlertCount]);
 
-
 	//알림 삭제
 	const deleteAllAlertClient = useQueryClient();
 	const allAlertDeleteBtn = () => {
@@ -50,27 +49,25 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 					<AlertLayout onClick={(e: any) => e.stopPropagation()}>
 						{alertList?.data.map((alert: AlertList) => {
 							return (
-								<>
-									<AlertSection key={alert.notificationId} onClick={handleNavigate(alert.url)}>
-										{alert.senderProfileImageUrl === "nonImage" ? (
-											<>
-												<ProfileImgBox>
-													<img src={profileImageDefault} alt='보낸이 프로필' />
-												</ProfileImgBox>
-											</>
-										) : (
-											<>
-												<ProfileImgBox>
-													<img src={alert.senderProfileImageUrl} alt='보낸이 프로필' />
-												</ProfileImgBox>
-											</>
-										)}
-										<TextWrapper>
-											<MemoBox>{`${alert.senderNickname}님으로부터 ${alert.message}`}</MemoBox>
-											<AlertAtBox>{alert.createdAt}</AlertAtBox>
-										</TextWrapper>
-									</AlertSection>
-								</>
+								<AlertSection key={alert.notificationId} onClick={handleNavigate(alert.url)}>
+									{alert.senderProfileImageUrl === "nonImage" ? (
+										<>
+											<ProfileImgBox>
+												<img src={profileImageDefault} alt='보낸이 프로필' />
+											</ProfileImgBox>
+										</>
+									) : (
+										<>
+											<ProfileImgBox>
+												<img src={alert.senderProfileImageUrl} alt='보낸이 프로필' />
+											</ProfileImgBox>
+										</>
+									)}
+									<TextWrapper>
+										<MemoBox>{`${alert.senderNickname}님으로부터 ${alert.message}`}</MemoBox>
+										<AlertAtBox>{alert.createdAt}</AlertAtBox>
+									</TextWrapper>
+								</AlertSection>
 							);
 						})}
 						{alertList?.data.length === 0 ? (
