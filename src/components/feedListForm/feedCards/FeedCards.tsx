@@ -101,6 +101,7 @@ const FeedCards = ({
 					</S.FeedCard>
 				</div>
 			))}
+
 		</S.FeedListSection>
 	);
 };

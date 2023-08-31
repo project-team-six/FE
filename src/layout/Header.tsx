@@ -27,14 +27,14 @@ const Header = () => {
 	};
 
 	// 프로필
-	const [isProfileModal, setIsProfileModal] = useState(false);
+	const [isProfileModal, setIsProfileModal] = useState<boolean>(false);
 	const toggleProfileModal: React.MouseEventHandler = (event) => {
 		event.preventDefault();
 		setIsProfileModal((prevModalState) => !prevModalState);
 	};
 
 	// 알람
-	const [isAlertModal, setIsAlertModal] = useState(false);
+	const [isAlertModal, setIsAlertModal] = useState<boolean>(false);
 	const [alertCount, setAlertCount] = useState(0);
 	const toggleAlertModal: React.MouseEventHandler = (event) => {
 		event.preventDefault();
@@ -52,8 +52,8 @@ const Header = () => {
 	const accessToken = getToken("accessToken");
 	useEffect(() => {
 		if (accessToken) dispatch(setDecodeToken(accessToken));
-	}, [accessToken]);
- 
+	}, [accessToken, dispatch]);
+
 	// 토큰 디코드한 값 가져오기
 	const tokenInfo: TokenSliceState = useSelector((state: RootState) => {
 		return state.tokenSlice;
@@ -117,7 +117,9 @@ const Header = () => {
 				<NavBtnSection>
 					{tokenInfo.isLogin ? (
 						<div style={{ display: "flex", gap: "35px" }}>
-							<NavButton onClick={toggleChatModal}><img src={h_chatIcon} alt='채팅' /></NavButton>
+							<NavButton onClick={toggleChatModal}>
+								<img src={h_chatIcon} alt='채팅' />
+							</NavButton>
 							<NavButton onClick={toggleAlertModal}>
 								<Badge
 									badgeContent={alertCount}
@@ -131,10 +133,10 @@ const Header = () => {
 								</Badge>
 							</NavButton>
 							<NavButton onClick={toggleProfileModal}>
-								{userProfile ? (
+								{userProfile === "nonImage" ? (
 									<>
-										<ProfileBox $backgroundColor='transparent'>
-											<img src={userProfile} alt='유저프로필' style={{ borderRadius: "100%" }} />
+										<ProfileBox $backgroundColor='#000000'>
+											<img src={h_profile} alt='기본프로필' />
 										</ProfileBox>
 										<ArrowBox>
 											<VscChevronDown />
@@ -142,8 +144,8 @@ const Header = () => {
 									</>
 								) : (
 									<>
-										<ProfileBox $backgroundColor='black'>
-											<img src={h_profile} alt='기본프로필' />
+										<ProfileBox $backgroundColor='transparent'>
+											<img src={userProfile} alt='유저프로필' style={{ borderRadius: "100%" }} />
 										</ProfileBox>
 										<ArrowBox>
 											<VscChevronDown />
@@ -161,7 +163,7 @@ const Header = () => {
 								logoutHandle={Logout}
 								modalHandle={toggleProfileModal}
 							/>
-							<ChatListModal modalState={isChatModal} modalHandle={setIsChatModal}/>
+							<ChatListModal modalState={isChatModal} modalHandle={setIsChatModal} />
 						</div>
 					) : (
 						<div>
