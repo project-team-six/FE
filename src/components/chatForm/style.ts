@@ -119,5 +119,15 @@ export const DeleteButton = styled.button`
 
 export const SpanDiv = styled.div`
 	display: flex;
- 	align-items: center;
+ 	align-items: left;
+	 text-align: left;
+`;
+
+export const TitleDiv = styled.div`
+	width: auto;
+	max-width: 100px;
+	white-space: nowrap; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: left;
 `;
