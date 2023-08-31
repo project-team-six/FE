@@ -1,12 +1,10 @@
 import profileImageDefault from "./profileImageDefault.png";
 
 // 회원 가입
+import editIcon from "./editIcon.png";
 import userIcon from "./userIcon.png";
 import phoneIcon from "./phoneIcon.png";
 import pwIcon from "./pwIcon.png";
-
-// 이메일 찾기
-import EmailFindIcon from "./EmailFindIcon.png";
 
 // 헤더
 import h_mainLogo from "./h_mainLogo.png";
@@ -80,6 +78,10 @@ import chatPhotoAdd from "./chatPhotoAdd.png";
 import chatDelete from "./chatDelete.png";
 
 export {
+	realTimeChat1,
+	realTimeChat2,
+	realTimeChat3,
+	editIcon,
 	leftArrow,
 	h_mainLogo,
 	pin,
