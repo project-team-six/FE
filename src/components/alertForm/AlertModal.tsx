@@ -6,14 +6,14 @@ import { allDeleteAlert, fetchAlert } from "../../api/alertApi";
 import { noAlertIcon, profileImageDefault } from "../../asstes/asstes";
 import { AlertList } from "../../types/alertType";
 import { ModalLayout } from "../common/commonFormStyles";
-// import SseAlert from "./SseAlert";
+import SseAlert from "./SseAlert";
 type AlertModalProps = {
 	modalState: boolean;
 	modalHandle: React.MouseEventHandler<HTMLDivElement>;
 	setAlertCount: React.Dispatch<React.SetStateAction<number>>;
 };
 const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAlertCount }) => {
-	// SseAlert();
+	SseAlert();
 	const navigate: NavigateFunction = useNavigate();
 	const handleNavigate = (path: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		navigate(path);

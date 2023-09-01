@@ -83,7 +83,9 @@ const CommentForm = ({ postId, comment, closed }: { postId: number; comment: com
 						<S.Span fontSize={14} fontWeight='400'>
 							{convertTimeFormat(comment.createdAt)}
 						</S.Span>
-						{/* <S.ReportSpan><img src={reportred} alt="신고아이콘" /> 신고하기</S.ReportSpan> */}
+						<S.ReportSpan>
+							<img src={reportred} alt='신고아이콘' /> 신고하기
+						</S.ReportSpan>
 					</div>
 					<S.CommentContentDiv>
 						{!closed && editCommentId === comment.id ? editInput : <span>{comment.content}</span>}

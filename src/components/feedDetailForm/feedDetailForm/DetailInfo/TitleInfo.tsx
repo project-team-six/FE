@@ -47,10 +47,10 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 			<S.Location>{detailFeed?.location}</S.Location>
 			<S.Title>
 				<h1>{detailFeed?.title}</h1>
-				{/* <button>
-                    <img src={report} alt="신고하기" />
-                    <p>신고하기</p>
-                </button> */}
+				<button>
+					<img src={report} alt='신고하기' />
+					<p>신고하기</p>
+				</button>
 			</S.Title>
 			<S.UserProfile onClick={() => navigate(`/mypage/${detailFeed.userId}`)}>
 				<S.ProfileImg
