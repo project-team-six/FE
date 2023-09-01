@@ -185,7 +185,7 @@ const HeaderBox = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	position: relative;
-	padding: 0 8% 0 8%;
+	padding: 0 6% 0 8%;
 	background-color: white;
 `;
 

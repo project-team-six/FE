@@ -1,3 +1,4 @@
+import { Flex } from "./../../common/GlobalStyle";
 import styled from "styled-components";
 
 export const GuideSection = styled.section`
@@ -7,7 +8,7 @@ export const GuideSection = styled.section`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 10%;
+	gap: 5%;
 `;
 
 export const StepGuideBox = styled.div`
@@ -15,9 +16,11 @@ export const StepGuideBox = styled.div`
 	flex-direction: column;
 	align-items: center;
 	gap: 50px;
+	margin-top: 70px;
 `;
 
 export const IconCircleBox = styled.div`
+	${Flex}
 	width: 285px;
 	height: 285px;
 	border-radius: 100%;
@@ -26,8 +29,10 @@ export const IconCircleBox = styled.div`
 `;
 
 export const TextBox = styled.div`
-	width: 185px;
+	text-align: center;
+	width: 210px;
 	height: 55px;
 	font-size: 20px;
+	font-weight: bold;
 	color: white;
 `;

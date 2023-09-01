@@ -31,6 +31,10 @@ import realTimeChat1 from "./realTimeChat1.png";
 import realTimeChat2 from "./realTimeChat2.png";
 import realTimeChat3 from "./realTimeChat3.png";
 import line from "./line.png";
+import recycle from "./recycle.png";
+import illustration1 from "./illustration1.png";
+import illustration2 from "./illustration2.png";
+import illustration3 from "./illustration3.png";
 
 // 제너럴페이지(FeedList)
 import WHOLE from "./WHOLE.png";
@@ -73,8 +77,8 @@ import profileImg from "./profileImg.png";
 
 // 회원 가입
 import profileDefault from "./profileDefault.png";
-import userProfile from "./userProfile.png"
-import signUpCamera from "./signUpCamera.png"
+import userProfile from "./userProfile.png";
+import signUpCamera from "./signUpCamera.png";
 
 // 채팅
 import chatClose from "./chatClose.png";
@@ -142,4 +146,8 @@ export {
 	chatPhotoAdd,
 	chatDelete,
 	noAlertIcon,
+	recycle,
+	illustration1,
+	illustration2,
+	illustration3,
 };

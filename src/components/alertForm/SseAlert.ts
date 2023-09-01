@@ -19,15 +19,17 @@ const SseAlert = () => {
 
 		sse.addEventListener("sse", async (event: any) => {
 			let data = event.data;
-			console.log(data);
-
 			try {
+				data = JSON.parse(data);
 				if ("message" in data) {
-					data = JSON.parse(data);
-					console.log("메시지가 있습니다:", data.message);
 					const permission = await Notification.requestPermission();
+
 					if (permission === "granted") {
-						const notification = new Notification("새로운 댓글!!!", {
+						console.log("메세지 내용", data.message);
+						console.log("url", data.url);
+						console.log(data.senderNickname);
+
+						const notification = new Notification(`${data.senderNickname}님`, {
 							body: data.message,
 						});
 						setTimeout(() => {
