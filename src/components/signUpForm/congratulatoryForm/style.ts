@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { cursor } from "../../common/GlobalStyle";
 
 export const MainContentWrapper = styled.div`
     margin-top: 180px;
@@ -47,4 +48,5 @@ export const Button = styled.button`
     font-size: 18px;
     font-weight: bold;
     background-color: #2BB673;
+    ${cursor};
 `;
