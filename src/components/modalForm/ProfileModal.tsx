@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router";
 import { RootState } from "../../redux/config/configStore";
 import { pushNotification } from "../../utils/notification";
-import { setLocation } from "../../redux/modules/locationSet";
 import { locationType } from "../../types/feedType";
 import styled from "styled-components";
 import { profileImageDefault, p_location } from "../../asstes/asstes";
@@ -39,8 +37,8 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 		return state.tokenSlice.decodeToken;
 	});
 
-	const dispatch = useDispatch();
 	const userLocationValue = userInfo.location; // 기존에 지역을 설정한 사용자의 지역 정보
+
 	useEffect(() => {
 		if (userLocationValue.trim() !== "") {
 			const temps = userLocationValue.split(" ");
@@ -50,16 +48,12 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 				sigungu: temps[1],
 				dong: temps[2],
 			};
-			dispatch(setLocation(address));
+
 			setUserLocation(address); // 신규 가입 유저의 경우 기본 지역 값으로 저장
 		}
-	}, [userLocationValue, dispatch]);
+	}, [userLocationValue]);
 
 	const clickFeedAddBtn = () => {
-		if (userLocationInfo.sido === "" && userLocationValue.trim() === "") {
-			pushNotification("지역을 먼저 등록해주세요", "error");
-			return navigate("/locationsetting");
-		}
 		navigate("/feedadd");
 	};
 
