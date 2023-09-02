@@ -17,12 +17,19 @@ export const Span = styled.span<SpanProps>`
     color: #${props => props.color};
 `;
 
+export const SpanDiv = styled.div`
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+`;
+
 export const Input = styled.input`
     border: 1px solid #C5C5C5;
     border-radius: 10px;
     width: 400px;
     height: 55px;
     padding: 25px;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 5px;
 `;

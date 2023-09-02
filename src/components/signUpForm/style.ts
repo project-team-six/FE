@@ -8,11 +8,15 @@ export const MainContentWrapper = styled.div`
 	margin-top: 50px;
 `;
 
+export const SignUpBox = styled.div`
+	text-align: center;
+`;
+
 export const Button = styled.button`
 	font-size: 18px;
 	font-weight: 700;
 	cursor: pointer;
-	margin-top: 60px;
+	margin-top: 37px;
 	margin-bottom: 240px;
 	width: 400px;
 	height: 55px;

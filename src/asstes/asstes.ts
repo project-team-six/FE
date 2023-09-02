@@ -5,6 +5,7 @@ import editIcon from "./editIcon.png";
 import userIcon from "./userIcon.png";
 import phoneIcon from "./phoneIcon.png";
 import pwIcon from "./pwIcon.png";
+import congratulatory from "./congratulatory.png";
 
 // 이메일 찾기
 import EmailFindIcon from "./EmailFindIcon.png";
@@ -102,6 +103,7 @@ export {
 	userIcon,
 	phoneIcon,
 	pwIcon,
+	congratulatory,
 	trashIcon,
 	feedImageAddIcon,
 	feedLocationicon,
