@@ -1,15 +1,15 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
+import { useQueryClient } from "react-query";
 import { RootState } from "../../../redux/config/configStore";
 import { putMyPageEdit, putMyPageEditImage, putMyPagePasswordEdit } from "../../../api/userApi";
 import { pushNotification } from "../../../utils/notification";
-import Input from "../../../theme/Input";
-import * as S from "./MypageEditStyle";
 import PasswordInput from "./PaswordInput";
 import ProfileImgEditForm from "./ProfileImgEditForm";
 import { updateToken } from "../../../utils/updateToken";
-import { useQueryClient } from "react-query";
+import * as S from "./MypageEditStyle";
+import TextInputForm from "../../common/textInputForm/TextInputForm";
 
 const ProfileEditForm = () => {
 	const location = useLocation();
@@ -137,25 +137,9 @@ const ProfileEditForm = () => {
 		<S.EditForm onSubmit={submitHandler}>
 			<ProfileImgEditForm selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
 			{/* 닉네임 수정 */}
-			<Input
-				label={"닉네임"}
-				type='text'
-				value={nickname}
-				handleChange={(e: ChangeEvent<HTMLInputElement>) => {setNickname(e.target.value); setNicknameError("")}}
-				placeholder=''
-				width={35}
-				message={nicknameError}
-			/>
+			<TextInputForm label="닉네임" type="text" value={nickname} handleChange={(e: ChangeEvent<HTMLInputElement>) => setNickname(e.target.value)} msg="" placeholder=""/>
 			{/* 전화번호 수정 */}
-			<Input
-				label={"전화번호"}
-				type='tel'
-				value={phoneNumber}
-				handleChange={(e: ChangeEvent<HTMLInputElement>) => {setPhoneNumber(e.target.value); setPhoneNumberError("")}}
-				placeholder='01012345678'
-				width={35}
-				message={phoneNumberError}
-			/>
+			<TextInputForm label="전화번호" type="tel" value={phoneNumber} handleChange={(e: ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value)} msg="" placeholder=""/>
 			{/* 비밀번호 수정 */}
 			{auth !== "KAKAO" && (
 				<PasswordInput
