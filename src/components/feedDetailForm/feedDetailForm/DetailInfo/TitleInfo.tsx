@@ -82,7 +82,7 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 								<S.Btn color='#ccc' onClick={() => navigate(`/feed/${postId}/edit`)}>
 									수정하기
 								</S.Btn>
-								<S.Btn color='#2bb673' onClick={handleCloseClick}>
+								<S.Btn color='#4FBE9F' onClick={handleCloseClick}>
 									마감하기
 								</S.Btn>
 							</S.Auth>
@@ -97,12 +97,15 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 										<img src={pin} alt='관심 미등록' />
 									</S.Btn>
 								)}
-								<S.Btn color='#2bb673' onClick={() => {
-									if(!isLogin){
-										pushNotification('로그인 후 이용해주세요', 'error');}
-										else{
-										roomMutation.mutate(detailFeed.chatroomId)}
-										}}>
+								<S.Btn
+									color='#4FBE9F'
+									onClick={() => {
+										if (!isLogin) {
+											pushNotification("로그인 후 이용해주세요", "error");
+										} else {
+											roomMutation.mutate(detailFeed.chatroomId);
+										}
+									}}>
 									연락하기
 								</S.Btn>
 								<ChatRoomModal

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 import { createGlobalStyle, css } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -52,13 +52,17 @@ export const cursor = css`
 
 export const Layout = css`
 	min-width: 1280px;
-    max-width : 1920px;
+	max-width: 1920px;
 	margin: 0 auto;
 `;
 
 export const Grid = css`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+`;
+
+export const MainBackgroundColor = css`
+	background-color: #4fbe9f;
 `;
 
 /* About Div styled ---------------------------------------------- */

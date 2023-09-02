@@ -15,7 +15,7 @@ const FindEmailForm = () => {
 			<S.SpanDiv>
 				<S.Span color='black'>회원님의 이메일은</S.Span>
 				<S.Div />
-				<S.Span color='2BB673'>{result}</S.Span>
+				<S.Span color='4FBE9F'>{result}</S.Span>
 				<S.Div />
 				<S.Span color='black'>입니다</S.Span>
 			</S.SpanDiv>
@@ -23,7 +23,7 @@ const FindEmailForm = () => {
 				<S.ResultBtn $backgroundColor='#CDCDCD' onClick={() => navigate("/signin")}>
 					로그인
 				</S.ResultBtn>
-				<S.ResultBtn $backgroundColor='#2BB673' onClick={() => navigate("/findpassword")}>
+				<S.ResultBtn $backgroundColor='#4FBE9F' onClick={() => navigate("/findpassword")}>
 					비밀번호 찾기
 				</S.ResultBtn>
 			</S.ResultSection>

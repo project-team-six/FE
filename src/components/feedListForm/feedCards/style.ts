@@ -19,6 +19,7 @@ export const FeedCard = styled.div`
 `;
 
 export const FeedImageBox = styled.div`
+	height: 340px;
 	img {
 		border-radius: 15px;
 		width: 100%;

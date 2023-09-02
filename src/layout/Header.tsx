@@ -126,7 +126,7 @@ const Header = () => {
 									sx={{
 										"& .MuiBadge-badge": {
 											color: "white",
-											backgroundColor: "#2BB673",
+											backgroundColor: "#4FBE9F",
 										},
 									}}>
 									<img src={h_alertIcon} alt='알람' style={{ width: "24px" }} />

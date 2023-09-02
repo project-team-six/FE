@@ -102,7 +102,7 @@ const CommentForm = ({ postId, comment, closed }: { postId: number; comment: com
 						<div>
 							{editCommentId === comment.id ? (
 								<div>
-									<S.IconButton onClick={() => commentEditBtn(comment.id.toString())} color='#2BB673'>
+									<S.IconButton onClick={() => commentEditBtn(comment.id.toString())} color='#4FBE9F'>
 										수정
 									</S.IconButton>
 									<S.IconButton onClick={editCancelBtn} color='#ccc'>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { cursor } from "../../common/GlobalStyle";
+import { cursor, MainBackgroundColor } from "../../common/GlobalStyle";
 
 export const ModalLayout = styled.div`
 	display: flex;
@@ -19,7 +19,7 @@ export const PrecautionsLayout = styled.div`
 	width: 457px;
 	height: 606px;
 	border-radius: 20px;
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 `;
 
 export const PrecautionsDiv = styled.div`
@@ -37,7 +37,7 @@ export const TitleDiv = styled.div`
 
 type SpanProps = {
 	fontSize: number;
-	fontWeight:string;
+	fontWeight: string;
 };
 
 export const Span = styled.span<SpanProps>`
@@ -50,7 +50,7 @@ export const Li = styled.li`
 	display: flex;
 	width: 390px;
 	height: 66px;
-	background-color: #F8F8F8;
+	background-color: #f8f8f8;
 	margin-bottom: 17px;
 	border-radius: 20px;
 `;
@@ -64,11 +64,11 @@ export const Icon = styled.img`
 export const ButtonDiv = styled.div`
 	width: 100%;
 	height: 70px;
-	background-color: #2BB673;
+	${MainBackgroundColor}
 	border-radius: 0 0 20px 20px;
 	display: flex;
 	justify-content: center;
-    align-items: center;
+	align-items: center;
 	${cursor};
 `;
 
@@ -77,7 +77,7 @@ export const Button = styled.button`
 	height: 100%;
 	align-items: center;
 	text-align: center;
-	color: #CCCCCC;
+	color: #cccccc;
 	font-size: 20px;
 	font-weight: 700;
 	${cursor};

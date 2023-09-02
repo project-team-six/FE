@@ -13,7 +13,7 @@ const ServiceGuideForm = () => {
 				</S.IconCircleBox>
 				<S.TextBox>로그인 후 살고계신 지역을 설정해주세요.</S.TextBox>
 			</S.StepGuideBox>
-			<img src={recycle} alt='화살표' />
+			<img src={recycle} alt='화살표' style={{ width: "64px", height: "64px" }} />
 			<S.StepGuideBox>
 				<S.IconCircleBox>
 					<img src={illustration2} alt='일러스트2' style={{ width: "50%", height: "70%" }} />
@@ -24,7 +24,7 @@ const ServiceGuideForm = () => {
 					등록해주세요.
 				</S.TextBox>
 			</S.StepGuideBox>
-			<img src={recycle} alt='화살표' />
+			<img src={recycle} alt='화살표' style={{ width: "64px", height: "64px" }} />
 			<S.StepGuideBox>
 				<S.IconCircleBox>
 					<img src={illustration3} alt='일러스트3' style={{ width: "50%", height: "70%" }} />

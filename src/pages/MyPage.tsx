@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery,  } from "react-query";
+import { useQuery } from "react-query";
 import { getMyPage } from "../api/userApi";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/config/configStore";
@@ -29,12 +29,10 @@ const MyPage: React.FC = () => {
 	const { id } = useParams();
 
 	// useQuery로 유저 정보 불러오기
-	const { data: mypage, isLoading } = useQuery(["mypage", id], 
-		() => getMyPage(Number(id))
-	);
-console.log("mypage", mypage)
-	if (isLoading) 
-    <div>
+	const { data: mypage, isLoading } = useQuery(["mypage", id], () => getMyPage(Number(id)));
+	console.log("mypage", mypage);
+	if (isLoading)
+		<div>
 			<Loading />
 		</div>;
 
@@ -59,13 +57,13 @@ console.log("mypage", mypage)
 								onChange={TabChangehandler}
 								aria-label='secondary tabs example'
 								TabIndicatorProps={{
-									style: { background: "#2bb673" },
+									style: { background: "#4FBE9F" },
 								}}>
 								<Tab
 									value='one'
 									label='작성글'
 									style={{
-										color: value === "one" ? "#2bb673" : "", // 선택한 탭일 때의 텍스트 색상
+										color: value === "one" ? "#4FBE9F" : "", // 선택한 탭일 때의 텍스트 색상
 										fontWeight: "bold",
 										fontSize: "16px",
 									}}
@@ -75,7 +73,7 @@ console.log("mypage", mypage)
 										value='two'
 										label='관심글'
 										style={{
-											color: value === "two" ? "#2bb673" : "", // 선택한 탭일 때의 텍스트 색상
+											color: value === "two" ? "#4FBE9F" : "", // 선택한 탭일 때의 텍스트 색상
 											fontWeight: "bold",
 											fontSize: "16px",
 										}}
