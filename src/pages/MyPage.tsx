@@ -15,6 +15,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import TabPanel from "@mui/lab/TabPanel";
 import TabContext from "@mui/lab/TabContext";
+import Loading from "../components/common/Loading";
 
 const MyPage: React.FC = () => {
 	const [value, setValue] = React.useState("one");
@@ -43,7 +44,10 @@ const MyPage: React.FC = () => {
 		}
 	}, [userLocation.sido, navigate]);
 
-	if (isLoading) <div>Loding...</div>;
+	if (isLoading)
+		<div>
+			<Loading />
+		</div>;
 
 	return (
 		<S.Main>

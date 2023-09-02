@@ -5,6 +5,7 @@ import { pushNotification } from "../../../utils/notification";
 import * as S from "./style";
 import ImgForm from "./DetailImgForm/ImgForm";
 import TitleInfo from "./DetailInfo/TitleInfo";
+import Loading from "../../common/Loading";
 
 const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value: boolean) => void }) => {
 	const navigate = useNavigate();
@@ -37,7 +38,12 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 		},
 	});
 
-	if (isLoading) return <div>Loading...</div>;
+	if (isLoading)
+		return (
+			<div>
+				<Loading />
+			</div>
+		);
 	if (isError) return <div>Error...</div>;
 
 	// 관심을 누르면 서버에 반영 및 횟수 올라가기
@@ -69,13 +75,16 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 	};
 
 	const createMarkup = () => {
-		const hyperlinkText =(text:string)=>{
+		const hyperlinkText = (text: string) => {
 			const urlRegex = /(https?:\/\/[^\s]+)/g;
-  			return text.replace(urlRegex, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+			return text.replace(
+				urlRegex,
+				(url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+			);
 		};
 		return { __html: hyperlinkText(detailFeed.content) };
-		}
-	
+	};
+
 	return (
 		<S.LayoutBox>
 			<S.DetailMain>
@@ -114,7 +123,7 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 									수정일 :<span>{detailFeed?.modifiedAt.slice(0, 10)}</span>
 								</S.Dates>
 							</div>
-							<p  dangerouslySetInnerHTML={createMarkup()}/>
+							<p dangerouslySetInnerHTML={createMarkup()} />
 						</S.Content>
 
 						<S.DetailList>

@@ -85,6 +85,9 @@ import chatSend from "./chatSend.png";
 import chatPhotoAdd from "./chatPhotoAdd.png";
 import chatDelete from "./chatDelete.png";
 
+//스피너
+import LoadingSpinner from "./LoadingSpinner.gif";
+
 export {
 	realTimeChat1,
 	realTimeChat2,
@@ -146,4 +149,5 @@ export {
 	illustration1,
 	illustration2,
 	illustration3,
+	LoadingSpinner,
 };
