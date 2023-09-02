@@ -65,7 +65,7 @@ const FeedList = () => {
 	const fetchLocation = useSelector((state: RootState) => {
 		return state.locationSlice.userLocation;
 	});
-	const location = fetchLocation.sido + " " + fetchLocation.sigungu + " " + fetchLocation.dong;
+	const location = fetchLocation.sido + " " + fetchLocation.sigungu + " ";
 
 	// 소분완료여부 (필터)
 	const [status, setStatus] = useState("");
@@ -85,7 +85,7 @@ const FeedList = () => {
 
 	// 제목, 내용 통합검색
 	const [titleOrContent, setTitleOrContent] = useState<string>("");
-  
+
 	// 페이지네이션
 	const [totalPages, setTotalpages] = useState(0);
 	const [currentPage, setCurrentPage] = useState(0);

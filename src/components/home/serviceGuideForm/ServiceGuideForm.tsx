@@ -9,14 +9,14 @@ const ServiceGuideForm = () => {
 			</p>
 			<S.StepGuideBox>
 				<S.IconCircleBox>
-					<img src={illustration1} alt='일러스트1' />
+					<img src={illustration1} alt='일러스트1' style={{ width: "60%", height: "60%" }} />
 				</S.IconCircleBox>
 				<S.TextBox>로그인 후 살고계신 지역을 설정해주세요.</S.TextBox>
 			</S.StepGuideBox>
 			<img src={recycle} alt='화살표' />
 			<S.StepGuideBox>
 				<S.IconCircleBox>
-					<img src={illustration2} alt='일러스트2' />
+					<img src={illustration2} alt='일러스트2' style={{ width: "50%", height: "70%" }} />
 				</S.IconCircleBox>
 				<S.TextBox>
 					소분하고싶은 물품을
@@ -27,7 +27,7 @@ const ServiceGuideForm = () => {
 			<img src={recycle} alt='화살표' />
 			<S.StepGuideBox>
 				<S.IconCircleBox>
-					<img src={illustration3} alt='일러스트3' />
+					<img src={illustration3} alt='일러스트3' style={{ width: "50%", height: "70%" }} />
 				</S.IconCircleBox>
 				<S.TextBox>
 					소통을 통해 거래날짜와

@@ -20,10 +20,11 @@ import noAlertIcon from "./noAlertIcon.png";
 
 // 메인(Home)
 import mainBanner from "./mainBanner.png";
-import socks from "./socks.png";
-import cleaner from "./cleaner.png";
-import bottle from "./bottle.png";
-import carrot from "./carrot.png";
+import LEMON from "./LEMON.png";
+import PEAR from "./PEAR.png";
+import MUSHROOM from "./MUSHROOM.png";
+import POT from "./POT.png";
+import SOCKS from "./SOCKS.png";
 import realTimeChat1 from "./realTimeChat1.png";
 import realTimeChat2 from "./realTimeChat2.png";
 import realTimeChat3 from "./realTimeChat3.png";
@@ -108,10 +109,11 @@ export {
 	h_profile,
 	h_alertIcon,
 	h_chatIcon,
-	socks,
-	cleaner,
-	bottle,
-	carrot,
+	LEMON,
+	PEAR,
+	MUSHROOM,
+	POT,
+	SOCKS,
 	p_location,
 	precautions1,
 	precautions2,

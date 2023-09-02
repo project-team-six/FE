@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router";
@@ -8,9 +8,10 @@ import { setLocation } from "../../redux/modules/locationSet";
 import { locationType } from "../../types/feedType";
 import styled from "styled-components";
 import { profileImageDefault, p_location } from "../../asstes/asstes";
-import { Flex } from "./GlobalStyle";
-import { ModalLayout } from "./commonFormStyles";
+import { Flex } from "../common/GlobalStyle";
+import { ModalLayout } from "../common/commonFormStyles";
 import { setUserLocation } from "../../api/userApi";
+import LocationSetting from "./LocationSettingModal";
 
 type ProfileModalProps = {
 	modalState: boolean;
@@ -19,6 +20,12 @@ type ProfileModalProps = {
 };
 
 const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, modalHandle }) => {
+	//지역설정 모달
+	const [isLocationModal, setIsLocationModal] = useState<boolean>(false);
+	const toggleLocationModal: React.MouseEventHandler = () => {
+		setIsLocationModal((prevModalState) => !prevModalState);
+	};
+
 	const navigate: NavigateFunction = useNavigate();
 	const handleNavigate = (path: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		navigate(path);
@@ -81,7 +88,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 						</UserInfoSection>
 						<ModalNavSection onClick={modalHandle}>
 							<ModalButton
-								onClick={handleNavigate("/locationsetting")}
+								onClick={toggleLocationModal}
 								style={{
 									borderBottom: "0.5px solid #d3d3d3",
 									fontSize: "10px",
@@ -110,6 +117,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 					</ProfileLayout>
 				</ModalLayout>
 			)}
+			<LocationSetting
+				isLocationModal={isLocationModal}
+				toggleLocationModal={toggleLocationModal}
+				setIsLocationModal={setIsLocationModal}
+			/>
 		</div>
 	);
 };
