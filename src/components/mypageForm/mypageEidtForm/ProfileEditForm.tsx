@@ -117,9 +117,6 @@ const ProfileEditForm = () => {
 		setIsPWFormValid(isPasswordValid());
 	},[password, confirmPassword, isPasswordValid]);
 	const clickHandler = () => {
-		console.log('password', password)
-		console.log('isInfoFormValid', isInfoFormValid)
-		console.log('isPasswordValid', isPWFormValid)
 		if(!isInfoFormValid){
 			pushNotification('항목을 다시 살펴주시길 바랍니다', 'warning');
 			return
@@ -143,11 +140,11 @@ const ProfileEditForm = () => {
 			{/* 비밀번호 수정 */}
 			{auth !== "KAKAO" && (
 				<PasswordInput
-					password={password}
-					setPassword={(value:string)=>{setPassword(value); setPasswordError("")}}
-					confirmPassword={confirmPassword}
-					setConfirmPassword={(value:string)=>{setConfirmPassword(value); setPasswordError("")}}
-				/>
+				password={password}
+				setPassword={(value:string)=>{setPassword(value); setPasswordError("")}}
+				confirmPassword={confirmPassword}
+				setConfirmPassword={(value:string)=>{setConfirmPassword(value); setPasswordError("")}}
+			/>
 			)}
 			<S.Btn>
 				<S.SubmitBtn type='submit' onClick={clickHandler}>
