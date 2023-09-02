@@ -8,6 +8,7 @@ import { RootState } from "../../../../redux/config/configStore";
 import { enterChatRoom } from "../../../../api/chatApi";
 import { useMutation } from "react-query";
 import ChatDetailModal from "../../../chatForm/chatDetailForm/ChatDetailModal";
+import { pushNotification } from "../../../../utils/notification";
 
 interface TitleInfoProps {
 	detailFeed: any;
@@ -23,6 +24,9 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 	const authId: Number = detailFeed?.userId; // 작성자 ID
 	const userInfo = useSelector((state: RootState) => {
 		return state.tokenSlice.decodeToken;
+	});
+	const isLogin = useSelector((state: RootState) => {
+		return state.tokenSlice.isLogin;
 	});
 	const userId: Number = Number(userInfo.userId); // 사용자 ID
 
@@ -89,7 +93,12 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 										<img src={pin} alt='관심 미등록' />
 									</S.Btn>
 								)}
-								<S.Btn color='#2bb673' onClick={() => roomMutation.mutate(detailFeed.chatroomId)}>
+								<S.Btn color='#2bb673' onClick={() => {
+									if(!isLogin){
+										pushNotification('로그인 후 이용해주세요', 'error');}
+										else{
+										roomMutation.mutate(detailFeed.chatroomId)}
+										}}>
 									연락하기
 								</S.Btn>
 								<ChatDetailModal

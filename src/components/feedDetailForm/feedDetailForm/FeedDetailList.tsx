@@ -68,6 +68,14 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 		}
 	};
 
+	const createMarkup = () => {
+		const hyperlinkText =(text:string)=>{
+			const urlRegex = /(https?:\/\/[^\s]+)/g;
+  			return text.replace(urlRegex, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+		};
+		return { __html: hyperlinkText(detailFeed.content) };
+		}
+	
 	return (
 		<S.LayoutBox>
 			<S.DetailMain>
@@ -106,7 +114,7 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 									수정일 :<span>{detailFeed?.modifiedAt.slice(0, 10)}</span>
 								</S.Dates>
 							</div>
-							<p>{detailFeed.content}</p>
+							<p  dangerouslySetInnerHTML={createMarkup()}/>
 						</S.Content>
 
 						<S.DetailList>
