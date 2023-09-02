@@ -12,10 +12,14 @@ import h_chatIcon from "./h_chatIcon.png";
 import h_alertIcon from "./h_alertIcon.png";
 import h_profile from "./h_profile.png";
 
+// 푸터
+import footerLogo from "./footerLogo.png";
+import footerEmail from "./footerEmail.png";
+
 // 프로필 모달
 import p_location from "./p_location.png";
 
-//알림 모달
+// 알림 모달
 import noAlertIcon from "./noAlertIcon.png";
 
 // 메인(Home)
@@ -24,7 +28,7 @@ import LEMON from "./LEMON.png";
 import PEAR from "./PEAR.png";
 import MUSHROOM from "./MUSHROOM.png";
 import POT from "./POT.png";
-import SOCKS from "./SOCKS.png";
+import SOCKS from "./socks.png";
 import realTimeChat1 from "./realTimeChat1.png";
 import realTimeChat2 from "./realTimeChat2.png";
 import realTimeChat3 from "./realTimeChat3.png";
@@ -112,6 +116,8 @@ export {
 	h_profile,
 	h_alertIcon,
 	h_chatIcon,
+	footerLogo,
+	footerEmail,
 	LEMON,
 	PEAR,
 	MUSHROOM,

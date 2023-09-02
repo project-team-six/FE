@@ -29,6 +29,12 @@ export const Li = styled.li`
 	margin-bottom: 10px;
 `;
 
+export const EnterBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+`;
+
 export const SendBox = styled.div`
 	display: flex;
 	justify-content: flex-end;

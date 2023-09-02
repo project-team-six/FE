@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainBackgroundColor } from "../../common/GlobalStyle";
+import { cursor } from "../../common/GlobalStyle";
 
 export const MainContentWrapper = styled.div`
 	margin-top: 180px;
@@ -41,11 +41,12 @@ export const SpanContentBox = styled.div`
 `;
 
 export const Button = styled.button`
-	width: 222px;
-	height: 64px;
-	border-radius: 3px;
-	color: #ffffff;
-	font-size: 18px;
-	font-weight: bold;
-	${MainBackgroundColor}
+    width: 222px;
+    height: 64px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #2BB673;
+    ${cursor};
 `;
