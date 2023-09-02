@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/config/configStore";
 import { enterChatRoom } from "../../../../api/chatApi";
 import { useMutation } from "react-query";
-import ChatDetailModal from "../../../chatForm/chatDetailForm/ChatDetailModal";
 import { pushNotification } from "../../../../utils/notification";
+import ChatRoomModal from "../../../chatRoomForm/ChatRoomModal";
 
 interface TitleInfoProps {
 	detailFeed: any;
@@ -32,6 +32,10 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 
 	// 채팅방 연결
 	const [isChatModal, setIsChatModal] = useState<boolean>(false);
+	const toggleChatModal: React.MouseEventHandler = (event) => {
+		event.preventDefault();
+		setIsChatModal((prevModalState) => !prevModalState);
+	};
 	const roomMutation = useMutation(enterChatRoom, {
 		onSuccess: () => {
 			setIsChatModal(!isChatModal); // 채팅 모달 열기
@@ -101,11 +105,11 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 										}}>
 									연락하기
 								</S.Btn>
-								<ChatDetailModal
-									roomId={detailFeed.chatroomId}
-									isFeed={true}
+								<ChatRoomModal
+									postId={detailFeed.chatroomId}
 									modalState={isChatModal}
-									modalHandle={setIsChatModal}
+									setModalState={setIsChatModal}
+									modalHandle={toggleChatModal}
 								/>
 							</S.NotAuth>
 						)}

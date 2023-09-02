@@ -17,7 +17,7 @@ import { VscChevronDown } from "react-icons/vsc";
 import { Flex } from "../components/common/GlobalStyle";
 import { throttle } from "lodash";
 import { getToken } from "../utils/getToken";
-import ChatListModal from "../components/chatForm/ChatListModal";
+import ChatRoomModal from "../components/chatRoomForm/ChatRoomModal";
 
 const Header = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -163,7 +163,7 @@ const Header = () => {
 								logoutHandle={Logout}
 								modalHandle={toggleProfileModal}
 							/>
-							<ChatListModal modalState={isChatModal} modalHandle={setIsChatModal} />
+							<ChatRoomModal postId="" modalState={isChatModal} modalHandle={toggleChatModal} setModalState={setIsChatModal}/>
 						</div>
 					) : (
 						<div>
