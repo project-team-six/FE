@@ -27,7 +27,9 @@ export const Title = styled.div`
     line-height:1.4;
     height: 100%;
     }
-    button {${Flex}}
+    button {
+        ${Flex};
+        ${cursor}}
     img {width: 24px;}
     p {
         height: 20px;

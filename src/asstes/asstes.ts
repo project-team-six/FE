@@ -92,7 +92,6 @@ export {
 	realTimeChat1,
 	realTimeChat2,
 	realTimeChat3,
-	editIcon,
 	leftArrow,
 	h_mainLogo,
 	pin,

@@ -1,3 +1,4 @@
+import { cursor } from './../../../common/GlobalStyle';
 import styled from "styled-components";
 
 export const InputForm = styled.form`
@@ -20,12 +21,9 @@ export const InputButton = styled.button`
     width: 140px;
     height: 55px;
     color: #ffffff;
-    background-color: #d3d3d3;
+    background-color: #2BB673;
     border-radius: 10px;
-    cursor: pointer;
+    ${cursor}
     font-size: 18px;
     font-weight: 700;
-    &:hover {
-        background-color: #333;
-    }
 `;

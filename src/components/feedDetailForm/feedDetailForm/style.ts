@@ -47,7 +47,12 @@ export const Content = styled.section`
     height: 100%;
     margin: 20px 0;
     text-align: justify;
+    p{
     white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
     line-height: 200%;
     font-size: 1.1rem;
     display: flex;
