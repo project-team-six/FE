@@ -94,7 +94,7 @@ export const Btn = styled.div`
 export const SubmitBtn = styled.button`
 	${cursor}
 	background-color : #2BB673;
-	width: 285px;
+	width: 400px;
 	height: 55px;
 	color: #fff;
 	border-radius: 10px;
@@ -106,7 +106,7 @@ export const SubmitBtn = styled.button`
 export const BackBtn = styled.button`
 	${cursor};
 	background-color: #cdcdcd;
-	width: 285px;
+	width: 400px;
 	height: 55px;
 	color: #fff;
 	border-radius: 10px;

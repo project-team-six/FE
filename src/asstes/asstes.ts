@@ -1,10 +1,6 @@
 import profileImageDefault from "./profileImageDefault.png";
 
 // 회원 가입
-import editIcon from "./editIcon.png";
-import userIcon from "./userIcon.png";
-import phoneIcon from "./phoneIcon.png";
-import pwIcon from "./pwIcon.png";
 import congratulatory from "./congratulatory.png";
 
 // 이메일 찾기
@@ -99,9 +95,6 @@ export {
 	profileImageDefault,
 	report,
 	rightArrow,
-	userIcon,
-	phoneIcon,
-	pwIcon,
 	congratulatory,
 	trashIcon,
 	feedImageAddIcon,
