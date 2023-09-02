@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MainBackgroundColor } from "../common/GlobalStyle";
 
 export const MainContentWrapper = styled.div`
 	display: grid;
@@ -20,7 +21,7 @@ export const Button = styled.button`
 	margin-bottom: 240px;
 	width: 400px;
 	height: 55px;
-	color: #FFFFFF;
-	background-color: #2BB673;
+	color: #ffffff;
+	${MainBackgroundColor}
 	border-radius: 10px;
 `;

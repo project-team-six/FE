@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MainBackgroundColor } from "../../common/GlobalStyle";
 
 export const PageNationSection = styled.section`
 	display: flex;
@@ -16,7 +17,7 @@ export const PageNationSection = styled.section`
 			width: 30px;
 			height: 30px;
 			border-radius: 100%;
-			background-color: #2bb673;
+			${MainBackgroundColor}
 			color: white;
 			font-weight: 900;
 		}

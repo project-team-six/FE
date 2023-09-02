@@ -1,4 +1,4 @@
-import { Flex, cursor } from "../../common/GlobalStyle";
+import { Flex, cursor, MainBackgroundColor } from "../../common/GlobalStyle";
 import styled from "styled-components";
 
 export const LayoutBox = styled.main`
@@ -24,7 +24,7 @@ export const ProfileImg = styled.div`
 	text-align: center;
 	margin-bottom: 50px;
 	h1 {
-		color: #2bb673;
+		color: #4fbe9f;
 		font-size: 2rem;
 		padding: 70px 0 80px;
 		box-sizing: border-box;
@@ -52,7 +52,7 @@ export const ImgBox = styled.div`
 `;
 
 export const Avatar = styled.div`
-display:none;
+	display: none;
 	position: relative;
 	input {
 		display: none;
@@ -93,7 +93,7 @@ export const Btn = styled.div`
 
 export const SubmitBtn = styled.button`
 	${cursor}
-	background-color : #2BB673;
+	${MainBackgroundColor}
 	width: 400px;
 	height: 55px;
 	color: #fff;

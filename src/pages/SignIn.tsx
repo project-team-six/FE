@@ -102,7 +102,7 @@ const SignIn = () => {
 				<input type='password' name='password' value={password} onChange={onChangeLoginHandler} />
 			</InputSection>
 			<FormSection>
-				<FormButton onClick={onClickLoginBtnHandler} $backgroundColor='#2BB673' color='white'>
+				<FormButton onClick={onClickLoginBtnHandler} $backgroundColor='#4FBE9F' color='white'>
 					로그인
 				</FormButton>
 				<OrLine>

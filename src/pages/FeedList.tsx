@@ -69,18 +69,8 @@ const FeedList = () => {
 
 	// 소분완료여부 (필터)
 	const [status, setStatus] = useState("");
-	const handleStatusChange = (status: string) => {
-		switch (status) {
-			case "IN_PROGRESS":
-				setStatus("IN_PROGRESS");
-				break;
-			case "COMPLETED":
-				setStatus("COMPLETED");
-				break;
-			default:
-				setStatus("");
-				break;
-		}
+	const handleStatusChange = (newStatus: string) => {
+		setStatus((prevStatus) => (prevStatus === newStatus ? "" : newStatus));
 	};
 
 	// 제목, 내용 통합검색

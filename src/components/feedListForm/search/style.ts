@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MainBackgroundColor } from "../../common/GlobalStyle";
 
 export const SearchFilterSection = styled.section`
 	display: flex;
@@ -33,7 +34,7 @@ export const InProgressButton = styled.button`
 	border: 2px solid #d9d9d9;
 	&.active {
 		color: white;
-		background-color: #2bb673;
+		${MainBackgroundColor}
 		border: none;
 	}
 `;
