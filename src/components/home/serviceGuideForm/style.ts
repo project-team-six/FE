@@ -1,10 +1,10 @@
-import { Flex } from "./../../common/GlobalStyle";
+import { Flex, MainBackgroundColor } from "./../../common/GlobalStyle";
 import styled from "styled-components";
 
 export const GuideSection = styled.section`
 	width: 100%;
 	height: 675px;
-	background-color: #2bb673;
+	${MainBackgroundColor}
 	display: flex;
 	align-items: center;
 	justify-content: center;

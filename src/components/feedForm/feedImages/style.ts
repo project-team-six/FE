@@ -7,50 +7,50 @@ export const MainContentWrapper = styled.div`
 `;
 
 export const ImageSection = styled.section`
-    display: flex;
+	display: flex;
 	margin-left: 110px;
 `;
 
 export const ImageAddDiv = styled.div`
 	width: 126px;
 	height: 126px;
-	background-color: #FBFBFB;
-	border: 1px solid #2BB673;
+	background-color: #fbfbfb;
+	border: 1px solid #4fbe9f;
 	border-radius: 5px;
 `;
 
 export const ImageLabel = styled.label`
-    width: 126px;
-    height: 126px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	width: 126px;
+	height: 126px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 `;
 
 export const ImageLabelSpan = styled.span`
 	margin-top: 10px;
-	color: #2BB673;
+	color: #4fbe9f;
 `;
 
 export const ImageAddInput = styled.input`
-    display: none; 
+	display: none;
 `;
 
 export const ImageContainer = styled.div`
-    position: relative;
+	position: relative;
 `;
 
 export const ImagePreviewWrapper = styled.div`
-    position: relative;
-    display: inline-block;
+	position: relative;
+	display: inline-block;
 `;
 
 export const PreviewImg = styled.img`
-    width: 126px;
+	width: 126px;
 	height: 126px;
 
-    margin-right: 33px;
+	margin-right: 33px;
 `;
 
 export const DeleteButtonDiv = styled.div`
@@ -63,11 +63,11 @@ export const DeleteButtonDiv = styled.div`
 	border: none;
 	opacity: 0;
 	transition: opacity 0.3s ease-in-out;
-	background-color: rgba(0, 0, 0, 0.5); 
+	background-color: rgba(0, 0, 0, 0.5);
 
-    ${ImageContainer}:hover & {
-        opacity: 1;
-    }
+	${ImageContainer}:hover & {
+		opacity: 1;
+	}
 `;
 
 export const DeleteButton = styled.button`

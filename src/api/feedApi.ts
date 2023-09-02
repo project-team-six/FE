@@ -19,6 +19,7 @@ export const fetchFeedList = async (
 export const fetchFeed = async (postId: number) => {
 	// 게시물 상세 조회
 	const response = await instance.get(`/post/${postId}`);
+	console.log(response);
 	return response.data.data;
 };
 
@@ -43,6 +44,12 @@ export const editFeed = async (postId: number, newFeed: FormData) => {
 	});
 	return response;
 };
+
+export const deleteFeed = async (postId: number) => {
+	// 게시물 삭제
+	const response = await instance.delete(`/post/${postId}`);
+	return response;
+}
 
 // 댓글
 export const postComment = async (payload: commentPostType) => {
@@ -74,3 +81,9 @@ export const postPin = async (postId: number) => {
 	const response = await instance.post(`/post/${postId}/pin`);
 	return response;
 };
+
+//게시물 신고
+export const postReport = async (postId: number) => {
+	const response = await instance.post(`post/report/${postId}`);
+	return response;
+}

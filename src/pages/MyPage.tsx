@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getMyPage } from "../api/userApi";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/config/configStore";
-import { InitialType } from "../redux/modules/locationSet";
-import { pushNotification } from "../utils/notification";
 import UserInfo from "../components/mypageForm/UserInfo";
 import { useParams } from "react-router";
 import PostList from "../components/mypageForm/PostList";
@@ -15,6 +13,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import TabPanel from "@mui/lab/TabPanel";
 import TabContext from "@mui/lab/TabContext";
+import Loading from "../components/common/Loading";
 
 const MyPage: React.FC = () => {
 	const [value, setValue] = React.useState("one");
@@ -28,22 +27,14 @@ const MyPage: React.FC = () => {
 	});
 
 	const { id } = useParams();
-	const userId = Number(id);
-
-	const userLocation: InitialType = useSelector((state: RootState) => {
-		return state.locationSlice.userLocation;
-	});
 
 	// useQuery로 유저 정보 불러오기
-	const { data: mypage, isLoading } = useQuery(["mypage", userId], () => getMyPage(userId));
-	useEffect(() => {
-		if (userLocation.sido === "") {
-			pushNotification("지역을 먼저 등록해주세요", "error");
-			navigate("/locationsetting");
-		}
-	}, [userLocation.sido, navigate]);
-
-	if (isLoading) <div>Loding...</div>;
+	const { data: mypage, isLoading } = useQuery(["mypage", id], () => getMyPage(Number(id)));
+	console.log("mypage", mypage);
+	if (isLoading)
+		<div>
+			<Loading />
+		</div>;
 
 	return (
 		<S.Main>
@@ -66,23 +57,23 @@ const MyPage: React.FC = () => {
 								onChange={TabChangehandler}
 								aria-label='secondary tabs example'
 								TabIndicatorProps={{
-									style: { background: "#2bb673" },
+									style: { background: "#4FBE9F" },
 								}}>
 								<Tab
 									value='one'
 									label='작성글'
 									style={{
-										color: value === "one" ? "#2bb673" : "", // 선택한 탭일 때의 텍스트 색상
+										color: value === "one" ? "#4FBE9F" : "", // 선택한 탭일 때의 텍스트 색상
 										fontWeight: "bold",
 										fontSize: "16px",
 									}}
 								/>
-								{+accountId === userId ? (
+								{+accountId === Number(id) ? (
 									<Tab
 										value='two'
 										label='관심글'
 										style={{
-											color: value === "two" ? "#2bb673" : "", // 선택한 탭일 때의 텍스트 색상
+											color: value === "two" ? "#4FBE9F" : "", // 선택한 탭일 때의 텍스트 색상
 											fontWeight: "bold",
 											fontSize: "16px",
 										}}
@@ -99,7 +90,7 @@ const MyPage: React.FC = () => {
 							/>
 						</TabPanel>
 						<TabPanel value='two'>
-							{+accountId === userId ? (
+							{+accountId === Number(id) ? (
 								<>
 									<PostList
 										posts={mypage?.data?.pinedPosts}

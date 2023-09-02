@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setDecodeToken } from "../redux/modules/user";
+import Loading from "../components/common/Loading";
 
 const KakaoRedirection = () => {
 	//인가코드 파싱하기
@@ -23,7 +24,11 @@ const KakaoRedirection = () => {
 		});
 	});
 
-	return <div>로그인중입니다</div>;
+	return (
+		<div>
+			<Loading />
+		</div>
+	);
 };
 
 export default KakaoRedirection;

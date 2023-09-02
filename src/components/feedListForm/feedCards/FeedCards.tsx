@@ -4,6 +4,7 @@ import * as S from "./style";
 import { fetchFeedList } from "../../../api/feedApi";
 import { useCallback, useEffect } from "react";
 import { priceUtils } from "../../../utils/priceUtils";
+import Loading from "../../common/Loading";
 
 const FeedCards = ({
 	location,
@@ -43,7 +44,12 @@ const FeedCards = ({
 		}
 	}, [feedList, memoizedFetchPageable, fetchPageable]);
 
-	if (isLoading) return <div>Loading...</div>;
+	if (isLoading)
+		return (
+			<div>
+				<Loading />
+			</div>
+		);
 	if (isError) return <div>Error...</div>;
 
 	// 시간포맷함수
