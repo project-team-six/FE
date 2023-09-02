@@ -15,6 +15,9 @@ export const IntroLayoutBox = styled.div`
 	justify-content: space-between;
 	width: 80%;
 	height: 440px;
+	@media (max-width: 700px) {
+		flex-direction: column;
+	}
 `;
 
 export const TextBox = styled.div`
@@ -39,10 +42,13 @@ export const IconBox = styled.div`
 	height: 440px;
 	border-radius: 20px;
 	background-color: #f5f5f5;
-	position: relative;
 	img {
 		opacity: 0;
-		transition: all 2s;
+		transition: all 1.3s;
 		position: absolute;
+	}
+	@media (max-width: 700px) {
+		width: 400px;
+		height: 600px;
 	}
 `;

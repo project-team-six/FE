@@ -22,9 +22,13 @@ const SseAlert = () => {
 			try {
 				data = JSON.parse(data);
 				if ("message" in data) {
-					const permission = await Notification.requestPermission();
+					window.onload = () => {
+						if (window.Notification) {
+							Notification.requestPermission();
+						}
+					};
 
-					if (permission === "granted") {
+					if (Notification.permission === "granted") {
 						console.log("메세지 내용", data.message);
 						console.log("url", data.url);
 						console.log(data.senderNickname);

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { bottle, carrot, cleaner, realTimeChat1, realTimeChat2, realTimeChat3, socks } from "../../../asstes/asstes";
+import { LEMON, MUSHROOM, PEAR, POT, realTimeChat1, realTimeChat2, realTimeChat3, SOCKS } from "../../../asstes/asstes";
 import * as S from "./style";
 
 const IntroductionForm = () => {
@@ -9,13 +9,13 @@ const IntroductionForm = () => {
 				if (img.isIntersecting) {
 					img.target.style.opacity = 1;
 					const currentTop = parseFloat(img.target.style.top);
-					const newTop = currentTop + 6;
-					img.target.style.top = `${newTop}px`;
+					const newTop = currentTop + 15;
+					img.target.style.top = `${newTop}%`;
 				} else {
 					img.target.style.opacity = 0;
 					const currentTop = parseFloat(img.target.style.top);
-					const newTop = currentTop - 6;
-					img.target.style.top = `${newTop}px`;
+					const newTop = currentTop - 15;
+					img.target.style.top = `${newTop}%`;
 				}
 			});
 		});
@@ -45,29 +45,30 @@ const IntroductionForm = () => {
 						<br /> 식품부터 일회용품까지, 소비의 의미를 새롭게 만나보세요.
 					</p>
 				</S.TextBox>
-				<S.IconBox className='icon-box'>
-					<img src={socks} alt='양말' style={{ top: "14px", left: "20px" }} />
-					<img src={cleaner} alt='세제' style={{ top: "140px", left: "100px" }} />
-					<img src={carrot} alt='당근' style={{ top: "20px", right: "150px" }} />
-					<img src={bottle} alt='유리잔' style={{ top: "150px", right: "20px" }} />
+				<S.IconBox className='icon-box' style={{ position: "relative" }}>
+					<img src={MUSHROOM} alt='버섯' style={{ top: "5%", left: "60px", width: "23%", height: "37%" }} />
+					<img src={LEMON} alt='레몬' style={{ top: "5%", right: "45px", width: "23%", height: "33%" }} />
+					<img src={PEAR} alt='배' style={{ top: "15%", left: "40%", width: "24%", height: "50%" }} />
+					<img src={POT} alt='냄비' style={{ top: "50%", left: "20px", width: "33%", height: "40%" }} />
+					<img src={SOCKS} alt='양말' style={{ top: "45%", right: "60px", width: "28%", height: "45%" }} />
 				</S.IconBox>
 			</S.IntroLayoutBox>
 			<S.IntroLayoutBox>
-				<S.IconBox className='icon-box'>
+				<S.IconBox className='icon-box' style={{ position: "relative" }}>
 					<img
 						src={realTimeChat1}
 						alt='채팅아이콘'
-						style={{ width: "305px", height: "83px", top: "50px", left: "10%" }}
+						style={{ width: "53%", height: "20%", top: "15%", left: "10%" }}
 					/>
 					<img
 						src={realTimeChat2}
 						alt='채팅아이콘'
-						style={{ width: "233px", height: "83px", top: "160px", left: "10%" }}
+						style={{ width: "40%", height: "20%", top: "40%", left: "10%" }}
 					/>
 					<img
 						src={realTimeChat3}
 						alt='채팅아이콘'
-						style={{ width: "189px", height: "83px", top: "280px", right: "10%" }}
+						style={{ width: "34%", height: "20%", top: "70%", right: "10%" }}
 					/>
 				</S.IconBox>
 				<S.TextBox>
