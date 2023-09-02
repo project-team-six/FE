@@ -19,11 +19,11 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 		return state.tokenSlice.decodeToken;
 	});
 
-	const accountId: Number = userTokenInfo.userId; // 사용자의 ID
+	const accountId = Number(userTokenInfo.userId); // 현재 로그인된 사용자의 ID
 
 	const { id } = useParams();
 	const userId = Number(id);
-	const isAdmin = accountId === userId;
+	const isAdmin = accountId === userId; // 로그인된 계정의 마이페이지인지 저장
 	const profileUrl = isAdmin ? userTokenInfo.profileImageUrl : mypage && mypage.data.profileImageUrl; // 프로필 이미지 URL
 	const nickname = isAdmin ? userTokenInfo.nickname : mypage && mypage.data.nickname;
 
@@ -44,14 +44,14 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 		onSuccess: (response) => {
 			const hasRaised = response.data.data.includes("올렸습니다");
 			setHasClicked(hasRaised);
-			queryClient.invalidateQueries(["mypage", userId]);
+			queryClient.invalidateQueries(["mypage", id]);
 		},
 		onError: () => {
 			pushNotification("로그인 후 이용해주세요", "error");
 		},
 	});
 
-	// 관심을 누르면 서버에 반영 및 횟수 올라가기
+	// 인기도를 누르면 서버에 반영 및 횟수 올라가기
 	const popularityHandler = () => {
 		popularityMutation.mutate(userId);
 	};

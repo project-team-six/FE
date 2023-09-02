@@ -30,6 +30,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 	const handleNavigate = (path: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		navigate(path);
 	};
+
 	const userLocationInfo = useSelector((state: RootState) => {
 		return state.locationSlice.userLocation;
 	});

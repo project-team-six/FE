@@ -1,7 +1,7 @@
 import React from "react";
 import { formatDistanceToNow } from "date-fns";
 import { ko } from "date-fns/locale";
-import { Post } from "../../types/mypage";
+import { Post } from "../../types/userType";
 import * as S from "./MypageStyle";
 import { priceUtils } from "../../utils/priceUtils";
 
