@@ -34,7 +34,7 @@ const ProfileImgEditForm:React.FC<ProfileImgEditFormProps> = ({selectedFile, set
     return (
         <S.ProfileImg>
             <h1>회원정보 수정</h1>
-            <form>
+            <div>
                 <S.ImgBox>
                     {selectedFile ? (
                         <img
@@ -62,7 +62,7 @@ const ProfileImgEditForm:React.FC<ProfileImgEditFormProps> = ({selectedFile, set
                 <S.ResetBtn type="button" onClick={() => setSelectedFile(undefined)}>
                     프로필 초기화
                 </S.ResetBtn>
-            </form>
+            </div>
         </S.ProfileImg>
     );
 };
