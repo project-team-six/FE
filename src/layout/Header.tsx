@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/config/configStore";
 import { setDecodeToken, setLogOut, TokenSliceState } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
-import ProfileModal from "../components/common/ProfileModal";
+import ProfileModal from "../components/modalForm/ProfileModal";
 import { useMutation } from "react-query";
 import { signOut } from "../api/userApi";
 import { pushNotification } from "../utils/notification";
@@ -129,7 +129,7 @@ const Header = () => {
 											backgroundColor: "#2BB673",
 										},
 									}}>
-									<img src={h_alertIcon} alt='알람' style={{ width: "23px" }} />
+									<img src={h_alertIcon} alt='알람' style={{ width: "24px" }} />
 								</Badge>
 							</NavButton>
 							<NavButton onClick={toggleProfileModal}>
@@ -246,7 +246,7 @@ const ArrowBox = styled.div`
 
 const SignButton = styled.button`
 	cursor: pointer;
-	width: 80px;
+	width: 90px;
 	height: 30px;
 	border-radius: 6px;
 	&:hover {

@@ -5,7 +5,6 @@ import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import MyPage from "../pages/MyPage";
 import MyPageEdit from "../pages/MyPageEdit";
-import LocationSetting from "../pages/LocationSetting";
 import FeedDetail from "../pages/FeedDetail";
 import FeedEdit from "../pages/FeedEdit";
 import FeedList from "../pages/FeedList";
@@ -24,7 +23,6 @@ export const router = createBrowserRouter([
 			{ path: "/findemail", element: <FindEmail /> },
 			{ path: "/findpassword", element: <FindPassword /> },
 			{ path: "/signup", element: <SignUp /> },
-			{ path: "/locationsetting", element: <LocationSetting /> },
 			{ path: "/feedlist", element: <FeedList /> },
 			{ path: "/feed/:id", element: <FeedDetail /> },
 			{ path: "/feed/:id/edit", element: <FeedEdit /> },

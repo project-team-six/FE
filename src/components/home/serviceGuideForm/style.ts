@@ -9,6 +9,9 @@ export const GuideSection = styled.section`
 	align-items: center;
 	justify-content: center;
 	gap: 5%;
+	@media (max-width: 700px) {
+		height: 500px;
+	}
 `;
 
 export const StepGuideBox = styled.div`
@@ -26,6 +29,10 @@ export const IconCircleBox = styled.div`
 	border-radius: 100%;
 	background-color: white;
 	margin-top: 50px;
+	@media (max-width: 700px) {
+		width: 205px;
+		height: 205px;
+	}
 `;
 
 export const TextBox = styled.div`

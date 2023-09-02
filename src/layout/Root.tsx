@@ -8,6 +8,7 @@ function Root() {
 		<Container>
 			<Header />
 			<Outlet />
+			<PlusButton>+</PlusButton>
 			<Footer />
 		</Container>
 	);
@@ -18,4 +19,14 @@ export default Root;
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
+`;
+
+const PlusButton = styled.div`
+	position: fixed;
+	bottom: 10%;
+	right: 10%;
+	color: pink;
+	font-size: 30px;
+	width: 30px;
+	height: 30px;
 `;
