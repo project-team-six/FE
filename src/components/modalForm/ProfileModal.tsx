@@ -104,7 +104,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 									<p>{locationTag}</p>
 								)}
 							</ModalButton>
-							<ModalButton onClick={() => navigate(`/mypage/${userInfo.userId}`)}>
+							<ModalButton onClick={handleNavigate(`/mypage/${userInfo.userId}`)}>
 								<p>마이페이지</p>
 							</ModalButton>
 							<ModalButton onClick={clickFeedAddBtn}>
