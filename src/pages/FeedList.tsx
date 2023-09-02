@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import * as AS from "../asstes/asstes";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/config/configStore";
@@ -6,8 +6,22 @@ import CategorySection from "../components/feedListForm/category/CategorySection
 import SearchFilter from "../components/feedListForm/search/SearchFilter";
 import FeedCards from "../components/feedListForm/feedCards/FeedCards";
 import PageNation from "../components/feedListForm/pagenation/PageNation";
+import { locationType } from "../types/feedType";
+import { useNavigate } from "react-router";
 
 const FeedList = () => {
+	const isLogin = useSelector((state: RootState) => {
+		return state.tokenSlice.isLogin;
+	});
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!isLogin) {
+			navigate("/signIn");
+		}
+	}, [isLogin, navigate]);
+
 	// 카테고리 (필터)
 	const [categoryObj, setCategoryObj] = useState({
 		category: "",
@@ -62,10 +76,19 @@ const FeedList = () => {
 	};
 
 	// 유저지역 (필터)
-	const fetchLocation = useSelector((state: RootState) => {
-		return state.locationSlice.userLocation;
+	const userInfo = useSelector((state: RootState) => {
+		return state.tokenSlice.decodeToken;
 	});
-	const location = fetchLocation.sido + " " + fetchLocation.sigungu + " ";
+
+	const userLocationValue = userInfo.location; // 기존에 지역을 설정한 사용자의 지역 정보
+	const temps = userLocationValue.split(" ");
+	const address: locationType = {
+		sido: temps[0],
+		sigungu: temps[1],
+		dong: temps[2],
+	};
+
+	const location = address.sido + " " + address.sigungu;
 
 	// 소분완료여부 (필터)
 	const [status, setStatus] = useState("");
@@ -83,6 +106,7 @@ const FeedList = () => {
 	const fetchPageable = (totalPages: number) => {
 		setTotalpages(totalPages);
 	};
+
 	return (
 		<div>
 			<CategorySection
