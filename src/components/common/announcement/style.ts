@@ -6,5 +6,5 @@ export const SpanSection = styled.section`
 
 export const Span = styled.span`
 	font-size: 35px;
-	font-weight: 700;
+	font-weight: 600;
 `;
