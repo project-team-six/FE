@@ -26,6 +26,7 @@ const ProfileImg = styled.section`
 	height: 100%;
 	${Flex}
 	img {
+		object-fit:cover;
 		width: 120px;
 		height: 120px;
 		border-radius: 100%;

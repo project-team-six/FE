@@ -23,6 +23,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 	const handleNavigate = (path: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		navigate(path);
 	};
+
 	const userLocationInfo = useSelector((state: RootState) => {
 		return state.locationSlice.userLocation;
 	});
@@ -96,7 +97,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 									<p>{locationTag}</p>
 								)}
 							</ModalButton>
-							<ModalButton onClick={handleNavigate(`/mypage/${userInfo.userId}`)}>
+							<ModalButton onClick={() => navigate(`/mypage/${userInfo.userId}`)}>
 								<p>마이페이지</p>
 							</ModalButton>
 							<ModalButton onClick={clickFeedAddBtn}>

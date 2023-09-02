@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 interface InputProps {
 	label: string; //닉네임 이메일 패스워드
-	icon: string;  // input 태그 아이콘
 	type: string; // input 태그 종류 (text, password) 
 	value: string; // input 태그 value 
 	handleChange: (e: ChangeEvent<HTMLInputElement>) => void; // input 태그 함수
@@ -14,7 +13,7 @@ interface InputProps {
 	pattern?:string;
 }
 
-const Input: React.FC<InputProps> = ({ label, icon, type, value, handleChange, width, placeholder, message }: InputProps) => {
+const Input: React.FC<InputProps> = ({ label, type, value, handleChange, width, placeholder, message }: InputProps) => {
 	return  (
 		<div> 
 			{message.trim() === "" ?
@@ -25,7 +24,7 @@ const Input: React.FC<InputProps> = ({ label, icon, type, value, handleChange, w
 					sx={{ m: 1, width: `${width}ch`}}
 					InputProps={{
 					startAdornment: <InputAdornment position="start">
-						<img src={icon} alt="icon"/></InputAdornment>,
+						</InputAdornment>,
 						sx: {borderRadius:"10px"}		
 					}}
 					value={value}
@@ -42,7 +41,7 @@ const Input: React.FC<InputProps> = ({ label, icon, type, value, handleChange, w
 					sx={{ m: 1, width: `${width}ch`}}
 					InputProps={{
 						startAdornment: <InputAdornment position="start">
-						<img src={icon} alt="icon"/></InputAdornment>,
+						</InputAdornment>,
 						sx: {borderRadius:"10px"}	
 					}}
 					helperText={message}

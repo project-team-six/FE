@@ -1,6 +1,5 @@
 import React from 'react'
 import Input from "../../../theme/Input";
-import { pwIcon } from "../../../asstes/asstes";
 
 interface PasswordInputProps{
   password:string;
@@ -20,9 +19,8 @@ const PasswordInput:React.FC<PasswordInputProps> = ({password, setPassword, conf
         handleChange={(e) => setPassword(e.target.value)}
         placeholder='새로운 비밀번호를 입력해주세요.'
         pattern="^(^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{0,}$"
-        message={ password && !/^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password) ? "비밀번호는 최소 하나의 소문자, 숫자 및 특수문자(!@#$%^&*)가 포함되어야 합니다." : ""}
+        message={ password && !/^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password) ? "비밀번호는 최소 하나의 소문자, 숫자 및 특수문자(!@#$%^&*)가 포함된 8자리 이상이어야 합니다." : ""}
         width={35}
-        icon={pwIcon}
       />
 
       <Input
@@ -31,9 +29,8 @@ const PasswordInput:React.FC<PasswordInputProps> = ({password, setPassword, conf
         value={confirmPassword}
         handleChange={(e) => setConfirmPassword(e.target.value)}
         pattern="^(^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{0,}$"
-        message={ confirmPassword && !/^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(confirmPassword) ? "비밀번호가 일치하지 않습니다." : ""}
+        message={ confirmPassword && password!==confirmPassword ? "비밀번호가 일치하지 않습니다." : ""}
         width={35}
-        icon={pwIcon}
         placeholder="비밀번호를 다시 입력해주세요."
       />
     </>
