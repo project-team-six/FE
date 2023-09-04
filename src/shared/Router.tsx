@@ -12,11 +12,17 @@ import FeedAdd from "../pages/FeedAdd";
 import KakaoRedirection from "../pages/KakaoRedirection";
 import FindEmail from "../pages/FindEmail";
 import FindPassword from "../pages/FindPassword";
+import ScrollToTop from "../components/common/ScrollToTop";
 
 export const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Root />,
+		element: (
+			<>
+				<ScrollToTop />
+				<Root />,
+			</>
+		),
 		children: [
 			{ index: true, element: <Home /> },
 			{ path: "/signin", element: <SignIn /> },

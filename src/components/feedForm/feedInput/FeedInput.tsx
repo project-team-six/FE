@@ -12,7 +12,7 @@ export const FeedInput = React.memo(({name, textEntered, setTextEntered, inputWi
             initialValue = textEntered.title;
             break;
         case "content":
-            maxLength = 500;
+            maxLength = 1500;
             initialValue = textEntered.content;
             isContent = true;
             break;
@@ -27,7 +27,11 @@ export const FeedInput = React.memo(({name, textEntered, setTextEntered, inputWi
     }
 
     const [inputValue, setInputValue] = useState<string>(initialValue);
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => { setInputValue(e.target.value) };
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => { 
+        let newText = e.target.value;
+        if (newText.length > maxLength) newText = newText.substr(0, maxLength);
+        setInputValue(newText);
+    };
     useEffect(()=>{
         setTextEntered(
             {...textEntered,
@@ -40,7 +44,7 @@ export const FeedInput = React.memo(({name, textEntered, setTextEntered, inputWi
     const adjustTextareaHeight = () => {
         const textarea = textareaRef.current;
         if (textarea) {
-          textarea.style.height = 'auto';
+          textarea.style.height = "";
           textarea.style.height = `${textarea.scrollHeight}px`;
         }
       };
