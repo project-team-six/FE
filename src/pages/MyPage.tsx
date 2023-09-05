@@ -57,13 +57,13 @@ const MyPage: React.FC = () => {
 								onChange={TabChangehandler}
 								aria-label='secondary tabs example'
 								TabIndicatorProps={{
-									style: { background: "#4FBE9F" },
+									style: { background: "#4fbe9f" },
 								}}>
 								<Tab
 									value='one'
 									label='작성글'
 									style={{
-										color: value === "one" ? "#4FBE9F" : "", // 선택한 탭일 때의 텍스트 색상
+										color: value === "one" ? "#4fbe9f" : "", // 선택한 탭일 때의 텍스트 색상
 										fontWeight: "bold",
 										fontSize: "16px",
 									}}
@@ -73,7 +73,7 @@ const MyPage: React.FC = () => {
 										value='two'
 										label='관심글'
 										style={{
-											color: value === "two" ? "#4FBE9F" : "", // 선택한 탭일 때의 텍스트 색상
+											color: value === "two" ? "#4fbe9f" : "", // 선택한 탭일 때의 텍스트 색상
 											fontWeight: "bold",
 											fontSize: "16px",
 										}}
