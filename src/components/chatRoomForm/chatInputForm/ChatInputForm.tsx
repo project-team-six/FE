@@ -6,12 +6,13 @@ import { addPhotoChatRoom } from "../../../api/chatApi";
 import { chatRoomMessageType } from "../../../types/chatType";
 import * as S from "./style";
 import { chatPhotoAdd, chatSend, trashIcon } from "../../../asstes/asstes";
+import { getToken } from "../../../utils/getToken";
 
 const ChatInputForm = ({selectChat, setMsgList}: {selectChat: string, setMsgList:(value: chatRoomMessageType) => void}) => {
     // 연결
     const client = useRef<CompatClient>();
-    const accessToken = document.cookie.replace(/(?:(?:^|.*;\s*)accessToken\s*=\s*([^;]*).*$)|^.*$/, "$1"); // 사용자 토큰
-
+    const accessToken = getToken("accessToken");
+    
     // SockJS 연결 생성
     const socket = new SockJS("https://soubun2.shop/ws-stomp");
     useEffect(() => {
