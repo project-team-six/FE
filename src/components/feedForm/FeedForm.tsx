@@ -94,13 +94,13 @@ const FeedForm = ({
 		<S.MainContentWrapper>
 			{modalState && <FeedModal modalState={modalState} setModalState={setModalState} />}
 			<S.Section>
-				<S.Span fontSize={28} fontWeight='600'>
+				<S.Span fontSize={28} fontWeight="600">
 					게시물 작성
 				</S.Span>
 			</S.Section>
 			<S.Section>
 				<div>
-					<S.Span fontSize={20} fontWeight='500'>
+					<S.Span fontSize={20} fontWeight="500">
 						소분 물품 정보
 					</S.Span>
 				</div>
@@ -128,10 +128,10 @@ const FeedForm = ({
 							<S.Label>원가</S.Label>
 						</S.LabelDiv>
 						<FeedInput
-							name='originPrice'
+							name="originPrice"
 							textEntered={textEntered}
 							setTextEntered={setTextEntered}
-							inputWidth={215}
+							inputWidth="215px"
 						/>
 					</S.InputSection>
 					<S.InputSection>
@@ -139,10 +139,10 @@ const FeedForm = ({
 							<S.Label>판매가격</S.Label>
 						</S.LabelDiv>
 						<FeedInput
-							name='price'
+							name="price"
 							textEntered={textEntered}
 							setTextEntered={setTextEntered}
-							inputWidth={215}
+							inputWidth="215px"
 						/>
 					</S.InputSection>
 					<S.InputSection>
@@ -150,7 +150,7 @@ const FeedForm = ({
 							<S.Label>제품 구매 날짜</S.Label>
 						</S.LabelDiv>
 						<FeedDay
-							name='purchase'
+							name="purchase"
 							range={false}
 							dateEntered={dateEntered}
 							setDateEntered={setDateEntered}
@@ -161,7 +161,7 @@ const FeedForm = ({
 							<S.Label>소비기한</S.Label>
 						</S.LabelDiv>
 						<FeedDay
-							name='consumerPeriod'
+							name="consumerPeriod"
 							range={false}
 							dateEntered={dateEntered}
 							setDateEntered={setDateEntered}
@@ -169,7 +169,7 @@ const FeedForm = ({
 					</S.InputSection>
 				</S.InputDiv>
 				<div>
-					<S.Span fontSize={20} fontWeight='500'>
+					<S.Span fontSize={20} fontWeight="500">
 						게시물 정보
 					</S.Span>
 				</div>
@@ -180,7 +180,7 @@ const FeedForm = ({
 							<S.Label>거래 가능 날짜</S.Label>
 						</S.LabelDiv>
 						<FeedDay
-							name='dealable'
+							name="dealable"
 							range={true}
 							dateEntered={dateEntered}
 							setDateEntered={setDateEntered}
@@ -191,7 +191,7 @@ const FeedForm = ({
 							<S.Label>지역</S.Label>
 						</S.LabelDiv>
 						<S.LocationDiv>
-							<S.LocationIcon src={feedLocationicon} alt='위치' />
+							<S.LocationIcon src={feedLocationicon} alt="위치" />
 							<S.LocationSpan>{initialValue.location}</S.LocationSpan>
 						</S.LocationDiv>
 					</S.InputSection>
@@ -200,10 +200,10 @@ const FeedForm = ({
 							<S.Label>제목</S.Label>
 						</S.LabelDiv>
 						<FeedInput
-							name='title'
+							name="title"
 							textEntered={textEntered}
 							setTextEntered={setTextEntered}
-							inputWidth={758}
+							inputWidth="59.2vw"
 						/>
 					</S.InputSection>
 					<S.InputSection>
@@ -211,20 +211,16 @@ const FeedForm = ({
 							<S.Label>내용</S.Label>
 						</S.LabelDiv>
 						<FeedInput
-							name='content'
+							name="content"
 							textEntered={textEntered}
 							setTextEntered={setTextEntered}
-							inputWidth={758}
+							inputWidth="59.2vw"
 						/>
 					</S.InputSection>
 				</S.InputDiv>
 				<S.ButtonDiv>
-					<S.Button onClick={handleClick} color='FFFFFF' $backgroundColor='4FBE9F'>
-						{btnName}
-					</S.Button>
-					<S.Button onClick={() => navigate(-1)} color='FFFFFF' $backgroundColor='CDCDCD'>
-						취소
-					</S.Button>
+					<S.Button onClick={handleClick} color="FFFFFF" $backgroundColor="4FBE9F">{btnName}</S.Button>
+					<S.Button onClick={() => navigate(-1)} color="FFFFFF" $backgroundColor="CDCDCD">취소</S.Button>
 				</S.ButtonDiv>
 			</S.Section>
 		</S.MainContentWrapper>

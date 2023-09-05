@@ -1,15 +1,16 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useMutation } from "react-query";
 import SockJS from "sockjs-client";
 import { CompatClient, Stomp } from "@stomp/stompjs";
+import { addPhotoChatRoom } from "../../../api/chatApi";
+import { chatRoomMessageType } from "../../../types/chatType";
 import * as S from "./style";
 import { chatPhotoAdd, chatSend, trashIcon } from "../../../asstes/asstes";
-import { useMutation, useQueryClient } from "react-query";
-import { addPhotoChatRoom } from "../../../api/chatApi";
 
-const ChatInputForm = ({selectChat}: {selectChat: string}) => {
+const ChatInputForm = ({selectChat, setMsgList}: {selectChat: string, setMsgList:(value: chatRoomMessageType) => void}) => {
     // 연결
     const client = useRef<CompatClient>();
-    const accessToken = document.cookie.replace(/(?:(?:^|.*;\s*)accessToken\s*=\s*([^;]*).*$)|^.*$/, '$1'); // 사용자 토큰
+    const accessToken = document.cookie.replace(/(?:(?:^|.*;\s*)accessToken\s*=\s*([^;]*).*$)|^.*$/, "$1"); // 사용자 토큰
 
     // SockJS 연결 생성
     const socket = new SockJS("https://soubun2.shop/ws-stomp");
@@ -24,7 +25,10 @@ const ChatInputForm = ({selectChat}: {selectChat: string}) => {
                 client.current = stompClient;
                 client.current.subscribe(
                     `/sub/chat/room/${selectChat}`,
-                    () => {},
+                    (message) => {
+                        var recv = JSON.parse(message.body);
+                        setMsgList(recv);
+                    },
                     {
                         Authorization: accessToken,
                         simpDestination: selectChat,
@@ -48,7 +52,7 @@ const ChatInputForm = ({selectChat}: {selectChat: string}) => {
         const file = e.target.files?.[0]; 
         setImages(file);
         // 썸네일
-        if (file && file.type.startsWith('image/')) {
+        if (file && file.type.startsWith("image/")) {
             const reader = new FileReader();
             reader.onload = function(event) {
                 if (event.target) setPreview(event.target.result as string);
@@ -66,11 +70,10 @@ const ChatInputForm = ({selectChat}: {selectChat: string}) => {
     const feedAddMutation = useMutation(addPhotoChatRoom, {
 		onSuccess: (response) => {
             const url = response.data.data;
-            client.current!.send('/pub/chat/message', {Authorization: accessToken}, JSON.stringify({type:"IMAGE" ,roomId: selectChat, message: inputValue, imageUrl: url}));
+            client.current!.send("/pub/chat/message", {Authorization: accessToken}, JSON.stringify({type:"IMAGE" ,roomId: selectChat, message: inputValue, imageUrl: url}));
         },
 	});
 
-    const queryClient = useQueryClient();
     // 메시지 전송
     const handleSendMsg = () => {
         let shouldInvalidateQueries = false;
@@ -84,12 +87,11 @@ const ChatInputForm = ({selectChat}: {selectChat: string}) => {
 
         // 텍스트
         if (client.current && inputValue.trim() !== "") {
-            client.current!.send('/pub/chat/message', {Authorization: accessToken,}, JSON.stringify({type:"TALK" ,roomId: selectChat, message: inputValue}));
+            client.current!.send("/pub/chat/message", {Authorization: accessToken,}, JSON.stringify({type:"TALK" ,roomId: selectChat, message: inputValue}));
             shouldInvalidateQueries = true;
         }
 
         if (shouldInvalidateQueries) {
-            queryClient.invalidateQueries(["messages"]);
             handleClickRest();
             setInputValue("");
         }
@@ -97,7 +99,7 @@ const ChatInputForm = ({selectChat}: {selectChat: string}) => {
 
     // enter 눌렀을 때 관리 (입력된 내용이 있으면 댓글 등록)
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (event.key === 'Enter') {
+		if (event.key === "Enter") {
 			event.preventDefault(); 
 			handleSendMsg();
 		}

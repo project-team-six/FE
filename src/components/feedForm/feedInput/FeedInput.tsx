@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as S from "./style";
 import { feedTextType } from "../../../types/feedType";
 
-export const FeedInput = React.memo(({name, textEntered, setTextEntered, inputWidth}: {name: string, textEntered: feedTextType, setTextEntered: (value: feedTextType) => void, inputWidth: number}) => {
+export const FeedInput = React.memo(({name, textEntered, setTextEntered, inputWidth}: {name: string, textEntered: feedTextType, setTextEntered: (value: feedTextType) => void, inputWidth: string}) => {
     let initialValue = ""; // 초기 값
     let isContent = false;
     let maxLength = 0;

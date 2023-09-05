@@ -1,9 +1,9 @@
 import { useQuery, useQueryClient } from "react-query";
 import { deleteChatRoom, fetchMyChatRoom } from "../../../api/chatApi";
 import { chatRoomType } from "../../../types/chatType";
+import { formatRelativeTime } from "../../../utils/formatRelativeTime";
 import * as S from "./style";
 import { chatDelete, profileImg } from "../../../asstes/asstes";
-import { formatRelativeTime } from "../../../utils/formatRelativeTime";
 
 const ChatListForm = ({setSelectChat}: {setSelectChat: (value: string) => void}) => {
     const { data: myRooms, isLoading, isError } = useQuery(["myRooms"], fetchMyChatRoom);

@@ -8,6 +8,13 @@ export const MainContentWrapper = styled.div`
 
 export const MainDatePickerDiv = styled.div`
     display: flex;
+
+    @media (max-width: 800px) {
+		display: flex;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+	}
 `;
 
 export const DatePickerDiv = styled.div`

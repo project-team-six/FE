@@ -26,7 +26,7 @@ export const FeedDay = ({name, range, dateEntered, setDateEntered}: { name: stri
 	return (
 		<S.MainContentWrapper>
 			{range ? 
-				<S.MainDatePickerDiv>
+			<S.MainDatePickerDiv>
 				<S.DatePickerDiv>
 					<S.StyledDatePicker
 						locale={ko}
@@ -58,7 +58,7 @@ export const FeedDay = ({name, range, dateEntered, setDateEntered}: { name: stri
 					startDate={startDateTime}
 					endDate={endDateTime}
 					locale={ko}
-					dateFormat='yyyy-MM-dd'
+					dateFormat="yyyy-MM-dd"
 					shouldCloseOnSelect
 					minDate={new Date("2000-01-01")}
 					selected={startDateTime}

@@ -9,6 +9,11 @@ export const MainContentWrapper = styled.div`
 export const ImageSection = styled.section`
 	display: flex;
 	margin-left: 110px;
+
+	@media (max-width: 800px) {
+		display: flex;
+		flex-direction: column;
+	}
 `;
 
 export const ImageAddDiv = styled.div`

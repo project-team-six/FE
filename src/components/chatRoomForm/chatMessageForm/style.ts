@@ -1,4 +1,4 @@
-import { MainBackgroundColor } from "./../../common/GlobalStyle";
+import { MainBackgroundColor, cursor } from "./../../common/GlobalStyle";
 import styled from "styled-components";
 
 type SpanProps = {

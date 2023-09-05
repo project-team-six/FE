@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 type InputProps = {
-    width: number;
+    width: string;
 };
 
 export const Input = styled.input<InputProps>`
     white-space: nowrap;     
-    width: ${(props) => props.width}px;
+    width: ${(props) => props.width};
+    min-width: 215px;
+    max-width: 760px;
     height: 45px;
     border-radius: 4px;
     border: 1px solid hsl(0, 0%, 80%);
@@ -14,7 +16,9 @@ export const Input = styled.input<InputProps>`
 `;
 
 export const TextArea = styled.textarea<InputProps>`
-    width: ${(props) => props.width}px;
+    width: ${(props) => props.width};
+    min-width: 215px;
+    max-width: 760px;
     height: 200px;
     max-height: 200px;
     resize: none;

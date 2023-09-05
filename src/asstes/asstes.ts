@@ -88,6 +88,7 @@ import chatBack from "./chatBack.png";
 import chatSend from "./chatSend.png";
 import chatPhotoAdd from "./chatPhotoAdd.png";
 import chatDelete from "./chatDelete.png";
+import chatBelow from "./chatBelow.png";
 
 //스피너
 import LoadingSpinner from "./LoadingSpinner.gif";
@@ -150,6 +151,7 @@ export {
 	chatSend,
 	chatPhotoAdd,
 	chatDelete,
+	chatBelow,
 	noAlertIcon,
 	recycle,
 	illustration1,
