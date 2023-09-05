@@ -5,12 +5,12 @@ import { useQueryClient } from "react-query";
 import { RootState } from "../../../redux/config/configStore";
 import { putMyPageEdit, putMyPageEditImage, putMyPagePasswordEdit } from "../../../api/userApi";
 import { pushNotification } from "../../../utils/notification";
-import ProfileImgEditForm from "./ProfileImgEditForm";
+import ProfileImgEdits from "./profileImgEditForm/ProfileImgEdit";
 import TextInputForm from "../../common/textInputForm/TextInputForm";
 import { updateToken } from "../../../utils/updateToken";
-import * as S from "./MypageEditStyle";
+import * as S from "./style";
 
-const ProfileEditForm = () => {
+const ProfileEdit = () => {
 	const location = useLocation();
 	const userInfo = location.state ? location.state.userInfo : {};
 	
@@ -138,29 +138,33 @@ const ProfileEditForm = () => {
 	};
 	
 	return (
-		<S.EditForm onSubmit={submitHandler}>
-			<ProfileImgEditForm selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
-			{/* 닉네임 수정 */}
-			<TextInputForm label="닉네임" type="text" value={nickname} handleChange={handleChangeNickname} msg={nicknameError} placeholder=""/>
-			{/* 핸드폰 번호 수정 */}
-			<TextInputForm label="핸드폰 번호" type="tel" value={phoneNumber} handleChange={handleChangePhoneNumber} msg={phoneNumberError} placeholder=""/>
-			{/* 비밀번호 수정 */}
-			{auth !== "KAKAO" && (
-			<div>
-				<TextInputForm label="비밀번호" type="password" value={password} handleChange={handleChangePassword} msg={passwordError} placeholder="새로운 비밀번호를 입력해주세요."/>
-				<TextInputForm label="비밀번호 확인" type="password" value={confirmPassword} handleChange={handleChangeConfirmPassword} msg={confirmPasswordError} placeholder="비밀번호를 다시 한 번 입력해주세요."/>
-			</div>
-			)}
-			<S.Btn>
-				<S.SubmitBtn type='submit'>
-					수정 완료
-				</S.SubmitBtn>
-				<S.BackBtn type='button' onClick={() => navigate(-1)}>
-					뒤로 가기
-				</S.BackBtn>
-			</S.Btn>
-		</S.EditForm>
+		<S.LayoutBox>
+            <S.LayoutInline>
+				<S.EditForm onSubmit={submitHandler}>
+				<ProfileImgEdits selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
+				{/* 닉네임 수정 */}
+				<TextInputForm label="닉네임" type="text" value={nickname} handleChange={handleChangeNickname} msg={nicknameError} placeholder=""/>
+				{/* 핸드폰 번호 수정 */}
+				<TextInputForm label="핸드폰 번호" type="tel" value={phoneNumber} handleChange={handleChangePhoneNumber} msg={phoneNumberError} placeholder=""/>
+				{/* 비밀번호 수정 */}
+				{auth !== "KAKAO" && (
+				<div>
+					<TextInputForm label="비밀번호" type="password" value={password} handleChange={handleChangePassword} msg={passwordError} placeholder="새로운 비밀번호를 입력해주세요."/>
+					<TextInputForm label="비밀번호 확인" type="password" value={confirmPassword} handleChange={handleChangeConfirmPassword} msg={confirmPasswordError} placeholder="비밀번호를 다시 한 번 입력해주세요."/>
+				</div>
+				)}
+				<S.Btn>
+					<S.SubmitBtn type="submit">
+						수정 완료
+					</S.SubmitBtn>
+					<S.BackBtn type="button" onClick={() => navigate(-1)}>
+						뒤로 가기
+					</S.BackBtn>
+				</S.Btn>
+			</S.EditForm>
+            </S.LayoutInline>
+        </S.LayoutBox>
 	);
 };
 
-export default ProfileEditForm;
+export default ProfileEdit;

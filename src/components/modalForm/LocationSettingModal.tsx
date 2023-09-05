@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { saveToken } from "../../utils/saveToken";
+import { useDispatch } from "react-redux";
 
 type LocationModalProps = {
 	isLocationModal: boolean;
@@ -18,6 +19,7 @@ const LocationSetting: React.FC<LocationModalProps> = ({
 	toggleLocationModal,
 	setIsLocationModal,
 }) => {
+	const dispatch = useDispatch();
 	const getAddressData = (data: any) => {
 		const sido: string = data.sido;
 		const sigungu: string = data.sigungu;
@@ -29,14 +31,14 @@ const LocationSetting: React.FC<LocationModalProps> = ({
 			dong,
 		};
 
-		//서버로 위치정보 전달
+		// 서버로 위치정보 전달
 		setUserLocation(address)
 			.then((response) => {
 				const token = response.headers.authorization;
 				if (token) {
 					// 토큰이 있는 경우
 					deleteToken("accessToken"); // 기존 token 삭제
-					saveToken("accessToken", token); // 세션에 accessToken 저장
+					saveToken("accessToken", token, dispatch); // 세션에 accessToken 저장
 				}
 				pushNotification(`지역이 ${data.sido} ${data.sigungu} ${data.bname}으로 설정되었습니다!`, "success");
 			})
