@@ -1,34 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import useRoomQuery from "../../../hooks/useRoomQuery";
-import { fetchChatRoomMsg } from "../../../api/chatApi";
 import { useSelector } from "react-redux";
+import useRoomQuery from "../../../hooks/useRoomQuery";
 import { RootState } from "../../../redux/config/configStore";
 import { chatRoomMessageType } from "../../../types/chatType";
 import { formatRelativeTime } from "../../../utils/formatRelativeTime";
+import { fetchChatRoomMsg } from "../../../api/chatApi";
 import * as S from "./style";
 import { profileImg } from "../../../asstes/asstes";
 
-const ChatMessageForm = ({ selectChat }: { selectChat: string }) => {
+const ChatMessageForm = ({ selectChat, msgList, setMsgList }: { selectChat: string, msgList: chatRoomMessageType, setMsgList:(value: chatRoomMessageType)=>void}) => {
 	const roomInfo = useRoomQuery(selectChat);
-
-    // 이전 채팅 메시지 조회
-	const { data: messages, refetch } = useQuery(["messages"], () => fetchChatRoomMsg(selectChat));
-    useEffect(() => {
-        const timer = setInterval(() => {
-            refetch();
-        }, 2000); // 3초마다 실행
-
-        return () => {
-            clearInterval(timer);
-        };
-    }, []);
 
 	// 로그인된 계정 정보
 	const nickname: string = useSelector((state: RootState) => {
 		return state.tokenSlice.decodeToken.nickname;
 	});
-  
+
+    const { data: messageList } = useQuery(["messages"], () => fetchChatRoomMsg(selectChat), {
+        enabled: true,
+    });
+    const [messages, setMmessages] = useState<chatRoomMessageType[]>([]);
+    useEffect(()=>{
+        setMmessages(messages.reverse());
+        setMmessages(messageList);
+    }, [messageList]);
+    
+    useEffect(()=>{
+        if (msgList) {
+            const temps: chatRoomMessageType[] = [...messages];
+            temps.push(msgList);
+            setMmessages(temps);
+        }
+    }, [msgList]);
+    
     return (
         <S.MainContentWrapper>
             {roomInfo && messages &&

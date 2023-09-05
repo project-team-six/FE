@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { cursor } from "../common/GlobalStyle";
 
 export const ModalLayout = styled.div`
 	display: flex;
@@ -55,4 +56,16 @@ export const InputSection = styled.section`
 	background-color: #F1F1F1;
 	height: 70px;
 	z-index: 999;
+`;
+
+type BelowButtonProps = {
+	show: boolean;
+};
+
+export const BelowButton = styled.button<BelowButtonProps>`
+	position: absolute;
+	bottom: 5%;
+	right: 7%;
+	display: ${(props) => (props.show ? "block" : "none")};
+	${cursor};
 `;
