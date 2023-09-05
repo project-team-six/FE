@@ -18,28 +18,39 @@ export const UserInfoWrapper = styled.section`
 	margin: 0 auto;
 	${Flex}
 	max-width:915px;
-	min-width: 400px;
+	min-width: 200px;
 	height: 320px;
 	width: 100%;
 	${MainBackgroundColor}
 	border-radius: 20px;
+	@media (max-width: 600px) {
+		flex-direction: column;
+		max-width : 450px;
+		height : 400px;
+	}
 `;
 
 export const UserInfo = styled.section`
-	width: 335px;
-	min-width: 200px;
+	width: 340px;
 	margin-right: 10px;
 	h2,h4,strong,span {color: #fff}
+	@media(max-width: 600px){
+		width : 200px;
+	}
 `;
 
 export const Nickname = styled.div`
 	${Flex}
 	justify-content: flex-start;
+	
 	h2 {
 		font-size: 24px;
 		margin-right: 20px;
 	}
 	button {${cursor}}
+	@media(max-width: 600px){
+		justify-content:space-between;
+	}
 `;
 
 export const Info = styled.div`
@@ -65,7 +76,6 @@ export const Info = styled.div`
 
 export const Popularity = styled.section`
 	width: 270px;
-	min-width: 120px;
 	height: 100%;
 	border-left: 2px solid #fff;
 	background-color: #70CBB1;
@@ -80,6 +90,15 @@ export const Popularity = styled.section`
 		margin: 5px 0;
 	}
 	button {${cursor}}
+	@media(max-width: 600px){
+		max-width : 450px;
+		width : 100%;
+		border-left : none;
+		border-top : 2px solid #fff;
+		border-radius: 0 0 20px 20px;
+		flex-direction : row;
+		gap : 10%;
+	}
 `;
 
 export const Post = styled.div`
@@ -123,6 +142,7 @@ export const Feed = styled.div`
 	${cursor}
 	width: 285px;
 	border-radius: 15px;
+	/* margin : 0 auto; */
 	h4,p,span {
 		margin: 10px 0;
 		padding: 0 5px;
@@ -138,5 +158,13 @@ export const Feed = styled.div`
 	span {
 		color: #838383;
 		font-size: 15px;
+	}
+	@media(max-width: 1000px){
+		width : 250px;
+		margin : 0 auto;
+		img{
+			width : 250px;
+			height : 290px;
+		}
 	}
 `;

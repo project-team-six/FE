@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/config/configStore";
-import { InitialType } from "../../redux/modules/locationSet";
 import * as S from "./MypageStyle";
 import { useNavigate, useParams } from "react-router";
 import { cog, emailIconWhite, locationpin, smileyneutral, smileywink } from "../../asstes/asstes";
@@ -11,14 +10,14 @@ import { useMutation, useQueryClient } from "react-query";
 import { postPopularity } from "../../api/userApi";
 
 const UserInfo = ({ mypage }: { mypage: any }) => {
-	const [hasClicked, setHasClicked] = useState(false);
+	const [, setHasClicked] = useState(false);
 	const navigate = useNavigate();
 
 	// 현재 로그인된 사용자의 정보
 	const userTokenInfo = useSelector((state: RootState) => {
 		return state.tokenSlice.decodeToken;
 	});
-
+	
 	const accountId = Number(userTokenInfo.userId); // 현재 로그인된 사용자의 ID
 
 	const { id } = useParams();
@@ -26,10 +25,6 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 	const isAdmin = accountId === userId; // 로그인된 계정의 마이페이지인지 저장
 	const profileUrl = isAdmin ? userTokenInfo.profileImageUrl : mypage && mypage.data.profileImageUrl; // 프로필 이미지 URL
 	const nickname = isAdmin ? userTokenInfo.nickname : mypage && mypage.data.nickname;
-
-	const userLocation: InitialType = useSelector((state: RootState) => {
-		return state.locationSlice.userLocation;
-	});
 
 	const onClickuserEditnavigate = () => {
 		const userInfo = {
@@ -51,7 +46,7 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 			pushNotification("로그인 후 이용해주세요", "error");
 		},
 	});
-
+	
 	// 인기도를 누르면 서버에 반영 및 횟수 올라가기
 	const popularityHandler = () => {
 		popularityMutation.mutate(userId);
@@ -79,7 +74,7 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 					<span>
 						<img src={locationpin} alt='지도아이콘' />
 					</span>
-					{userLocation.sido === "" || null || undefined ? (
+					{userTokenInfo.location === "" || null || undefined ? (
 						<strong>지역을 설정해주세요</strong>
 					) : (
 						<strong>{mypage?.data?.location}</strong>
