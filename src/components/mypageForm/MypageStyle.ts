@@ -8,6 +8,7 @@ export const Main = styled.main`
 export const InlineLayout = styled.article`
 	background-color: #fff;
 	max-width: 1230px;
+	width : 100%;
 	height: 100%;
 	margin: 0 auto;
 	padding-top: 80px;
@@ -28,12 +29,7 @@ export const UserInfo = styled.section`
 	width: 335px;
 	min-width: 200px;
 	margin-right: 10px;
-	h2,
-	h4,
-	strong,
-	span {
-		color: #fff;
-	}
+	h2,h4,strong,span {color: #fff}
 `;
 
 export const Nickname = styled.div`
@@ -43,9 +39,7 @@ export const Nickname = styled.div`
 		font-size: 24px;
 		margin-right: 20px;
 	}
-	button {
-		${cursor}
-	}
+	button {${cursor}}
 `;
 
 export const Info = styled.div`
@@ -73,25 +67,19 @@ export const Popularity = styled.section`
 	width: 270px;
 	min-width: 120px;
 	height: 100%;
-	border-left: 1px solid #fff;
-	background-color: #3ac884;
+	border-left: 2px solid #fff;
+	background-color: #70CBB1;
 	${Flex}
 	flex-direction: column;
 	border-radius: 0 20px 20px 0;
 	h5,
-	p {
-		color: #fff;
-	}
-	h5 {
-		font-size: 36px;
-	}
+	p {color: #fff}
+	h5 {font-size: 36px;}
 	p {
 		font-size: 20px;
 		margin: 5px 0;
 	}
-	button {
-		${cursor}
-	}
+	button {${cursor}}
 `;
 
 export const Post = styled.div`
@@ -114,33 +102,28 @@ export const NonPost = styled.div`
 		display : block;
 		width: 200px;
 		height: 40px;
-		border: 1px solid #3ac884;
+		border: 2px solid #4fbe9f;
 		border-radius: 10px;
 		&:hover {
-			background-color: #3ac884;
+			background-color: #4fbe9f;
 			border: none;
-		}
-		&:active {
-			background-color: #56eba3;
-			border: none;
+			color:#fff;
 		}
 	}
 `;
 
 export const ListWrapper = styled.div`
 	${Flex}
-	${cursor}
     justify-content: flex-start;
 	gap: 30px;
 	flex-wrap: wrap;
 `;
 
 export const Feed = styled.div`
+	${cursor}
 	width: 285px;
 	border-radius: 15px;
-	h4,
-	p,
-	span {
+	h4,p,span {
 		margin: 10px 0;
 		padding: 0 5px;
 	}
@@ -150,12 +133,8 @@ export const Feed = styled.div`
 		border-radius: 15px;
 		object-fit: cover;
 	}
-	h4 {
-		font-size: 18px;
-	}
-	p {
-		font-size: 16px;
-	}
+	h4 {font-size: 18px}
+	p {font-size: 16px}
 	span {
 		color: #838383;
 		font-size: 15px;

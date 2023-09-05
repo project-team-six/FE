@@ -2,14 +2,13 @@ import styled from "styled-components/";
 import { Flex, cursor } from "../../common/GlobalStyle";
 
 export const LayoutBox = styled.main`
-    width: 100%;
-    border-top: 1px solid #d9d9d9;
+min-width : 700px;
+    max-width: 1280px;
     margin: 0 auto;
+    position:relative;
 `;
 
 export const DetailMain = styled.article`
-    max-width: 1280px;
-    margin: 0 auto;
 `;
 
 export const Category = styled.div`

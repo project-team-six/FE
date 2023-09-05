@@ -68,12 +68,11 @@ export const EditBtn = styled.div`
 	left: 70%;
 	width: 30px;
 	height: 30px;
-	background-color: #f0f0f0;
 	border-radius: 100%;
 	margin: 0 auto;
 	img {
-		width: 30px;
-		height: 30px;
+		width: 24px;
+		height: 24px;
 		object-fit: none;
 	}
 `;

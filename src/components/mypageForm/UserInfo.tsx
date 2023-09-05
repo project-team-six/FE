@@ -39,6 +39,7 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 		};
 		navigate(`/mypage/edit`, { state: { userInfo } });
 	};
+	
 	const queryClient = useQueryClient();
 	const popularityMutation = useMutation(postPopularity, {
 		onSuccess: (response) => {

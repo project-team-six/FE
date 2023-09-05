@@ -1,153 +1,158 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { useQueryClient } from "react-query";
 import { RootState } from "../../../redux/config/configStore";
 import { putMyPageEdit, putMyPageEditImage, putMyPagePasswordEdit } from "../../../api/userApi";
 import { pushNotification } from "../../../utils/notification";
-import PasswordInput from "./PaswordInput";
 import ProfileImgEditForm from "./ProfileImgEditForm";
+import TextInputForm from "../../common/textInputForm/TextInputForm";
 import { updateToken } from "../../../utils/updateToken";
 import * as S from "./MypageEditStyle";
-import TextInputForm from "../../common/textInputForm/TextInputForm";
 
 const ProfileEditForm = () => {
 	const location = useLocation();
 	const userInfo = location.state ? location.state.userInfo : {};
-	const [nickname, setNickname] = useState(userInfo.nickname || "");
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
-	const [phoneNumber, setPhoneNumber] = useState(userInfo.phoneNumber || "");
-	const [selectedFile, setSelectedFile] = useState<File | undefined>();
-	const [nicknameError, setNicknameError] = useState("");
-	const [phoneNumberError, setPhoneNumberError] = useState("");
-	const [_, setPasswordError] = useState("");
-	const [isInfoFormValid, setIsInfoFormValid] = useState(false);
-	const [isPWFormValid, setIsPWFormValid] = useState(false);
-	const navigate = useNavigate();
-
+	
 	// 토큰값으로 유저 아이디 불러오기
 	const userId = useSelector((state: RootState) => state.tokenSlice.decodeToken.userId);
 	const auth: string = useSelector((state: RootState) => state.tokenSlice.decodeToken.auth);
-	console.log(auth)
+
+	const navigate = useNavigate();
+
+	// 닉네임
+	const [nickname, setNickname] = useState(userInfo.nickname || "");
+	const [nicknameError, setNicknameError] = useState("");
+	const handleChangeNickname = (e: ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		setNickname(value);
+
+		const nicknameRegex = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{3,8}$/;
+		let msg = "";
+		if (!nicknameRegex.test(value)) msg = "*닉네임을 입력해주세요. (3~8자 사이)";
+		setNicknameError(msg);
+	};
+
+	// 핸드폰 번호
+	const [phoneNumber, setPhoneNumber] = useState(userInfo.phoneNumber || "");
+	const [phoneNumberError, setPhoneNumberError] = useState("");
+	const handleChangePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		setPhoneNumber(value);
+
+		const phoneNumberRegex = /^(\+?82|0)1[0-9]{1}[0-9]{3,4}[0-9]{4}$/;
+		let msg = "";
+		if (!phoneNumberRegex.test(value)) msg = "*사용 할 수 없는 핸드폰 번호 입니다.";
+		setPhoneNumberError(msg);
+	};
+
+	// 비밀번호
+	const [password, setPassword] = useState("");
+	const [passwordError, setPasswordError] = useState("");
+	const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		setPassword(value);
+
+		const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+		let msg = "";
+		if (!passwordRegex.test(value)) msg = "*특수문자 포함 8자 이상 25자 이하 비밀번호를 입력해주세요.";
+		setPasswordError(msg);
+	};
+
+	// 비밀번호 확인
+	const [confirmPassword, setConfirmPassword] = useState("");
+	const [confirmPasswordError, setConfirmPasswordError] = useState("");
+	const handleChangeConfirmPassword = (e: ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		setConfirmPassword(value);
+
+		let msg = "";
+		if (password !== value) msg = "*비밀번호가 일치하지 않습니다.";
+		setConfirmPasswordError(msg);
+	};
+
+	// 프로필 이미지
+	const [selectedFile, setSelectedFile] = useState<File | undefined>();
+
 	// 유효성 검사
 	const isInfoValid = React.useCallback(() => {
-		const nicknameRegex = /^.{1,8}$/;
-		const phoneNumberRegex = /^010\d{8}$/;
-		if (!nicknameRegex.test(nickname)) {
-			setNicknameError("닉네임은 8자 이하이어야 합니다.");
-			return false;
-		}
-		
-		if (!phoneNumberRegex.test(phoneNumber)) {
-			setPhoneNumberError("전화번호는 '010'으로 시작하여 총 11자리여야 합니다.");
-			return false;
-		}
-		
-		return true;
-		
+		if (nicknameError.trim() === "" && phoneNumberError.trim() === "") return true;
+		return false;
 	},[nickname, phoneNumber]);
 
-		const isPasswordValid = React.useCallback(() => {
-			const passwordRegex = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-		
-			if (!passwordRegex.test(password)) {
-				return false;
-			}
-		
-			if (password !== confirmPassword) {
-				return false;
-			}
-		
-			return true;
-		},[password, confirmPassword]);
+	const isPasswordValid = React.useCallback(() => {
+		if (password.trim() !== "" && confirmPassword.trim() !== "" && passwordError.trim() === "" && confirmPasswordError.trim() === "") return true;
+		return false;
+	},[password, confirmPassword]);
 
-	// Put
 	const dispatch = useDispatch();
 	const queryClient = useQueryClient();
 	const submitHandler = (e: any) => {
-		e.preventDefault();
+		e.preventDefault(); // 새로고침 방지
+
+		let isError = false; // API 통신 성공 유무 저장		
 		if (isInfoValid()) {
-			// API 호출로 닉네임, 폰번호 수정
 			putMyPageEdit(userId, nickname, phoneNumber)
 				.then((response) => {
 					updateToken(response, dispatch);
 					queryClient.invalidateQueries(["mypage", userId]);
 				})
 				.catch((error) => {
-					pushNotification("수정 실패. 닉네임, 전화번호를 다시 봐주세요", "error");
+					isError = true;
+					pushNotification("닉네임, 핸드폰 번호 변경에 실패했어요.", "error");
 				});
+		} else if (nickname.trim() !== "" || phoneNumber.trim() !== "") {
+			pushNotification("닉네임, 전화번호를 다시 봐주세요.", "error");
+			return;
 		}
+
+		// 비밀번호 변경
 		if (isPasswordValid()) {
-			try {
-				putMyPagePasswordEdit(userId, password)
+			putMyPagePasswordEdit(userId, password)
 				.then((response) => {
 					updateToken(response, dispatch);
 				})
 				.catch((error) => {
-					pushNotification("수정 실패. 비밀번호와 비밀번호 확인을 다시 봐주세요", "error");
+					isError = true;
+					pushNotification("비밀번호 변경에 살패했어요.", "error");
 				});
-			} catch (error) {
-				pushNotification("비밀번호 수정실패", "error");
-			}
-			
+		} else if (password.trim() !== "") {
+			pushNotification("비밀번호와 비밀번호 확인을 다시 봐주세요.", "error");
+			return;
 		}
+
+		// 프로필 이미지 수정
 		if (selectedFile) {
-			let formData = new FormData();
+			const formData = new FormData();
 			formData.append("file", selectedFile);
 			putMyPageEditImage(userId, formData)
 				.then((response) => {
 					updateToken(response, dispatch);
 				})
 				.catch((error) => {
-					pushNotification("이미지업로드 실패", "error");
+					isError = true;
+					pushNotification("프로필 이미지 변경에 실패했어요.", "error");
 				});
 		}
-		if(!isInfoValid() || !isPasswordValid()){
-			return;
-		}
+		if (!isError) navigate(-1);
 	};
-
-	useEffect(() => {
-		// 모든 필드의 유효성 검사가 통과하면 isFormValid를 true로 설정
-		setIsInfoFormValid(isInfoValid());
-	}, [nickname, phoneNumber, isInfoValid]);  // 의존성 배열에 각 필드의 상태 값을 넣어줍니다.
-	
-	useEffect(()=>{
-		setIsPWFormValid(isPasswordValid());
-	},[password, confirmPassword, isPasswordValid]);
-	const clickHandler = () => {
-		if(!isInfoFormValid){
-			pushNotification('항목을 다시 살펴주시길 바랍니다', 'warning');
-			return
-		}
-		else if((password || confirmPassword)&&
-			!isPWFormValid){
-			pushNotification('비밀번호와 비밀번호 확인을 다시 봐주세요', 'warning');
-			return
-		}
-		navigate(-1)
-		
-	}
 	
 	return (
 		<S.EditForm onSubmit={submitHandler}>
 			<ProfileImgEditForm selectedFile={selectedFile} setSelectedFile={setSelectedFile} />
 			{/* 닉네임 수정 */}
-			<TextInputForm label="닉네임" type="text" value={nickname} handleChange={(e: ChangeEvent<HTMLInputElement>) => setNickname(e.target.value)} msg="" placeholder=""/>
-			{/* 전화번호 수정 */}
-			<TextInputForm label="전화번호" type="tel" value={phoneNumber} handleChange={(e: ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value)} msg="" placeholder=""/>
+			<TextInputForm label="닉네임" type="text" value={nickname} handleChange={handleChangeNickname} msg={nicknameError} placeholder=""/>
+			{/* 핸드폰 번호 수정 */}
+			<TextInputForm label="핸드폰 번호" type="tel" value={phoneNumber} handleChange={handleChangePhoneNumber} msg={phoneNumberError} placeholder=""/>
 			{/* 비밀번호 수정 */}
 			{auth !== "KAKAO" && (
-				<PasswordInput
-				password={password}
-				setPassword={(value:string)=>{setPassword(value); setPasswordError("")}}
-				confirmPassword={confirmPassword}
-				setConfirmPassword={(value:string)=>{setConfirmPassword(value); setPasswordError("")}}
-			/>
+			<div>
+				<TextInputForm label="비밀번호" type="password" value={password} handleChange={handleChangePassword} msg={passwordError} placeholder="새로운 비밀번호를 입력해주세요."/>
+				<TextInputForm label="비밀번호 확인" type="password" value={confirmPassword} handleChange={handleChangeConfirmPassword} msg={confirmPasswordError} placeholder="비밀번호를 다시 한 번 입력해주세요."/>
+			</div>
 			)}
 			<S.Btn>
-				<S.SubmitBtn type='submit' onClick={clickHandler}>
+				<S.SubmitBtn type='submit'>
 					수정 완료
 				</S.SubmitBtn>
 				<S.BackBtn type='button' onClick={() => navigate(-1)}>

@@ -22,7 +22,6 @@ const ProfileImg = styled.section`
 	max-width: 295px;
 	min-width: 170px;
 	width: 100%;
-	min-width: 140px;
 	height: 100%;
 	${Flex}
 	img {
