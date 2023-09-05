@@ -2,6 +2,7 @@ import axios, { AxiosInstance } from "axios";
 import { deleteToken } from "../utils/deleteToken";
 import { getToken } from "../utils/getToken";
 import { saveToken } from "../utils/saveToken";
+import { useDispatch } from "react-redux";
 
 export const instance: AxiosInstance = axios.create({
 	baseURL: process.env.REACT_APP_SERVER_URL,
@@ -36,12 +37,13 @@ instance.interceptors.response.use(
 
 		const { status, headers } = response;
 
+		const dispatch = useDispatch();
 		if (status === 401) {
 			const config = { ...error.config };
 			const newToken = headers.authorization;
 			if (newToken) {
 				deleteToken("accessToken"); // 기존 토큰 삭제
-				saveToken("accessToken", newToken); // 세션에 accessToken 저장
+				saveToken("accessToken", newToken, dispatch); // 세션에 accessToken 저장
 				
 				config.headers.Authorization = newToken;
 

@@ -1,27 +1,14 @@
-import { Flex, cursor, MainBackgroundColor } from "./../common/GlobalStyle";
 import styled from "styled-components";
-
-export const Main = styled.main`
-	background-color: #f8f8f8;
-`;
-
-export const InlineLayout = styled.article`
-	background-color: #fff;
-	max-width: 1230px;
-	width : 100%;
-	height: 100%;
-	margin: 0 auto;
-	padding-top: 80px;
-`;
+import { Flex, MainBackgroundColor, cursor } from "../../common/GlobalStyle";
 
 export const UserInfoWrapper = styled.section`
 	margin: 0 auto;
-	${Flex}
+	${Flex};
 	max-width:915px;
 	min-width: 200px;
 	height: 320px;
 	width: 100%;
-	${MainBackgroundColor}
+	${MainBackgroundColor};
 	border-radius: 20px;
 	@media (max-width: 600px) {
 		flex-direction: column;
@@ -40,7 +27,7 @@ export const UserInfo = styled.section`
 `;
 
 export const Nickname = styled.div`
-	${Flex}
+	${Flex};
 	justify-content: flex-start;
 	
 	h2 {
@@ -98,73 +85,5 @@ export const Popularity = styled.section`
 		border-radius: 0 0 20px 20px;
 		flex-direction : row;
 		gap : 10%;
-	}
-`;
-
-export const Post = styled.div`
-	max-width: 915px;
-	margin: 0 auto 50px;
-`;
-
-export const NonPost = styled.div`
-	height: 300px;
-	width: 100%;
-	${Flex}
-	flex-direction: column;
-	h1 {
-		font-size: 1.5rem;
-		display: block;
-		margin: 15px 0;
-	}
-	button {
-		${cursor}
-		display : block;
-		width: 200px;
-		height: 40px;
-		border: 2px solid #4fbe9f;
-		border-radius: 10px;
-		&:hover {
-			background-color: #4fbe9f;
-			border: none;
-			color:#fff;
-		}
-	}
-`;
-
-export const ListWrapper = styled.div`
-	${Flex}
-    justify-content: flex-start;
-	gap: 30px;
-	flex-wrap: wrap;
-`;
-
-export const Feed = styled.div`
-	${cursor}
-	width: 285px;
-	border-radius: 15px;
-	/* margin : 0 auto; */
-	h4,p,span {
-		margin: 10px 0;
-		padding: 0 5px;
-	}
-	img {
-		width: 285px;
-		height: 340px;
-		border-radius: 15px;
-		object-fit: cover;
-	}
-	h4 {font-size: 18px}
-	p {font-size: 16px}
-	span {
-		color: #838383;
-		font-size: 15px;
-	}
-	@media(max-width: 1000px){
-		width : 250px;
-		margin : 0 auto;
-		img{
-			width : 250px;
-			height : 290px;
-		}
 	}
 `;

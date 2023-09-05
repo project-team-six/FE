@@ -1,9 +1,9 @@
 import React from "react";
 import { formatDistanceToNow } from "date-fns";
 import { ko } from "date-fns/locale";
-import { Post } from "../../types/userType";
-import * as S from "./MypageStyle";
-import { priceUtils } from "../../utils/priceUtils";
+import { Post } from "../../../types/userType";
+import { priceUtils } from "../../../utils/priceUtils";
+import * as S from "./style";
 
 interface PostListProps {
     posts: Post[];

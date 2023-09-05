@@ -27,8 +27,10 @@ const ChatInputForm = ({selectChat, setMsgList}: {selectChat: string, setMsgList
                 client.current.subscribe(
                     `/sub/chat/room/${selectChat}`,
                     (message) => {
-                        var recv = JSON.parse(message.body);
-                        setMsgList(recv);
+                        if (message && message.body) {
+                            var recv = JSON.parse(message.body);
+                            setMsgList(recv);
+                        }
                     },
                     {
                         Authorization: accessToken,

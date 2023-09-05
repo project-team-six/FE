@@ -1,15 +1,15 @@
 import React, { ChangeEvent, useRef } from "react";
-import * as S from "./MypageEditStyle";
-import { pencil, profileImg } from "../../../asstes/asstes";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/config/configStore";
+import { RootState } from "../../../../redux/config/configStore";
+import * as S from "./style";
+import { pencil, profileImg } from "../../../../asstes/asstes";
 
 interface ProfileImgEditFormProps{
     selectedFile: File | undefined,
     setSelectedFile : React.Dispatch<React.SetStateAction<File | undefined>>,
 }
 
-const ProfileImgEditForm:React.FC<ProfileImgEditFormProps> = ({selectedFile, setSelectedFile}) => {
+const ProfileImgEdit:React.FC<ProfileImgEditFormProps> = ({selectedFile, setSelectedFile}) => {
     const imgRef = useRef<HTMLInputElement | null>(null);
 
     const profileImageUrl: string = useSelector((state: RootState) => {
@@ -67,4 +67,4 @@ const ProfileImgEditForm:React.FC<ProfileImgEditFormProps> = ({selectedFile, set
     );
 };
 
-export default ProfileImgEditForm;
+export default ProfileImgEdit;

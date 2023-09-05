@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/config/configStore";
-import * as S from "./MypageStyle";
 import { useNavigate, useParams } from "react-router";
-import { cog, emailIconWhite, locationpin, smileyneutral, smileywink } from "../../asstes/asstes";
-import UserProfile from "./UserProfile";
-import { pushNotification } from "../../utils/notification";
 import { useMutation, useQueryClient } from "react-query";
-import { postPopularity } from "../../api/userApi";
+import { RootState } from "../../../redux/config/configStore";
+import { postPopularity } from "../../../api/userApi";
+import { pushNotification } from "../../../utils/notification";
+import * as S from "./style";
+import { cog, emailIconWhite, locationpin, smileyneutral, smileywink } from "../../../asstes/asstes";
+import UserProfile from "./userProfileForm/UserProfile";
 
-const UserInfo = ({ mypage }: { mypage: any }) => {
+const UserInfoForm = ({ mypage }: { mypage: any }) => {
 	const [, setHasClicked] = useState(false);
 	const navigate = useNavigate();
 
@@ -60,19 +60,19 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 					<h2>{nickname}</h2>
 					{+accountId === userId ? (
 						<button onClick={onClickuserEditnavigate}>
-							<img src={cog} alt='회원정보 수정' />
+							<img src={cog} alt="회원정보 수정" />
 						</button>
 					) : null}
 				</S.Nickname>
 				<S.Info>
 					<span>
-						<img src={emailIconWhite} alt='이메일아이콘' />
+						<img src={emailIconWhite} alt="이메일아이콘" />
 					</span>
 					<strong>{mypage?.data?.email}</strong>
 				</S.Info>
 				<S.Info>
 					<span>
-						<img src={locationpin} alt='지도아이콘' />
+						<img src={locationpin} alt="지도아이콘" />
 					</span>
 					{userTokenInfo.location === "" || null || undefined ? (
 						<strong>지역을 설정해주세요</strong>
@@ -83,10 +83,10 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 			</S.UserInfo>
 			<S.Popularity>
 				{userId === +accountId ? (
-					<img src={smileywink} alt='기본이모지' />
+					<img src={smileywink} alt="기본이모지" />
 				) : (
 					<button onClick={popularityHandler}>
-						<img src={mypage?.data?.isPopularity ? smileywink : smileyneutral} alt='기본이모지' />
+						<img src={mypage?.data?.isPopularity ? smileywink : smileyneutral} alt="기본이모지" />
 					</button>
 				)}
 				<h5>{mypage?.data?.popularity}</h5>
@@ -96,4 +96,4 @@ const UserInfo = ({ mypage }: { mypage: any }) => {
 	);
 };
 
-export default UserInfo;
+export default UserInfoForm;
