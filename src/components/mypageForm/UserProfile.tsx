@@ -20,7 +20,7 @@ export default UserProfile;
 
 const ProfileImg = styled.section`
 	max-width: 295px;
-	min-width: 170px;
+	min-width: 120px;
 	width: 100%;
 	height: 100%;
 	${Flex}
@@ -29,5 +29,9 @@ const ProfileImg = styled.section`
 		width: 120px;
 		height: 120px;
 		border-radius: 100%;
+	}
+	@media (max-width:600px){
+		img{width:80px;
+		height:80px;}
 	}
 `;
