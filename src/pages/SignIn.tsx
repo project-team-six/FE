@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { useMutation } from "react-query";
-import { useDispatch } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router";
 import { signIn } from "../api/userApi";
-import { setDecodeToken } from "../redux/modules/user";
 import { pushNotification } from "../utils/notification";
 import { User } from "../types/userType";
 import axios from "axios";
 import styled from "styled-components";
 import { Flex } from "../components/common/GlobalStyle";
 import { line } from "../asstes/asstes";
+import { saveToken } from "../utils/saveToken";
 
 const SignIn = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -32,7 +31,6 @@ const SignIn = () => {
 	};
 
 	//로그인 성공하면 토큰 쿠키에 저장하고 리덕스로 토큰값 보내주는 곳
-	const dispatch = useDispatch();
 	const loginMutation = useMutation(signIn, {
 		onSuccess: (res) => {
 			const token = res.headers.authorization; // 엑세스토큰
@@ -40,11 +38,8 @@ const SignIn = () => {
 			if (!token) {
 				pushNotification("로그인 실패!", "warning");
 			} else {
-				// access token 값이 있는 경우
-				document.cookie = `accessToken=${token}; path=/;`; // access token을 쿠키에 저장
-				dispatch(setDecodeToken(token));
-				// refreshToken 값이 있는 경우
-				document.cookie = `refreshToken=${refreshToken}; path=/;`; // refreshToken을 쿠키에 저장
+				saveToken("accessToken", token); // 세션에 accessToken 저장
+				saveToken("refreshToken", refreshToken); // 세션에 refreshToken 저장 
 			}
 			navigate("/");
 		},
@@ -92,25 +87,25 @@ const SignIn = () => {
 			<InputSection>
 				<p>이메일</p>
 				<input
-					type='text'
-					name='email'
+					type="text"
+					name="email"
 					value={email}
 					onChange={onChangeLoginHandler}
 					style={{ marginBottom: "40px" }}
 				/>
 				<p>비밀번호</p>
-				<input type='password' name='password' value={password} onChange={onChangeLoginHandler} />
+				<input type="password" name="password" value={password} onChange={onChangeLoginHandler} />
 			</InputSection>
 			<FormSection>
-				<FormButton onClick={onClickLoginBtnHandler} $backgroundColor='#4FBE9F' color='white'>
+				<FormButton onClick={onClickLoginBtnHandler} $backgroundColor="#4FBE9F" color="white">
 					로그인
 				</FormButton>
 				<OrLine>
-					<img src={line} alt='선' />
+					<img src={line} alt="선" />
 					<span>또는</span>
-					<img src={line} alt='선' />
+					<img src={line} alt="선" />
 				</OrLine>
-				<FormButton onClick={kakaoLoginHandler} $backgroundColor='#FCE224' color='black'>
+				<FormButton onClick={kakaoLoginHandler} $backgroundColor="#FCE224" color="black">
 					카카오로 로그인/회원가입
 				</FormButton>
 			</FormSection>
