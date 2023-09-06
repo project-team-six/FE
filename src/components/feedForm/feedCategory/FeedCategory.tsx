@@ -1,5 +1,5 @@
 import { selectOptionType } from "../../../types/feedType";
-import Select from 'react-select';
+import Select from "react-select";
 import * as S from "./style";
 
 export const FeedCategory = ({category, setCategory}: {category: string, setCategory: (category: string) => void }) => {

@@ -91,11 +91,11 @@ export const FeedImages = ({ images, setImages, previews, setDeleteImages}: { im
                     })}
                 {isMaxLen ? <></> : 
                 <S.ImageAddDiv>
-                    <S.ImageLabel htmlFor='File'>
+                    <S.ImageLabel htmlFor="File">
                         <img src={feedImageAddIcon} alt="사진 추가"/>
                         <S.ImageLabelSpan>사진 올리기</S.ImageLabelSpan>
                     </S.ImageLabel>
-                    <S.ImageAddInput type='file' id='File' name='files' multiple onChange={changeImages} accept=".jpg, .jpeg, .png" />
+                    <S.ImageAddInput type="file" id="File" name="files" multiple onChange={changeImages} accept=".jpg, .jpeg, .png" />
                 </S.ImageAddDiv>}
             </S.ImageSection>
         </S.MainContentWrapper>

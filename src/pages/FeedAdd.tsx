@@ -11,7 +11,7 @@ import axios from "axios";
 
 const FeedAdd = () => {
 	const location = useSelector((state: RootState) => {
-		return state.locationSlice.userLocation;
+		return state.tokenSlice.decodeToken.location;
 	});
 
 	const date = dateTimeUtils(new Date());
@@ -25,15 +25,15 @@ const FeedAdd = () => {
 		transactionEndDate: date,
 		consumerPeriod: date,
 		purchaseDate: date,
-		location: `${location.sido} ${location.sigungu} ${location.dong}`,
+		location: location,
 		images: [],
 		previews: [],
 	};
 
 	const navigate = useNavigate();
 	const feedAddMutation = useMutation(postFeed, {
-		onSuccess: (data) => {
-			navigate(-1);
+		onSuccess: () => {
+			navigate("/feedlist");
 		},
 		onError: (response) => {
 			if (axios.isAxiosError(response) && response.response) {

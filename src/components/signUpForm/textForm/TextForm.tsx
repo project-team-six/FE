@@ -44,15 +44,15 @@ const TextForm = ({ setTextUserInfo }: { setTextUserInfo: React.Dispatch<React.S
 		kind: "닉네임",
 		type: "text",
 		errorMsg: "*사용 할 수 없는 닉네임 입니다.",
-		condition: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]*$/,
-		placeholder: "닉네임을 입력해주세요. (최소 3자)"
+		condition: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{3,8}$/,
+		placeholder: "닉네임을 입력해주세요. (3~8자 사이)"
 	};
 
 	const [phoneNumber, setPhoneNumber] = useState<string>("");
 	const phoneNumberInfo: textInfoType = {
 		kind: "핸드폰 번호",
 		type: "text",
-		errorMsg: "*사용 할 수 없는 전화번호 입니다.",
+		errorMsg: "*사용 할 수 없는 핸드폰 번호 입니다.",
 		condition: /^(\+?82|0)1[0-9]{1}[0-9]{3,4}[0-9]{4}$/,
 		placeholder: "'-'없이 숫자만 입력해주세요."
 	};

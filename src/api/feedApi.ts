@@ -83,7 +83,16 @@ export const postPin = async (postId: number) => {
 };
 
 //게시물 신고
-export const postReport = async (postId: number) => {
-	const response = await instance.post(`post/report/${postId}`);
+export const postReport = async (postId: number, data:FormData) => {
+	const response = await instance.post(`post/report/${postId}`, data, {
+		headers: { "Context-Type": "multipart/form-data" },
+	})
+	return response;
+}
+//댓글 신고
+export const commentReport = async (postId:number, commentId:number, data:FormData) => {
+	const response = await instance.post(`post/${postId}/comment/report/${commentId}`, data, {
+		headers: { "Context-Type": "multipart/form-data" },
+	});
 	return response;
 }

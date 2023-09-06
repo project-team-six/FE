@@ -4,14 +4,18 @@ import { cursor, MainBackgroundColor } from "../../common/GlobalStyle";
 export const SearchFilterSection = styled.section`
 	display: flex;
 	align-items: center;
-	gap: 50%;
+	justify-content:space-between;
 	margin: 0 auto;
 	margin-top: 50px;
 	margin-bottom: 40px;
-	width: 1280px;
+	width: 100%;
+	max-width: 1200px;
 	height: 75px;
+
 	@media (max-width: 700px) {
 		flex-direction: column;
+		gap: 20px;
+		height: 100%;
 	}
 `;
 
@@ -42,6 +46,7 @@ export const InProgressButton = styled.button`
 export const FinishButton = styled(InProgressButton)``;
 
 export const SearchBox = styled.div`
+	padding: 30px;
 	display: flex;
 	align-items: center;
 	width: 330px;
@@ -55,7 +60,7 @@ export const SearchBox = styled.div`
 	input {
 		margin-left: 20px;
 		background-color: #f5f5f5;
-		width: 80%;
+		width: 248px;
 		height: 33px;
 		outline: none;
 	}

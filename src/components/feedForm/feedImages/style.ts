@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Flex, cursor } from "../../common/GlobalStyle";
 
 export const MainContentWrapper = styled.div`
 	max-width: 1920px;
@@ -9,6 +10,11 @@ export const MainContentWrapper = styled.div`
 export const ImageSection = styled.section`
 	display: flex;
 	margin-left: 110px;
+
+	@media (max-width: 800px) {
+		display: flex;
+		flex-direction: column;
+	}
 `;
 
 export const ImageAddDiv = styled.div`
@@ -22,10 +28,9 @@ export const ImageAddDiv = styled.div`
 export const ImageLabel = styled.label`
 	width: 126px;
 	height: 126px;
-	display: flex;
+	${Flex}
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	${cursor}
 `;
 
 export const ImageLabelSpan = styled.span`

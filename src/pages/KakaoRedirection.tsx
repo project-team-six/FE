@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { setDecodeToken } from "../redux/modules/user";
 import Loading from "../components/common/Loading";
+import { saveToken } from "../utils/saveToken";
+import { useDispatch } from "react-redux";
 
 const KakaoRedirection = () => {
 	//인가코드 파싱하기
@@ -16,9 +16,8 @@ const KakaoRedirection = () => {
 			const token = response.headers.authorization;
 			const refreshToken = response.headers.refreshtoken;
 			if (token) {
-				document.cookie = `accessToken=${token}; path=/;`;
-				dispatch(setDecodeToken(token));
-				document.cookie = `refreshToken=${refreshToken}; path=/;`;
+				saveToken("accessToken", token, dispatch); // 세션에 accessToken 저장
+				saveToken("refreshToken", refreshToken); // 세션에 accessToken 저장
 			}
 			navigate("/");
 		});

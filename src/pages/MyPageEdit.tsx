@@ -1,15 +1,8 @@
 import React from "react";
-import * as S from "../components/mypageForm/mypageEidtForm/MypageEditStyle";
-import ProfileEditForm from "../components/mypageForm/mypageEidtForm/ProfileEditForm";
+import ProfileEdit from "../components/mypageForm/mypageEidtForm/ProfileEdit";
 
 const MyPageEdit: React.FC = () => {
-    return (
-        <S.LayoutBox>
-            <S.LayoutInline>
-                <ProfileEditForm />
-            </S.LayoutInline>
-        </S.LayoutBox>
-    );
+    return <ProfileEdit />
 };
 
 export default MyPageEdit;

@@ -1,11 +1,20 @@
 import styled from "styled-components";
 
-export const CategoryBanner = styled.div`
+type CategoryBannerProps = {
+	backgroundImage: string;
+};
+
+export const CategoryBanner = styled.div<CategoryBannerProps>`
 	width: 100%;
+	max-width: 1280px;
+	min-width: 375px;
 	height: 410px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	background-image: ${props => props.backgroundImage};
+	background-size: cover;
+	background-repeat: no-repeat;
 `;
 
 type PProps = {

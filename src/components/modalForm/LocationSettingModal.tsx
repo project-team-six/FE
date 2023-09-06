@@ -3,21 +3,23 @@ import { setUserLocation } from "../../api/userApi";
 import { locationType } from "../../types/feedType";
 import { pushNotification } from "../../utils/notification";
 import { deleteToken } from "../../utils/deleteToken";
-import { setDecodeToken } from "../../redux/modules/user";
 import styled from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { toggleModal } from "../../redux/modules/locationSet";
 import { RootState } from "../../redux/config/configStore";
+import { saveToken } from "../../utils/saveToken";
+import { useDispatch } from "react-redux";
+
 
 
 const LocationSetting= () => {
 	const dispatch = useDispatch();
+
 	const isLocationModal = useSelector((state :RootState) => state.locationSlice.locationModalState);
 	const toggleLocationModal = () => {
 		dispatch(toggleModal());
 	}
-
 
 	const getAddressData = (data: any) => {
 		const sido: string = data.sido;
@@ -30,15 +32,14 @@ const LocationSetting= () => {
 			dong,
 		};
 
-		//서버로 위치정보 전달
+		// 서버로 위치정보 전달
 		setUserLocation(address)
 			.then((response) => {
 				const token = response.headers.authorization;
 				if (token) {
 					// 토큰이 있는 경우
 					deleteToken("accessToken"); // 기존 token 삭제
-					document.cookie = `accessToken=${token}; path=/;`; // access token 갱신
-					dispatch(setDecodeToken(token)); // 지역 설정한 값으로 토큰 업데이트
+					saveToken("accessToken", token, dispatch); // 세션에 accessToken 저장
 				}
 				pushNotification(`지역이 ${data.sido} ${data.sigungu} ${data.bname}으로 설정되었습니다!`, "success");
 			})

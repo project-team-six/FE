@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./style";
-import { pin, pined, profileImg, report } from "../../../../asstes/asstes";
+import { moremenu, pin, pined, profileImg, report } from "../../../../asstes/asstes";
 import { priceUtils } from "../../../../utils/priceUtils";
 import { useNavigate, useParams } from "react-router";
 import { useSelector } from "react-redux";
@@ -9,6 +9,8 @@ import { enterChatRoom } from "../../../../api/chatApi";
 import { useMutation } from "react-query";
 import { pushNotification } from "../../../../utils/notification";
 import ChatRoomModal from "../../../chatRoomForm/ChatRoomModal";
+import { deleteFeed } from "../../../../api/feedApi";
+import ReportModal from "../../../ReportForm/ReportModal";
 
 interface TitleInfoProps {
 	detailFeed: any;
@@ -18,6 +20,9 @@ interface TitleInfoProps {
 }
 
 const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseClick, pinHandler }) => {
+	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+	const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 	const navigate = useNavigate();
 	const { id } = useParams();
 	const postId = Number(id); // 게시물 ID
@@ -42,6 +47,24 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 		},
 	});
 
+	// 신고
+	const reportHandler = () => {
+		setIsReportModalOpen(!isReportModalOpen);
+	}
+
+	// 게시물 삭제
+	const deleteFeedMutation = useMutation(deleteFeed)
+	const deleteFeedHandler =()=>{
+		deleteFeedMutation.mutate(postId);
+		pushNotification("게시물이 삭제되었습니다", "success")
+		navigate(-1)
+	}
+
+	const handleCancel = ()=> {
+		setIsDeleteModalOpen(!isDeleteModalOpen);
+		setIsEditModalOpen(false);
+	}
+
 	return (
 		<div>
 			<S.FeedCounter>
@@ -55,10 +78,15 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 			<S.Location>{detailFeed?.location}</S.Location>
 			<S.Title>
 				<h1>{detailFeed?.title}</h1>
-				<button>
-					<img src={report} alt='신고하기' />
-					<p>신고하기</p>
-				</button>
+				{userId !== authId && (
+					<div>
+						<button onClick={reportHandler}>
+							<img src={report} alt='신고하기' />
+							<p>신고하기</p>
+						</button>
+						{isReportModalOpen && <ReportModal postId={detailFeed.id} reportHandler={reportHandler}/> }
+					</div>
+				)}
 			</S.Title>
 			<S.UserProfile onClick={() => navigate(`/mypage/${detailFeed.userId}`)}>
 				<S.ProfileImg
@@ -75,23 +103,54 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 					</p>
 					<h2>{priceUtils(detailFeed.price)}</h2>
 				</S.Price>
-				{closed ? null : (
+				{closed ? (
+					<div style={{marginTop:"30px"}}>
+				<S.Btn onClick={handleCancel} color="#ccc">삭제하기</S.Btn>
+				{isDeleteModalOpen && 
+					<S.DeleteModalWrapBox>
+						<S.DeleteModalBox>
+							<p>게시물을 삭제하시겠습니까?</p>
+							<div>
+								<S.Btn onClick={deleteFeedHandler} color='#4fbe9f'>삭제</S.Btn>
+								<S.Btn onClick={()=>{setIsDeleteModalOpen(!isDeleteModalOpen)}} color='#ccc'>취소</S.Btn>
+							</div>									
+						</S.DeleteModalBox>
+					</S.DeleteModalWrapBox>
+				}
+				</div>
+				) : (
 					<div>
 						{userId === authId ? (
-							<S.Auth>
-								<S.Btn color='#ccc' onClick={() => navigate(`/feed/${postId}/edit`)}>
-									수정하기
-								</S.Btn>
-								<S.Btn color='#4FBE9F' onClick={handleCloseClick}>
-									마감하기
-								</S.Btn>
-							</S.Auth>
+							<>
+							<S.ModalBox>
+								<S.Modalbutton onClick={() => setIsEditModalOpen(!isEditModalOpen)}>
+									<img src={moremenu} alt="수정메뉴" />
+								</S.Modalbutton>
+									{isEditModalOpen && 
+										<S.ModalEditBox>
+											<S.AuthButton onClick={() => navigate(`/feed/${postId}/edit`)}>수정하기</S.AuthButton>
+											<S.AuthButton onClick={handleCloseClick}>마감하기</S.AuthButton>
+											<S.AuthButton onClick={handleCancel}>삭제하기</S.AuthButton>
+										</S.ModalEditBox>}
+							</S.ModalBox>
+							{isDeleteModalOpen && 
+								<S.DeleteModalWrapBox>
+									<S.DeleteModalBox>
+										<p>게시물을 삭제하시겠습니까?</p>
+										<div>
+											<S.Btn onClick={deleteFeedHandler} color='#4fbe9f'>삭제</S.Btn>
+											<S.Btn onClick={()=>{setIsDeleteModalOpen(!isDeleteModalOpen)}} color='#ccc'>취소</S.Btn>
+										</div>									
+									</S.DeleteModalBox>
+								</S.DeleteModalWrapBox>
+							}
+							</>
 						) : (
 							<S.NotAuth>
 								{detailFeed.isPin === true ? (
-									<S.Btn onClick={pinHandler} color='#000'>
+									<S.AuthButton onClick={pinHandler} color='#000'>
 										<img src={pined} alt='관심 등록' />
-									</S.Btn>
+									</S.AuthButton>
 								) : (
 									<S.Btn onClick={pinHandler} color='#ccc'>
 										<img src={pin} alt='관심 미등록' />

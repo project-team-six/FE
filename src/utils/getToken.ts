@@ -1,5 +1,5 @@
-export function getToken(key: string) {
-    const regex = new RegExp(`(?:(?:^|.*;\\s*)${key}\\s*=\\s*([^;]*).*$)|^.*$`);
-    const token = document.cookie.replace(regex, '$1');
-	return token;
+export function getToken(key: string): string {
+    // 저장되어 있는 token 값 가져오기
+    const token = sessionStorage.getItem(key);
+	return token && token.trim() !== "" ? token : "";
 }

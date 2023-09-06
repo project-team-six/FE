@@ -6,6 +6,10 @@ import congratulatory from "./congratulatory.png";
 // 이메일 찾기
 import EmailFindIcon from "./EmailFindIcon.png";
 
+// 지역 설정
+import LocationGuide from "./LocationGuide.png";
+import LocationGuideCancel from "./LocationGuideCancel.png";
+
 // 헤더
 import h_mainLogo from "./h_mainLogo.png";
 import h_chatIcon from "./h_chatIcon.png";
@@ -70,6 +74,9 @@ import moremenu from "./moremenu.png";
 import leftArrow from "./leftArrow.png";
 import rightArrow from "./rightArrow.png";
 
+//신고
+import reportphoto from "./reportphoto.png";
+
 // 마이페이지
 import cog from "./cog.png";
 import locationpin from "./locationpin.png";
@@ -90,6 +97,7 @@ import chatBack from "./chatBack.png";
 import chatSend from "./chatSend.png";
 import chatPhotoAdd from "./chatPhotoAdd.png";
 import chatDelete from "./chatDelete.png";
+import chatBelow from "./chatBelow.png";
 
 //스피너
 import LoadingSpinner from "./LoadingSpinner.gif";
@@ -114,6 +122,8 @@ export {
 	userProfile,
 	signUpCamera,
 	EmailFindIcon,
+	LocationGuide,
+	LocationGuideCancel,
 	mainBanner,
 	h_profile,
 	h_alertIcon,
@@ -152,6 +162,7 @@ export {
 	chatSend,
 	chatPhotoAdd,
 	chatDelete,
+	chatBelow,
 	noAlertIcon,
 	recycle,
 	illustration1,
@@ -160,4 +171,5 @@ export {
 	LoadingSpinner,
 	j_locateIcon,
 	noFeedList
+	reportphoto,
 };

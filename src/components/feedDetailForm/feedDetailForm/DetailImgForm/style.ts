@@ -1,18 +1,22 @@
 import styled from "styled-components";
-import { Flex } from "../../../common/GlobalStyle";
+import { Flex, cursor } from "../../../common/GlobalStyle";
 
-export const Image = styled.div``;
+export const Image = styled.div`
+margin : 0 2%;
+`;
 
 export const SelectImgWrapper = styled.div`
-    width: 550px;
-    height: 505px;
+    /* width : 100%; */
+    /* height : 100%; */
+    max-width: 550px;
+    max-height: 505px;
     ${Flex}
     border-radius: 10px;
     img {
         border-radius: 10px;
         object-fit: cover;
-        max-width: 100%;
-        height: 100%;
+        width: 500px;
+        height: 505px;
     }
 `;
 export const ImageList = styled.div`
@@ -29,10 +33,12 @@ export const ArrowImg = styled.img`
     height: 20px;
     width: 20px;
     object-fit: cover;
+    ${cursor};
 `;
 
 export const PreviewImg = styled.img`
     border: none;
+    ${cursor};
     width: 80px;
     height: 80px;
     object-fit: cover;

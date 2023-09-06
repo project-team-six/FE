@@ -57,8 +57,9 @@ export const SpanDiv = styled.div`
 
 export const ChatDeleteButton = styled.button`
     cursor: pointer;
-    position: absolute;
-    left: 86%;
+    position: relative;
+    left: 320px;
+    bottom: 40px;
     margin-top: -45px;
     ${cursor}
 `;

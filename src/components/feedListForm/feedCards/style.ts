@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const FeedListSection = styled.section`
-	width: 1280px;
+	width: 100%;
+	min-width: 375px;
+	max-width: 1280px;
 	margin: 0 auto;
 	display: flex;
+	justify-content: center;
 	gap: 3%;
 	flex-wrap: wrap;
 `;

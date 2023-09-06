@@ -6,7 +6,7 @@ const FeedDetail: React.FC = () => {
     const [closed, setClosed] = useState(false);
 
     return (
-        <article>
+        <article style={{maxWidth:"1980px", borderTop: "1px solid #d9d9d9"}}>
             <section>
                 <FeedDetailList closed={closed} onClose={setClosed}/>
             </section>
