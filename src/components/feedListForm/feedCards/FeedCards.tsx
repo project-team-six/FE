@@ -89,12 +89,12 @@ const FeedCards = ({
 								<div key={item.id}>
 									<S.FeedCard onClick={handleNavigate(`/feed/${item.id}`)}>
 										<S.FeedImageBox>
-											<img src={item.imageUrlList[0]} alt='게시글첫번째사진' />
+											<img src={item.imageUrlList[0]} alt="게시글첫번째사진" />
 										</S.FeedImageBox>
 										<S.FeedInfoBox>
 											<S.ContentBox>
 												<p
-													className='ellipsis'
+													className="ellipsis"
 													style={{
 														width: "285px",
 														whiteSpace: "nowrap",

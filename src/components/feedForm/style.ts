@@ -92,6 +92,10 @@ export const LocationDiv = styled.div`
 	border: 1px solid #4fbe9f;
 	border-radius: 4px;
 	gap: 10px;
+
+	@media (max-width: 950px) {
+		width: 10vw;
+	}
 `;
 
 export const LocationSpan = styled.span`

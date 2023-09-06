@@ -40,8 +40,8 @@ const SearchFilter = ({
 				</S.FinishButton>
 			</S.FilterBox>
 			<S.SearchBox>
-				<input type='text' value={inputValue} onChange={handleChange} onKeyPress={userInputHandler} />
-				<img src={searchIcon} alt='돋보기아이콘' />
+				<input type="text" value={inputValue} onChange={handleChange} onKeyPress={userInputHandler} />
+				<img src={searchIcon} alt="돋보기아이콘" />
 			</S.SearchBox>
 		</S.SearchFilterSection>
 	);
