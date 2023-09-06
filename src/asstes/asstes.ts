@@ -6,6 +6,10 @@ import congratulatory from "./congratulatory.png";
 // 이메일 찾기
 import EmailFindIcon from "./EmailFindIcon.png";
 
+// 지역 설정
+import LocationGuide from "./LocationGuide.png";
+import LocationGuideCancel from "./LocationGuideCancel.png";
+
 // 헤더
 import h_mainLogo from "./h_mainLogo.png";
 import h_chatIcon from "./h_chatIcon.png";
@@ -113,6 +117,8 @@ export {
 	userProfile,
 	signUpCamera,
 	EmailFindIcon,
+	LocationGuide,
+	LocationGuideCancel,
 	mainBanner,
 	h_profile,
 	h_alertIcon,

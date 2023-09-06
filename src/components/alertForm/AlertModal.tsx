@@ -7,6 +7,7 @@ import { noAlertIcon, profileImageDefault } from "../../asstes/asstes";
 import { AlertList } from "../../types/alertType";
 import { ModalLayout } from "../common/commonFormStyles";
 import SseAlert from "./SseAlert";
+
 type AlertModalProps = {
 	modalState: boolean;
 	modalHandle: React.MouseEventHandler<HTMLDivElement>;
