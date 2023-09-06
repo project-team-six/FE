@@ -13,14 +13,14 @@ const CategorySection = ({
 }) => {
 	return (
 		<div>
-			<S.CategoryBanner style={{ backgroundImage: `url(${categoryURL})` }}>
-				<S.Paragraph color='#eae0e0' $fontSize='18px' $fontWeight='500' $margin='0 0 0 190px'>
+			<S.CategoryBanner backgroundImage={`url(${categoryURL})`}>
+				<S.Paragraph color="#eae0e0" $fontSize="1.2rem" $fontWeight="500" $margin="0 0 0 15%">
 					홈 {">"} 소분목록
 				</S.Paragraph>
-				<S.Paragraph color='white' $fontSize='40px' $fontWeight='bolder' $margin='80px 0 0 190px'>
+				<S.Paragraph color="white" $fontSize="40px" $fontWeight="bolder" $margin="80px 0 0 15%">
 					{bannerText}
 				</S.Paragraph>
-				<S.Paragraph color='white' $fontSize='18px' $fontWeight='500' $margin='25px 0 50px 190px'>
+				<S.Paragraph color="white" $fontSize="1.2rem" $fontWeight="500" $margin="25px 0 50px 15%">
 					카테고리별로 소분하거나 소분을 받아보세요!
 				</S.Paragraph>
 			</S.CategoryBanner>
