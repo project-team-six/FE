@@ -113,12 +113,13 @@ const Header = () => {
 			<HeaderBox>
 				<LogoSection onClick={handleNavigate("/")}>
 					<img src={h_mainLogo} alt='header_logo' />
+					소분소분
 				</LogoSection>
 				<NavBtnSection>
 					{tokenInfo.isLogin ? (
-						<div style={{ display: "flex", gap: "35px" }}>
+						<div style={{ display: "flex", gap: "20px" }}>
 							<NavButton onClick={toggleChatModal}>
-								<img src={h_chatIcon} alt='채팅' />
+								<img src={h_chatIcon} alt='채팅' style={{ width: "33px", height:"33px"}} />
 							</NavButton>
 							<NavButton onClick={toggleAlertModal}>
 								<Badge
@@ -129,7 +130,7 @@ const Header = () => {
 											backgroundColor: "#4FBE9F",
 										},
 									}}>
-									<img src={h_alertIcon} alt='알람' style={{ width: "24px" }} />
+									<img src={h_alertIcon} alt='알람' style={{ width: "33px", height:"33px"}} />
 								</Badge>
 							</NavButton>
 							<NavButton onClick={toggleProfileModal}>
@@ -191,11 +192,16 @@ const HeaderBox = styled.div`
 
 const LogoSection = styled.section`
 	display: flex;
+	font-family: 'NEXON Lv1 Gothic OTF';
+	align-items: center;
 	cursor: pointer;
+	color: #4FBE9F;
+	font-size: 26px;
+	font-weight: bold;
 	img {
-		margin-left: 20px;
-		width: 115px;
-		height: 50px;
+		margin: 0 10px 0 20px;
+		width: 33px;
+		height: 29px;
 	}
 `;
 

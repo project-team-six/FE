@@ -38,7 +38,7 @@ const FeedList = () => {
 			case "":
 				setCategoryObj({
 					category: "",
-					bannerText: "소분목록",
+					bannerText: "전체소분",
 					categoryURL: `${AS.WHOLE}`,
 				});
 				break;

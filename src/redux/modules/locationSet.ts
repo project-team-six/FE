@@ -10,6 +10,7 @@ export type InitialType = {
 
 export type locationSliceState = {
 	userLocation: InitialType;
+	locationModalState: boolean;
 };
 
 const initialState: locationSliceState = {
@@ -18,6 +19,7 @@ const initialState: locationSliceState = {
 		sigungu: "",
 		dong: "",
 	},
+	locationModalState: false,
 };
 
 const locationSlice = createSlice({
@@ -31,6 +33,10 @@ const locationSlice = createSlice({
 		resetLocation: (state: locationSliceState) => {
 			return initialState;
 		},
+		toggleModal: (state) => {
+		 	state.locationModalState = !state.locationModalState
+			return;
+		}
 	},
 });
 
@@ -45,4 +51,4 @@ export const persistedLocReducer = persistReducer(persistConfig, locationSlice.r
 
 export default locationSlice.reducer;
 export const selectToken = (state: { locationSlice: locationSliceState }) => state.locationSlice.userLocation;
-export const { setLocation, resetLocation } = locationSlice.actions;
+export const { setLocation, resetLocation, toggleModal } = locationSlice.actions;

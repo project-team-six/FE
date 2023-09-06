@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainBackgroundColor } from "../../common/GlobalStyle";
+import { cursor, MainBackgroundColor } from "../../common/GlobalStyle";
 
 export const SearchFilterSection = styled.section`
 	display: flex;
@@ -28,6 +28,7 @@ export const InProgressButton = styled.button`
 	width: 135px;
 	height: 48px;
 	border-radius: 50px;
+	${cursor}
 	font-size: 17px;
 	font-weight: bold;
 	color: #a6a6a6;

@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserLocation } from "../../api/userApi";
 import { locationType } from "../../types/feedType";
 import { pushNotification } from "../../utils/notification";
@@ -7,19 +7,17 @@ import { setDecodeToken } from "../../redux/modules/user";
 import styled from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import DaumPostcodeEmbed from "react-daum-postcode";
+import { toggleModal } from "../../redux/modules/locationSet";
+import { RootState } from "../../redux/config/configStore";
 
-type LocationModalProps = {
-	isLocationModal: boolean;
-	toggleLocationModal: React.MouseEventHandler<HTMLDivElement>;
-	setIsLocationModal: (prevModalState: boolean) => void;
-};
 
-const LocationSetting: React.FC<LocationModalProps> = ({
-	isLocationModal,
-	toggleLocationModal,
-	setIsLocationModal,
-}) => {
+const LocationSetting= () => {
 	const dispatch = useDispatch();
+	const isLocationModal = useSelector((state :RootState) => state.locationSlice.locationModalState);
+	const toggleLocationModal = () => {
+		dispatch(toggleModal());
+	}
+
 
 	const getAddressData = (data: any) => {
 		const sido: string = data.sido;
@@ -47,9 +45,12 @@ const LocationSetting: React.FC<LocationModalProps> = ({
 			.catch((error) => {
 				pushNotification("지역 등록을 실패했습니다. 다시 시도해주세요.", "error");
 			});
+			dispatch(toggleModal());
 
-		setIsLocationModal(false);
 	};
+
+
+
 
 	return (
 		<>
@@ -62,7 +63,6 @@ const LocationSetting: React.FC<LocationModalProps> = ({
 								onComplete={getAddressData}
 								style={{ height: "400px", padding: "20 20 20 20" }}
 							/>
-							;
 						</BorderBox>
 					</PostcodeWrapper>
 				</LocationModal>

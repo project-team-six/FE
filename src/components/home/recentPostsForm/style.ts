@@ -4,6 +4,7 @@ export const RecentPostsSection = styled.section`
 	width: 1280px;
 	margin: 0 auto;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	gap: 3%;
 	flex-wrap: wrap;
@@ -20,6 +21,8 @@ export const MainTextBox = styled.div`
 
 export const ShowAllButton = styled.button`
 	cursor: pointer;
+	margin: 0 auto;
+	width: 75px;
 	margin-bottom: 130px;
 	font-size: 17px;
 	color: #9a9a9a;

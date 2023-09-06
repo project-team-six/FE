@@ -95,7 +95,7 @@ const FeedForm = ({
 			{modalState && <FeedModal modalState={modalState} setModalState={setModalState} />}
 			<S.Section>
 				<S.Span fontSize={28} fontWeight='600'>
-					게시물 작성
+					게시글 작성
 				</S.Span>
 			</S.Section>
 			<S.Section>

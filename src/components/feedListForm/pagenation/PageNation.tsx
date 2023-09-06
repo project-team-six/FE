@@ -11,6 +11,8 @@ const PageNation = ({
 	currentPage: number;
 	setCurrentPage: (newPage: number) => void;
 }) => {
+
+
 	return (
 		<S.PageNationSection>
 			<MdArrowBackIos

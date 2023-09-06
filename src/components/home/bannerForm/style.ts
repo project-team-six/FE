@@ -34,4 +34,9 @@ export const StartBtn = styled.button`
 	font-size: 18px;
 	font-weight: bold;
 	margin-top: 77px;
+	transition: box-shadow 400ms ease-in-out, color 300ms ease-in-out;
+  &:hover {
+	background-color: white;
+	color: grey;
+  }
 `;
