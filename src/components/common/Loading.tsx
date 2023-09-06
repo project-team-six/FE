@@ -5,7 +5,7 @@ const Loading = () => {
 	return (
 		<LoadingContainer>
 			<h1>잠시만 기다려주세요.</h1>
-			<img src={LoadingSpinner} alt='쿠키' />
+			<img src={LoadingSpinner} alt='로딩중입니다' />
 		</LoadingContainer>
 	);
 };
@@ -23,7 +23,7 @@ const LoadingContainer = styled.div`
 		padding: 20px 0 20px 0;
 	}
 	img {
-		width: 50px;
-		height: 50px;
+		width: 100px;
+		height: 100px;
 	}
 `;

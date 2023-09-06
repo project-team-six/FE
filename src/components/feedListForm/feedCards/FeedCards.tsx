@@ -5,6 +5,7 @@ import { fetchFeedList } from "../../../api/feedApi";
 import { useCallback, useEffect } from "react";
 import { priceUtils } from "../../../utils/priceUtils";
 import Loading from "../../common/Loading";
+import { noFeedList } from "../../../asstes/asstes";
 
 const FeedCards = ({
 	location,
@@ -75,11 +76,12 @@ const FeedCards = ({
 	};
 
 	return (
-		<>
+		<div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
 			{feedList?.content.length === 0 ? (
-				<>
-					<p>아직 작성된 글이 없습니다</p>
-				</>
+				<div style={{display:"flex", flexDirection:"column"}}>
+					<img src={noFeedList} alt="게시물없음" style={{width:"210px", height:"185px"}}/>
+					<p style={{fontSize:"20px", fontWeight:"600", color:"#B5B5B5", marginTop:"30px"}}>아직 게시물이 없습니다</p>
+				</div>
 			) : (
 				<>
 					<S.FeedListSection>
@@ -119,7 +121,7 @@ const FeedCards = ({
 					</S.FeedListSection>
 				</>
 			)}
-		</>
+		</div>
 	);
 };
 

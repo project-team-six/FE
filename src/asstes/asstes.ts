@@ -49,6 +49,8 @@ import BEAUTY from "./BEAUTY.png";
 import DAILY_NECESSITIES from "./DAILY_NECESSITIES.png";
 import ETC from "./ETC.png";
 import searchIcon from "./searchIcon.png";
+import j_locateIcon from "./j_locateIcon.png"
+import noFeedList from "./noFeedList.png"
 
 // 게시물 등록
 import feedImageAddIcon from "./feedImageAddIcon.png";
@@ -167,5 +169,7 @@ export {
 	illustration2,
 	illustration3,
 	LoadingSpinner,
+	j_locateIcon,
+	noFeedList
 	reportphoto,
 };

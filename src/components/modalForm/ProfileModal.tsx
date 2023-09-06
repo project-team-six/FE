@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavigateFunction, useNavigate } from "react-router";
 import { RootState } from "../../redux/config/configStore";
-import { pushNotification } from "../../utils/notification";
 import { locationType } from "../../types/feedType";
 import styled from "styled-components";
 import { profileImageDefault, p_location } from "../../asstes/asstes";
@@ -10,6 +9,7 @@ import { Flex } from "../common/GlobalStyle";
 import { ModalLayout } from "../common/commonFormStyles";
 import { setUserLocation } from "../../api/userApi";
 import LocationSetting from "./LocationSettingModal";
+import { toggleModal } from "../../redux/modules/locationSet";
 
 type ProfileModalProps = {
 	modalState: boolean;
@@ -19,10 +19,10 @@ type ProfileModalProps = {
 
 const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, modalHandle }) => {
 	//지역설정 모달
-	const [isLocationModal, setIsLocationModal] = useState<boolean>(false);
-	const toggleLocationModal: React.MouseEventHandler = () => {
-		setIsLocationModal((prevModalState) => !prevModalState);
-	};
+	const dispatch = useDispatch();
+	const toggleLocationModal = () => {
+		dispatch(toggleModal());
+	}
 
 	const navigate: NavigateFunction = useNavigate();
 	const handleNavigate = (path: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -92,11 +92,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 									gap: "5px",
 								}}>
 								<img src={p_location} alt='위치' />
-								{userLocationInfo.sido === "" && userInfo.location.trim() === "" ? (
-									<p>지역을 설정해주세요</p>
-								) : (
 									<p>{locationTag}</p>
-								)}
 							</ModalButton>
 							<ModalButton onClick={handleNavigate(`/mypage/${userInfo.userId}`)}>
 								<p>마이페이지</p>
@@ -112,9 +108,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ modalState, logoutHandle, m
 				</ModalLayout>
 			)}
 			<LocationSetting
-				isLocationModal={isLocationModal}
-				toggleLocationModal={toggleLocationModal}
-				setIsLocationModal={setIsLocationModal}
+
 			/>
 		</div>
 	);

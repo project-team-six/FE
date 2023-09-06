@@ -7,6 +7,7 @@ const store = configureStore({
 	reducer: {
 		tokenSlice: persistedReducer,
 		locationSlice: persistedLocReducer,
+
 	},
 	middleware: getDefaultMiddleware({
 		// Redux Persist와 함께 사용하기 위해 serializableCheck를 비활성화
