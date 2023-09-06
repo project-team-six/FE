@@ -1,19 +1,27 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LocationGuide, LocationGuideCancel } from "../../../asstes/asstes";
 import * as S from "./style";
 import { RootState } from "../../../redux/config/configStore";
+import { toggleModal } from "../../../redux/modules/locationSet";
 
 const LocationSettingsGuideModal = ({modalState, setModalState}:{modalState: boolean, setModalState: (value: boolean)=>void}) => {
     const modalHandle = () => {
         setModalState(false);
     };
-    
+
     // 토큰 디코드한 값 가져오기
 	const tokenInfo = useSelector((state: RootState) => {
 		return state.tokenSlice.decodeToken;
 	});
     const nickname = tokenInfo.nickname; // 닉네임
     const location = tokenInfo.location; // 지역
+
+    const dispatch = useDispatch();
+    const handleSettingLocateButton = () => {
+		dispatch(toggleModal());
+        setModalState(false);
+	}
+
 
     return (
         <div>
@@ -34,10 +42,10 @@ const LocationSettingsGuideModal = ({modalState, setModalState}:{modalState: boo
                     </S.ImageContainer>
                     <S.ButtonBox>
                         <S.Button onClick={modalHandle} $backgroundColor="EEEEEE" color="6C6C6C">취소</S.Button>
-                        <S.Button $backgroundColor="4FBE9F" color="FFFFFF">지역설정</S.Button>
+                        <S.Button $backgroundColor="4FBE9F" color="FFFFFF" onClick={handleSettingLocateButton}>지역설정</S.Button>
                     </S.ButtonBox>
                 </S.GuideSection>
-            </S.GuideLayout>)}        
+            </S.GuideLayout>)}
         </div>
     )
 }

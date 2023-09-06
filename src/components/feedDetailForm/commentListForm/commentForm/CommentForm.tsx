@@ -73,7 +73,6 @@ const CommentForm = ({ postId, comment, closed }: { postId: number; comment: com
 	//댓글 신고
 	const reportHandler = () => {
 		setIsReportModalOpen(!isReportModalOpen);
-		console.log(isReportModalOpen);
 	}
 
 	return (

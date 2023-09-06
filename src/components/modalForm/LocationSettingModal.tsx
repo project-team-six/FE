@@ -9,9 +9,6 @@ import DaumPostcodeEmbed from "react-daum-postcode";
 import { toggleModal } from "../../redux/modules/locationSet";
 import { RootState } from "../../redux/config/configStore";
 import { saveToken } from "../../utils/saveToken";
-import { useDispatch } from "react-redux";
-
-
 
 const LocationSetting= () => {
 	const dispatch = useDispatch();
@@ -49,9 +46,6 @@ const LocationSetting= () => {
 			dispatch(toggleModal());
 
 	};
-
-
-
 
 	return (
 		<>

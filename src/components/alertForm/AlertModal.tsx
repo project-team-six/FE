@@ -37,7 +37,6 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 				deleteAllAlertClient.invalidateQueries(["alertList"]);
 			})
 			.catch(() => {
-				console.log("알림전체삭제 실패");
 			});
 	};
 

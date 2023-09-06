@@ -14,7 +14,7 @@ const SseAlert = () => {
 		const sse = new EventSourcePolyfill(`${process.env.REACT_APP_SERVER_URL}/notification/`, eventSourceInitDict);
 
 		sse.onopen = (e) => {
-			console.log("SSE 연결이 열렸습니다.");
+
 		};
 
 		sse.addEventListener("sse", async (event: any) => {
@@ -29,9 +29,7 @@ const SseAlert = () => {
 					};
 
 					if (Notification.permission === "granted") {
-						console.log("메세지 내용", data.message);
-						console.log("url", data.url);
-						console.log(data.senderNickname);
+
 
 						const notification = new Notification(`${data.senderNickname}님`, {
 							body: data.message,
@@ -44,17 +42,17 @@ const SseAlert = () => {
 						});
 					}
 				} else {
-					console.log("메시지가 없습니다.");
+
 				}
 			} catch (error) {
-				console.error("메시지 파싱 오류:", error);
+
 			}
 		});
 
 		sse.onmessage = (event) => {
 			if (event.data === "finished") {
 				sse?.close();
-				console.log("SSE 연결이 닫혔습니다.");
+
 				return;
 			}
 		};
@@ -65,7 +63,7 @@ const SseAlert = () => {
 
 		return () => {
 			sse.close();
-			console.log("SSE 컴포넌트가 언마운트되어 SSE 연결이 닫혔습니다.");
+
 		};
 	}, []);
 

@@ -6,7 +6,6 @@ type CategoryBannerProps = {
 
 export const CategoryBanner = styled.div<CategoryBannerProps>`
 	width: 100%;
-	max-width: 1280px;
 	min-width: 375px;
 	height: 410px;
 	display: flex;

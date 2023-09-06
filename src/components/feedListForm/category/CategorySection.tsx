@@ -19,7 +19,6 @@ const CategorySection = ({
 		return state.tokenSlice.decodeToken;
 	});
 
-	console.log("꺄륵", userInfo.location);
 	const temps = userInfo.location.split(" ");
 	const address: locationType = {
 		sido: temps[0],
@@ -31,7 +30,7 @@ const CategorySection = ({
 
 	return (
 		<div>
-			<S.CategoryBanner style={{ backgroundImage: `url(${categoryURL})` }}>
+			<S.CategoryBanner backgroundImage={`url(${categoryURL})`}>
 				<S.Paragraph color="#eae0e0" $fontSize="18px" $fontWeight="500" $margin="0 0 0 190px">
 					홈 {">"} 소분목록
 				</S.Paragraph>

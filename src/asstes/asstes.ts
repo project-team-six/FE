@@ -170,6 +170,6 @@ export {
 	illustration3,
 	LoadingSpinner,
 	j_locateIcon,
-	noFeedList
+	noFeedList,
 	reportphoto,
 };
