@@ -42,6 +42,7 @@ const SignIn = () => {
 			} else {
 				saveToken("accessToken", token, dispatch); // 세션에 accessToken 저장
 				saveToken("refreshToken", refreshToken); // 세션에 refreshToken 저장 
+				saveToken("isFirstLogin", "false");
 			}
 			navigate("/");
 		},
