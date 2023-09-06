@@ -47,7 +47,7 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 			{modalState && (
 				<ModalLayout onClick={modalHandle}>
 					<AlertLayout onClick={(e: any) => e.stopPropagation()}>
-						{alertList?.data.map((alert: AlertList) => {
+						{alertList && alertList?.data.map((alert: AlertList) => {
 							return (
 								<AlertSection key={alert.notificationId} onClick={handleNavigate(alert.url)}>
 									{alert.senderProfileImageUrl === "nonImage" ? (
