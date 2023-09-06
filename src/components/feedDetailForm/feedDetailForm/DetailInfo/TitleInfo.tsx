@@ -10,6 +10,7 @@ import { useMutation } from "react-query";
 import { pushNotification } from "../../../../utils/notification";
 import ChatRoomModal from "../../../chatRoomForm/ChatRoomModal";
 import { deleteFeed } from "../../../../api/feedApi";
+import ReportModal from "../../../ReportForm/ReportModal";
 
 interface TitleInfoProps {
 	detailFeed: any;
@@ -21,6 +22,7 @@ interface TitleInfoProps {
 const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseClick, pinHandler }) => {
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+	const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 	const navigate = useNavigate();
 	const { id } = useParams();
 	const postId = Number(id); // 게시물 ID
@@ -46,8 +48,8 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 	});
 
 	// 신고
-	const reortHandler = () => {
-		console.log("신고신고")
+	const reportHandler = () => {
+		setIsReportModalOpen(!isReportModalOpen);
 	}
 
 	// 게시물 삭제
@@ -77,12 +79,14 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 			<S.Title>
 				<h1>{detailFeed?.title}</h1>
 				{userId !== authId && (
-					<button onClick={reortHandler}>
-						<img src={report} alt='신고하기' />
-						<p>신고하기</p>
-					</button>
+					<div>
+						<button onClick={reportHandler}>
+							<img src={report} alt='신고하기' />
+							<p>신고하기</p>
+						</button>
+						{isReportModalOpen && <ReportModal postId={detailFeed.id} reportHandler={reportHandler}/> }
+					</div>
 				)}
-				
 			</S.Title>
 			<S.UserProfile onClick={() => navigate(`/mypage/${detailFeed.userId}`)}>
 				<S.ProfileImg

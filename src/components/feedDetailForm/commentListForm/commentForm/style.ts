@@ -32,7 +32,7 @@ export const Span = styled.span<SpanProps>`
     margin-right: 10px;
 `;
 
-export const ReportSpan = styled.span`
+export const ReportButton = styled.button`
     font-size: 14px;
     display: inline-block;
     ${Flex}
