@@ -8,6 +8,7 @@ import { pushNotification } from "../../../../utils/notification";
 import { RootState } from "../../../../redux/config/configStore";
 import * as S from "./style";
 import { reportred, moremenu, profileImg } from "../../../../asstes/asstes";
+import ReportModal from "../../../ReportForm/ReportModal";
 
 const CommentForm = ({ postId, comment, closed }: { postId: number; comment: commentType; closed: boolean }) => {
 	const nickname: string = useSelector((state: RootState) => {
@@ -20,7 +21,7 @@ const CommentForm = ({ postId, comment, closed }: { postId: number; comment: com
 	const [editCommentId, setEditCommentId] = useState<number>(0); // 수정 선택한 댓글 ID
 	const [editContent, setEditContent] = useState<string>(""); // 수정된 댓글 내용
 	const [isOpen, setIsOpen] = useState(false); //수정 모달
-
+	const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 	const commentEditBtn = (commentId: string) => {
 		const editCommentContent: commentEditType = {
 			postId,
@@ -68,6 +69,13 @@ const CommentForm = ({ postId, comment, closed }: { postId: number; comment: com
 				pushNotification("댓글 삭제를 실패했습니다", "error");
 			});
 	};
+
+	//댓글 신고
+	const reportHandler = () => {
+		setIsReportModalOpen(!isReportModalOpen);
+		console.log(isReportModalOpen);
+	}
+
 	return (
 		<S.CommentLi>
 			<S.CommentDiv>
@@ -83,9 +91,12 @@ const CommentForm = ({ postId, comment, closed }: { postId: number; comment: com
 						<S.Span fontSize={14} fontWeight='400'>
 							{convertTimeFormat(comment.createdAt)}
 						</S.Span>
-						<S.ReportSpan>
+						<div>
+						<S.ReportButton onClick={reportHandler}>
 							<img src={reportred} alt='신고아이콘' /> 신고하기
-						</S.ReportSpan>
+						</S.ReportButton>
+						{isReportModalOpen && <ReportModal postId={postId} commentId={comment.id} reportHandler={reportHandler} />}
+						</div>
 					</div>
 					<S.CommentContentDiv>
 						{!closed && editCommentId === comment.id ? editInput : <span>{comment.content}</span>}

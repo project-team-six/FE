@@ -68,6 +68,9 @@ import moremenu from "./moremenu.png";
 import leftArrow from "./leftArrow.png";
 import rightArrow from "./rightArrow.png";
 
+//신고
+import reportphoto from "./reportphoto.png";
+
 // 마이페이지
 import cog from "./cog.png";
 import locationpin from "./locationpin.png";
@@ -156,4 +159,5 @@ export {
 	illustration2,
 	illustration3,
 	LoadingSpinner,
+	reportphoto,
 };

@@ -117,6 +117,17 @@ const Header = () => {
 				<NavBtnSection>
 					{tokenInfo.isLogin ? (
 						<div style={{ display: "flex", gap: "35px" }}>
+							<AlertModal
+								modalState={isAlertModal}
+								modalHandle={toggleAlertModal}
+								setAlertCount={setAlertCount}
+							/>
+							<ProfileModal
+								modalState={isProfileModal}
+								logoutHandle={Logout}
+								modalHandle={toggleProfileModal}
+							/>
+							<ChatRoomModal postId="" modalState={isChatModal} modalHandle={toggleChatModal} setModalState={setIsChatModal}/>
 							<NavButton onClick={toggleChatModal}>
 								<img src={h_chatIcon} alt='채팅' />
 							</NavButton>
@@ -153,17 +164,7 @@ const Header = () => {
 									</>
 								)}
 							</NavButton>
-							<AlertModal
-								modalState={isAlertModal}
-								modalHandle={toggleAlertModal}
-								setAlertCount={setAlertCount}
-							/>
-							<ProfileModal
-								modalState={isProfileModal}
-								logoutHandle={Logout}
-								modalHandle={toggleProfileModal}
-							/>
-							<ChatRoomModal postId="" modalState={isChatModal} modalHandle={toggleChatModal} setModalState={setIsChatModal}/>
+							
 						</div>
 					) : (
 						<div>

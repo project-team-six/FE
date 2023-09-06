@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import { leftArrow, rightArrow } from "../../../../asstes/asstes";
 
@@ -6,9 +6,7 @@ interface ImgFormProps {
     detailFeed: { imageUrlList: string[] };
 }
 
-const ImgForm: React.FC<ImgFormProps> = ({
-    detailFeed,
-}) => {
+const ImgForm: React.FC<ImgFormProps> = ({detailFeed}) => {
     const [SelectImage, setSelectImage] = useState(detailFeed.imageUrlList[0]);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     //이미지 캐러셀
@@ -30,6 +28,11 @@ const ImgForm: React.FC<ImgFormProps> = ({
             setSelectImage(detailFeed.imageUrlList[selectedImageIndex + 1]);
         }
     };
+    useEffect(() => {
+        setSelectImage(detailFeed.imageUrlList[0]);
+        setSelectedImageIndex(0);
+    }, [detailFeed]);
+
     return (
         <S.Image>
             <S.SelectImgWrapper>
