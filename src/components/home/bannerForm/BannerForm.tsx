@@ -15,7 +15,7 @@ const BannerForm = () => {
 			<p>
 				<span>소분소분</span>은 제품 종류와 상관없이 사용자들이 함께 나누고 소통하는 공간을 제공합니다.
 			</p>
-			<p>식품부터 일회용품까지, 소비의 의미를 새롭게 만나보세요.</p>
+			<p>소소한 소비의 변화가 큰 영향을 가져올 수 있습니다.</p>
 			<S.StartBtn onClick={handleNavigate("/feedlist")}>시작하기</S.StartBtn>
 		</S.BannerSection>
 	);

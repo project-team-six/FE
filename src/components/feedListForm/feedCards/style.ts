@@ -3,12 +3,15 @@ import styled from "styled-components";
 export const FeedListSection = styled.section`
 	width: 100%;
 	min-width: 375px;
-	max-width: 1280px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	gap: 3%;
 	flex-wrap: wrap;
+	@media (max-width: 1280px) {
+		width: 80%;
+	}
 `;
 
 export const FeedCard = styled.div`
@@ -27,6 +30,12 @@ export const FeedImageBox = styled.div`
 		border-radius: 15px;
 		width: 100%;
 		height: 340px;
+	}
+	@media (max-width: 630px) {
+		height: 250px;
+		img {
+			height: 250px;
+		}
 	}
 `;
 

@@ -27,6 +27,10 @@ export const Paragraph = styled.p<PProps>`
 	font-size: ${(props) => props.$fontSize};
 	font-weight: ${(props) => props.$fontWeight};
 	margin: ${(props) => props.$margin};
+	margin-left: 190px;
+	@media (max-width: 800px) {
+		margin-left: 10px;
+	}
 `;
 
 export const CategoryChoice = styled.section`
