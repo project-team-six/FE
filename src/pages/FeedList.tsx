@@ -25,7 +25,7 @@ const FeedList = () => {
 	// 카테고리 (필터)
 	const [categoryObj, setCategoryObj] = useState({
 		category: "",
-		bannerText: "소분목록",
+		bannerText: "전체소분",
 		categoryURL: `${AS.WHOLE}`,
 	});
 

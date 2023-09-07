@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { LEMON, MUSHROOM, PEAR, POT, realTimeChat1, realTimeChat2, realTimeChat3, SOCKS } from "../../../asstes/asstes";
+import { LEMON, MUSHROOM, PEAR, POT, realTimeChat1, realTimeChat2, realTimeChat3, m_socks } from "../../../asstes/asstes";
 import * as S from "./style";
 
 const IntroductionForm = () => {
@@ -50,7 +50,7 @@ const IntroductionForm = () => {
 					<img src={LEMON} alt='레몬' style={{ top: "5%", right: "45px", width: "23%", height: "33%" }} />
 					<img src={PEAR} alt='배' style={{ top: "15%", left: "40%", width: "24%", height: "50%" }} />
 					<img src={POT} alt='냄비' style={{ top: "50%", left: "20px", width: "33%", height: "40%" }} />
-					<img src={SOCKS} alt='양말' style={{ top: "45%", right: "60px", width: "28%", height: "45%" }} />
+					<img src={m_socks} alt='양말' style={{ top: "45%", right: "60px", width: "28%", height: "45%" }} />
 				</S.IconBox>
 			</S.IntroLayoutBox>
 			<S.IntroLayoutBox>
