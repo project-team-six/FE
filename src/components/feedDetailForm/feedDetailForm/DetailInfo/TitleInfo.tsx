@@ -148,9 +148,9 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 						) : (
 							<S.NotAuth>
 								{detailFeed.isPin === true ? (
-									<S.AuthButton onClick={pinHandler}>
+									<S.Btn onClick={pinHandler} color='#000'>
 										<img src={pined} alt='관심 등록' />
-									</S.AuthButton>
+									</S.Btn>
 								) : (
 									<S.Btn onClick={pinHandler} color='#ccc'>
 										<img src={pin} alt='관심 미등록' />
