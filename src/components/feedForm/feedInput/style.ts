@@ -22,7 +22,7 @@ export const TextArea = styled.textarea<InputProps>`
     height: 200px;
     max-height: 200px;
     resize: none;
-    border: 1px solid hsl(0, 0%, 80%);  
+    border: 1px solid hsl(0, 0%, 80%);
     border-radius: 4px;
     padding: 12px;
     padding-left: 20px;
