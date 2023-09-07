@@ -4,6 +4,7 @@ import axios from "axios";
 import Loading from "../components/common/Loading";
 import { saveToken } from "../utils/saveToken";
 import { useDispatch } from "react-redux";
+import { setDecodeToken } from "../redux/modules/user";
 
 const KakaoRedirection = () => {
 	//인가코드 파싱하기
@@ -16,7 +17,8 @@ const KakaoRedirection = () => {
 			const token = response.headers.authorization;
 			const refreshToken = response.headers.refreshtoken;
 			if (token) {
-				saveToken("accessToken", token, dispatch); // 세션에 accessToken 저장
+				saveToken("accessToken", token); // 세션에 accessToken 저장
+				dispatch(setDecodeToken(token)); // 리덕스에 토큰 정보 저장
 				saveToken("refreshToken", refreshToken); // 세션에 accessToken 저장
 			}
 			navigate("/");

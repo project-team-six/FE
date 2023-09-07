@@ -10,6 +10,7 @@ import { Flex } from "../components/common/GlobalStyle";
 import { line } from "../asstes/asstes";
 import { saveToken } from "../utils/saveToken";
 import { useDispatch } from "react-redux";
+import { setDecodeToken } from "../redux/modules/user";
 
 const SignIn = () => {
 	const navigate: NavigateFunction = useNavigate();
@@ -40,7 +41,8 @@ const SignIn = () => {
 			if (!token) {
 				pushNotification("로그인 실패!", "warning");
 			} else {
-				saveToken("accessToken", token, dispatch); // 세션에 accessToken 저장
+				saveToken("accessToken", token); // 세션에 accessToken 저장
+				dispatch(setDecodeToken(token)); // 리덕스에 토큰 정보 저장
 				saveToken("refreshToken", refreshToken); // 세션에 refreshToken 저장 
 				saveToken("isFirstLogin", "false");
 			}
