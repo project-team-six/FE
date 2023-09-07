@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const FeedListSection = styled.section`
 	width: 100%;
+	max-width: 1280px;
 	min-width: 375px;
 	margin: 0 auto;
 	display: flex;
