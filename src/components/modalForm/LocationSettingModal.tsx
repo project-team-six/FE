@@ -52,7 +52,7 @@ const LocationSetting= () => {
 			{isLocationModal && (
 				<LocationModal>
 					<PostcodeWrapper onClick={toggleLocationModal}>
-						<BsXLg style={{ width: "25px", height: "25px", color: "white" }} />
+						<BsXLg style={{ width: "25px", height: "25px", color: "white", cursor:"pointer" }} />
 						<BorderBox onClick={(e: any) => e.stopPropagation()}>
 							<DaumPostcodeEmbed
 								onComplete={getAddressData}
