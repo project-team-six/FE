@@ -32,7 +32,7 @@ import LEMON from "./LEMON.png";
 import PEAR from "./PEAR.png";
 import MUSHROOM from "./MUSHROOM.png";
 import POT from "./POT.png";
-import SOCKS from "./socks.png";
+import SOCKS from "./SOCKS.png";
 import realTimeChat1 from "./realTimeChat1.png";
 import realTimeChat2 from "./realTimeChat2.png";
 import realTimeChat3 from "./realTimeChat3.png";

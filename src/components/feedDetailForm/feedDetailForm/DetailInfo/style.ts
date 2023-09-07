@@ -138,12 +138,10 @@ export const ModalEditBox = styled.div`
 
 export const AuthButton = styled.button`
     ${cursor}
-    color : #6a6a6a;
-    width: 100%;
-    height: 35px;
-    &:hover {
-        background-color: #efefef;
-    }
+    width: 130px;
+    height: 45px;
+    border-radius: 10px;
+    background-color:#000;
 `;
 
 export const DeleteModalWrapBox = styled.div`
