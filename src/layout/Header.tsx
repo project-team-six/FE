@@ -112,7 +112,7 @@ const Header = () => {
 			}}>
 			<HeaderBox>
 				<LogoSection onClick={handleNavigate("/")}>
-					<img src={h_mainLogo} alt='header_logo' />
+					<img src={h_mainLogo} alt="header_logo" />
 					소분소분
 				</LogoSection>
 				<NavBtnSection>
@@ -128,9 +128,14 @@ const Header = () => {
 								logoutHandle={Logout}
 								modalHandle={toggleProfileModal}
 							/>
-							<ChatRoomModal postId="" modalState={isChatModal} modalHandle={toggleChatModal} setModalState={setIsChatModal}/>
+							<ChatRoomModal
+								postId=""
+								modalState={isChatModal}
+								modalHandle={toggleChatModal}
+								setModalState={setIsChatModal}
+							/>
 							<NavButton onClick={toggleChatModal}>
-								<img src={h_chatIcon} alt='채팅' style={{ width: "33px", height:"33px"}} />
+								<img src={h_chatIcon} alt="채팅" style={{ width: "33px", height: "33px" }} />
 							</NavButton>
 							<NavButton onClick={toggleAlertModal}>
 								<Badge
@@ -141,14 +146,14 @@ const Header = () => {
 											backgroundColor: "#4FBE9F",
 										},
 									}}>
-									<img src={h_alertIcon} alt='알람' style={{ width: "33px", height:"33px"}} />
+									<img src={h_alertIcon} alt="알람" style={{ width: "33px", height: "33px" }} />
 								</Badge>
 							</NavButton>
 							<NavButton onClick={toggleProfileModal}>
 								{userProfile === "nonImage" ? (
 									<>
-										<ProfileBox $backgroundColor='#000000'>
-											<img src={h_profile} alt='기본프로필' />
+										<ProfileBox $backgroundColor="#000000">
+											<img src={h_profile} alt="기본프로필" />
 										</ProfileBox>
 										<ArrowBox>
 											<VscChevronDown />
@@ -156,8 +161,8 @@ const Header = () => {
 									</>
 								) : (
 									<>
-										<ProfileBox $backgroundColor='transparent'>
-											<img src={userProfile} alt='유저프로필' style={{ borderRadius: "100%" }} />
+										<ProfileBox $backgroundColor="transparent">
+											<img src={userProfile} alt="유저프로필" style={{ borderRadius: "100%" }} />
 										</ProfileBox>
 										<ArrowBox>
 											<VscChevronDown />
@@ -165,7 +170,6 @@ const Header = () => {
 									</>
 								)}
 							</NavButton>
-							
 						</div>
 					) : (
 						<div>
@@ -193,16 +197,22 @@ const HeaderBox = styled.div`
 
 const LogoSection = styled.section`
 	display: flex;
-	font-family: 'NEXON Lv1 Gothic OTF';
+	font-family: "NEXON Lv1 Gothic OTF";
 	align-items: center;
 	cursor: pointer;
-	color: #4FBE9F;
+	color: #4fbe9f;
 	font-size: 26px;
 	font-weight: bold;
 	img {
 		margin: 0 10px 0 20px;
 		width: 33px;
 		height: 29px;
+	}
+	@media (max-width: 500px) {
+		font-size: 16px;
+		img {
+			margin: 0 5px 0 0;
+		}
 	}
 `;
 
@@ -216,6 +226,12 @@ const NavButton = styled.button`
 	img {
 		width: 30px;
 		height: 30px;
+	}
+	@media (max-width: 445px) {
+		width: 50px;
+	}
+	@media (max-width: 415px) {
+		width: 40px;
 	}
 `;
 
