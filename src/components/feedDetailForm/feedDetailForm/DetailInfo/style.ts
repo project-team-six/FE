@@ -3,7 +3,7 @@ import { Flex, cursor } from "../../../common/GlobalStyle";
 
 export const FeedCounter = styled.div`
     ${Flex}
-    width:100px;
+    width:90px;
     justify-content: space-between;
     span {
         font-size: 1rem;
@@ -24,23 +24,28 @@ export const Title = styled.div`
     margin: 2% 0;
     h1 {
         font-size: 2.2rem;
-        max-width: 85%;
+        max-width: 80%;
         line-height: 1.4;
         height: 100%;
     }
     button {
+        width:120px;
         ${Flex};
         ${cursor}
     }
-    img {
-        width: 24px;
-    }
+    img {width: 24px}
     p {
         height: 20px;
         line-height: 24px;
         font-size: 1rem;
         color: #8c8c8c;
     }
+    @media(max-width: 1024px){
+		h1{font-size:2rem}
+	}
+    @media(max-width: 600px){
+		h1{font-size:1.8rem}
+	}
 `;
 
 export const UserProfile = styled.div`
@@ -83,6 +88,12 @@ export const Price = styled.div`
         font-size: 2.3rem;
         max-width: 85%;
     }
+    @media(max-width: 1024px){
+		h2{
+            font-size:1.5rem;
+            width:95px;
+        }
+	}
 `;
 
 export const Auth = styled.div`
@@ -114,6 +125,12 @@ export const Btn = styled.button`
     background-color: ${(props) => props.color};
     color: #fff;
     margin: 0 10px;
+    @media(max-width: 440px){
+		width:115px;
+        height:40px;
+        font-size:1.3rem;
+        margin: 0;
+	}
 `;
 
 export const ModalBox = styled.div`

@@ -2,13 +2,14 @@ import styled from "styled-components/";
 import { Flex, cursor } from "../../common/GlobalStyle";
 
 export const LayoutBox = styled.main`
-min-width : 700px;
     max-width: 1280px;
     margin: 0 auto;
     position:relative;
 `;
 
 export const DetailMain = styled.article`
+width : 100%;
+height: 100%;
 `;
 
 export const Category = styled.div`
@@ -16,7 +17,7 @@ export const Category = styled.div`
     margin: 90px 0 65px;
     ${cursor}
     display:inline-block;
-    padding: 5px;
+    margin-left: 2%;
     color: #b6b6b6;
     span {
         color: #b6b6b6;
@@ -24,9 +25,7 @@ export const Category = styled.div`
             border-bottom: 1px solid #b6b6b6;
         }
     }
-    strong {
-        color: #333;
-    }
+    strong {color: #333}
 `;
 
 export const InlineWrapper = styled.div`
@@ -34,11 +33,21 @@ export const InlineWrapper = styled.div`
     ${Flex}
     align-items: flex-start;
     justify-content: space-between;
+    @media(max-width: 900px){
+		${Flex}
+        flex-direction: column;
+        margin : 0 1%;
+	}
 `;
 
 export const InfoSection = styled.div`
-    width: 620px;
-    min-width: 550px;
+    max-width: 580px;
+    padding-right : 2%;
+    @media(max-width: 1024px){
+		max-width:470px;
+        padding : 0;
+        margin : 0 1% ;
+	}
 `;
 
 export const Content = styled.section`
@@ -62,6 +71,9 @@ export const Content = styled.section`
         margin-bottom: 20px;
         font-size: 1.5rem;
     }
+    @media(max-width: 1024px){
+		h1{font-size:1.3rem}
+	}
 `;
 
 export const Dates = styled.div`
@@ -96,7 +108,9 @@ export const DetailList = styled.ul`
         display: inline-block;
         font-size: 1.2rem;
         width: 230px;
-        /* height: 75px; */
+        @media(max-width: 480px){
+		width : 150px;
+	    }
     }
     span {
         font-size: 1rem;

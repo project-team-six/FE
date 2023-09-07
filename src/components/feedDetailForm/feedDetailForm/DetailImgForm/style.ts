@@ -2,22 +2,39 @@ import styled from "styled-components";
 import { Flex, cursor } from "../../../common/GlobalStyle";
 
 export const Image = styled.div`
-margin : 0 2%;
+/* padding :0 2%; */
+
 `;
 
 export const SelectImgWrapper = styled.div`
-    /* width : 100%; */
-    /* height : 100%; */
     max-width: 550px;
     max-height: 505px;
     ${Flex}
     border-radius: 10px;
+    padding:0;
     img {
         border-radius: 10px;
         object-fit: cover;
         width: 500px;
         height: 505px;
     }
+    @media(max-width: 1024px){
+		max-width:440px;
+        max-height:395px;
+        img{
+            max-width:440px;
+            max-height:395px;
+        }
+	}
+    @media(max-width: 440px){
+        padding: 0;
+		max-width:320px;
+        max-height:325px;
+        img{
+            max-width:320px;
+            max-height:325px;
+        }
+	}
 `;
 export const ImageList = styled.div`
     ${Flex};
