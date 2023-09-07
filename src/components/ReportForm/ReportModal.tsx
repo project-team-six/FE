@@ -4,8 +4,8 @@ import { pushNotification } from "../../utils/notification";
 import * as S from "./style";
 import { reportphoto } from "../../asstes/asstes";
 
-const ReportModal = ({postId,reportHandler,commentId,}: {postId: number;reportHandler: any, commentId?: number;
-}) => {
+const ReportModal = ({postId, reportHandler,commentId, isReportModalOpen, setIsReportModalOpen}: {postId: number; reportHandler: ()=>void, commentId?: number
+    isReportModalOpen:any, setIsReportModalOpen: any}) => {
     const [selectedReason, setSelectedReason] = useState("");
     const [selectedFile, setSelectedFile] = useState<File | undefined>();
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -16,7 +16,6 @@ const ReportModal = ({postId,reportHandler,commentId,}: {postId: number;reportHa
     const handleReasonChange = (reason: string) => {
         setSelectedReason(reason);
     };
-
     const onImgUpdateHandler = () => {
         imgRef.current?.click();
     };
@@ -58,17 +57,24 @@ const ReportModal = ({postId,reportHandler,commentId,}: {postId: number;reportHa
             })
         );
 
-        if (selectedFile) {
+        if (!selectedFile) {
+            pushNotification("사진은 필수 항목입니다.", "error");
+            return;  // 사진이 없으면 함수 종료
+        } else{
             formData.append("file", selectedFile);
         }
-        
-        if(commentId){
-            commentReport(postId, commentId, formData)
-        }
-        else{
-        postReport(postId, formData)}
-        
-        pushNotification("신고가 성공적으로 접수되었습니다.", "success");
+
+        const reportPromise = commentId ? 
+        commentReport(postId, commentId, formData) : 
+        postReport(postId, formData);
+
+        reportPromise.then(() => {
+            setIsReportModalOpen(!isReportModalOpen);
+            pushNotification("신고가 성공적으로 접수되었습니다.", "success");
+        }).catch(error => {
+            console.error(error);
+            pushNotification("신고 접수 중 오류가 발생했습니다.", "error");
+        });
     };
 
     return (
@@ -123,9 +129,7 @@ const ReportModal = ({postId,reportHandler,commentId,}: {postId: number;reportHa
                     </S.UpdateBox>
                 </div>
                 <S.ButtonBox>
-                <S.ReportButton color="#d9d9d9" type="button" onClick={reportHandler}>
-                    취소
-                </S.ReportButton>
+                <S.ReportButton color="#d9d9d9" type="button" onClick={reportHandler}>취소</S.ReportButton>
                 <S.ReportButton color="#4fbe9f" type="submit">신고</S.ReportButton>
                 </S.ButtonBox>
             </S.ModalForm>

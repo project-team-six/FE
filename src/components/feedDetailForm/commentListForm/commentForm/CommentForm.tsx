@@ -94,7 +94,8 @@ const CommentForm = ({ postId, comment, closed }: { postId: number; comment: com
 						<S.ReportButton onClick={reportHandler}>
 							<img src={reportred} alt='신고아이콘' /> 신고하기
 						</S.ReportButton>
-						{isReportModalOpen && <ReportModal postId={postId} commentId={comment.id} reportHandler={reportHandler} />}
+						{isReportModalOpen && <ReportModal postId={postId} commentId={comment.id} reportHandler={reportHandler} 
+							isReportModalOpen={isReportModalOpen} setIsReportModalOpen={setIsReportModalOpen}/>}
 						</div>
 					</div>
 					<S.CommentContentDiv>

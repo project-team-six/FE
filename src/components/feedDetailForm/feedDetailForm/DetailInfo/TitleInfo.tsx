@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/config/configStore";
 import { enterChatRoom } from "../../../../api/chatApi";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { pushNotification } from "../../../../utils/notification";
 import ChatRoomModal from "../../../chatRoomForm/ChatRoomModal";
 import { deleteFeed } from "../../../../api/feedApi";
@@ -51,10 +51,21 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 	const reportHandler = () => {
 		setIsReportModalOpen(!isReportModalOpen);
 	}
-
+	
 	// 게시물 삭제
-	const deleteFeedMutation = useMutation(deleteFeed)
-	const deleteFeedHandler =()=>{
+	const queryClient = useQueryClient();
+
+	const deleteFeedMutation = useMutation(deleteFeed, {
+		onSuccess: () => {
+			queryClient.invalidateQueries(["mypage"])
+			queryClient.invalidateQueries(["feedList"])
+		},
+		onError: () => {
+			pushNotification("게시물 삭제 실패", "error")
+		}
+	})
+	
+	const deleteFeedHandler =()=> {
 		deleteFeedMutation.mutate(postId);
 		pushNotification("게시물이 삭제되었습니다", "success")
 		navigate(-1)
@@ -84,7 +95,8 @@ const TitleInfo: React.FC<TitleInfoProps> = ({ detailFeed, closed, handleCloseCl
 							<img src={report} alt='신고하기' />
 							<p>신고하기</p>
 						</button>
-						{isReportModalOpen && <ReportModal postId={detailFeed.id} reportHandler={reportHandler}/> }
+						{isReportModalOpen && <ReportModal postId={detailFeed.id} reportHandler={reportHandler}
+							isReportModalOpen={isReportModalOpen} setIsReportModalOpen={setIsReportModalOpen} /> }
 					</div>
 				)}
 			</S.Title>
