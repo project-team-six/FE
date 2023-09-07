@@ -25,6 +25,11 @@ export const ModalForm = styled.form`
         height: 60px;
         font-size: 1.6rem;
     }
+    @media(max-width: 600px){
+    right:10%;
+    width : 320px;
+    h2{height : 40px}
+    }
 `;
 
 export const InputBox = styled.div`
@@ -34,7 +39,9 @@ export const InputBox = styled.div`
     justify-content: space-between;
     margin-left: 35px;
     justify-items: center;
-    
+    @media(max-width: 600px){
+    width : 250px;
+    }
 `;
 
 export const ReasonBox = styled.div`
@@ -72,6 +79,10 @@ export const ReasonBox = styled.div`
     label {font-size: 1.2rem;
     ${cursor}
     }
+    @media(max-width: 600px){
+        height : 40px;
+    label {font-size: 1rem}
+    }
 `;
 
 export const TextInput = styled.input`
@@ -82,12 +93,16 @@ export const TextInput = styled.input`
     padding-left: 1%;
     outline: none;
     &:focus {outline: 1px solid #4fbe9f}
+    @media(max-width: 600px){
+    font-size: 1rem;
+    width : 280px;
+    }
 `;
 
 export const ReportSpan = styled.span`
 font-size:1.2rem;
 font-weight:700;
-margin:30px 0 15px;
+margin:25px 0 15px;
 width:100%;
 display:inline-block;
 `
@@ -102,6 +117,9 @@ export const UpdateBox = styled.div`
     border-radius: 10px;
     input {display: none}
     p {margin-top:5px}
+    @media(max-width: 600px){
+    width : 280px;
+    }
 `;
 
 export const ButtonBox = styled.div`
@@ -119,5 +137,9 @@ border-radius : 10px;
 font-size:1.2rem;
 color:#fff;
 font-weight:800;
+@media(max-width: 600px){
+    width:120px;
+    height : 35px;
+    }
 `
 

@@ -4,16 +4,22 @@ import { Flex, cursor } from "../../common/GlobalStyle";
 export const CommentBox = styled.article`
     max-width: 1920px;
     margin: 0 auto 100px;
+    @media(max-width: 600px){
+        margin : 5%;
+	}
 `;
 
 export const CommentArticle = styled.article`
-    max-width: 65%;
-    min-width:900px;
+    max-width: 85%;
+    min-width:550px;
     margin: 0 auto;
+    @media(max-width: 600px){
+        min-width:95%;
+	}
 `;
 
 export const SpanDiv = styled.div`
-    margin-bottom: 25px;
+    margin: 25px 0;
 `;
 
 export const Span = styled.span`

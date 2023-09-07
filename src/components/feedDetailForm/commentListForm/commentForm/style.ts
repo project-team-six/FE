@@ -19,6 +19,9 @@ export const CommentProfileImg = styled.img`
     height: 45px;
     margin-right: 25px;
     border-radius: 100px;
+    @media(max-width: 600px){
+        margin-right:10px;
+	}
 `;
 
 type SpanProps = {
@@ -30,6 +33,10 @@ export const Span = styled.span<SpanProps>`
     font-size: ${(props) => props.fontSize}px;
     font-weight: ${(props) => props.fontWeight};
     margin-right: 10px;
+    @media(max-width: 600px){
+        font-size:1rem;
+        margin-right:5px;
+	}
 `;
 
 export const ReportButton = styled.button`
@@ -37,6 +44,7 @@ export const ReportButton = styled.button`
     display: inline-block;
     ${Flex}
     ${cursor}
+    padding:0;
 `;
 
 export const CommentContentDiv = styled.div`
@@ -54,9 +62,10 @@ export const CommentContentDiv = styled.div`
 `;
 
 export const CommentEditInput = styled.input`
-    width: 500px;
+    max-width: 500px;
     height: 25px;
     border: 1px solid #7f7f7f;
+    
 `;
 
 export const IconButton = styled.button`
