@@ -1,8 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import { deleteToken } from "../utils/deleteToken";
 import { getToken } from "../utils/getToken";
-import { saveToken } from "../utils/saveToken";
-import { useDispatch } from "react-redux";
+import { setDecodeToken } from "../redux/modules/user";
 
 export const instance: AxiosInstance = axios.create({
 	baseURL: process.env.REACT_APP_SERVER_URL,
@@ -10,14 +9,14 @@ export const instance: AxiosInstance = axios.create({
 
 instance.interceptors.request.use(async (config) => {
 	const accessToken = getToken("accessToken");
-	const refreshToken = getToken("refreshToken");
-
-	if (accessToken && refreshToken) {
+	if (accessToken) {
 		config.headers.Authorization = accessToken;
-		config.headers.RefreshToken = refreshToken;
-	} else if (!accessToken) {
+	} else {
 		deleteToken("accessToken"); //accessToken 값 undefined 뜰때 쿠키에서 삭제
 	}
+
+	const refreshToken = getToken("refreshToken");
+	if (refreshToken) config.headers.RefreshToken = refreshToken;
 
 	return config;
 });
@@ -36,15 +35,14 @@ instance.interceptors.response.use(
 		}
 
 		const { status, headers } = response;
-
-		const dispatch = useDispatch();
 		if (status === 401) {
 			const config = { ...error.config };
 			const newToken = headers.authorization;
+
 			if (newToken) {
 				deleteToken("accessToken"); // 기존 토큰 삭제
-				saveToken("accessToken", newToken, dispatch); // 세션에 accessToken 저장
-				
+				sessionStorage.setItem("accessToken", newToken); // 세션에 토큰 저장
+				setDecodeToken(newToken); // 리덕스에 토큰 정보 저장
 				config.headers.Authorization = newToken;
 
 				// 실패했던 기존 request 재시도

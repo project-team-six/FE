@@ -9,6 +9,7 @@ import DaumPostcodeEmbed from "react-daum-postcode";
 import { toggleModal } from "../../redux/modules/locationSet";
 import { RootState } from "../../redux/config/configStore";
 import { saveToken } from "../../utils/saveToken";
+import { setDecodeToken } from "../../redux/modules/user";
 
 const LocationSetting= () => {
 	const dispatch = useDispatch();
@@ -36,7 +37,8 @@ const LocationSetting= () => {
 				if (token) {
 					// 토큰이 있는 경우
 					deleteToken("accessToken"); // 기존 token 삭제
-					saveToken("accessToken", token, dispatch); // 세션에 accessToken 저장
+					saveToken("accessToken", token); // 세션에 accessToken 저장
+					dispatch(setDecodeToken(token)); // 리덕스에 토큰 정보 저장
 				}
 				pushNotification(`지역이 ${data.sido} ${data.sigungu} ${data.bname}으로 설정되었습니다!`, "success");
 			})

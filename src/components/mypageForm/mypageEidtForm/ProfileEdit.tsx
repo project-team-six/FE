@@ -7,8 +7,10 @@ import { putMyPageEdit, putMyPageEditImage, putMyPagePasswordEdit } from "../../
 import { pushNotification } from "../../../utils/notification";
 import ProfileImgEdits from "./profileImgEditForm/ProfileImgEdit";
 import TextInputForm from "../../common/textInputForm/TextInputForm";
-import { updateToken } from "../../../utils/updateToken";
 import * as S from "./style";
+import { setDecodeToken } from "../../../redux/modules/user";
+import { deleteToken } from "../../../utils/deleteToken";
+import { saveToken } from "../../../utils/saveToken";
 
 const ProfileEdit = () => {
 	const location = useLocation();
@@ -94,7 +96,10 @@ const ProfileEdit = () => {
 		if (isInfoValid()) {
 			putMyPageEdit(userId, nickname, phoneNumber)
 				.then((response) => {
-					updateToken(response, dispatch);
+					const token = response.headers.authorization;
+					deleteToken("accessToken"); // 기존 token 삭제
+        			saveToken("accessToken", token); // 세션에 accessToken 저장
+					dispatch(setDecodeToken(token)); // 리덕스에 토큰 정보 저장
 					queryClient.invalidateQueries(["mypage", userId]);
 				})
 				.catch((error) => {
@@ -110,7 +115,10 @@ const ProfileEdit = () => {
 		if (isPasswordValid()) {
 			putMyPagePasswordEdit(userId, password)
 				.then((response) => {
-					updateToken(response, dispatch);
+					const token = response.headers.authorization;
+					deleteToken("accessToken"); // 기존 token 삭제
+        			saveToken("accessToken", token); // 세션에 accessToken 저장
+					dispatch(setDecodeToken(token)); // 리덕스에 토큰 정보 저장
 				})
 				.catch((error) => {
 					isError = true;
@@ -127,7 +135,10 @@ const ProfileEdit = () => {
 			formData.append("file", selectedFile);
 			putMyPageEditImage(userId, formData)
 				.then((response) => {
-					updateToken(response, dispatch);
+					const token = response.headers.authorization;
+					deleteToken("accessToken"); // 기존 token 삭제
+        			saveToken("accessToken", token); // 세션에 accessToken 저장
+					dispatch(setDecodeToken(token)); // 리덕스에 토큰 정보 저장
 				})
 				.catch((error) => {
 					isError = true;
