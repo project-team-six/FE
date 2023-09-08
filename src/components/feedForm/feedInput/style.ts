@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const MainContentWrapper = styled.div`
+	width: 100%;
+`;
+
 type InputProps = {
     width: string;
 };

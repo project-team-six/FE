@@ -203,7 +203,7 @@ const FeedForm = ({
 							name="title"
 							textEntered={textEntered}
 							setTextEntered={setTextEntered}
-							inputWidth="59.2vw"
+							inputWidth="100%"
 						/>
 					</S.InputSection>
 					<S.InputSection>
@@ -214,7 +214,7 @@ const FeedForm = ({
 							name="content"
 							textEntered={textEntered}
 							setTextEntered={setTextEntered}
-							inputWidth="59.2vw"
+							inputWidth="100%"
 						/>
 					</S.InputSection>
 				</S.InputDiv>

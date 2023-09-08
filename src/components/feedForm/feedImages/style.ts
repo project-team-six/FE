@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { Flex, cursor } from "../../common/GlobalStyle";
 
 export const MainContentWrapper = styled.div`
-	max-width: 1920px;
-	min-width: 1280px;
 	width: 100%;
 `;
 

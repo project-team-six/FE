@@ -53,12 +53,12 @@ export const FeedInput = React.memo(({name, textEntered, setTextEntered, inputWi
     }, [inputValue]);  
 
     return (
-        <div>
+        <S.MainContentWrapper>
             {isContent ? 
             <S.TextArea ref={textareaRef} rows={isContent ? 1 : 0} width={inputWidth} name={name} maxLength={maxLength} value={inputValue} onChange={handleChange}/>
             :
             <S.Input width={inputWidth} type="text" name={name} required maxLength={maxLength} value={inputValue} onChange={handleChange}/>
             }
-        </div>
+        </S.MainContentWrapper>
     );
 });

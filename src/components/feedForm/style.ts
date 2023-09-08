@@ -1,20 +1,17 @@
 import styled from "styled-components";
-import { cursor, MainBackgroundColor } from "../common/GlobalStyle";
+import { cursor, Flex, MainBackgroundColor } from "../common/GlobalStyle";
 
 export const MainContentWrapper = styled.div`
 	display: grid;
 	place-items: center;
 	margin: 0 auto;
 	margin-top: 57px;
-	max-width: 1920px;
 	min-width: 375px;
 	width: 100%;
 
 	@media (max-width: 950px) {
 		display: grid;
-		place-items: center;
-		margin: 0 auto;
-		padding: 10px;
+		padding: 10px; 
 	}
 `;
 
@@ -31,7 +28,7 @@ export const Span = styled.span<SpanProps>`
 export const Line = styled.div`
 	width: 100%;
 	height: 2px;
-	${MainBackgroundColor}
+	${MainBackgroundColor};
 	margin-top: 22px;
 	margin-bottom: 42px;
 `;
@@ -47,15 +44,17 @@ export const SubLine = styled.div`
 export const Section = styled.section`
 	width: 65%;
 	margin-bottom: 40px;
-
-	@media (max-width: 950px) {
-		width: 940px;
+	@media (max-width: 1000px) {
+		width : 100%;
 	}
 `;
 
 export const SectionDiv = styled.div`
 	width: 100%;
 	margin-left: 67px;
+	@media (max-width: 680px) {
+		margin-left: 20px;
+	}
 `;
 
 export const LabelDiv = styled.div`
@@ -73,10 +72,14 @@ export const Label = styled.label`
 export const InputDiv = styled.div`
 	margin-left: 57px;
 	margin-bottom: 67px;
+	@media (max-width: 680px) {
+		margin-left: 5px;
+	}
 `;
 
 export const InputSection = styled.section`
 	display: flex;
+	width: 100%;
 	gap: 30px;
 	margin-bottom: 30px;
 `;
@@ -108,34 +111,9 @@ export const LocationIcon = styled.img`
 `;
 
 export const ButtonDiv = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	${Flex}
 	gap: 28px;
 	width: 100%;
-
-	@media (max-width: 1080px) {
-		width: 90%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	@media (max-width: 800px) {
-		width: 90%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	@media (max-width: 700px) {
-		width: 70%;
-	}
-
-	@media (max-width: 500px) {
-		width: 60%;
-	}
 `;
 
 type ButtonProps = {
@@ -147,6 +125,7 @@ export const Button = styled.button<ButtonProps>`
 	${cursor}
 	color: #${(props) => props.color};
 	background-color: #${(props) => props.$backgroundColor};
+	max-width:285px;
 	width: 39%;
 	height: 55px;
 	border-radius: 10px;
