@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { cursor } from "../../common/GlobalStyle";
+import { Flex, cursor } from "../../common/GlobalStyle";
 
 export const GuideLayout = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${Flex}
     position: fixed;
     left: 0;
     top: 0;
@@ -56,9 +54,7 @@ export const Span = styled.span<SpanProps>`
 export const ImageContainer = styled.div`
     position: relative;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${Flex}
 `;
 
 export const Img = styled.img`
@@ -81,9 +77,7 @@ export const ButtonBox = styled.div`
     position: absolute;
     bottom: 7%;
     left: 12%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${Flex}
     gap: 32px;
     vertical-align: bottom;
 `;

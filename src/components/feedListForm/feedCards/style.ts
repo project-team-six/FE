@@ -1,3 +1,4 @@
+import { cursor } from './../../common/GlobalStyle';
 import styled from "styled-components";
 
 export const FeedListSection = styled.section`
@@ -18,7 +19,7 @@ export const FeedCard = styled.div`
 	height: 465px;
 	border-radius: 16px;
 	margin-bottom: 55px;
-	cursor: pointer;
+	${cursor}
 `;
 
 export const FeedImageBox = styled.div`

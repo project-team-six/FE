@@ -7,12 +7,12 @@ export const LayoutBox = styled.main`
     position:relative;
 `;
 
-export const DetailMain = styled.article`
+export const DetailMainBox = styled.article`
 width : 100%;
 height: 100%;
 `;
 
-export const Category = styled.div`
+export const CategoryBox = styled.div`
     width: 100%;
     margin: 90px 0 65px;
     ${cursor}
@@ -40,7 +40,7 @@ export const InlineWrapper = styled.div`
 	}
 `;
 
-export const InfoSection = styled.div`
+export const InfoBox = styled.div`
     max-width: 580px;
     padding-right : 2%;
     @media(max-width: 1024px){
@@ -50,7 +50,7 @@ export const InfoSection = styled.div`
 	}
 `;
 
-export const Content = styled.section`
+export const ContentSection = styled.section`
     width: 100%;
     height: 100%;
     margin: 20px 0;
@@ -76,7 +76,7 @@ export const Content = styled.section`
 	}
 `;
 
-export const Dates = styled.div`
+export const DatesBox = styled.div`
     color: #8c8c8c;
     width: 300px;
     text-align: right;

@@ -56,7 +56,6 @@ export const SpanDiv = styled.div`
 `;
 
 export const ChatDeleteButton = styled.button`
-    cursor: pointer;
     position: relative;
     left: 320px;
     bottom: 40px;

@@ -164,14 +164,14 @@ const ProfileEdit = () => {
 					<TextInputForm label="비밀번호 확인" type="password" value={confirmPassword} handleChange={handleChangeConfirmPassword} msg={confirmPasswordError} placeholder="비밀번호를 다시 한 번 입력해주세요."/>
 				</div>
 				)}
-				<S.Btn>
-					<S.SubmitBtn type="submit">
+				<S.BtnBox>
+					<S.SubmitButton type="submit">
 						수정 완료
-					</S.SubmitBtn>
-					<S.BackBtn type="button" onClick={() => navigate(-1)}>
+					</S.SubmitButton>
+					<S.BackButton type="button" onClick={() => navigate(-1)}>
 						뒤로 가기
-					</S.BackBtn>
-				</S.Btn>
+					</S.BackButton>
+				</S.BtnBox>
 			</S.EditForm>
             </S.LayoutInline>
         </S.LayoutBox>

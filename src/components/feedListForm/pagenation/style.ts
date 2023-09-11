@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { MainBackgroundColor } from "../../common/GlobalStyle";
+import { Flex, MainBackgroundColor, cursor } from "../../common/GlobalStyle";
 
 export const PageNationSection = styled.section`
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	${Flex}
 	width: 100%;
 	height: 100px;
 	gap: 20px;
@@ -12,7 +10,7 @@ export const PageNationSection = styled.section`
 	button {
 		font-size: 14px;
 		color: #a7a7a7;
-		cursor: pointer;
+		${cursor}
 		&.active {
 			width: 30px;
 			height: 30px;

@@ -1,3 +1,4 @@
+import { cursor } from './../common/GlobalStyle';
 import styled from "styled-components";
 import { MainBackgroundColor } from "../common/GlobalStyle";
 
@@ -16,7 +17,7 @@ export const SignUpBox = styled.div`
 export const Button = styled.button`
 	font-size: 18px;
 	font-weight: 700;
-	cursor: pointer;
+	${cursor}
 	margin-top: 37px;
 	margin-bottom: 240px;
 	width: 400px;

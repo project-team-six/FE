@@ -7,6 +7,7 @@ import { noAlertIcon, profileImageDefault } from "../../asstes/asstes";
 import { AlertList } from "../../types/alertType";
 import { ModalLayout } from "../common/commonFormStyles";
 import SseAlert from "./SseAlert";
+import { cursor } from "../common/GlobalStyle";
 
 type AlertModalProps = {
 	modalState: boolean;
@@ -156,7 +157,7 @@ const AllDeleteBox = styled.div`
 	height: 30px;
 	font-size: 10px;
 	button {
-		cursor: pointer;
+		${cursor}
 		color: #7b7b7b;
 		&:hover {
 			font-weight: bold;

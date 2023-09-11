@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex, cursor } from "../../../common/GlobalStyle";
 
-export const ProfileImg = styled.div`
+export const ProfileImgBox = styled.div`
 	text-align: center;
 	margin-bottom: 50px;
 	h1 {
@@ -32,7 +32,7 @@ export const ImgBox = styled.div`
 	}
 `;
 
-export const Avatar = styled.div`
+export const AvatarBox = styled.div`
 	display: none;
 	position: relative;
 	input {
@@ -42,7 +42,7 @@ export const Avatar = styled.div`
 	${Flex};
 `;
 
-export const EditBtn = styled.div`
+export const EditBtnBox = styled.div`
 	${cursor}
 	position:absolute;
 	bottom: 0;
@@ -58,7 +58,7 @@ export const EditBtn = styled.div`
 	}
 `;
 
-export const ResetBtn = styled.button`
+export const ResetButton = styled.button`
 	margin-top: 10px;
 	color: #a1a1a1;
 	border-bottom: 1px solid #a1a1a1;

@@ -1,3 +1,4 @@
+import { cursor } from './../../common/GlobalStyle';
 import styled from "styled-components";
 
 export const RecentPostsSection = styled.section`
@@ -20,7 +21,7 @@ export const MainTextBox = styled.div`
 `;
 
 export const ShowAllButton = styled.button`
-	cursor: pointer;
+	${cursor}
 	margin: 0 auto;
 	width: 75px;
 	margin-bottom: 130px;

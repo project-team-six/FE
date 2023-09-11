@@ -1,11 +1,10 @@
+import { Flex } from './../../common/GlobalStyle';
 import styled from "styled-components";
 import { cursor } from "../../common/GlobalStyle";
 
 export const MainContentWrapper = styled.div`
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${Flex}
 `;
 
 export const PreviewDiv = styled.div`
@@ -39,14 +38,12 @@ export const PreviewImg = styled.img`
 `;
 
 export const TextDiv = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${Flex}
 `;
 
 export const PhotoLabel = styled.label`
 	margin-right: 5px;
-	cursor: pointer;	
+	${cursor}	
 `;
 
 export const InputPhoto = styled.input`

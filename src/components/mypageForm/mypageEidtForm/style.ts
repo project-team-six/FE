@@ -20,13 +20,13 @@ export const EditForm = styled.form`
 	}
 `;
 
-export const Btn = styled.div`
+export const BtnBox = styled.div`
 	margin: 30px auto;
 	${Flex}
 	flex-direction: column;
 `;
 
-export const SubmitBtn = styled.button`
+export const SubmitButton = styled.button`
 	${cursor};
 	${MainBackgroundColor};
 	width: 400px;
@@ -38,7 +38,7 @@ export const SubmitBtn = styled.button`
 	font-weight: 600;
 `;
 
-export const BackBtn = styled.button`
+export const BackButton = styled.button`
 	${cursor};
 	background-color: #cdcdcd;
 	width: 400px;

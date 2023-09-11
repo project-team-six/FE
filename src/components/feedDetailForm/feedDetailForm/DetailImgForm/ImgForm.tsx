@@ -38,7 +38,7 @@ const ImgForm: React.FC<ImgFormProps> = ({detailFeed}) => {
             <S.SelectImgWrapper>
                 <img src={SelectImage} alt="선택된 이미지" />
             </S.SelectImgWrapper>
-            <S.ImageList>
+            <S.ImageBox>
                 <S.ArrowImg
                     src={leftArrow}
                     alt="왼쪽 화살표"
@@ -68,7 +68,7 @@ const ImgForm: React.FC<ImgFormProps> = ({detailFeed}) => {
                     alt="오른쪽 화살표"
                     onClick={moveRight}
                 />
-            </S.ImageList>
+            </S.ImageBox>
         </S.Image>
     );
 };
