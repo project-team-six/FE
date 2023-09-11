@@ -1,3 +1,4 @@
+import { cursor, Flex } from './GlobalStyle';
 import styled from "styled-components";
 
 export const MainContentWrapper = styled.div`
@@ -44,7 +45,7 @@ export const MovePageBtn = styled.button`
 	color: #ffffff;
 	background-color: #f1c548;
 	border-radius: 20px;
-	cursor: pointer;
+	${cursor}
 `;
 
 export const FindDiv = styled.div`
@@ -59,13 +60,11 @@ export const FindBtn = styled.button`
 	color: #ffffff;
 	background-color: #f1c548;
 	border-radius: 20px;
-	cursor: pointer;
+	${cursor}
 `;
 
 export const ModalLayout = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	${Flex}
 	position: fixed;
 	left: 0;
 	top: 0;

@@ -87,8 +87,8 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 
 	return (
 		<S.LayoutBox>
-			<S.DetailMain>
-				<S.Category>
+			<S.DetailMainBox>
+				<S.CategoryBox>
 					<span
 						onClick={() => {
 							navigate("/");
@@ -104,10 +104,10 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 					</span>
 					{` > `}
 					<strong>{detailFeed.title}</strong>
-				</S.Category>
+				</S.CategoryBox>
 				<S.InlineWrapper>
 					<ImgForm detailFeed={detailFeed} />
-					<S.InfoSection>
+					<S.InfoBox>
 						<TitleInfo
 							detailFeed={detailFeed}
 							closed={closed}
@@ -115,16 +115,16 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 							pinHandler={pinHandler}
 						/>
 
-						<S.Content>
+						<S.ContentSection>
 							<div style={{ display: "flex", width: "100%" }}>
 								<h1>상세 내용</h1>
-								<S.Dates>
+								<S.DatesBox>
 									작성일 :<span>{detailFeed?.createdAt.slice(0, 10)}</span>
 									수정일 :<span>{detailFeed?.modifiedAt.slice(0, 10)}</span>
-								</S.Dates>
+								</S.DatesBox>
 							</div>
 							<p dangerouslySetInnerHTML={createMarkup()} />
-						</S.Content>
+						</S.ContentSection>
 
 						<S.DetailList>
 							<li>
@@ -140,9 +140,9 @@ const FeedDetailList = ({ closed, onClose }: { closed: boolean; onClose: (value:
 								<span> {detailFeed.purchaseDate}</span>
 							</li>
 						</S.DetailList>
-					</S.InfoSection>
+					</S.InfoBox>
 				</S.InlineWrapper>
-			</S.DetailMain>
+			</S.DetailMainBox>
 		</S.LayoutBox>
 	);
 };

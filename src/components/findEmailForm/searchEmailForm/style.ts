@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainBackgroundColor } from "../../common/GlobalStyle";
+import { MainBackgroundColor, cursor } from "../../common/GlobalStyle";
 
 export const MainContentWrapper = styled.div`
 	margin-bottom: 45px;
@@ -29,7 +29,7 @@ export const Button = styled.button`
 `;
 
 export const PwButton = styled.button`
-	cursor: pointer;
+	${cursor}
 	color: #666666;
 	width: 100%;
 	font-size: 12px;

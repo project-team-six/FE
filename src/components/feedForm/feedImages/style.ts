@@ -74,7 +74,7 @@ export const DeleteButtonDiv = styled.div`
 `;
 
 export const DeleteButton = styled.button`
-	cursor: pointer;
+	${cursor}
 	align-items: center;
 	width: 100%;
 	height: 100%;

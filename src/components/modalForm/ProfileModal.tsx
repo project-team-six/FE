@@ -5,7 +5,7 @@ import { RootState } from "../../redux/config/configStore";
 import { locationType } from "../../types/feedType";
 import styled from "styled-components";
 import { profileImageDefault, p_location } from "../../asstes/asstes";
-import { Flex } from "../common/GlobalStyle";
+import { Flex, cursor } from "../common/GlobalStyle";
 import { ModalLayout } from "../common/commonFormStyles";
 import { setUserLocation } from "../../api/userApi";
 import LocationSetting from "./LocationSettingModal";
@@ -158,16 +158,14 @@ const NicknameBox = styled.div`
 
 const ModalNavSection = styled.section`
 	height: 170px;
-	display: flex;
+	${Flex}
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 `;
 
 const ModalButton = styled.button`
 	height: 42.5px;
 	width: 100%;
-	cursor: pointer;
+	${cursor}
 	&:hover {
 		background-color: #efefef;
 	}

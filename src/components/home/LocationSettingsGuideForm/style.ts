@@ -1,17 +1,15 @@
 import styled from "styled-components";
-import { cursor } from "../../common/GlobalStyle";
+import { Flex, cursor } from "../../common/GlobalStyle";
 
 export const GuideLayout = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 999;
-	background-color: rgba(0, 0, 0, 0.5);
+    ${Flex}
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.5);
 `;
 
 export const GuideSection = styled.div`
@@ -61,12 +59,9 @@ export const Span = styled.span<SpanProps>`
 `;
 
 export const ImageContainer = styled.div`
-	position: relative;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
+    position: relative;
+    width: 100%;
+    ${Flex}
 `;
 
 export const Img = styled.img`
@@ -90,14 +85,12 @@ export const GradientOverlay = styled.div`
 `;
 
 export const ButtonBox = styled.div`
-	position: absolute;
-	bottom: 7%;
-	left: 12%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 32px;
-	vertical-align: bottom;
+    position: absolute;
+    bottom: 7%;
+    left: 12%;
+    ${Flex}
+    gap: 32px;
+    vertical-align: bottom;
     @media (max-width: 630px) {
 		left: 6%;
 	}
