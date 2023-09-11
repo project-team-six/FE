@@ -6,12 +6,12 @@ export const ModalLayout = styled.div`
 	align-items: center;
 	justify-content: center;
 	position: fixed;
-	left: 0;
 	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
 	z-index: 99;
-	background-color: rgba(0, 0, 0, 0.5); /* 배경색 + 투명도 조절 */
+	background-color: rgba(0, 0, 0, 0.5);
 `;
 
 export const PrecautionsLayout = styled.div`
@@ -20,6 +20,13 @@ export const PrecautionsLayout = styled.div`
 	height: 606px;
 	border-radius: 20px;
 	background-color: #ffffff;
+
+	@media (max-width: 426px) {
+		width: 375px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 `;
 
 export const PrecautionsDiv = styled.div`
@@ -53,6 +60,10 @@ export const Li = styled.li`
 	background-color: #f8f8f8;
 	margin-bottom: 17px;
 	border-radius: 20px;
+
+	@media (max-width: 426px) {
+		width: 360px;
+	}
 `;
 
 export const Icon = styled.img`
@@ -77,7 +88,7 @@ export const Button = styled.button`
 	height: 100%;
 	align-items: center;
 	text-align: center;
-	color: #cccccc;
+	color: #ffffff;
 	font-size: 20px;
 	font-weight: 700;
 	${cursor};

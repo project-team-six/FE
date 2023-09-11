@@ -21,6 +21,26 @@ export const BannerSection = styled.section`
 	span {
 		font-weight: bold;
 	}
+	@media (max-width: 950px) {
+		h1 {
+			font-size: 40px;
+		}
+		p,
+		span {
+			font-size: 14px;
+			color: white;
+		}
+	}
+	@media (max-width: 515px) {
+		h1 {
+			font-size: 25px;
+		}
+		p,
+		span {
+			font-size: 10px;
+			color: white;
+		}
+	}
 `;
 
 export const StartButton = styled.button`
@@ -34,8 +54,8 @@ export const StartButton = styled.button`
 	font-weight: bold;
 	margin-top: 77px;
 	transition: box-shadow 400ms ease-in-out, color 300ms ease-in-out;
-  &:hover {
-	background-color: white;
-	color: grey;
-  }
+	&:hover {
+		background-color: white;
+		color: grey;
+	}
 `;

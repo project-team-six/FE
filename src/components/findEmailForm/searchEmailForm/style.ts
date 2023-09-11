@@ -22,6 +22,10 @@ export const Button = styled.button`
 	border-radius: 10px;
 	font-size: 18px;
 	font-weight: 700;
+
+	@media(max-width: 426px){
+        width: 300px;
+	}
 `;
 
 export const PwButton = styled.button`

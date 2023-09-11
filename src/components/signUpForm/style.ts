@@ -25,4 +25,8 @@ export const Button = styled.button`
 	color: #ffffff;
 	${MainBackgroundColor}
 	border-radius: 10px;
+
+	@media(max-width: 426px){
+		width: 300px;
+	}
 `;

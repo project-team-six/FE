@@ -150,6 +150,10 @@ const InputSection = styled.form`
 		border: 1px solid #c5c5c5;
 		border-radius: 10px;
 		padding-left: 7px;
+
+		@media(max-width: 426px){
+			width: 300px;
+		}
 	}
 `;
 const FormSection = styled.section`
@@ -175,6 +179,10 @@ const FormButton = styled.button<ButtonProps>`
 	color: ${(props) => props.color};
 	font-size: 18px;
 	font-weight: bold;
+
+	@media(max-width: 426px){
+		width: 300px;
+	}
 `;
 
 const OrLine = styled.div`

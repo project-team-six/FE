@@ -9,6 +9,12 @@ export const RecentPostsSection = styled.section`
 	justify-content: center;
 	gap: 3%;
 	flex-wrap: wrap;
+	@media (max-width: 1280px) {
+		width: 1000px;
+	}
+	@media (max-width: 900px) {
+		width: 400px;
+	}
 `;
 
 export const MainTextBox = styled.div`

@@ -27,7 +27,7 @@ export const SpanDiv = styled.div`
 export const Input = styled.input`
     border: 1px solid #C5C5C5;
     border-radius: 10px;
-    width: 400px;
+    width: 100%;
     height: 55px;
     padding: 25px;
     margin-top: 10px;
