@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex, MainBackgroundColor, cursor } from "../../common/GlobalStyle";
 
-export const UserInfoWrapper = styled.section`
+export const UserInfoSection = styled.section`
 	margin: 0 auto;
 	${Flex};
 	max-width:915px;
@@ -17,7 +17,7 @@ export const UserInfoWrapper = styled.section`
 	}
 `;
 
-export const UserInfo = styled.section`
+export const UserInfoBox = styled.div`
 	width: 340px;
 	margin-right: 10px;
 	h2,h4,strong,span {color: #fff}
@@ -26,7 +26,7 @@ export const UserInfo = styled.section`
 	}
 `;
 
-export const Nickname = styled.div`
+export const NicknameBox = styled.div`
 	${Flex};
 	justify-content: flex-start;
 	
@@ -40,7 +40,7 @@ export const Nickname = styled.div`
 	}
 `;
 
-export const Info = styled.div`
+export const InfoBox = styled.div`
 	${Flex}
 	justify-content: flex-start;
 	align-items: center;
@@ -61,7 +61,7 @@ export const Info = styled.div`
 	}
 `;
 
-export const Popularity = styled.section`
+export const PopularityBox = styled.div`
 	width: 270px;
 	height: 100%;
 	border-left: 2px solid #fff;

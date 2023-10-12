@@ -53,24 +53,24 @@ const UserInfoForm = ({ mypage }: { mypage: any }) => {
 	};
 
 	return (
-		<S.UserInfoWrapper>
+		<S.UserInfoSection>
 			<UserProfile profileUrl={profileUrl} />
-			<S.UserInfo>
-				<S.Nickname>
+			<S.UserInfoBox>
+				<S.NicknameBox>
 					<h2>{nickname}</h2>
 					{+accountId === userId ? (
 						<button onClick={onClickuserEditnavigate}>
 							<img src={cog} alt="회원정보 수정" />
 						</button>
 					) : null}
-				</S.Nickname>
-				<S.Info>
+				</S.NicknameBox>
+				<S.InfoBox>
 					<span>
 						<img src={emailIconWhite} alt="이메일아이콘" />
 					</span>
 					<strong>{mypage?.data?.email}</strong>
-				</S.Info>
-				<S.Info>
+				</S.InfoBox>
+				<S.InfoBox>
 					<span>
 						<img src={locationpin} alt="지도아이콘" />
 					</span>
@@ -79,9 +79,9 @@ const UserInfoForm = ({ mypage }: { mypage: any }) => {
 					) : (
 						<strong>{mypage?.data?.location}</strong>
 					)}
-				</S.Info>
-			</S.UserInfo>
-			<S.Popularity>
+				</S.InfoBox>
+			</S.UserInfoBox>
+			<S.PopularityBox>
 				{userId === +accountId ? (
 					<img src={smileywink} alt="기본이모지" />
 				) : (
@@ -91,8 +91,8 @@ const UserInfoForm = ({ mypage }: { mypage: any }) => {
 				)}
 				<h5>{mypage?.data?.popularity}</h5>
 				<p>LIKED</p>
-			</S.Popularity>
-		</S.UserInfoWrapper>
+			</S.PopularityBox>
+		</S.UserInfoSection>
 	);
 };
 

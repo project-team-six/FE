@@ -1,4 +1,6 @@
+import { cursor } from './../../common/GlobalStyle';
 import styled from "styled-components";
+import { Flex } from "../../common/GlobalStyle";
 
 type CategoryBannerProps = {
 	backgroundImage: string;
@@ -39,15 +41,13 @@ export const CategoryChoice = styled.section`
 	margin-top: 70px;
 	height: 55px;
 	border-bottom: 1px solid #dcdcdc;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	${Flex}
 	gap: 8%;
 	button {
 		color: #969696;
 		height: 55px;
 		width: 90px;
-		cursor: pointer;
+		${cursor}
 		font-size: 14px;
 		font-weight: bold;
 		&.active {

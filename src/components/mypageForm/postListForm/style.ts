@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Flex, cursor } from "../../common/GlobalStyle";
 
-export const Post = styled.div`
+export const PostBox = styled.div`
 	max-width: 915px;
 	margin: 0 auto 50px;
 `;
 
-export const NonPost = styled.div`
+export const NonPostBox = styled.div`
 	height: 300px;
 	width: 100%;
 	${Flex}
@@ -38,7 +38,7 @@ export const ListWrapper = styled.div`
 	flex-wrap: wrap;
 `;
 
-export const Feed = styled.div`
+export const FeedBox = styled.div`
 	${cursor}
 	width: 285px;
 	border-radius: 15px;

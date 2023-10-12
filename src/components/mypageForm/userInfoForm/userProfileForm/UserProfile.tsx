@@ -4,7 +4,7 @@ import { Flex } from "../../../common/GlobalStyle";
 
 const UserProfile = ({ profileUrl }: { profileUrl: string }) => {
     return (
-        <ProfileImg>
+        <ProfileImgSection>
 			<div>
 				{profileUrl === "nonImage" ? (
 					<img src={profileImg} alt="기본 프로필이미지" />
@@ -12,12 +12,12 @@ const UserProfile = ({ profileUrl }: { profileUrl: string }) => {
 					<img src={profileUrl} alt="업로드된 이미지" />
 				)}
 			</div>
-		</ProfileImg>
+		</ProfileImgSection>
     )
 }
 export default UserProfile;
 
-const ProfileImg = styled.section`
+const ProfileImgSection = styled.section`
 	max-width: 295px;
 	min-width: 120px;
 	width: 100%;

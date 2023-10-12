@@ -32,7 +32,7 @@ const ProfileImgEdit:React.FC<ProfileImgEditFormProps> = ({selectedFile, setSele
     };
 
     return (
-        <S.ProfileImg>
+        <S.ProfileImgBox>
             <h1>회원정보 수정</h1>
             <div>
                 <S.ImgBox>
@@ -46,7 +46,7 @@ const ProfileImgEdit:React.FC<ProfileImgEditFormProps> = ({selectedFile, setSele
                             <img src={profileImageUrl === "nonImage" ? profileImg : profileImageUrl} alt="현재 이미지" />
                         </span>
                     )}
-                    <S.Avatar >
+                    <S.AvatarBox>
                         <input
                             name="file"
                             type="file"
@@ -54,16 +54,16 @@ const ProfileImgEdit:React.FC<ProfileImgEditFormProps> = ({selectedFile, setSele
                             accept="image/jpg, image/png, image/jpeg"
                             ref={imgRef}
                         />
-                    </S.Avatar>
-                    <S.EditBtn onClick={onImgUpdateHandler}>
+                    </S.AvatarBox>
+                    <S.EditBtnBox onClick={onImgUpdateHandler}>
                         <img src={pencil} alt="편집 아이콘" />
-                    </S.EditBtn>
+                    </S.EditBtnBox>
                 </S.ImgBox>
-                <S.ResetBtn type="button" onClick={() => setSelectedFile(undefined)}>
+                <S.ResetButton type="button" onClick={() => setSelectedFile(undefined)}>
                     프로필 초기화
-                </S.ResetBtn>
+                </S.ResetButton>
             </div>
-        </S.ProfileImg>
+        </S.ProfileImgBox>
     );
 };
 

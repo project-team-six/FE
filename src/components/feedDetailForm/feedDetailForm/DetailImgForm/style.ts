@@ -36,7 +36,7 @@ export const SelectImgWrapper = styled.div`
         }
 	}
 `;
-export const ImageList = styled.div`
+export const ImageBox = styled.div`
     ${Flex};
     gap: 10px;
     width: 100%;

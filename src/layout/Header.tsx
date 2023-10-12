@@ -14,7 +14,7 @@ import { h_mainLogo, h_chatIcon, h_alertIcon, h_profile } from "../asstes/asstes
 import { Badge } from "@mui/material";
 import AlertModal from "../components/alertForm/AlertModal";
 import { VscChevronDown } from "react-icons/vsc";
-import { Flex } from "../components/common/GlobalStyle";
+import { Flex, cursor } from "../components/common/GlobalStyle";
 import { throttle } from "lodash";
 import { getToken } from "../utils/getToken";
 import ChatRoomModal from "../components/chatRoomForm/ChatRoomModal";
@@ -199,7 +199,7 @@ const LogoSection = styled.section`
 	display: flex;
 	font-family: "NEXON Lv1 Gothic OTF";
 	align-items: center;
-	cursor: pointer;
+	${cursor}
 	color: #4fbe9f;
 	font-size: 26px;
 	font-weight: bold;
@@ -217,10 +217,8 @@ const LogoSection = styled.section`
 `;
 
 const NavButton = styled.button`
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	${cursor}
+	${Flex}
 	&:hover {
 	}
 	img {
@@ -244,9 +242,7 @@ type DivProps = {
 };
 
 const ProfileBox = styled.div<DivProps>`
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	${Flex}
 	background-color: ${(props) => props.$backgroundColor};
 	border-radius: 100%;
 	width: 44px;
@@ -268,7 +264,7 @@ const ArrowBox = styled.div`
 `;
 
 const SignButton = styled.button`
-	cursor: pointer;
+	${cursor}
 	width: 90px;
 	height: 30px;
 	border-radius: 6px;

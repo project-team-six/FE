@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainBackgroundColor } from "../common/GlobalStyle";
+import { MainBackgroundColor, cursor } from "../common/GlobalStyle";
 
 export const MainContentWrapper = styled.div`
 	display: grid;
@@ -34,7 +34,7 @@ export const Button = styled.button`
 `;
 
 export const EmailButton = styled.button`
-	cursor: pointer;
+	${cursor}
 	color: #666666;
 	width: 100%;
 	font-size: 12px;

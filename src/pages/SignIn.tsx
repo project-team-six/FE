@@ -6,7 +6,7 @@ import { pushNotification } from "../utils/notification";
 import { User } from "../types/userType";
 import axios from "axios";
 import styled from "styled-components";
-import { Flex } from "../components/common/GlobalStyle";
+import { Flex, cursor } from "../components/common/GlobalStyle";
 import { line } from "../asstes/asstes";
 import { saveToken } from "../utils/saveToken";
 import { useDispatch } from "react-redux";
@@ -173,7 +173,7 @@ const FormButton = styled.button<ButtonProps>`
 	${Flex}
 	width: 400px;
 	height: 55px;
-	cursor: pointer;
+	${cursor}
 	border-radius: 10px;
 	background-color: ${(props) => props.$backgroundColor};
 	color: ${(props) => props.color};
@@ -202,7 +202,7 @@ const FindSection = styled.section`
 		color: #9a9a9a;
 	}
 	button {
-		cursor: pointer;
+		${cursor}
 		font-size: 14px;
 		color: #9a9a9a;
 		font-weight: 500;
