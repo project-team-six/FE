@@ -47,7 +47,7 @@ const AlertModal: React.FC<AlertModalProps> = ({ modalState, modalHandle, setAle
 		<div>
 			{modalState && (
 				<ModalLayout onClick={modalHandle}>
-					<AlertLayout onClick={(e: any) => e.stopPropagation()}>
+					<AlertLayout onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}>
 						{alertList && alertList?.data.map((alert: AlertList) => {
 							return (
 								<AlertSection key={alert.notificationId} onClick={handleNavigate(alert.url)}>

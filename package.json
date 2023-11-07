@@ -33,6 +33,7 @@
 		"@types/redux-persist": "^4.3.1",
 		"@types/styled-components": "^5.1.26",
 		"@types/throttle": "^1.0.1",
+		"browser-image-compression": "^2.0.2",
 		"date-fns": "^2.30.0",
 		"event-source-polyfill": "^1.0.31",
 		"js-cookie": "^3.0.5",

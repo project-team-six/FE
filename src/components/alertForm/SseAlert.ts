@@ -2,10 +2,23 @@ import { useEffect } from "react";
 import { EventSourcePolyfill } from "event-source-polyfill";
 import { getToken } from "../../utils/getToken";
 
+type SseToken = {
+	headers: {
+		Authorization : string;
+	}
+}
+
+// type SseEventType = {
+// 	data: string;
+// 	lastEventId : string;
+// 	target : EventSourcePolyfill;
+// 	type : string;
+// }
+
 const SseAlert = () => {
 	useEffect(() => {
 		const token = getToken("accessToken");
-		const eventSourceInitDict: any = {
+		const eventSourceInitDict: SseToken = {
 			headers: {
 				Authorization: `${token}`,
 			},
@@ -17,9 +30,11 @@ const SseAlert = () => {
 
 		};
 
-		sse.addEventListener("sse", async (event: any) => {
+		sse.addEventListener("sse", async (event : any) => {
+
 			let data = event.data;
 			try {
+				console.log("까꿍", event);
 				data = JSON.parse(data);
 				if ("message" in data) {
 					window.onload = () => {

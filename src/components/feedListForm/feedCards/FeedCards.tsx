@@ -6,6 +6,7 @@ import { useCallback, useEffect } from "react";
 import { priceUtils } from "../../../utils/priceUtils";
 import Loading from "../../common/Loading";
 import { noFeedList } from "../../../asstes/asstes";
+import { feedCard } from "../../../types/feedType";
 
 const FeedCards = ({
 	location,
@@ -87,7 +88,7 @@ const FeedCards = ({
 					<S.FeedListSection>
 						{feedList &&
 							feedList.content &&
-							feedList.content.slice(0, pageSize).map((item: any) => (
+							feedList.content.slice(0, pageSize).map((item: feedCard) => (
 								<div key={item.id}>
 									<S.FeedCard onClick={handleNavigate(`/feed/${item.id}`)}>
 										<S.FeedImageBox>
