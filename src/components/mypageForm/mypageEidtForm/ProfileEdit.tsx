@@ -15,7 +15,7 @@ import { saveToken } from "../../../utils/saveToken";
 const ProfileEdit = () => {
 	const location = useLocation();
 	const userInfo = location.state ? location.state.userInfo : {};
-	
+
 	// 토큰값으로 유저 아이디 불러오기
 	const userId = useSelector((state: RootState) => state.tokenSlice.decodeToken.userId);
 	const auth: string = useSelector((state: RootState) => state.tokenSlice.decodeToken.auth);
@@ -92,7 +92,7 @@ const ProfileEdit = () => {
 	const submitHandler = (e: any) => {
 		e.preventDefault(); // 새로고침 방지
 
-		let isError = false; // API 통신 성공 유무 저장		
+		let isError = false; // API 통신 성공 유무 저장
 		if (isInfoValid()) {
 			putMyPageEdit(userId, nickname, phoneNumber)
 				.then((response) => {
@@ -147,7 +147,7 @@ const ProfileEdit = () => {
 		}
 		if (!isError) navigate(-1);
 	};
-	
+
 	return (
 		<S.LayoutBox>
             <S.LayoutInline>
