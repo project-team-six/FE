@@ -137,11 +137,6 @@
 <br>
 <br>
 
-## 시연 영상 🎥
-[![영상 썸네일](https://img.youtube.com/vi/QaByOitmwWo/0.jpg)](https://www.youtube.com/watch?v=QaByOitmwWo)
-<br>
-<br>
-
 ## 프로젝트 아키텍처 ⚙️
 <p align="center"><img src="https://github.com/project-team-six/FE/assets/134919218/7dbdf2f0-c2e7-4ce0-b83a-dafd926dbcef" alt="Architecture"></p>
 <br>
