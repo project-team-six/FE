@@ -1,17 +1,105 @@
 # 소분소분
-<p align="center"><img src="https://github.com/project-team-six/FE/assets/134919218/d6b803d9-3c03-47cf-8efd-9425a8e51e9e"></p>
-<br>
 
-## 프로젝트 소개 🗣️
+[1. 프로젝트 소개](#1-프로젝트-소개)
+
+[2. 화면 구성 및 주요 기능](#2-화면-구성-및-주요-기능)
+
+[3. 기술적 의사결정](#3-기술적-의사결정)
+
+[4. 개선사항](#4-개선사항)
+
+[5. 트러블 슈팅](#5-트러블-슈팅)
+
+[6. 아키텍처](#6-아키텍처)
+
+[7. 프로젝트 기술 스택](#7-프로젝트-기술-스택)
+
+[8. 팀원 소개](#8-팀원-소개)
+
+[9. 팀원 역할](#9-팀원-역할)
+
+## 1. 프로젝트 소개
+<p align="center"><img src="https://github.com/project-team-six/FE/assets/134919218/d6b803d9-3c03-47cf-8efd-9425a8e51e9e"></p>
 혼자왔냐? 많이있다. 분배파티! 
 <br>
 매 여름, 1인가구로 살아가면서 맛있는 수박을 먹고 싶을 때 ‘이걸 내가 다 먹을 수 있을까’ 고민하지 않으시나요? 그래서 저희는 동네 이웃들과 물건을 함께 살 수 있는 플랫폼인 소분소분 프로젝트를 기획하였습니다.
-<br>
-<br>
+</br>
+
+## 1. 화면 구성 및 주요 기능
+[화면 구성 및 주요 기능 🔗](https://github.com/project-team-six/FE/wiki/%ED%99%94%EB%A9%B4-%EA%B5%AC%EC%84%B1-%EB%B0%8F-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5)
+
 <br>
 
+## 2. 기술적 의사결정
+[기술적 의사결정 🔗](https://github.com/project-team-six/FE/wiki/%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%9D%98%EC%82%AC%EA%B2%B0%EC%A0%95)
 
-## 팀원 소개 👥
+<br>
+
+## 3. 트러블슈팅
+
+### 1 ) [리덕스 상태관리 🔗](https://github.com/project-team-six/FE/blob/dev/src/redux/modules/user.ts)
+
+#### ⓵ 문제 상황
+    현재 로그인된 사용자의 정보를 전역적으로 사용해야 해서 리덕스 튤킷을 사용했는데 브라우저를 새로고침하는 순간 리덕스 저장소가 초기화되어버리는 문제가 발생했습니다.
+#### ⓶ 문제 원인
+    리덕스는 전역적으로 상태를 관리할 수 있게 도와주는 도구이지만 JavaScript 함수로 작동하기 때문에 SPA(Single Page Application)에서 사용할 때 특별한 고려 사항이 있습니다.
+
+    SPA에서 페이지를 이동할 때, 실제로는 브라우저의 링크로 이동하는 것이 아니라 히스토리 객체를 변경하는 방식을 사용합니다. 이로 인해 직접 주소창을 건드리거나 페이지를 새로고침할 때, 리덕스 스토어는 자바스크립트 메모리에 저장된 상태로 남아 있지 않고 초기값으로 리셋됩니다.
+#### ⓷ 해결 방법
+    브라우저 새로고침 시 리덕스 저장소가 초기화 되는 것을 막기 위해 `redux-persist`를 사용했습니다.
+
+    `redux-persist`는 Redux 애플리케이션에서 상태를 지속적으로 저장하고, 브라우저 새로고침 또는 애플리케이션을 다시 시작할 때 이전 상태를 복원하기 위한 라이브러리입니다. 
+
+    이 라이브러리를 사용하면 Redux 스토어의 상태를 로컬 스토리지 또는 다른 영속성 저장소에 저장하고, 필요할 때 다시 불러와서 사용할 수 있습니다. 
+
+    `redux-persist`는 아래와 같은 특징이 있어 브라우저 새로고침 시에도 저장소가 초기화되지 않습니다.
+
+    1. 데이터 영속성 : Redux 스토어의 상태를 로컬 스토리지, 세션 스토리지 또는 다른 영속성 저장소에 저장하여 브라우저 새로고침 또는 애플리케이션 재시작과 관계없이 상태 데이터가 유지됩니다.
+    2. 자동 복원 : 이전에 저장한 상태를 로드하여 Redux 스토어에 자동으로 복원하기 때문에 저장소가 초기화되지 않습니다.
+
+----- 
+
+### 2 ) [JWT 관리 🔗](https://github.com/project-team-six/FE/blob/dev/src/api/instance.ts)
+
+ #### ⓵ 문제 상황
+    상황1) 로그인이 실패했는데 쿠키에 undefined 값이 저장되어 올바른 정보로 로그인 시도해도 로그인할 수 없는 현상이 발생했습니다.
+
+    상황2) accessToken이 만료되었을 때, refreshToken 값을 사용해서 새로운 accessToken을 발급했지만 쿠키에는 바로 반영되지 않는 문제가 발생했습니다.
+
+    상황3) 로그인 후 브라우저를 닫고 새로 열었을 때 이전에 로그인한 토큰 정보가 남아 있어 페이지가 제대로 동작하지 않는 문제가 발생했습니다.
+ #### ⓶ 문제 원인
+    상황1 원인) redis 에 있는 refreshToken과 클라이언트에서 전달된 refreshToken을 string 값 하나하나 오차없이 완전히 일치했을때만 accessToken 을 발급해주어서 유효성에서 처리되지 못하고 undefined 값이 날아와서 오류가 발생했던 것으로 확인했습니다.
+
+    상황2 원인) 이전 accessToken 값을 삭제하지 않고 바로 새로운 accessToken 값을 넣으려고 해서 오류가 발생했던 것으로 확인했습니다.
+
+    상황3 원인) 브라우저를 닫을 때 accessToken 값을 지우는 작업을 해주지 않아 발생했던 오류로 확인했습니다.
+
+#### ⓷ 해결 방법
+    상황1 해결방법) interceptors.request 에서 accessToken 의 값이 날아올 때 falsy 한 값이면 토큰을 바로 삭제했습니다.
+
+    상황2 해결방법) 기존 accessToken 만료되어 서버에서 새로운 accessToken 값을 주었을 때 해당 값으로 변경될 수 있도록 코드를 작성했습니다. 
+
+    상황3 해결방법) 토큰 보관소를 쿠키에서 세션스토리지로 변경하였습니다.
+
+<br>
+
+## 4. 프로젝트 아키텍처
+<p align="center"><img src="https://github.com/project-team-six/FE/assets/134919218/7dbdf2f0-c2e7-4ce0-b83a-dafd926dbcef" alt="Architecture"></p>
+<br>
+
+## 5. 기술 스택
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
+ <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"/>
+ <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white"/>
+ <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white"/>
+ <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"/>
+ <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"/>
+<img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"/>
+<br>
+
+## 6. 팀원 소개
 <table>
   <thead>
     <tr>
@@ -45,125 +133,3 @@
 </tr>
 </tbody>
 </table>
-<br>
-<br>
-
-
-## 소분소분이 궁금해요 🔎
-
-소분소분의 6주간의 여정이 궁금하다면 노션 페이지를 확인해주세요!
-
-[🔜 소분소분 노션 페이지 바로가기] (https://teamsparta.notion.site/c94d6d3e3b7a4964a9dc7ce4029c2725)<br>
-<br>
-<br>
-
-## 소분소분 미리보기
-<details>
-<summary>1. 로그인 </summary>
-일반 로그인과 카카오톡 로그인 모두 지원하고 있습니다.
-<img src="https://github.com/project-team-six/FE/assets/96226559/64de9c25-1279-4f5e-86ce-979b64bec06a" alt="login">
-</details>
-<details>
-<summary>2. 지역설정 </summary>   
-사용자가 원하는 지역으로 설정하여 동네 소분 목록을 확인할 수 있습니다.
-<img src="https://github.com/project-team-six/FE/assets/96226559/521f5843-82cb-4c16-ae49-5cde44ddb5c3" alt="Regional Settings">
-</details>
-<details>
-<summary>3. 게시물 </summary>   
-<ul>
-  <li>검색</li>
-  제목과 내용 통합검색을 지원합니다.<br>
-  원하는 물품을 입력하면 내가 속한 지역에서 등록된 게시글을 쉽게 확인 할 수 있습니다.
-  <img src="https://github.com/project-team-six/FE/assets/96226559/3c3d7716-6c8a-4ff2-a9f9-17eda90ec2c3" alt="search"> 
-  <li>카테고리 필터</li>
-  가장 소분을 많이할 것같은 신선식품을 필두로, 뷰티, 생필품, 기타 등의 카테고리를 지원하여 내가 속한 지역에서의 카테고리별로 소분목록을 확인할 수 있습니다.
-  <img src="https://github.com/project-team-six/FE/assets/96226559/63593ab5-8f7b-4fee-8287-7b193df36449" alt="filter">
-  <li>소분 진행중/마감 필터</li>
-  소분이 진행중인것과, 마감한 것에 대해서 분류해서 볼 수있게 했습니다. <br>
-이미 마감한 제품은 보통 어느정도의 가격대에 소분목록이 형성되어있는지 확인하기 위함이고, 소분이 진행중인것은 현재 내가 소분할만한 제품을 쉽게 확인하기 위함입니다.
-<img src="https://github.com/project-team-six/FE/assets/96226559/64d51a59-e735-4b27-9f1f-4f1be3595168" alt="close filter">
-  <li>게시물 작성/수정</li>
-  게시물을 등록/수정 하기 전, 주의 사항을 모달로 작성하여 작성하기 전 모든 유저가 중요한 사안을 읽을 수 있도록 하였고, 원가와 판매가격을 따로 분리하여 실제 산 가격과 소분시의 가격을 비교할 수 있도록 해 놓았습니다.<br>
-  또한 제품을 언제 구매했는지, 제품의 소비기한은 언제까지인지도 추가로 확인할 수 있도록 필수입력요소로 구성해 두었습니다.
-  <img src="https://github.com/project-team-six/FE/assets/96226559/ea8fd065-bdcd-4e6d-84c3-c197915a9865" alt="feed post">
-</ul>
-</details>
-<details>   
-<summary>4. 상세페이지 </summary>
-<ul>
-  <li>마감 & 삭제하기</li>
-  게시물을 마감하고 삭제할 수 있습니다. <br>
-소분이 완료되면 작성자는 마감 버튼을 눌러 다른 사용자가 채팅을 하거나 댓글을 다는 활동을 할 수 없습니다.
-그리고 게시물을 삭제하는 버튼이 존재하여 언제든지 게시물을 삭제할 수 있습니다.
-<img src="https://github.com/project-team-six/FE/assets/96226559/7e320422-fe77-4f5b-b4f8-2def73d6c197" alt="closed&delete">
-  <li>찜하기</li>
-  지금 당장 거래를 할 수 없다면 찜하기 버튼을 눌러봅시다. <br>
-마이페이지로 이동하여 내가 찜한 게시물을 확인할 수 있습니다.
-<img src="https://github.com/project-team-six/FE/assets/96226559/cdd493c7-ec72-4dcc-b5ee-a643fa480dbf" alt="pin">
-  <li>신고</li>
-  잘못된 사용자가 있다면 신고 버튼을 눌러 신고할 수 있습니다. 신고자가 악의적인 신고를 할 수 있다는 점을 방지하기 위해 증거 사진을 필수값으로 받고 있습니다.
-  <img src="https://github.com/project-team-six/FE/assets/96226559/227fb03d-646f-4da1-aa2a-2a598b20444f" alt="report">
-  <li>댓글</li>
-  소분 물품에 대한 댓글을 달 수 있습니다.
-  <img src="https://github.com/project-team-six/FE/assets/96226559/c7d852c8-270e-4cf2-a40d-fcd45ef9dab5" alt="comment">
-</ul>
-</details>
-<details>   
-<summary>5. 마이페이지 </summary>
-<ul>
-  <li>회원정보 수정</li>
-  내 프로필 이미지를 등록하거나 닉네임, 전화번호, 비밀번호를 변경할 수 있습니다.
-  <img src="https://github.com/project-team-six/FE/assets/134919218/293b9dc3-ccf3-44bb-ba92-d662344b6f8c" alt="edit"/>
-  <li>인기도</li>
-  다른 사람의 마이페이지에 들어가서 인기도를 올릴 수도 있고, 다시 뺏어올 수도 있습니다.
-  <img src="https://github.com/project-team-six/FE/assets/134919218/6fd1df4f-8134-4e16-9332-0b59e4b0183d" alt="popularity"/>
-  <li>작성/찜한 게시물</li>
-  내가 작성한 글과, 찜한 글을 확인할 수 있습니다.
-  <img src="https://github.com/project-team-six/FE/assets/134919218/f45023bc-5577-46f0-990a-7c6772e0ce4c" alt="storage"/>
-</ul>
-</details>
-<details>
-<summary>6. 채팅 </summary>
-채팅을 통해 다른 사용자와 소분을 위한 소통을 진행할 수 있습니다.
-<img src="https://github.com/project-team-six/FE/assets/134919218/d541c4a3-e090-422d-8c93-23cf784eec67" alt="chat"/>
-</details>
-<details>
-<summary>7. 알림 </summary>
-사용자가 작성한 글에 다른 사용자가 댓글을 달았거나, 찜했거나, 소분하기 위해 채팅방에 입장한 경우 실시간으로 알림이 전송됩니다. <br>
-알림 내용을 확인하여 다른 사용자들과 소분을 진행하시면 됩니다. <br>
-사용자가 원하는 지역으로 설정하여 동네 소분 목록을 확인할 수 있습니다.
-<img src="https://github.com/project-team-six/FE/assets/134919218/d861b339-e939-4985-a9ef-6278e53980f2" alt="alert"/>
-</details>
-<br>
-<br>
-
-## 프로젝트 아키텍처 ⚙️
-<p align="center"><img src="https://github.com/project-team-six/FE/assets/134919218/7dbdf2f0-c2e7-4ce0-b83a-dafd926dbcef" alt="Architecture"></p>
-<br>
-<br>
-
-## 프로젝트 기술 스택 🖥️
-
-### ⌨️ 프론트앤드
-<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
- <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"/>
- <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white"/>
- <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white"/>
- <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"/>
- <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"/>
-<img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"/>
-<br>
-<br>
-
-### ⌨️ 백앤드
-<img src="https://img.shields.io/badge/OpenJDK-232F3E?style=for-the-badge&logo=OpenJDK&logoColor=white"/>
-<img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
-<img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white"/>
-<img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white"/>
-<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
-<img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white"/>
-<img src="https://img.shields.io/badge/amazonrds-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white"/>
-<img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazonec2&logoColor=white"/>
-<img src="https://img.shields.io/badge/redis-DC382D?style=for-the-badge&logo=redis&logoColor=white"/>
