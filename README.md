@@ -6,36 +6,35 @@
 
 [3. 기술적 의사결정](#3-기술적-의사결정)
 
-[4. 개선사항](#4-개선사항)
+[4. 트러블 슈팅](#4-트러블-슈팅)
 
-[5. 트러블 슈팅](#5-트러블-슈팅)
+[5. 아키텍처](#5-아키텍처)
 
-[6. 아키텍처](#6-아키텍처)
+[6. 프로젝트 기술 스택](#6-프로젝트-기술-스택)
 
-[7. 프로젝트 기술 스택](#7-프로젝트-기술-스택)
+[7. 팀원 소개](#7-팀원-소개)
 
-[8. 팀원 소개](#8-팀원-소개)
-
-[9. 팀원 역할](#9-팀원-역할)
+[8. 팀원 역할](#8-팀원-역할)
 
 ## 1. 프로젝트 소개
 <p align="center"><img src="https://github.com/project-team-six/FE/assets/134919218/d6b803d9-3c03-47cf-8efd-9425a8e51e9e"></p>
 혼자왔냐? 많이있다. 분배파티! 
 <br>
 매 여름, 1인가구로 살아가면서 맛있는 수박을 먹고 싶을 때 ‘이걸 내가 다 먹을 수 있을까’ 고민하지 않으시나요? 그래서 저희는 동네 이웃들과 물건을 함께 살 수 있는 플랫폼인 소분소분 프로젝트를 기획하였습니다.
+
 </br>
 
-## 1. 화면 구성 및 주요 기능
+## 2. 화면 구성 및 주요 기능
 [화면 구성 및 주요 기능 🔗](https://github.com/project-team-six/FE/wiki/%ED%99%94%EB%A9%B4-%EA%B5%AC%EC%84%B1-%EB%B0%8F-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5)
 
 <br>
 
-## 2. 기술적 의사결정
+## 3. 기술적 의사결정
 [기술적 의사결정 🔗](https://github.com/project-team-six/FE/wiki/%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%9D%98%EC%82%AC%EA%B2%B0%EC%A0%95)
 
 <br>
 
-## 3. 트러블슈팅
+## 4. 트러블슈팅
 
 ### 1 ) [리덕스 상태관리 🔗](https://github.com/project-team-six/FE/blob/dev/src/redux/modules/user.ts)
 
@@ -83,11 +82,11 @@
 
 <br>
 
-## 4. 프로젝트 아키텍처
+## 5. 프로젝트 아키텍처
 <p align="center"><img src="https://github.com/project-team-six/FE/assets/134919218/7dbdf2f0-c2e7-4ce0-b83a-dafd926dbcef" alt="Architecture"></p>
 <br>
 
-## 5. 기술 스택
+## 6. 기술 스택
 <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
@@ -97,9 +96,10 @@
  <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"/>
  <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"/>
 <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"/>
+
 <br>
 
-## 6. 팀원 소개
+## 7. 팀원 소개
 <table>
   <thead>
     <tr>
@@ -132,4 +132,26 @@
 <td align="center"><a href="https://github.com/cubeninggen">경환</a></td>
 </tr>
 </tbody>
+</table>
+
+## 8. 팀원 역할
+<h3>공통: 기획, 디자인, FE 개발</h3>
+</br>
+
+<table>
+    <tbody>
+        <tr>
+            <th>채연</th>
+            <td>마이페이지, 마이페이지 수정, 상세페이지, 게시글삭제, 찜하기, 인기도, 신고</td>
+        </tr>
+        <tr>
+            <th>하은</th>
+            <td>회원가입, 게시물 작성, 게시물 수정, 이메일 찾기, 비밀번호 찾기, 게시물 댓글 작성, 지역 설정,<br> 채팅, 푸터, 리프레쉬토큰, 브라우저나갈시 토큰삭제
+            </td>
+        </tr>
+        <tr>
+            <th>은지</th>
+            <td>카카오 소셜 로그인, 로그인, 리프레쉬 토큰, 검색, 메인페이지, 페이지네이션, 제너럴페이지, 필터,<br> 지역설정, 헤더, 푸터, 알림, SSE-알림, S3 cloudFront 배포</td>
+        </tr>
+    </tbody>
 </table>
